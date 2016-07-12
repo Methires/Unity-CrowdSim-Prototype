@@ -17,21 +17,6 @@ public class Agent : MonoBehaviour
 		locomotion = new Locomotion(animator);
 	}
 
-	protected void SetDestination(Vector3 dest)
-	{
-		// Construct a ray from the current mouse coordinates
-		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit = new RaycastHit();
-		if (Physics.Raycast(ray, out hit))
-		{
-			agent.destination = hit.point;
-		}
-        if (dest.x != -1000000.0f)
-        {
-            agent.destination = dest;
-        }
-	}
-
 	protected void SetupAgentLocomotion()
 	{
 		if (AgentDone())
@@ -69,9 +54,6 @@ public class Agent : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-        if (Input.GetButtonDown("Fire1"))
-            SetDestination(new Vector3(-1000000.0f, 0.0f, 0.0f));
-
 		SetupAgentLocomotion();
 	}
 }
