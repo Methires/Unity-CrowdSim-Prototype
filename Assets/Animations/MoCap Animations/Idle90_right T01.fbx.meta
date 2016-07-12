@@ -1,0 +1,1095 @@
+fileFormatVersion: 2
+guid: 358e09d57fdec9246a388ad475b71aeb
+timeCreated: 1464176714
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Daniel_ROM
+    100002: Daniel_ROM:ARIEL
+    100004: Daniel_ROM:C7
+    100006: Daniel_ROM:CLAV
+    100008: Daniel_ROM:LANK
+    100010: Daniel_ROM:LBHD
+    100012: Daniel_ROM:LBSH
+    100014: Daniel_ROM:LBWT
+    100016: Daniel_ROM:LELB
+    100018: Daniel_ROM:LFHD
+    100020: Daniel_ROM:LFSH
+    100022: Daniel_ROM:LFWT
+    100024: Daniel_ROM:LHEL
+    100026: Daniel_ROM:LHIP
+    100028: Daniel_ROM:LIEL
+    100030: Daniel_ROM:LIHAND
+    100032: Daniel_ROM:LIWR
+    100034: Daniel_ROM:LKNE
+    100036: Daniel_ROM:LKNI
+    100038: Daniel_ROM:LMT1
+    100040: Daniel_ROM:LMT5
+    100042: Daniel_ROM:LMWT
+    100044: Daniel_ROM:LOHAND
+    100046: Daniel_ROM:LOWR
+    100048: Daniel_ROM:LSHN
+    100050: Daniel_ROM:LTOE
+    100052: Daniel_ROM:LUPA
+    100054: Daniel_ROM:LWRE
+    100056: Daniel_ROM:RANK
+    100058: Daniel_ROM:RBHD
+    100060: Daniel_ROM:RBSH
+    100062: Daniel_ROM:RBWT
+    100064: Daniel_ROM:RELB
+    100066: Daniel_ROM:RFHD
+    100068: Daniel_ROM:RFSH
+    100070: Daniel_ROM:RFWT
+    100072: Daniel_ROM:RHEL
+    100074: Daniel_ROM:RHIP
+    100076: Daniel_ROM:RIEL
+    100078: Daniel_ROM:RIHAND
+    100080: Daniel_ROM:RIWR
+    100082: Daniel_ROM:RKNE
+    100084: Daniel_ROM:RKNI
+    100086: Daniel_ROM:RMT1
+    100088: Daniel_ROM:RMT5
+    100090: Daniel_ROM:RMWT
+    100092: Daniel_ROM:ROHAND
+    100094: Daniel_ROM:ROWR
+    100096: Daniel_ROM:RSHN
+    100098: Daniel_ROM:RTOE
+    100100: Daniel_ROM:RUPA
+    100102: Daniel_ROM:RWRE
+    100104: Daniel_ROM:Solving
+    100106: Daniel_ROM:Solving:Head
+    100108: Daniel_ROM:Solving:HeadEnd
+    100110: Daniel_ROM:Solving:Hips
+    100112: Daniel_ROM:Solving:L_FingersEnd
+    100114: Daniel_ROM:Solving:LeftArm
+    100116: Daniel_ROM:Solving:LeftFoot
+    100118: Daniel_ROM:Solving:LeftForeArm
+    100120: Daniel_ROM:Solving:LeftHand
+    100122: Daniel_ROM:Solving:LeftHandEnd
+    100124: Daniel_ROM:Solving:LeftHandThumb1
+    100126: Daniel_ROM:Solving:LeftHandThumb2
+    100128: Daniel_ROM:Solving:LeftLeg
+    100130: Daniel_ROM:Solving:LeftShoulder
+    100132: Daniel_ROM:Solving:LeftToeBase
+    100134: Daniel_ROM:Solving:LeftToeBaseEnd
+    100136: Daniel_ROM:Solving:LeftUpLeg
+    100138: Daniel_ROM:Solving:Neck
+    100140: Daniel_ROM:Solving:R_FingersEnd
+    100142: Daniel_ROM:Solving:RightArm
+    100144: Daniel_ROM:Solving:RightFoot
+    100146: Daniel_ROM:Solving:RightForeArm
+    100148: Daniel_ROM:Solving:RightHand
+    100150: Daniel_ROM:Solving:RightHandEnd
+    100152: Daniel_ROM:Solving:RightHandThumb1
+    100154: Daniel_ROM:Solving:RightHandThumb2
+    100156: Daniel_ROM:Solving:RightLeg
+    100158: Daniel_ROM:Solving:RightShoulder
+    100160: Daniel_ROM:Solving:RightToeBase
+    100162: Daniel_ROM:Solving:RightToeBaseEnd
+    100164: Daniel_ROM:Solving:RightUpLeg
+    100166: Daniel_ROM:Solving:Spine
+    100168: Daniel_ROM:Solving:Spine1
+    100170: Daniel_ROM:Solving:Spine2
+    100172: Daniel_ROM:Solving:Spine3
+    100174: Daniel_ROM:STRN
+    100176: Daniel_ROM:T10
+    100178: //RootNode
+    100180: System
+    100182: System:Bonita_10_2099034
+    100184: System:Bonita_10_2100709
+    100186: System:Bonita_10_2100712
+    100188: System:Bonita_10_2100716
+    100190: System:Bonita_10_2100719
+    100192: System:Bonita_10_2100727
+    100194: System:Bonita_10_2100729
+    100196: System:Bonita_10_2100738
+    100198: System:Bonita_10_2100744
+    100200: System:Bonita_10_2100745
+    100202: System:T40_12695
+    100204: System:T40_13827
+    100206: System:T40_15290
+    100208: System:T40_15298
+    100210: System:T40_15462
+    100212: System:T40_15469
+    100214: System:T40_15475
+    100216: System:T40_15482
+    100218: System:T40_16731
+    100220: System:T40_16795
+    100222: System:Vantage_5_2107617
+    100224: System:Vantage_5_2107676
+    100226: System:Vantage_5_2107693
+    100228: System:Vantage_5_2107709
+    100230: System:Vantage_5_2107712
+    100232: System:Vantage_5_2107727
+    100234: System:Vantage_5_2107733
+    100236: System:Vantage_5_2107744
+    100238: System:Vantage_5_2107778
+    100240: System:Vantage_5_2108360
+    100242: Unlabeled_Markers
+    400000: Daniel_ROM
+    400002: Daniel_ROM:ARIEL
+    400004: Daniel_ROM:C7
+    400006: Daniel_ROM:CLAV
+    400008: Daniel_ROM:LANK
+    400010: Daniel_ROM:LBHD
+    400012: Daniel_ROM:LBSH
+    400014: Daniel_ROM:LBWT
+    400016: Daniel_ROM:LELB
+    400018: Daniel_ROM:LFHD
+    400020: Daniel_ROM:LFSH
+    400022: Daniel_ROM:LFWT
+    400024: Daniel_ROM:LHEL
+    400026: Daniel_ROM:LHIP
+    400028: Daniel_ROM:LIEL
+    400030: Daniel_ROM:LIHAND
+    400032: Daniel_ROM:LIWR
+    400034: Daniel_ROM:LKNE
+    400036: Daniel_ROM:LKNI
+    400038: Daniel_ROM:LMT1
+    400040: Daniel_ROM:LMT5
+    400042: Daniel_ROM:LMWT
+    400044: Daniel_ROM:LOHAND
+    400046: Daniel_ROM:LOWR
+    400048: Daniel_ROM:LSHN
+    400050: Daniel_ROM:LTOE
+    400052: Daniel_ROM:LUPA
+    400054: Daniel_ROM:LWRE
+    400056: Daniel_ROM:RANK
+    400058: Daniel_ROM:RBHD
+    400060: Daniel_ROM:RBSH
+    400062: Daniel_ROM:RBWT
+    400064: Daniel_ROM:RELB
+    400066: Daniel_ROM:RFHD
+    400068: Daniel_ROM:RFSH
+    400070: Daniel_ROM:RFWT
+    400072: Daniel_ROM:RHEL
+    400074: Daniel_ROM:RHIP
+    400076: Daniel_ROM:RIEL
+    400078: Daniel_ROM:RIHAND
+    400080: Daniel_ROM:RIWR
+    400082: Daniel_ROM:RKNE
+    400084: Daniel_ROM:RKNI
+    400086: Daniel_ROM:RMT1
+    400088: Daniel_ROM:RMT5
+    400090: Daniel_ROM:RMWT
+    400092: Daniel_ROM:ROHAND
+    400094: Daniel_ROM:ROWR
+    400096: Daniel_ROM:RSHN
+    400098: Daniel_ROM:RTOE
+    400100: Daniel_ROM:RUPA
+    400102: Daniel_ROM:RWRE
+    400104: Daniel_ROM:Solving
+    400106: Daniel_ROM:Solving:Head
+    400108: Daniel_ROM:Solving:HeadEnd
+    400110: Daniel_ROM:Solving:Hips
+    400112: Daniel_ROM:Solving:L_FingersEnd
+    400114: Daniel_ROM:Solving:LeftArm
+    400116: Daniel_ROM:Solving:LeftFoot
+    400118: Daniel_ROM:Solving:LeftForeArm
+    400120: Daniel_ROM:Solving:LeftHand
+    400122: Daniel_ROM:Solving:LeftHandEnd
+    400124: Daniel_ROM:Solving:LeftHandThumb1
+    400126: Daniel_ROM:Solving:LeftHandThumb2
+    400128: Daniel_ROM:Solving:LeftLeg
+    400130: Daniel_ROM:Solving:LeftShoulder
+    400132: Daniel_ROM:Solving:LeftToeBase
+    400134: Daniel_ROM:Solving:LeftToeBaseEnd
+    400136: Daniel_ROM:Solving:LeftUpLeg
+    400138: Daniel_ROM:Solving:Neck
+    400140: Daniel_ROM:Solving:R_FingersEnd
+    400142: Daniel_ROM:Solving:RightArm
+    400144: Daniel_ROM:Solving:RightFoot
+    400146: Daniel_ROM:Solving:RightForeArm
+    400148: Daniel_ROM:Solving:RightHand
+    400150: Daniel_ROM:Solving:RightHandEnd
+    400152: Daniel_ROM:Solving:RightHandThumb1
+    400154: Daniel_ROM:Solving:RightHandThumb2
+    400156: Daniel_ROM:Solving:RightLeg
+    400158: Daniel_ROM:Solving:RightShoulder
+    400160: Daniel_ROM:Solving:RightToeBase
+    400162: Daniel_ROM:Solving:RightToeBaseEnd
+    400164: Daniel_ROM:Solving:RightUpLeg
+    400166: Daniel_ROM:Solving:Spine
+    400168: Daniel_ROM:Solving:Spine1
+    400170: Daniel_ROM:Solving:Spine2
+    400172: Daniel_ROM:Solving:Spine3
+    400174: Daniel_ROM:STRN
+    400176: Daniel_ROM:T10
+    400178: //RootNode
+    400180: System
+    400182: System:Bonita_10_2099034
+    400184: System:Bonita_10_2100709
+    400186: System:Bonita_10_2100712
+    400188: System:Bonita_10_2100716
+    400190: System:Bonita_10_2100719
+    400192: System:Bonita_10_2100727
+    400194: System:Bonita_10_2100729
+    400196: System:Bonita_10_2100738
+    400198: System:Bonita_10_2100744
+    400200: System:Bonita_10_2100745
+    400202: System:T40_12695
+    400204: System:T40_13827
+    400206: System:T40_15290
+    400208: System:T40_15298
+    400210: System:T40_15462
+    400212: System:T40_15469
+    400214: System:T40_15475
+    400216: System:T40_15482
+    400218: System:T40_16731
+    400220: System:T40_16795
+    400222: System:Vantage_5_2107617
+    400224: System:Vantage_5_2107676
+    400226: System:Vantage_5_2107693
+    400228: System:Vantage_5_2107709
+    400230: System:Vantage_5_2107712
+    400232: System:Vantage_5_2107727
+    400234: System:Vantage_5_2107733
+    400236: System:Vantage_5_2107744
+    400238: System:Vantage_5_2107778
+    400240: System:Vantage_5_2108360
+    400242: Unlabeled_Markers
+    7400000: Idle90_right_T01_x2d
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Daniel_ROM:Solving:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:Spine2
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Daniel_ROM:Solving:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Idle90_right T01(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:ARIEL
+      position: {x: 0.119695015, y: 1.821797, z: 0.6959962}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:C7
+      position: {x: 0.12877145, y: 1.5516005, z: 0.6541569}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:CLAV
+      position: {x: 0.124948606, y: 1.4740775, z: 0.8323544}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LANK
+      position: {x: -0.035751197, y: 0.12971714, z: 0.6554105}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LBHD
+      position: {x: 0.040339842, y: 1.6897411, z: 0.6976013}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LBSH
+      position: {x: -0.0033281904, y: 1.5111358, z: 0.62576354}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LBWT
+      position: {x: 0.00614884, y: 1.098894, z: 0.6599887}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LELB
+      position: {x: -0.3383916, y: 1.4518143, z: 0.6411293}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LFHD
+      position: {x: 0.033383045, y: 1.771517, z: 0.77566254}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LFSH
+      position: {x: 0.0007734336, y: 1.5117046, z: 0.7675588}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LFWT
+      position: {x: -0.024063766, y: 1.0725487, z: 0.82857466}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LHEL
+      position: {x: 0.025827024, y: 0.09577068, z: 0.5774066}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LHIP
+      position: {x: -0.02777636, y: 0.6961953, z: 0.8163688}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LIEL
+      position: {x: -0.32524243, y: 1.3578994, z: 0.67352927}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LIHAND
+      position: {x: -0.6923725, y: 1.4069477, z: 0.7501275}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LIWR
+      position: {x: -0.5910662, y: 1.4038476, z: 0.7491646}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LKNE
+      position: {x: -0.037339635, y: 0.5146462, z: 0.7419015}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LKNI
+      position: {x: 0.08603732, y: 0.50974184, z: 0.7290931}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LMT1
+      position: {x: 0.038147204, y: 0.07052513, z: 0.80764633}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LMT5
+      position: {x: -0.054525208, y: 0.068103254, z: 0.8070857}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LMWT
+      position: {x: 0.1356444, y: 1.1090983, z: 0.8699973}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LOHAND
+      position: {x: -0.6697071, y: 1.3694595, z: 0.64666134}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LOWR
+      position: {x: -0.6004214, y: 1.378185, z: 0.6544666}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LSHN
+      position: {x: -0.037362847, y: 0.35242218, z: 0.72482723}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LTOE
+      position: {x: -0.004405385, y: 0.08024416, z: 0.8479808}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LUPA
+      position: {x: -0.19540264, y: 1.4819854, z: 0.6518827}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:LWRE
+      position: {x: -0.44418988, y: 1.4510978, z: 0.65468353}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RANK
+      position: {x: 0.31624267, y: 0.12754957, z: 0.63124347}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RBHD
+      position: {x: 0.19962427, y: 1.6946727, z: 0.6950793}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RBSH
+      position: {x: 0.25449538, y: 1.4995122, z: 0.6262688}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RBWT
+      position: {x: 0.22338584, y: 1.083468, z: 0.64221853}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RELB
+      position: {x: 0.57698464, y: 1.4084665, z: 0.6402509}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RFHD
+      position: {x: 0.20171604, y: 1.7625521, z: 0.79549766}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RFSH
+      position: {x: 0.25178775, y: 1.5140506, z: 0.7566855}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RFWT
+      position: {x: 0.2847704, y: 1.0821034, z: 0.8168257}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RHEL
+      position: {x: 0.248078, y: 0.064354315, z: 0.56427824}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RHIP
+      position: {x: 0.30484363, y: 0.70974094, z: 0.79389113}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RIEL
+      position: {x: 0.5708869, y: 1.3317659, z: 0.6956226}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RIHAND
+      position: {x: 0.94664836, y: 1.3628236, z: 0.68830514}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RIWR
+      position: {x: 0.8591517, y: 1.3721073, z: 0.7059144}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RKNE
+      position: {x: 0.31599694, y: 0.51591575, z: 0.70426255}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RKNI
+      position: {x: 0.18137093, y: 0.50894874, z: 0.7227411}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RMT1
+      position: {x: 0.25107053, y: 0.07186384, z: 0.81268144}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RMT5
+      position: {x: 0.36325896, y: 0.045750264, z: 0.8004791}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RMWT
+      position: {x: 0.1112142, y: 1.1084818, z: 0.6049469}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:ROHAND
+      position: {x: 0.9156105, y: 1.3099561, z: 0.59849536}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:ROWR
+      position: {x: 0.8383004, y: 1.3465785, z: 0.6118053}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RSHN
+      position: {x: 0.32709727, y: 0.35471278, z: 0.69972175}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RTOE
+      position: {x: 0.30576625, y: 0.07901213, z: 0.84329915}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RUPA
+      position: {x: 0.45551047, y: 1.4657716, z: 0.67114866}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:RWRE
+      position: {x: 0.6848445, y: 1.3959512, z: 0.62714237}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:Hips
+      position: {x: 0.0018590093, y: 0.9559883, z: -0.0009164214}
+      rotation: {x: -0.7179453, y: 0.046039287, z: -0.0050910884, w: 0.6945567}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftUpLeg
+      position: {x: -0.08929515, y: 0, z: -0.026086222}
+      rotation: {x: 0.03410745, y: -0.7173562, z: -0.03476465, w: 0.69500226}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftLeg
+      position: {x: -0.40890598, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.0730051, w: 0.9973316}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftFoot
+      position: {x: -0.43740162, y: 0, z: 0}
+      rotation: {x: -0.03490306, y: -0.038925324, z: 0.65157795, w: 0.7567779}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftToeBase
+      position: {x: -0.18833049, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.1670961, w: 0.98594064}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftToeBaseEnd
+      position: {x: -0.07223877, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightUpLeg
+      position: {x: 0.08929515, y: 0, z: -0.026086222}
+      rotation: {x: 0.05482226, y: -0.7717102, z: -0.022250576, w: 0.6332162}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightLeg
+      position: {x: -0.40890598, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.040033676, w: 0.9991983}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightFoot
+      position: {x: -0.43740162, y: 0, z: 0}
+      rotation: {x: 0.054272637, y: 0.10536721, z: 0.6421153, w: 0.7573904}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightToeBase
+      position: {x: -0.18833049, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.16468035, w: 0.986347}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightToeBaseEnd
+      position: {x: -0.07223877, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:Spine
+      position: {x: -0, y: 0.044864774, z: 0.06729716}
+      rotation: {x: -0.053052925, y: -0.029495595, z: -0.004752435, w: 0.9981447}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:Spine1
+      position: {x: -0, y: 0, z: 0.08972955}
+      rotation: {x: 0.06815446, y: -0.005339523, z: -0.00009428776, w: 0.9976605}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:Spine2
+      position: {x: -0, y: 0, z: 0.08972955}
+      rotation: {x: 0.008235314, y: -0.0032198194, z: -0.0046682833, w: 0.99995005}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:Spine3
+      position: {x: -0, y: 0, z: 0.08972955}
+      rotation: {x: -0.010939571, y: -0.00008006752, z: -0.002373085, w: 0.99993736}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftShoulder
+      position: {x: -0.030099489, y: -0.050165813, z: 0.16253723}
+      rotation: {x: 0.016968634, y: 0.08530996, z: -0.042826127, w: 0.995289}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftArm
+      position: {x: -0.14949413, y: 0, z: 0}
+      rotation: {x: -0.0592947, y: -0.1025622, z: 0.010148141, w: 0.992906}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftForeArm
+      position: {x: -0.29621905, y: 0, z: 0}
+      rotation: {x: -0.0026998392, y: 0.0123648625, z: 0.065590784, w: 0.9977664}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftHand
+      position: {x: -0.2730592, y: 0, z: 0}
+      rotation: {x: -0.09954479, y: -0.00232782, z: -0.088901184, w: 0.99105096}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftHandEnd
+      position: {x: -0.07380835, y: 0, z: 0}
+      rotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:L_FingersEnd
+      position: {x: -0.07380835, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftHandThumb1
+      position: {x: -0.02952334, y: -0.049205564, z: -0.019682225}
+      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:LeftHandThumb2
+      position: {x: -0.07380835, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:Neck
+      position: {x: -0, y: -0.03364858, z: 0.23554006}
+      rotation: {x: 0.050366156, y: -0.016416509, z: -0.01076427, w: 0.9985379}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:Head
+      position: {x: -0, y: 0, z: 0.12337812}
+      rotation: {x: -0.076062866, y: -0.02700489, z: -0.0072700027, w: 0.9967108}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:HeadEnd
+      position: {x: -0, y: 0, z: 0.14524971}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightShoulder
+      position: {x: 0.030099489, y: -0.050165813, z: 0.16253723}
+      rotation: {x: -0.0285619, y: 0.99732256, z: 0.027688986, w: 0.06136133}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightArm
+      position: {x: -0.14949413, y: 0, z: 0}
+      rotation: {x: 0.124526024, y: 0.09478502, z: -0.0013646074, w: 0.9876777}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightForeArm
+      position: {x: -0.29621905, y: 0, z: 0}
+      rotation: {x: 0.00091469265, y: -0.010453148, z: 0.062746435, w: 0.9979744}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightHand
+      position: {x: -0.2730592, y: 0, z: 0}
+      rotation: {x: 0.15675275, y: 0.051683217, z: -0.083482526, w: 0.9827452}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightHandEnd
+      position: {x: -0.07380835, y: 0, z: 0}
+      rotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071069}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:R_FingersEnd
+      position: {x: -0.07380835, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightHandThumb1
+      position: {x: -0.02952334, y: -0.049205564, z: 0.019682225}
+      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:Solving:RightHandThumb2
+      position: {x: -0.07380835, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:STRN
+      position: {x: 0.12287843, y: 1.2829652, z: 0.86214125}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Daniel_ROM:T10
+      position: {x: 0.13256142, y: 1.3909237, z: 0.6035114}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2099034
+      position: {x: -3.6164715, y: 1.0199147, z: -2.843539}
+      rotation: {x: 0.1458715, y: 0.9852687, z: -0.043462362, w: 0.077962264}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100709
+      position: {x: 3.6691723, y: 2.350152, z: -2.8813512}
+      rotation: {x: -0.05318399, y: 0.09924396, z: 0.25622898, w: 0.96003586}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100712
+      position: {x: -3.5633981, y: 2.3542511, z: 0.26597333}
+      rotation: {x: 0.20523345, y: 0.97818834, z: 0.008045647, w: -0.031018496}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100716
+      position: {x: -3.5417824, y: 0.75113565, z: 2.8389854}
+      rotation: {x: 0.035399817, y: 0.992972, z: -0.030859664, w: -0.10863294}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100719
+      position: {x: 3.7149413, y: 2.3155763, z: 2.7477155}
+      rotation: {x: -0.028241497, y: -0.1888094, z: 0.28237623, w: 0.94011545}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100727
+      position: {x: -3.516202, y: 2.3488083, z: 2.8589876}
+      rotation: {x: 0.21115653, y: 0.9706571, z: 0.0017612608, w: -0.11504177}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100729
+      position: {x: 3.7058437, y: 2.3320315, z: -0.29766878}
+      rotation: {x: 0.011120834, y: 0.054006338, z: 0.34164158, w: 0.93821144}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100738
+      position: {x: 3.73129, y: 0.6706404, z: 2.742753}
+      rotation: {x: 0.03356264, y: -0.20039335, z: 0.07806124, w: 0.9760238}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100744
+      position: {x: 3.7578154, y: 1.2481939, z: -2.8699658}
+      rotation: {x: 0.06685641, y: 0.160307, z: 0.08885315, w: 0.9807839}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100745
+      position: {x: -3.5769777, y: 2.360553, z: -2.8160286}
+      rotation: {x: 0.258021, y: 0.9469085, z: 0.020333678, w: 0.19072509}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_12695
+      position: {x: 0.06526856, y: 3.209693, z: -6.050905}
+      rotation: {x: -0.6857817, y: -0.15254053, z: 0.6954783, w: 0.15081365}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_13827
+      position: {x: 3.636197, y: 3.1867278, z: -1.7181878}
+      rotation: {x: 0.92328054, y: 0.27824587, z: -0.2631546, w: -0.0296969}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15290
+      position: {x: -3.390587, y: 3.14382, z: 5.917823}
+      rotation: {x: 0.44730538, y: 0.06769051, z: 0.8662446, w: 0.21202897}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15298
+      position: {x: -3.5057778, y: 3.1934493, z: -2.3405037}
+      rotation: {x: -0.30890882, y: -0.035298847, z: 0.91890544, w: 0.24278004}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15462
+      position: {x: -3.4531722, y: 3.2130923, z: -5.792656}
+      rotation: {x: -0.45308053, y: -0.07505995, z: 0.87269074, w: 0.16581583}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15469
+      position: {x: -3.4540389, y: 3.1759472, z: 2.5916698}
+      rotation: {x: 0.3636907, y: 0.08700803, z: 0.88670534, w: 0.2718682}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15475
+      position: {x: 3.5878878, y: 3.2027724, z: -5.692968}
+      rotation: {x: 0.85386175, y: 0.17653917, z: -0.47824004, w: -0.10507364}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15482
+      position: {x: 3.6417868, y: 3.171155, z: 2.5323784}
+      rotation: {x: 0.91399395, y: 0.26932418, z: 0.29679093, w: 0.063203774}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_16731
+      position: {x: 0.11386396, y: 3.123266, z: 6.113944}
+      rotation: {x: 0.7034477, y: 0.14322577, z: 0.680951, w: 0.14475352}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_16795
+      position: {x: 3.6578112, y: 3.1412272, z: 5.795622}
+      rotation: {x: 0.87235194, y: 0.19821347, z: 0.4428272, w: 0.060146622}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107617
+      position: {x: 3.5469854, y: 3.3046453, z: -4.2954135}
+      rotation: {x: 0.17860043, y: 0.44008484, z: 0.21279271, w: 0.85390073}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107676
+      position: {x: -3.411451, y: 3.254371, z: 4.3946056}
+      rotation: {x: 0.26592958, y: 0.84437203, z: -0.15330936, w: -0.43910548}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107693
+      position: {x: 2.631483, y: 3.235562, z: 6.1102123}
+      rotation: {x: -0.17903148, y: -0.49534693, z: 0.27963397, w: 0.8027353}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107709
+      position: {x: -2.3691738, y: 3.237411, z: 6.1920643}
+      rotation: {x: 0.26585644, y: 0.82052857, z: -0.12391399, w: -0.49061042}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107712
+      position: {x: 0.2793067, y: 3.2974849, z: -6.0892053}
+      rotation: {x: 0.22532806, y: 0.67233294, z: 0.21683702, w: 0.67095256}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107727
+      position: {x: 1.2636892, y: 3.179967, z: -4.7935767}
+      rotation: {x: 0.26905933, y: 0.56784016, z: 0.16737391, w: 0.7597043}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107733
+      position: {x: -3.435914, y: 3.3060124, z: -4.3046937}
+      rotation: {x: 0.22452931, y: 0.82764053, z: 0.21512252, w: 0.46724725}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107744
+      position: {x: 3.6260927, y: 3.2507482, z: 4.3814816}
+      rotation: {x: -0.19710547, y: -0.4309932, z: 0.257696, w: 0.8420137}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107778
+      position: {x: -0.23079848, y: 3.237054, z: 6.182694}
+      rotation: {x: -0.22957478, y: -0.6747906, z: 0.21934187, w: 0.6662148}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2108360
+      position: {x: -2.4456, y: 3.3025298, z: -6.0959806}
+      rotation: {x: 0.25314614, y: 0.833341, z: 0.18939057, w: 0.4534216}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Unlabeled_Markers
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
