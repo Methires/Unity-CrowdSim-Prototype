@@ -3,13 +3,12 @@ using System.Collections;
 
 public class Agent : MonoBehaviour
 {
-	protected NavMeshAgent		agent;
-	protected Animator			animator;
-
+	protected NavMeshAgent agent;
+	protected Animator animator;
 	protected Locomotion locomotion;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		agent = GetComponent<NavMeshAgent>();
 		agent.updateRotation = false;
 
@@ -26,11 +25,8 @@ public class Agent : MonoBehaviour
 		else
 		{
 			float speed = agent.desiredVelocity.magnitude;
-
 			Vector3 velocity = Quaternion.Inverse(transform.rotation) * agent.desiredVelocity;
-
 			float angle = Mathf.Atan2(velocity.x, velocity.z) * 180.0f / 3.14159f;
-
 			locomotion.Do(speed, angle);
 		}
 	}
@@ -51,7 +47,6 @@ public class Agent : MonoBehaviour
 		return agent.remainingDistance <= agent.stoppingDistance;
 	}
 
-	// Update is called once per frame
 	void Update () 
 	{
 		SetupAgentLocomotion();

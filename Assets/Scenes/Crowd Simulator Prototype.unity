@@ -210,6 +210,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11465772, guid: 92463eb32720d1c4eb290ed4cb697cd2, type: 2}
+      propertyPath: MaxPeople
+      value: 250
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92463eb32720d1c4eb290ed4cb697cd2, type: 2}
   m_IsPrefabParent: 0
@@ -349,3 +353,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &1485127025 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 137208, guid: 92463eb32720d1c4eb290ed4cb697cd2, type: 2}
+  m_PrefabInternal: {fileID: 579347904}
+--- !u!114 &1485127026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485127025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfe96c64d4170347ad7f5b338e0f216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
