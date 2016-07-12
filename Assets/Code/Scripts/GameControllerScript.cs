@@ -34,8 +34,4 @@ public class GameControllerScript : MonoBehaviour
             }
         }
 	}
-
-    void Update()
-    {
-    }
 }
