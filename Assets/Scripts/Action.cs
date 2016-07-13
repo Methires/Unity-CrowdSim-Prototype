@@ -122,7 +122,6 @@ public class Action : MonoBehaviour
             if (other.gameObject == ExitObject.gameObject)
             {
                 IsFinished = true;
-                Debug.Log(gameObject.name + " has " + other.gameObject.name + " in proximity");
             }
         }
     }

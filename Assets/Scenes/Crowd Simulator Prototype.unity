@@ -41,8 +41,8 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 0
-  m_LightmapsMode: 1
+  m_GIWorkflowMode: 1
+  m_LightmapsMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 914673c743d33c24398cfc5704a5d2aa,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -353,18 +354,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1 &1485127025 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 137208, guid: 92463eb32720d1c4eb290ed4cb697cd2, type: 2}
-  m_PrefabInternal: {fileID: 579347904}
---- !u!114 &1485127026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1485127025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfe96c64d4170347ad7f5b338e0f216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

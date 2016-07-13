@@ -60,7 +60,12 @@ public class SpawnCrowd : MonoBehaviour
             agents[agentIndex1].tag = "ScenarioAgent2";
             agents[agentIndex1].GetComponent<NavMeshAgent>().avoidancePriority = 0;
 
-            GetComponent<CreateScenario>().GenerateInstanceOfScenario();
+            if (FindObjectOfType<CreateScenario>() == null)
+            {
+                gameObject.AddComponent<CreateScenario>().Repeats = 3;
+            }
+            FindObjectOfType<CreateScenario>().GenerateInstanceOfScenario();
+            
         }
 	}
 }

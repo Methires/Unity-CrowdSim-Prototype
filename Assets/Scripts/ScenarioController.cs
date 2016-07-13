@@ -35,18 +35,31 @@ public class ScenarioController : MonoBehaviour
     private int _currentActivityIndex;
     private bool _isFinished;
 
+    public bool IsFinished
+    {
+        get
+        {
+            return _isFinished;
+        }
+
+        set
+        {
+            _isFinished = value;
+        }
+    }
+
     void Awake()
     {
         _scenario = new List<Activity>();
         _currentActivityIndex = -1;
         _movementScript = GetComponent<Movement>();
         _actionScript = GetComponent<Action>();
-        _isFinished = true;
+        IsFinished = true;
     }
 
     void Update()
     {
-        if (!_isFinished)
+        if (!IsFinished)
         {
             if (_scenario[_currentActivityIndex].movement != null && _scenario[_currentActivityIndex].action == null)
             {
@@ -70,10 +83,6 @@ public class ScenarioController : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("End of scenario for: " + this.tag);
-        }
     }
 
     public void LoadNewActivity()
@@ -91,12 +100,12 @@ public class ScenarioController : MonoBehaviour
                 _actionScript.ExitTime = _scenario[_currentActivityIndex + 1].action.ExitTime;
                 _actionScript.ParamName = _scenario[_currentActivityIndex + 1].action.ParameterName;
             }
-            _isFinished = false;
+            IsFinished = false;
             _currentActivityIndex++;
         }
         else
         {
-            _isFinished = true;
+            IsFinished = true;
         }
     }
 
