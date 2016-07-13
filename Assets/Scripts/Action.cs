@@ -7,18 +7,14 @@ public class Action : MonoBehaviour
     //Reference for required components
     private Animator _animator;
     private SphereCollider _sphereCollider;
+    //Transition parameter name 
+    private string _paramName;
     //End action conditions
     //Time related
-    private bool _considerExitTime;
     private float _exitTime;
     private float _elapsedTimeCounter;
     //Object in proximity related
-    private bool _considerExitObject;
     private GameObject _exitObject;
-    //Animation related
-    private bool _considerAnimation;
-    private AnimationClip _animationClip;
-    private bool _loopAnimation;
 
     private bool _isFinished;
 
@@ -34,20 +30,6 @@ public class Action : MonoBehaviour
             _isFinished = value;
         }
     }
-
-    public bool ConsiderExitTime
-    {
-        get
-        {
-            return _considerExitTime;
-        }
-
-        set
-        {
-            _considerExitTime = value;
-        }
-    }
-
     public float ExitTime
     {
         get
@@ -61,20 +43,6 @@ public class Action : MonoBehaviour
             IsFinished = false;
         }
     }
-
-    public bool ConsiderExitObject
-    {
-        get
-        {
-            return _considerExitObject;
-        }
-
-        set
-        {
-            _considerExitObject = value;
-        }
-    }
-
     public GameObject ExitObject
     {
         get
@@ -88,44 +56,24 @@ public class Action : MonoBehaviour
             IsFinished = false;
         }
     }
-
-    public bool ConsiderAnimation
+    public string ParamName
     {
         get
         {
-            return _considerAnimation;
+            return _paramName;
         }
 
         set
         {
-            _considerAnimation = value;
-        }
-    }
-
-    public AnimationClip AnimationClip
-    {
-        get
-        {
-            return _animationClip;
-        }
-
-        set
-        {
-            _animationClip = value;
-            IsFinished = false;
-        }
-    }
-
-    public bool LoopAnimation
-    {
-        get
-        {
-            return _loopAnimation;
-        }
-
-        set
-        {
-            _loopAnimation = value;
+            _paramName = value;
+            foreach (var parameter in _animator.parameters)
+            {
+                if (parameter.name == _paramName)
+                {
+                    _animator.SetBool(_paramName, true);
+                }
+            }
+            _isFinished = false;
         }
     }
 
@@ -135,40 +83,41 @@ public class Action : MonoBehaviour
         _sphereCollider = gameObject.GetComponent<SphereCollider>();
         _sphereCollider.radius = 1.0f;
         _sphereCollider.isTrigger = true;
-        if (_animator == null || _sphereCollider == null)
-        {
-            Debug.Log(gameObject.name + " has no Animator or Sphere Component attached to it");
-        }
         IsFinished = true;
     }
 
-    void Start ()
-    {
-	}
-
-
     void Update()
     {
-        if (!IsFinished && ConsiderExitTime)
+        if (!IsFinished)
         {
-            _elapsedTimeCounter += Time.deltaTime;
-        }
+            if (ExitTime > 0.0f)
+            {
+                _elapsedTimeCounter += Time.deltaTime;
+            }
 
-        if (ConsiderExitTime && _elapsedTimeCounter >= _exitTime)
-        {
-            IsFinished = true;
-            Debug.Log(gameObject.name + " has run out of time");
+            if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
+            {
+                IsFinished = true;
+            }
         }
-
-        if (IsFinished)
+        else
         {
-            //:D
+            foreach (var parameter in _animator.parameters)
+            {
+                if (parameter.name == ParamName)
+                {
+                    _animator.SetBool(ParamName, false);
+                }
+            } 
+            _exitTime = 0.0f;
+            _elapsedTimeCounter = 0.0f;
+            _exitObject = null;
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (!IsFinished && ConsiderExitObject)
+        if (!IsFinished && ExitObject != null)
         { 
             if (other.gameObject == ExitObject.gameObject)
             {
