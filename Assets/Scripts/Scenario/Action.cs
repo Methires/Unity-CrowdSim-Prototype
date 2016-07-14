@@ -9,6 +9,11 @@ public class Action : MonoBehaviour
     private SphereCollider _sphereCollider;
     //Transition parameter name 
     private string _paramName;
+    //Action requires two or more agents to happen
+    private bool _complexAction;
+    private bool _canExecuteComplexAction;
+    private GameObject[] _otherRequiredAgents;
+    private bool[] _requiredAgentsNearbyCheck;
     //End action conditions
     //Time related
     private float _exitTime;
@@ -77,6 +82,26 @@ public class Action : MonoBehaviour
         }
     }
 
+    public GameObject[] OtherAgents
+    {
+        get
+        {
+            return _otherRequiredAgents;
+        }
+
+        set
+        {
+            _otherRequiredAgents = value;
+            if (_otherRequiredAgents.Length > 0)
+            {
+                _complexAction = true;
+                _canExecuteComplexAction = false;
+                _requiredAgentsNearbyCheck = new bool[_otherRequiredAgents.Length];
+                _isFinished = false;
+            }
+        }
+    }
+
     void Awake()
     {
         _animator = gameObject.GetComponent<Animator>();
@@ -90,14 +115,44 @@ public class Action : MonoBehaviour
     {
         if (!IsFinished)
         {
-            if (ExitTime > 0.0f)
+            if (!_complexAction)
             {
-                _elapsedTimeCounter += Time.deltaTime;
-            }
+                if (ExitTime > 0.0f)
+                {
+                    _elapsedTimeCounter += Time.deltaTime;
+                }
 
-            if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
+                if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
+                {
+                    IsFinished = true;
+                }
+            }
+            else
             {
-                IsFinished = true;
+                if (!_canExecuteComplexAction)
+                {
+                    _canExecuteComplexAction = true;
+                    foreach (bool agentNearbyCheck in _requiredAgentsNearbyCheck)
+                    {
+                        if (!agentNearbyCheck)
+                        {
+                            _canExecuteComplexAction = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    if (ExitTime > 0.0f)
+                    {
+                        _elapsedTimeCounter += Time.deltaTime;
+                    }
+
+                    if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
+                    {
+                        IsFinished = true;
+                    }
+                }
             }
         }
         else
@@ -112,16 +167,44 @@ public class Action : MonoBehaviour
             _exitTime = 0.0f;
             _elapsedTimeCounter = 0.0f;
             _exitObject = null;
+            _complexAction = false;
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (!IsFinished && ExitObject != null)
-        { 
-            if (other.gameObject == ExitObject.gameObject)
+        if (!IsFinished)
+        {
+            if (ExitObject != null)
             {
-                IsFinished = true;
+                if (other.gameObject == ExitObject.gameObject)
+                {
+                    IsFinished = true;
+                }
+            }
+            if (_complexAction)
+            {
+                for (int i = 0; i < _otherRequiredAgents.Length; i++)
+                {
+                    if (other == _otherRequiredAgents[i])
+                    {
+                        _requiredAgentsNearbyCheck[i] = true;
+                    }
+                } 
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (!IsFinished && _complexAction)
+        {
+            for (int i = 0; i < _otherRequiredAgents.Length; i++)
+            {
+                if (other == _otherRequiredAgents[i])
+                {
+                    _requiredAgentsNearbyCheck[i] = false;
+                }
             }
         }
     }

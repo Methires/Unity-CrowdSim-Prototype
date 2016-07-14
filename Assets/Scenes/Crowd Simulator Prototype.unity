@@ -341,7 +341,7 @@ MonoBehaviour:
   Characters:
   - {fileID: 148640, guid: c773ba4c6043f364fa4b808a81da66f0, type: 2}
   - {fileID: 149782, guid: 9bf85170419c2b940a670eb3f6f2c1f6, type: 2}
-  MaxPeople: 10
+  MaxPeople: 50
   RangeX_Min: -37
   RangeX_Max: 37
   RangeZ_Min: -37
@@ -381,4 +381,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScenarioRepeats: 3
-  SimultaneousScenarioInstances: 2
+  SimultaneousScenarioInstances: 1

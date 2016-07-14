@@ -48,17 +48,17 @@ public class CreateScenario : MonoBehaviour
             GameObject agent1 = _scenarioAgents[agentIndex];
             ScenarioController scenario1 = agent1.AddComponent<ScenarioController>();
 
-            //GameObject agent2 = _scenarioAgents[1];
-            //ScenarioController scenario2 = agent2.AddComponent<ScenarioController>();
+            GameObject agent2 = _scenarioAgents[agentIndex+1];
+            ScenarioController scenario2 = agent2.AddComponent<ScenarioController>();
 
-            //////Currently: directly from code with no option for diversity. Temporary solution.
+            ////Currently: directly from code with no option for diversity. Temporary solution.
 
             ////Scenario for agent1
             ////Visit first randomly genareted point by walking there
-            Vector3 point1_1 = agent1.GetComponent<GenerateDestination>().GenerateWaypoint(GetComponent<SpawnCrowd>().RangeX_Min, GetComponent<SpawnCrowd>().RangeX_Max, GetComponent<SpawnCrowd>().RangeZ_Min, GetComponent<SpawnCrowd>().RangeZ_Max);
-            float speed1_1 = 5.5f;
-            MovementData movData1_1 = new MovementData(point1_1, speed1_1);
-            scenario1.AddNewActivity(movData1_1, null);
+            //Vector3 point1_1 = agent1.GetComponent<GenerateDestination>().GenerateWaypoint(GetComponent<SpawnCrowd>().RangeX_Min, GetComponent<SpawnCrowd>().RangeX_Max, GetComponent<SpawnCrowd>().RangeZ_Min, GetComponent<SpawnCrowd>().RangeZ_Max);
+            //float speed1_1 = 5.5f;
+            //MovementData movData1_1 = new MovementData(point1_1, speed1_1);
+            //scenario1.AddNewActivity(movData1_1, null);
 
             ////Visit second randomly generated point by running there
             //Vector3 point1_2 = agent1.GetComponent<GenerateDestination>().GenerateWaypoint(GetComponent<SpawnCrowd>().RangeX_Min, GetComponent<SpawnCrowd>().RangeX_Max, GetComponent<SpawnCrowd>().RangeZ_Min, GetComponent<SpawnCrowd>().RangeZ_Max);
@@ -92,16 +92,17 @@ public class CreateScenario : MonoBehaviour
 
             ////Change animator state with parameter "Squat", self explanatory, until agent1 gets near, then return to normal state
             //ActionData actionData2_4 = new ActionData("Wave", 15.0f);
-            //scenario2.AddNewActivity(null, actionData2_4);       
+            //scenario2.AddNewActivity(null, actionData2_4);
 
-            scenario1.LoadNewActivity();
-            //scenario2.LoadNewActivity();
-            agentIndex++;
+            foreach (GameObject agent in _scenarioAgents)
+            {
+                agent.GetComponent<ScenarioController>().LoadNewActivity();
+            }
+            agentIndex+=2;
         }
-
     }
 
-    void CreateScenarioAgents(int simultaneousInstances, int numberOfAgents = 1)
+    void CreateScenarioAgents(int simultaneousInstances, int numberOfAgents = 2)
     {
         _scenarioAgents = new List<GameObject>();
         for (int i = 0; i < numberOfAgents * simultaneousInstances; i++)
