@@ -5,8 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Crowd
-  - ScenarioAgent1
-  - ScenarioAgent2
+  - ScenarioAgent
   layers:
   - Default
   - TransparentFX
