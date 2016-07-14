@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(SpawnCrowd))]
 [RequireComponent(typeof(CreateScenario))]
@@ -21,17 +22,19 @@ public class SimulationController : MonoBehaviour
     public void StartInstanceOfSimulation()
     {
         _crowdSpawner.GenerateCrowd();
-        for (int i = 0; i < SimultaneousScenarioInstances; i++)
-        {
-            _scenarioCreator.GenerateScenario();
-        }
+        _scenarioCreator.GenerateScenario(SimultaneousScenarioInstances);
         _repeatsCounter++;
     }
 
     public void EndInstanceOfSimulation()
     {
         _crowdSpawner.RemoveCrowd();
+        StartCoroutine(EndInstance());
+    }
 
+    private IEnumerator EndInstance()
+    {
+        yield return new WaitForSeconds(0.5f);
         if (_repeatsCounter < ScenarioRepeats)
         {
             StartInstanceOfSimulation();

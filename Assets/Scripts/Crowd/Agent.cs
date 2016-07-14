@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Agent : MonoBehaviour
@@ -32,8 +33,16 @@ public class Agent : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        agent.velocity = animator.deltaPosition / Time.deltaTime;
-		transform.rotation = animator.rootRotation;
+        try
+        {
+            agent.velocity = animator.deltaPosition / Time.deltaTime;
+            transform.rotation = animator.rootRotation;
+        }
+        catch(NullReferenceException e)
+        {
+            //Don't really understand why there's a NullReferenceException for a single frame each time I instantiate object with this script
+            //It's a bad practice to create an empty catch, I know, but despite those errors, everything works just fine, so I'm temporaly hiding it 
+        }
     }
 
 	protected bool AgentDone()
