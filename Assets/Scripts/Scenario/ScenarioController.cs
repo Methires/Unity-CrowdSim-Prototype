@@ -96,6 +96,7 @@ public class ScenarioController : MonoBehaviour
             }
             if (_scenario[_currentActivityIndex + 1].action != null)
             {
+                _actionScript.OtherAgents = _scenario[_currentActivityIndex + 1].action.RequiredAgents;
                 _actionScript.ExitObject = _scenario[_currentActivityIndex + 1].action.ExitObject;
                 _actionScript.ExitTime = _scenario[_currentActivityIndex + 1].action.ExitTime;
                 _actionScript.ParamName = _scenario[_currentActivityIndex + 1].action.ParameterName;
@@ -121,6 +122,7 @@ public class ScenarioController : MonoBehaviour
             planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
             planeMarkup.transform.position = new Vector3(movementData.Waypoint.x, -0.4f, movementData.Waypoint.z);
             planeMarkup.GetComponent<Renderer>().material.color = Color.red;
+            Destroy(planeMarkup.GetComponent<MeshCollider>());
         }
         if (actionData != null)
         {
@@ -144,6 +146,7 @@ public class ScenarioController : MonoBehaviour
             }
             planeMarkup.transform.position = position;
             planeMarkup.GetComponent<Renderer>().material.color = Color.yellow;
+            Destroy(planeMarkup.GetComponent<MeshCollider>());
         }
     }
 }

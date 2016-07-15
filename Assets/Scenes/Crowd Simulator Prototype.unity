@@ -381,4 +381,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScenarioRepeats: 3
-  SimultaneousScenarioInstances: 1
+  SimultaneousScenarioInstances: 2

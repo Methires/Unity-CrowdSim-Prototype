@@ -20,7 +20,7 @@ public class Action : MonoBehaviour
     private float _elapsedTimeCounter;
     //Object in proximity related
     private GameObject _exitObject;
-
+    //Action has ended
     private bool _isFinished;
 
     public bool IsFinished
@@ -59,6 +59,7 @@ public class Action : MonoBehaviour
         {
             _exitObject = value;
             IsFinished = false;
+            _sphereCollider.enabled = true;
         }
     }
     public string ParamName
@@ -73,7 +74,7 @@ public class Action : MonoBehaviour
             _paramName = value;
             foreach (var parameter in _animator.parameters)
             {
-                if (parameter.name == _paramName)
+                if (parameter.name == _paramName && !_complexAction)
                 {
                     _animator.SetBool(_paramName, true);
                 }
@@ -81,7 +82,6 @@ public class Action : MonoBehaviour
             _isFinished = false;
         }
     }
-
     public GameObject[] OtherAgents
     {
         get
@@ -98,6 +98,7 @@ public class Action : MonoBehaviour
                 _canExecuteComplexAction = false;
                 _requiredAgentsNearbyCheck = new bool[_otherRequiredAgents.Length];
                 _isFinished = false;
+                _sphereCollider.enabled = true;
             }
         }
     }
@@ -106,8 +107,9 @@ public class Action : MonoBehaviour
     {
         _animator = gameObject.GetComponent<Animator>();
         _sphereCollider = gameObject.GetComponent<SphereCollider>();
-        _sphereCollider.radius = 1.0f;
+        _sphereCollider.radius = 1.5f;
         _sphereCollider.isTrigger = true;
+        _sphereCollider.enabled = false;
         IsFinished = true;
     }
 
@@ -140,6 +142,16 @@ public class Action : MonoBehaviour
                             break;
                         }
                     }
+                    if (_canExecuteComplexAction)
+                    {
+                        foreach (var parameter in _animator.parameters)
+                        {
+                            if (parameter.name == ParamName)
+                            {
+                                _animator.SetBool(ParamName, true);
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -168,6 +180,7 @@ public class Action : MonoBehaviour
             _elapsedTimeCounter = 0.0f;
             _exitObject = null;
             _complexAction = false;
+            _sphereCollider.enabled = false;
         }
     }
 
@@ -186,7 +199,7 @@ public class Action : MonoBehaviour
             {
                 for (int i = 0; i < _otherRequiredAgents.Length; i++)
                 {
-                    if (other == _otherRequiredAgents[i])
+                    if (other.gameObject == _otherRequiredAgents[i])
                     {
                         _requiredAgentsNearbyCheck[i] = true;
                     }
@@ -201,7 +214,7 @@ public class Action : MonoBehaviour
         {
             for (int i = 0; i < _otherRequiredAgents.Length; i++)
             {
-                if (other == _otherRequiredAgents[i])
+                if (other.gameObject == _otherRequiredAgents[i])
                 {
                     _requiredAgentsNearbyCheck[i] = false;
                 }
