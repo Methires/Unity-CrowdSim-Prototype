@@ -93,6 +93,15 @@ public class ScenarioController : MonoBehaviour
             {
                 _movementScript.Speed = _scenario[_currentActivityIndex + 1].movement.Speed;
                 _movementScript.Destination = _scenario[_currentActivityIndex + 1].movement.Waypoint;
+
+                if (_scenario[_currentActivityIndex + 1].movement.Speed < 3.5f)
+                {
+                    GetComponent<DisplayActivityText>().ChangeText("Walking");
+                }
+                else
+                {
+                    GetComponent<DisplayActivityText>().ChangeText("Running");
+                }
             }
             if (_scenario[_currentActivityIndex + 1].action != null)
             {
@@ -100,12 +109,14 @@ public class ScenarioController : MonoBehaviour
                 _actionScript.ExitObject = _scenario[_currentActivityIndex + 1].action.ExitObject;
                 _actionScript.ExitTime = _scenario[_currentActivityIndex + 1].action.ExitTime;
                 _actionScript.ParamName = _scenario[_currentActivityIndex + 1].action.ParameterName;
+                GetComponent<DisplayActivityText>().ChangeText(_scenario[_currentActivityIndex + 1].action.ParameterName);
             }
             IsFinished = false;
             _currentActivityIndex++;
         }
         else
         {
+            GetComponent<DisplayActivityText>().ChangeText("Scenario has ended");
             IsFinished = true;
         }
     }

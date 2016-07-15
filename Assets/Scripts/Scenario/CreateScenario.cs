@@ -126,6 +126,7 @@ public class CreateScenario : MonoBehaviour
             crowd[index].name = "ScenarioAgent_" + i;
             crowd[index].GetComponent<NavMeshAgent>().avoidancePriority = 0;
             crowd[index].GetComponent<GenerateDestination>().enabled = false;
+            crowd[index].AddComponent<DisplayActivityText>();
             _scenarioAgents.Add(crowd[index]);
             MarkAgentWithPlane(crowd[index]);
         }
