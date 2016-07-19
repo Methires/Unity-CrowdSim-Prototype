@@ -34,6 +34,7 @@ public class ScenarioController : MonoBehaviour
     private List<Activity> _scenario;
     private int _currentActivityIndex;
     private bool _isFinished;
+    private List<GameObject> _planes;
 
     public bool IsFinished
     {
@@ -51,6 +52,7 @@ public class ScenarioController : MonoBehaviour
     void Awake()
     {
         _scenario = new List<Activity>();
+        _planes = new List<GameObject>();
         _currentActivityIndex = -1;
         _movementScript = GetComponent<Movement>();
         _actionScript = GetComponent<Action>();
@@ -94,7 +96,7 @@ public class ScenarioController : MonoBehaviour
                 _movementScript.Speed = _scenario[_currentActivityIndex + 1].movement.Speed;
                 _movementScript.Destination = _scenario[_currentActivityIndex + 1].movement.Waypoint;
 
-                if (_scenario[_currentActivityIndex + 1].movement.Speed < 3.5f)
+                if (_scenario[_currentActivityIndex + 1].movement.Speed < 5.0f)
                 {
                     GetComponent<DisplayActivityText>().ChangeText("Walking");
                 }
@@ -117,6 +119,7 @@ public class ScenarioController : MonoBehaviour
         else
         {
             GetComponent<DisplayActivityText>().ChangeText("Scenario has ended");
+            CleanUpPlanes();
             IsFinished = true;
         }
     }
@@ -134,6 +137,7 @@ public class ScenarioController : MonoBehaviour
             planeMarkup.transform.position = new Vector3(movementData.Waypoint.x, -0.4f, movementData.Waypoint.z);
             planeMarkup.GetComponent<Renderer>().material.color = Color.red;
             Destroy(planeMarkup.GetComponent<MeshCollider>());
+            _planes.Add(planeMarkup);
         }
         if (actionData != null)
         {
@@ -158,6 +162,15 @@ public class ScenarioController : MonoBehaviour
             planeMarkup.transform.position = position;
             planeMarkup.GetComponent<Renderer>().material.color = Color.yellow;
             Destroy(planeMarkup.GetComponent<MeshCollider>());
+            _planes.Add(planeMarkup);
+        }
+    }
+
+    private void CleanUpPlanes()
+    {
+        foreach (GameObject plane in _planes)
+        {
+            Destroy(plane.gameObject);
         }
     }
 }

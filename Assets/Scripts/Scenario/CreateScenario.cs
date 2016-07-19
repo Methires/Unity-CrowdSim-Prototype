@@ -39,8 +39,12 @@ public class CreateScenario : MonoBehaviour
     }
 
 
-    public void GenerateScenario(int simultaneousInstances)
+    public void GenerateScenario(int simultaneousInstances, string fileName)
     {
+        XmlReader reader = new XmlReader();
+        reader.LoadXmlScenario(fileName);
+        reader.ShowOnConsole();
+
         CreateScenarioAgents(simultaneousInstances);
         int agentIndex = 0;
 

@@ -7,6 +7,7 @@ public class SimulationController : MonoBehaviour
 {
     public int ScenarioRepeats;
     public int SimultaneousScenarioInstances;
+    public string ScenarioFileName;
 
     private SpawnCrowd _crowdSpawner;
     private CreateScenario _scenarioCreator;
@@ -22,7 +23,7 @@ public class SimulationController : MonoBehaviour
     public void StartInstanceOfSimulation()
     {
         _crowdSpawner.GenerateCrowd();
-        _scenarioCreator.GenerateScenario(SimultaneousScenarioInstances);
+        _scenarioCreator.GenerateScenario(SimultaneousScenarioInstances, ScenarioFileName);
         _repeatsCounter++;
     }
 

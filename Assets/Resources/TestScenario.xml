@@ -1,0 +1,74 @@
+﻿<scenario name="TestScenario1">
+	<layer id="1">
+		<activity prob="1.0" name="walk">
+			<actor name="actor1">
+				<prev>null</prev>
+			</actor>
+		</activity>
+		<activity prob="1.0" name="walk">
+			<actor name="actor2">
+				<prev>null</prev>
+			</actor>
+		</activity>
+	</layer>
+	<layer id="2">
+		<activity prob="0.5" name="sit">
+			<actor name="actor1">
+				<prev>walk</prev>
+			</actor>
+		</activity>
+		<activity prob="0.5" name="handshake">
+			<actor name="actor1">
+				<prev>walk</prev>
+			</actor>
+			<actor name="actor2">
+				<prev>walk</prev>
+			</actor>
+		</activity>
+		<activity prob="0.3" name="walk">
+			<actor name="actor1">
+				<prev>walk</prev>
+			</actor>
+		</activity>
+		<activity prob="0.2" name="run">
+			<actor name="actor2">
+				<prev>walk</prev>
+			</actor>
+		</activity>
+	</layer>
+	<layer id="3">
+		<activity prob="1.0" name="walk">
+			<actor name="actor1">
+				<prev>handshake</prev>
+			</actor>
+		</activity>
+		<activity prob="1.0" name="run">
+			<actor name="actor2">
+				<prev>handshake</prev>
+			</actor>
+		</activity>
+		<activity prob="1.0" name="handshake">
+			<actor name="actor1">
+				<prev>sit</prev>
+			</actor>
+			<actor name="actor2">
+				<prev>walk</prev>
+				<prev>run</prev>
+			</actor>
+		</activity>
+	</layer>
+	<layer id="4">
+		<activity prob="1.0" name="sit">
+			<actor name="actor1">
+				<prev>handshake</prev>
+			</actor>
+		</activity>
+		<activity prob="1.0" name="walk">
+			<actor name="actor2">
+				<prev>handshake</prev>
+			</actor>
+			<blend prob="0.5" name = "phone"></blend>
+		</activity>
+	</layer>
+</scenario>
+
