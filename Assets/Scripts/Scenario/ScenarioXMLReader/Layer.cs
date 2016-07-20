@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class Layer
+public class Layer
 {
     public int Id;
     public List<Activity> Activites;

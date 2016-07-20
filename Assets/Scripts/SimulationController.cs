@@ -17,13 +17,14 @@ public class SimulationController : MonoBehaviour
     {
         _crowdSpawner = GetComponent<SpawnCrowd>();
         _scenarioCreator = GetComponent<CreateScenario>();
+        _scenarioCreator.LoadScenarioFromXml(ScenarioFileName);
         StartInstanceOfSimulation();
 	}
 	
     public void StartInstanceOfSimulation()
     {
         _crowdSpawner.GenerateCrowd();
-        _scenarioCreator.GenerateScenario(SimultaneousScenarioInstances, ScenarioFileName);
+        _scenarioCreator.GenerateInGameSequence(SimultaneousScenarioInstances);
         _repeatsCounter++;
     }
 

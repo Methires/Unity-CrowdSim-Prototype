@@ -7,7 +7,7 @@ public class XmlReader
 {
     private List<Layer> layersData = new List<Layer>();
 
-    public void LoadXmlScenario(string fileName)
+    public List<Layer> LoadXmlScenario(string fileName)
     {
         XmlDocument scenarioDoc = new XmlDocument();
         TextAsset scenarioText = Resources.Load(fileName) as TextAsset;
@@ -38,8 +38,7 @@ public class XmlReader
                                 int nameIndex;
                                 if (FindAttributeIndex(activity.Attributes, "prob", out probabilityIndex) && FindAttributeIndex(activity.Attributes, "name", out nameIndex))
                                 {
-                                    //Check this thing, it shouldn't need "/10.0f" at the end. Something's wrong with parsing string to float
-                                    activityData.Probability = Convert.ToSingle(activity.Attributes.Item(probabilityIndex).Value.Replace(".", ","))/10.0f;
+                                    activityData.Probability = Convert.ToSingle(activity.Attributes.Item(probabilityIndex).Value.Replace(",", "."));
                                     activityData.Name = activity.Attributes.Item(nameIndex).Value;
                                     for (int k = 0; k < activity.ChildNodes.Count; k++)
                                     {
@@ -68,8 +67,7 @@ public class XmlReader
                                             int blendNameIndex;
                                             if (FindAttributeIndex(actorOrBlend.Attributes, "prob", out blendProbabilityIndex) && FindAttributeIndex(actorOrBlend.Attributes, "name", out blendNameIndex))
                                             {
-                                                //Check this thing, it shouldn't need "/10.0f" at the end. Something's wrong with parsing string to float
-                                                activityData.Blends.Add(new Activity.Blend(Convert.ToSingle(actorOrBlend.Attributes.Item(blendProbabilityIndex).Value.Replace(".", ","))/10.0f, actorOrBlend.Attributes.Item(blendNameIndex).Value));
+                                                activityData.Blends.Add(new Activity.Blend(Convert.ToSingle(actorOrBlend.Attributes.Item(blendProbabilityIndex).Value.Replace(",",".")), actorOrBlend.Attributes.Item(blendNameIndex).Value));
                                             }
                                         }
                                     }
@@ -82,6 +80,7 @@ public class XmlReader
                 }
             }
         }
+        return layersData;
     }
 
     public void ShowOnConsole()

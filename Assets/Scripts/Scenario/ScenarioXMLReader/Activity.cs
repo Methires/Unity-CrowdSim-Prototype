@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class Activity
+public class Activity
 {
     public struct Blend
     {

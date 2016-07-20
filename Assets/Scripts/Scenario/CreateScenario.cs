@@ -1,11 +1,31 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public class CreateScenario : MonoBehaviour
 {
+    private struct NameAndBlend
+    {
+        string Name;
+        string Blend;
+
+        private NameAndBlend(string name)
+        {
+            Name = name;
+            Blend = null;
+        }
+
+        private NameAndBlend(string name, string blend)
+        {
+            Name = name;
+            Blend = blend;
+        }
+    }
+
     private List<GameObject> _scenarioAgents;
-    private int _agentsInSingleScenario;
     private bool _isFinished;
+    private Layer[,] _scenarioForAgent;
+    private List<string> _actorsNames;
 
     void Update()
     {
@@ -38,13 +58,8 @@ public class CreateScenario : MonoBehaviour
         }
     }
 
-
-    public void GenerateScenario(int simultaneousInstances, string fileName)
+    public void GenerateInGameSequence(int simultaneousInstances)
     {
-        XmlReader reader = new XmlReader();
-        reader.LoadXmlScenario(fileName);
-        reader.ShowOnConsole();
-
         CreateScenarioAgents(simultaneousInstances);
         int agentIndex = 0;
 
@@ -53,7 +68,7 @@ public class CreateScenario : MonoBehaviour
             GameObject agent1 = _scenarioAgents[agentIndex];
             ScenarioController scenario1 = agent1.AddComponent<ScenarioController>();
 
-            GameObject agent2 = _scenarioAgents[agentIndex+1];
+            GameObject agent2 = _scenarioAgents[agentIndex + 1];
             ScenarioController scenario2 = agent2.AddComponent<ScenarioController>();
 
             //Currently: directly from code with no option for diversity. Temporary solution.
@@ -80,7 +95,7 @@ public class CreateScenario : MonoBehaviour
             //Change animator state with parameter "Sit" together with agent2 for 10 seconds, then return to normal state
             GameObject[] requiredActors = new GameObject[1];
             requiredActors[0] = agent2;
-            ActionData actionData1_3 = new ActionData("Sit",requiredActors, 10.0f);
+            ActionData actionData1_3 = new ActionData("Sit", requiredActors, 10.0f);
             scenario1.AddNewActivity(null, actionData1_3);
 
             //Once again visit first randomly generated point by running there
@@ -110,7 +125,7 @@ public class CreateScenario : MonoBehaviour
             //ActionData actionData2_4 = new ActionData("Wave", 15.0f);
             //scenario2.AddNewActivity(null, actionData2_4);
 
-            agentIndex += _agentsInSingleScenario;
+            agentIndex += _scenarioForAgent.GetLength(1);
         }
 
         foreach (GameObject agent in _scenarioAgents)
@@ -134,7 +149,95 @@ public class CreateScenario : MonoBehaviour
             _scenarioAgents.Add(crowd[index]);
             MarkAgentWithPlane(crowd[index]);
         }
-        _agentsInSingleScenario = agents;
+    }
+
+    public void LoadScenarioFromXml(string fileName)
+    {
+        XmlReader reader = new XmlReader();
+        List<Layer> layers = reader.LoadXmlScenario(fileName);
+        _actorsNames = GetListOfActors(layers);
+        _scenarioForAgent = new Layer[layers.Count, _actorsNames.Count];
+        for (int i = 0; i < _actorsNames.Count; i++)
+        {
+            for (int j = 0; j < layers.Count; j++)
+            {
+                Layer agentSpecificLayer = new Layer();
+                for (int k = 0; k < layers[j].Activites.Count; k++)
+                {
+                    Activity activityWithSpecificAgent;
+                    for (int l = 0; l < layers[j].Activites[k].Actors.Count; l++)
+                    {
+                        if (layers[j].Activites[k].Actors[l].Name.Equals(_actorsNames[i]))
+                        {
+                            activityWithSpecificAgent = layers[j].Activites[k];
+                            agentSpecificLayer.Activites.Add(activityWithSpecificAgent);
+                            break;
+                        }
+                    }
+                }
+                _scenarioForAgent[j,i] = agentSpecificLayer;
+            }
+        }
+    }
+
+    private void CreateActivitySequence()
+    {
+        List<NameAndBlend>[] sequences = new List<NameAndBlend>[_scenarioForAgent.GetLength(1)];
+        for (int i = 0; i < sequences.Length; i++)            
+        {
+            sequences[i] = new List<NameAndBlend>();
+        }
+        for (int i = 0; i < _scenarioForAgent.GetLength(1); i++)
+        {
+            for (int j = 0; j < _scenarioForAgent.GetLength(0); j++)
+            {
+                Layer temp = new Layer();
+                string previousActivity = "HOW TO FIND ONE?!?";
+                for (int k = 0; k < _scenarioForAgent[j, i].Activites.Count; k++)
+                {
+                    foreach (var actor in _scenarioForAgent[j, i].Activites[k].Actors)
+                    {
+                        if (actor.Name.ToLower().Equals(_actorsNames[i].ToLower()))
+                        {
+                            if (actor.PreviousActivities.Contains(previousActivity))
+                            {
+                                temp.Activites.Add(_scenarioForAgent[j, i].Activites[k]);
+                            }
+                        }
+                    }
+                }
+                float[] probabilityArray = new float[temp.Activites.Count];
+                for (int k = 0; k < temp.Activites.Count; k++)
+                {
+                    if (k > 0)
+                    {
+                        probabilityArray[k] = temp.Activites[k].Probability + probabilityArray[k - 1];
+                    }
+                    else
+                    {
+                        probabilityArray[k] = temp.Activites[k].Probability;
+                    }
+                }
+                float randomValue = Random.Range(0.0f, probabilityArray[probabilityArray.Length - 1]);
+            }
+        }
+    }
+
+    private List<string> GetListOfActors(List<Layer> layers)
+    {
+        HashSet<string> hashedActors = new HashSet<string>();
+        foreach (Layer layer in layers)
+        {
+            foreach (Activity activity in layer.Activites)
+            {
+                foreach (Actor actor in activity.Actors)
+                {
+                    hashedActors.Add(actor.Name);
+                }
+            }
+        }
+        List<string> actors = hashedActors.ToList();
+        return actors;
     }
 
     private void MarkAgentWithPlane(GameObject agent)

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class Actor
+public class Actor
 {
     public string Name;
     public List<string> PreviousActivities;

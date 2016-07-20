@@ -17,7 +17,7 @@
 				<prev>walk</prev>
 			</actor>
 		</activity>
-		<activity prob="0.5" name="handshake">
+		<activity prob="0.5" name="wave">
 			<actor name="actor1">
 				<prev>walk</prev>
 			</actor>
@@ -26,7 +26,7 @@
 			</actor>
 		</activity>
 		<activity prob="0.3" name="walk">
-			<actor name="actor1">
+			<actor name="actor2">
 				<prev>walk</prev>
 			</actor>
 		</activity>
@@ -39,15 +39,15 @@
 	<layer id="3">
 		<activity prob="1.0" name="walk">
 			<actor name="actor1">
-				<prev>handshake</prev>
+				<prev>wave</prev>
 			</actor>
 		</activity>
 		<activity prob="1.0" name="run">
 			<actor name="actor2">
-				<prev>handshake</prev>
+				<prev>wave</prev>
 			</actor>
 		</activity>
-		<activity prob="1.0" name="handshake">
+		<activity prob="1.0" name="wave">
 			<actor name="actor1">
 				<prev>sit</prev>
 			</actor>
@@ -60,12 +60,12 @@
 	<layer id="4">
 		<activity prob="1.0" name="sit">
 			<actor name="actor1">
-				<prev>handshake</prev>
+				<prev>wave</prev>
 			</actor>
 		</activity>
 		<activity prob="1.0" name="walk">
 			<actor name="actor2">
-				<prev>handshake</prev>
+				<prev>wave</prev>
 			</actor>
 			<blend prob="0.5" name = "phone"></blend>
 		</activity>
