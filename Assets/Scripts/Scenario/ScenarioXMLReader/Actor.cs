@@ -1,19 +1,17 @@
-﻿using System.Collections.Generic;
-
-public class Actor
+﻿public class Actor
 {
     public string Name;
-    public List<string> PreviousActivities;
+    public int[] PreviousActivitiesIndexes;
 
     public Actor()
     {
         Name = "";
-        PreviousActivities = new List<string>();
+        PreviousActivitiesIndexes = null;
     }
 
-    public Actor(string name)
+    public Actor(string name, int previousActivityCount)
     {
         Name = name;
-        PreviousActivities = new List<string>();
+        PreviousActivitiesIndexes = new int[previousActivityCount];
     }
 }

@@ -1,74 +1,72 @@
 ﻿<scenario name="TestScenario1">
-	<layer id="1">
-		<activity prob="1.0" name="walk">
+	<level id="0">
+		<activity prob="1.0" name="walk" id ="0">
 			<actor name="actor1">
-				<prev>null</prev>
 			</actor>
 		</activity>
-		<activity prob="1.0" name="walk">
+		<activity prob="1.0" name="walk" id ="1">
 			<actor name="actor2">
-				<prev>null</prev>
 			</actor>
 		</activity>
-	</layer>
-	<layer id="2">
-		<activity prob="0.5" name="sit">
+	</level>
+	<level id="1">
+		<activity prob="0.5" name="sit" id ="2">
 			<actor name="actor1">
-				<prev>walk</prev>
+				<prev id ="0"></prev>
 			</actor>
 		</activity>
-		<activity prob="0.5" name="wave">
+		<activity prob="0.5" name="wave" id="3">
 			<actor name="actor1">
-				<prev>walk</prev>
+				<prev id ="0"></prev>
 			</actor>
 			<actor name="actor2">
-				<prev>walk</prev>
+				<prev id="1"></prev>
 			</actor>
 		</activity>
-		<activity prob="0.3" name="walk">
+		<activity prob="0.3" name="walk" id="4">
 			<actor name="actor2">
-				<prev>walk</prev>
+				<prev id="1"></prev>
 			</actor>
 		</activity>
-		<activity prob="0.2" name="run">
+		<activity prob="0.2" name="run" id="5">
 			<actor name="actor2">
-				<prev>walk</prev>
+				<prev id="1"></prev>
 			</actor>
 		</activity>
-	</layer>
-	<layer id="3">
-		<activity prob="1.0" name="walk">
+	</level>
+	<level id="2">
+		<activity prob="1.0" name="walk" id="6">
 			<actor name="actor1">
-				<prev>wave</prev>
+				<prev id="3"></prev>
 			</actor>
 		</activity>
-		<activity prob="1.0" name="run">
+		<activity prob="1.0" name="run" id="7">
 			<actor name="actor2">
-				<prev>wave</prev>
+				<prev id="3"></prev>
 			</actor>
 		</activity>
-		<activity prob="1.0" name="wave">
+		<activity prob="1.0" name="wave" id ="8">
 			<actor name="actor1">
-				<prev>sit</prev>
+				<prev id="2"></prev>
 			</actor>
 			<actor name="actor2">
-				<prev>walk</prev>
-				<prev>run</prev>
+				<prev id="4"></prev>
+				<prev id="5"></prev>
 			</actor>
 		</activity>
-	</layer>
-	<layer id="4">
-		<activity prob="1.0" name="sit">
+	</level>
+	<level id="3">
+		<activity prob="1.0" name="sit" id="9">
 			<actor name="actor1">
-				<prev>wave</prev>
+				<prev id="8"></prev>
 			</actor>
 		</activity>
-		<activity prob="1.0" name="walk">
+		<activity prob="1.0" name="walk" id="10">
 			<actor name="actor2">
-				<prev>wave</prev>
+        <prev id="8"></prev>
 			</actor>
 			<blend prob="0.5" name = "phone"></blend>
 		</activity>
-	</layer>
+	</level>
 </scenario>
 

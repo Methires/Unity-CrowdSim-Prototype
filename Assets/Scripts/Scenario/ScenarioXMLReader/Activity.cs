@@ -2,35 +2,26 @@
 
 public class Activity
 {
-    public struct Blend
-    {
-        public float Probablity;
-        public string Name;
-
-        public Blend(float probability, string name)
-        {
-            Probablity = probability;
-            Name = name;
-        }
-    }
-
-    public float Probability;
     public string Name;
+    public float Probability;
+    public int Index;
     public List<Actor> Actors;
     public List<Blend> Blends;
 
     public Activity()
     {
-        Probability = 0.0f;
         Name = "";
+        Probability = 0.0f;
+        Index = -1;
         Actors = new List<Actor>();
         Blends = new List<Blend>();
     }
 
-    public Activity(float probability, string name)
+    public Activity(string name, float probability, int index)
     {
-        Probability = probability;
         Name = name;
+        Probability = probability;
+        Index = index;
         Actors = new List<Actor>();
         Blends = new List<Blend>();
     }

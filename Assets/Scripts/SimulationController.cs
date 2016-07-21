@@ -17,7 +17,9 @@ public class SimulationController : MonoBehaviour
     {
         _crowdSpawner = GetComponent<SpawnCrowd>();
         _scenarioCreator = GetComponent<CreateScenario>();
-        _scenarioCreator.LoadScenarioFromXml(ScenarioFileName);
+        XmlReader abc = new XmlReader();
+        abc.LoadXmlScenario(ScenarioFileName);
+        abc.ShowOnConsole();
         StartInstanceOfSimulation();
 	}
 	

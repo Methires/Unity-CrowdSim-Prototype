@@ -5,103 +5,146 @@ using System.Collections.Generic;
 
 public class XmlReader
 {
-    private List<Layer> layersData = new List<Layer>();
+    private string _scenarioName;
+    private List<Level> _levelsData;
 
-    public List<Layer> LoadXmlScenario(string fileName)
+    public List<Level> LevelsData
     {
-        XmlDocument scenarioDoc = new XmlDocument();
-        TextAsset scenarioText = Resources.Load(fileName) as TextAsset;
-        scenarioDoc.LoadXml(scenarioText.text);
-
-        XmlElement root = scenarioDoc.DocumentElement;
-        layersData = new List<Layer>();
-        if (root.HasAttribute("name") && root.Name.ToLower().Equals("scenario".ToLower()))
+        get
         {
-            string name = root.GetAttribute("name");
-            for (int i = 0; i < root.ChildNodes.Count; i++)
+            return _levelsData;
+        }
+        private set
+        {
+            _levelsData = value;
+        }
+    }
+    public string ScenarioName
+    {
+        get
+        {
+            return _scenarioName;
+        }
+        private set
+        {
+            _scenarioName = value;
+        }
+    }
+
+    public void LoadXmlScenario(string fileName)
+    {
+        XmlDocument xml = new XmlDocument();
+        TextAsset scenarioText = Resources.Load(fileName) as TextAsset;
+        xml.LoadXml(scenarioText.text);
+        LevelsData = new List<Level>();
+
+        XmlElement scenarioElement = xml.DocumentElement;
+        if (scenarioElement.HasAttribute("name") && scenarioElement.Name.ToLower().Equals("scenario".ToLower()))
+        {
+            ScenarioName = scenarioElement.GetAttribute("name");
+            for (int i = 0; i < scenarioElement.ChildNodes.Count; i++)
             {
-                XmlNode layer = root.ChildNodes.Item(i);
-                if (layer.Name.ToLower().Equals("layer".ToLower()))
+                XmlNode levelElement = scenarioElement.ChildNodes.Item(i);
+                if (levelElement.Name.ToLower().Equals("level".ToLower()))
                 {
-                    Layer layerData = new Layer();
-                    int layerIndex;
-                    if (FindAttributeIndex(layer.Attributes, "id", out layerIndex))
+                    Level levelData = new Level();
+                    int levelIndex;
+                    if (FindAttributeIndex(levelElement.Attributes, "id", out levelIndex))
                     {
-                        layerData.Id = int.Parse(layer.Attributes.Item(layerIndex).Value);
-                        for (int j = 0; j < layer.ChildNodes.Count; j++)
+                        levelData.Index = int.Parse(levelElement.Attributes.Item(levelIndex).Value);
+                        for (int j = 0; j < levelElement.ChildNodes.Count; j++)
                         {
-                            XmlNode activity = layer.ChildNodes.Item(j);
-                            if (activity.Name.ToLower().Equals("activity".ToLower()))
+                            XmlNode activityElement = levelElement.ChildNodes.Item(j);
+                            if (activityElement.Name.ToLower().Equals("activity".ToLower()))
                             {
                                 Activity activityData = new Activity();
-                                int probabilityIndex;
-                                int nameIndex;
-                                if (FindAttributeIndex(activity.Attributes, "prob", out probabilityIndex) && FindAttributeIndex(activity.Attributes, "name", out nameIndex))
+                                int probParamIndex, nameParamIndex, idParamIndex;
+                                if (FindAttributeIndex(activityElement.Attributes, "prob", out probParamIndex) && FindAttributeIndex(activityElement.Attributes, "name", out nameParamIndex) && FindAttributeIndex(activityElement.Attributes, "id", out idParamIndex))
                                 {
-                                    activityData.Probability = Convert.ToSingle(activity.Attributes.Item(probabilityIndex).Value.Replace(",", "."));
-                                    activityData.Name = activity.Attributes.Item(nameIndex).Value;
-                                    for (int k = 0; k < activity.ChildNodes.Count; k++)
+                                    activityData.Probability = Convert.ToSingle(activityElement.Attributes.Item(probParamIndex).Value.Replace(",", "."));
+                                    activityData.Name = activityElement.Attributes.Item(nameParamIndex).Value.ToLower();
+                                    activityData.Index = int.Parse(activityElement.Attributes.Item(idParamIndex).Value);
+                                    for (int k = 0; k < activityElement.ChildNodes.Count; k++)
                                     {
-                                        XmlNode actorOrBlend = activity.ChildNodes.Item(k);
-                                        if (actorOrBlend.Name.ToLower().Equals("actor".ToLower()) || actorOrBlend.Name.ToLower().Equals("agent".ToLower()))
+                                        if (activityElement.ChildNodes.Item(k).Name.ToLower().Equals("actor".ToLower()) || activityElement.ChildNodes.Item(k).Name.ToLower().Equals("agent".ToLower()))
                                         {
-                                            Actor actorData = new Actor();
+                                            XmlNode actorElement = activityElement.ChildNodes.Item(k);
                                             int actorNameIndex;
-                                            if (FindAttributeIndex(actorOrBlend.Attributes, "name", out actorNameIndex))
+                                            if (FindAttributeIndex(actorElement.Attributes, "name", out actorNameIndex))
                                             {
-                                                actorData.Name = actorOrBlend.Attributes.Item(actorNameIndex).Value;
-                                                for (int l = 0; l < actorOrBlend.ChildNodes.Count; l++)
+                                                Actor actorData = new Actor();
+                                                actorData.Name = actorElement.Attributes.Item(actorNameIndex).Value.ToLower();
+                                                int prevActionCount = 0;
+                                                for (int l = 0; l < actorElement.ChildNodes.Count; l++)
                                                 {
-                                                    XmlNode previousActivity = actorOrBlend.ChildNodes.Item(l);
-                                                    if (previousActivity.Name.ToLower().Equals("prev".ToLower()))
+                                                    if (actorElement.ChildNodes.Item(l).Name.ToLower().Equals("prev".ToLower()))
                                                     {
-                                                        actorData.PreviousActivities.Add(previousActivity.InnerText);
+                                                        prevActionCount++;
+                                                    }
+                                                }
+                                                actorData.PreviousActivitiesIndexes = new int[prevActionCount];
+                                                int prevActivitiesTabInterator = 0;
+                                                for (int l = 0; l < actorElement.ChildNodes.Count; l++)
+                                                {
+                                                    XmlNode prevElement = actorElement.ChildNodes.Item(l);
+                                                    if (prevElement.Name.ToLower().Equals("prev".ToLower()) || prevElement.Name.ToLower().Contains("prev".ToLower()))
+                                                    {
+                                                        int prevIdParamIndex;
+                                                        if (FindAttributeIndex(prevElement.Attributes, "id", out prevIdParamIndex))
+                                                        {
+                                                            actorData.PreviousActivitiesIndexes[prevActivitiesTabInterator] = int.Parse(prevElement.Attributes.Item(prevIdParamIndex).Value);
+                                                            prevActivitiesTabInterator++;
+                                                        }
                                                     }
                                                 }
                                                 activityData.Actors.Add(actorData);
                                             }
                                         }
-                                        else if (actorOrBlend.Name.ToLower().Equals("blend".ToLower()))
+                                        else if (activityElement.ChildNodes.Item(k).Name.ToLower().Equals("blend".ToLower()))
                                         {
-                                            int blendProbabilityIndex;
-                                            int blendNameIndex;
-                                            if (FindAttributeIndex(actorOrBlend.Attributes, "prob", out blendProbabilityIndex) && FindAttributeIndex(actorOrBlend.Attributes, "name", out blendNameIndex))
+                                            XmlNode blendElement = activityElement.ChildNodes.Item(k);
+                                            int blendProbParamIndex;
+                                            int blendNameParamIndex;
+                                            if (FindAttributeIndex(blendElement.Attributes, "prob", out blendProbParamIndex) && FindAttributeIndex(blendElement.Attributes, "name", out blendNameParamIndex))
                                             {
-                                                activityData.Blends.Add(new Activity.Blend(Convert.ToSingle(actorOrBlend.Attributes.Item(blendProbabilityIndex).Value.Replace(",",".")), actorOrBlend.Attributes.Item(blendNameIndex).Value));
+                                                Blend blendData = new Blend();
+                                                blendData.Name = blendElement.Attributes.Item(nameParamIndex).Value.ToLower();
+                                                blendData.Probability = Convert.ToSingle(blendElement.Attributes.Item(blendProbParamIndex).Value.Replace(",", "."));
+                                                activityData.Blends.Add(blendData);
                                             }
                                         }
                                     }
-                                    layerData.Activites.Add(activityData);
+                                    levelData.Activites.Add(activityData);
                                 }
                             }
                         }
-                        layersData.Add(layerData);
+                        LevelsData.Add(levelData);
                     }
                 }
             }
         }
-        return layersData;
     }
 
     public void ShowOnConsole()
     {
-        for (int i = 0; i < layersData.Count; i++)
+        Debug.Log("Scenario: " + ScenarioName);
+        for (int i = 0; i < LevelsData.Count; i++)
         {
-            Debug.Log("Layer ID = " + layersData[i].Id);
-            for (int j = 0; j < layersData[i].Activites.Count; j++)
+            Debug.Log("Level Id: " + LevelsData[i].Index);
+            for (int j = 0; j < LevelsData[i].Activites.Count; j++)
             {
-                Debug.Log(" Activity Name = '" + layersData[i].Activites[j].Name + "' Probability = " + layersData[i].Activites[j].Probability);
-                for (int k = 0; k < layersData[i].Activites[j].Actors.Count; k++)
+                Debug.Log(" Activity Id: " + LevelsData[i].Activites[j].Index + " Name: '" + LevelsData[i].Activites[j].Name + "' Probability: " + LevelsData[i].Activites[j].Probability);
+                for (int k = 0; k < LevelsData[i].Activites[j].Actors.Count; k++)
                 {
-                    Debug.Log("     Actor Name = '" + layersData[i].Activites[j].Actors[k].Name + "'");
-                    foreach (var previousActivity in layersData[i].Activites[j].Actors[k].PreviousActivities)
+                    Debug.Log("     Actor Name: '" + LevelsData[i].Activites[j].Actors[k].Name + "'");
+                    foreach (var previousActivity in LevelsData[i].Activites[j].Actors[k].PreviousActivitiesIndexes)
                     {
-                        Debug.Log("         Previous Activity Name = '" + previousActivity + "'");
+                        Debug.Log("         Parent activity Id: " + previousActivity + "");
                     }
                 }
-                foreach (var blend in layersData[i].Activites[j].Blends)
+                for (int k = 0; k < LevelsData[i].Activites[j].Blends.Count; k++)
                 {
-                    Debug.Log("     Blend with Name = " + blend.Name + "' with Probability = " + blend.Probablity);
+                    Debug.Log("     Blend Name: '" + LevelsData[i].Activites[j].Blends[k].Name + "' Probability: " + LevelsData[i].Activites[j].Blends[k].Probability);
                 }
             }
         }

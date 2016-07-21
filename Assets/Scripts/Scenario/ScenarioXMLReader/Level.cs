@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 
-public class Layer
+public class Level
 {
-    public int Id;
+    public int Index;
     public List<Activity> Activites;
 
-    public Layer()
+    public Level()
     {
-        Id = 0;
+        Index = 0;
         Activites = new List<Activity>();
     }
 
-    public Layer(int id)
+    public Level(int id)
     {
-        Id = id;
+        Index = id;
         Activites = new List<Activity>();
     }
 }
