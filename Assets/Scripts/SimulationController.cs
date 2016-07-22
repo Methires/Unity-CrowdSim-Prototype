@@ -9,6 +9,7 @@ public class SimulationController : MonoBehaviour
     public int SimultaneousScenarioInstances;
     public string ScenarioFileName;
 
+    private XmlReader _xmlReader;
     private SpawnCrowd _crowdSpawner;
     private CreateScenario _scenarioCreator;
     private int _repeatsCounter;
@@ -17,9 +18,10 @@ public class SimulationController : MonoBehaviour
     {
         _crowdSpawner = GetComponent<SpawnCrowd>();
         _scenarioCreator = GetComponent<CreateScenario>();
-        XmlReader abc = new XmlReader();
-        abc.LoadXmlScenario(ScenarioFileName);
-        abc.ShowOnConsole();
+        _xmlReader = new XmlReader();
+        _xmlReader.LoadXmlScenario(ScenarioFileName);
+        _scenarioCreator.RawInfoToListPerAgent(_xmlReader.LevelsData);
+        _scenarioCreator.PrintOut(_scenarioCreator.CreateActivitySequencePerAgent());
         StartInstanceOfSimulation();
 	}
 	

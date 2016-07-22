@@ -1,21 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CreateScenario : MonoBehaviour
 {
-    private List<GameObject> _scenarioAgents;
+    public struct ActivityToPerform
+    {
+        public string Name;
+        public string Blend;
+        public int Index;
+
+        public ActivityToPerform(string name, int index)
+        {
+            Name = name;
+            Blend = null;
+            Index = index;
+        }
+
+        public ActivityToPerform(string name, string blend, int index)
+        {
+            Name = name;
+            Blend = blend;
+            Index = index;
+        }
+    }
+
+    private List<GameObject> _agentsGameObjects;
+    private List<string> _agentsNames;
+    private List<List<Level>> _dataPerAgent;
     private bool _isFinished;
 
     void Update()
     {
         if (!_isFinished)
         {
-            if (_scenarioAgents.Count != 0)
+            if (_agentsGameObjects.Count != 0)
             {
-                bool[] isAgentFinished = new bool[_scenarioAgents.Count];
-                for (int i = 0; i < _scenarioAgents.Count; i++)
+                bool[] isAgentFinished = new bool[_agentsGameObjects.Count];
+                for (int i = 0; i < _agentsGameObjects.Count; i++)
                 {
-                    isAgentFinished[i] = _scenarioAgents[i].GetComponent<ScenarioController>().IsFinished;
+                    isAgentFinished[i] = _agentsGameObjects[i].GetComponent<ScenarioController>().IsFinished;
                 }
                 _isFinished = true;
                 for (int i = 0; i < isAgentFinished.Length; i++)
@@ -31,7 +55,7 @@ public class CreateScenario : MonoBehaviour
 
         if (_isFinished)
         {
-            _scenarioAgents.Clear();
+            _agentsGameObjects.Clear();
             _isFinished = false;
             GetComponent<SimulationController>().EndInstanceOfSimulation();
         }
@@ -39,15 +63,15 @@ public class CreateScenario : MonoBehaviour
 
     public void GenerateInGameSequence(int simultaneousInstances)
     {
-        CreateScenarioAgents(simultaneousInstances);
+        CreateAgentsFromCrowd(simultaneousInstances, 2);
         int agentIndex = 0;
 
         for (int i = 0; i < simultaneousInstances; i++)
         {
-            GameObject agent1 = _scenarioAgents[agentIndex];
+            GameObject agent1 = _agentsGameObjects[agentIndex];
             ScenarioController scenario1 = agent1.AddComponent<ScenarioController>();
 
-            GameObject agent2 = _scenarioAgents[agentIndex + 1];
+            GameObject agent2 = _agentsGameObjects[agentIndex + 1];
             ScenarioController scenario2 = agent2.AddComponent<ScenarioController>();
 
             //Currently: directly from code with no option for diversity. Temporary solution.
@@ -107,15 +131,15 @@ public class CreateScenario : MonoBehaviour
             agentIndex += 2;
         }
 
-        foreach (GameObject agent in _scenarioAgents)
+        foreach (GameObject agent in _agentsGameObjects)
         {
             agent.GetComponent<ScenarioController>().LoadNewActivity();
         }
     }
 
-    void CreateScenarioAgents(int simultaneousInstances, int agents = 2)
+    private void CreateAgentsFromCrowd(int simultaneousInstances, int agents)
     {
-        _scenarioAgents = new List<GameObject>();
+        _agentsGameObjects = new List<GameObject>();
         for (int i = 0; i < agents * simultaneousInstances; i++)
         {
             GameObject[] crowd = GameObject.FindGameObjectsWithTag("Crowd");
@@ -125,98 +149,181 @@ public class CreateScenario : MonoBehaviour
             crowd[index].GetComponent<NavMeshAgent>().avoidancePriority = 0;
             crowd[index].GetComponent<GenerateDestination>().enabled = false;
             crowd[index].AddComponent<DisplayActivityText>();
-            _scenarioAgents.Add(crowd[index]);
+            _agentsGameObjects.Add(crowd[index]);
             MarkAgentWithPlane(crowd[index]);
         }
     }
-    /*
-    public void LoadScenarioFromXml(string fileName)
+
+    public void RawInfoToListPerAgent(List<Level> data)
     {
-        XmlReader reader = new XmlReader();
-        List<Level> levels = reader.LoadXmlScenario(fileName);
-        _actorsNames = GetListOfActors(levels);
-        _scenariosForAgents = new Level[levels.Count, _actorsNames.Count];
-        for (int i = 0; i < _actorsNames.Count; i++)
+        _agentsNames = GetListOfActorsNames(data);
+        _dataPerAgent = new List<List<Level>>();
+        for (int i = 0; i < _agentsNames.Count; i++)
         {
-            for (int j = 0; j < levels.Count; j++)
+            List<Level> agentData = new List<Level>();
+            for (int j = 0; j < data.Count; j++)
             {
-                Level agentSpecificLevel = new Level();
-                for (int k = 0; k < levels[j].Activites.Count; k++)
+                Level agentLevel = new Level();
+                agentLevel.Index = data[j].Index;
+                for (int k = 0; k < data[j].Activites.Count; k++)
                 {
-                    Activity activityWithSpecificAgent;
-                    for (int l = 0; l < levels[j].Activites[k].Actors.Count; l++)
+                    for (int l = 0; l < data[j].Activites[k].Actors.Count; l++)
                     {
-                        if (levels[j].Activites[k].Actors[l].Name.Equals(_actorsNames[i]))
+                        if (data[j].Activites[k].Actors[l].Name.Equals(_agentsNames[i]))
                         {
-                            activityWithSpecificAgent = levels[j].Activites[k];
-                            agentSpecificLevel.Activites.Add(activityWithSpecificAgent);
+                            agentLevel.Activites.Add(data[j].Activites[k]);
                             break;
                         }
                     }
                 }
-                _scenariosForAgents[j,i] = agentSpecificLevel;
+                agentData.Add(agentLevel);
             }
+            _dataPerAgent.Add(agentData);
         }
     }
-    
-    private void CreateActivitySequence()
+
+    public List<List<ActivityToPerform>> CreateActivitySequencePerAgent()
     {
-        List<NameAndBlend>[] sequences = new List<NameAndBlend>[_scenariosForAgents.GetLength(1)];
-        for (int i = 0; i < sequences.Length; i++)            
-        {
-            sequences[i] = new List<NameAndBlend>();
-        }
-        for (int i = 0; i < _scenariosForAgents.GetLength(1); i++)
-        {
-            for (int j = 0; j < _scenariosForAgents.GetLength(0); j++)
-            {
-                Level temp = new Level();
-                string previousActivity = "none";
-                if(j != 0)
-                {
-                    foreach (Actor actor in _scenariosForAgents[j - 1, i].Activites[0].Actors)
-                    {
-                        if (actor.Name.ToLower().Equals(_actorsNames[i]))
-                        {
+        List<List<ActivityToPerform>> sequences = new List<List<ActivityToPerform>>();
+        sequences.Capacity = _agentsNames.Count;
 
-                        }
-                    }
-                }
-                for (int k = 0; k < _scenariosForAgents[j, i].Activites.Count; k++)
+        for (int i = 0; i < _agentsNames.Count; i++)
+        {
+            List<ActivityToPerform> sequence = new List<ActivityToPerform>();
+            for (int j = 0; j < _dataPerAgent[i].Count; j++)
+            {
+                Level tempLevel = new Level();
+                for (int k = 0; k < _dataPerAgent[i][j].Activites.Count; k++)
                 {
-                    foreach (var actor in _scenariosForAgents[j, i].Activites[k].Actors)
+                    int actorIndex = -1;
+                    for (int l = 0; l < _dataPerAgent[i][j].Activites[k].Actors.Count; l++)
                     {
-                        if (actor.Name.ToLower().Equals(_actorsNames[i].ToLower()))
+                        if (_dataPerAgent[i][j].Activites[k].Actors[l].Name.Equals(_agentsNames[i]))
                         {
-                           // if (actor.PreviousActivities.Contains(previousActivity) || actor.PreviousActivities.Contains("null") || actor.PreviousActivities.Contains("none"))
-                            {
-                                temp.Activites.Add(_scenariosForAgents[j, i].Activites[k]);
-                            }
+                            actorIndex = l;
+                            break;
                         }
                     }
+                    if (CheckActivityFeasibility(sequence, _dataPerAgent[i][j].Activites[k].Actors[actorIndex], j))
+                    {
+                        tempLevel.Activites.Add(_dataPerAgent[i][j].Activites[k]);
+                    }
                 }
-                float[] probabilityArray = new float[temp.Activites.Count];
-                for (int k = 0; k < temp.Activites.Count; k++)
+                if (tempLevel.Activites.Count != 0)
                 {
-                    if (k > 0)
-                    {
-                        probabilityArray[k] = temp.Activites[k].Probability + probabilityArray[k - 1];
-                    }
-                    else
-                    {
-                        probabilityArray[k] = temp.Activites[k].Probability;
-                    }
+                    sequence.Add(DrawAnActivity(tempLevel));
                 }
-                float randomValue = Random.Range(0.0f, probabilityArray[probabilityArray.Length - 1]);
+            }
+            sequences.Add(sequence);
+        }
+
+        return sequences;
+    }
+
+    public void PrintOut(List<List<ActivityToPerform>> abc)
+    {
+        foreach (var a in abc)
+        {
+            foreach (var b in a)
+            {
+                if (b.Blend == null)
+                {
+                    Debug.Log("Name: " + b.Name + " Id: " + b.Index);
+                }
+                else
+                {
+                    Debug.Log("Name: " + b.Name + " Id: " + b.Index + " Blend: " + b.Blend);
+                }
 
             }
         }
     }
 
-    private List<string> GetListOfActors(List<Level> levels)
+    private bool CheckActivityFeasibility(List<ActivityToPerform> sequenceOfPreviousActivities, Actor actorInActivity, int currentLevelIndex)
+    {
+        if (currentLevelIndex == 0)
+        {
+            return true;
+        }
+        for (int i = 0; i < actorInActivity.PreviousActivitiesIndexes.Length; i++)
+        {
+            if (actorInActivity.PreviousActivitiesIndexes[i] == sequenceOfPreviousActivities[currentLevelIndex - 1].Index)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private ActivityToPerform DrawAnActivity(Level level)
+    {
+        float[] probabilityArray = new float[level.Activites.Count];
+        for (int i = 0; i < level.Activites.Count; i++)
+        {
+            if (i > 0)
+            {
+                probabilityArray[i] = level.Activites[i].Probability + probabilityArray[i - 1];
+            }
+            else
+            {
+                probabilityArray[i] = level.Activites[i].Probability;
+            }
+        }
+        float randomValue = Random.Range(0.0f, 1.0f);
+        int index = -1;
+        for (int i = 0; i < probabilityArray.Length; i++)
+        {
+            index = i;
+            if (randomValue > probabilityArray[i])
+            {
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        }
+        if (level.Activites[index].Blends.Count != 0)
+        {
+            float[] blendProbabilityArray = new float[level.Activites[index].Blends.Count + 1];
+            for (int i = 0; i < level.Activites[index].Blends.Count; i++)
+            {
+                if (i > 0)
+                {
+                    blendProbabilityArray[i] = level.Activites[i].Probability + blendProbabilityArray[i - 1];
+                }
+                else
+                {
+                    blendProbabilityArray[i] = level.Activites[i].Probability;
+                }
+            }
+            blendProbabilityArray[blendProbabilityArray.Length - 1] = 1.0f;
+            float randomValueForBlend = Random.Range(0.0f, 1.0f);
+            int indexBlend = -1;
+            for (int i = 0; i < blendProbabilityArray.Length; i++)
+            {
+                indexBlend = i;
+                if (randomValueForBlend > blendProbabilityArray[i])
+                {
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (indexBlend < blendProbabilityArray.Length - 1)
+            {
+                return new ActivityToPerform(level.Activites[index].Name, level.Activites[index].Blends[indexBlend].Name, level.Activites[index].Index);
+            }
+        }
+        return new ActivityToPerform(level.Activites[index].Name, level.Activites[index].Index);
+    }
+
+    private List<string> GetListOfActorsNames(List<Level> data)
     {
         HashSet<string> hashedActors = new HashSet<string>();
-        foreach (Level level in levels)
+        foreach (Level level in data)
         {
             foreach (Activity activity in level.Activites)
             {
@@ -229,7 +336,7 @@ public class CreateScenario : MonoBehaviour
         List<string> actors = hashedActors.ToList();
         return actors;
     }
-    */
+
     private void MarkAgentWithPlane(GameObject agent)
     {
         GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
