@@ -290,15 +290,15 @@ public class CreateScenario : MonoBehaviour
             {
                 if (i > 0)
                 {
-                    blendProbabilityArray[i] = level.Activites[i].Probability + blendProbabilityArray[i - 1];
+                    blendProbabilityArray[i] = level.Activites[index].Blends[i].Probability + blendProbabilityArray[i - 1];
                 }
                 else
                 {
-                    blendProbabilityArray[i] = level.Activites[i].Probability;
+                    blendProbabilityArray[i] = level.Activites[index].Blends[i].Probability;
                 }
             }
             blendProbabilityArray[blendProbabilityArray.Length - 1] = 1.0f;
-            float randomValueForBlend = Random.Range(0.0f, 1.0f);
+            float randomValueForBlend = Random.Range(0.0f, blendProbabilityArray[blendProbabilityArray.Length - 1]);
             int indexBlend = -1;
             for (int i = 0; i < blendProbabilityArray.Length; i++)
             {
