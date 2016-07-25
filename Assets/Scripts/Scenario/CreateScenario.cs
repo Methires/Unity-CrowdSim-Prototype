@@ -4,27 +4,6 @@ using System.Linq;
 
 public class CreateScenario : MonoBehaviour
 {
-    public struct ActivityToPerform
-    {
-        public string Name;
-        public string Blend;
-        public int Index;
-
-        public ActivityToPerform(string name, int index)
-        {
-            Name = name;
-            Blend = null;
-            Index = index;
-        }
-
-        public ActivityToPerform(string name, string blend, int index)
-        {
-            Name = name;
-            Blend = blend;
-            Index = index;
-        }
-    }
-
     private List<GameObject> _agentsGameObjects;
     private List<string> _agentsNames;
     private List<List<Level>> _dataPerAgent;
@@ -182,17 +161,18 @@ public class CreateScenario : MonoBehaviour
         }
     }
 
-    public List<List<ActivityToPerform>> CreateActivitySequencePerAgent()
+    public List<List<Activity>> CreateActivitySequencePerAgent()
     {
-        List<List<ActivityToPerform>> sequences = new List<List<ActivityToPerform>>();
+        List<List<Activity>> sequences = new List<List<Activity>>();
         sequences.Capacity = _agentsNames.Count;
 
         for (int i = 0; i < _agentsNames.Count; i++)
         {
-            List<ActivityToPerform> sequence = new List<ActivityToPerform>();
+            List<Activity> sequence = new List<Activity>();
             for (int j = 0; j < _dataPerAgent[i].Count; j++)
             {
                 Level tempLevel = new Level();
+                tempLevel.Index = j;
                 for (int k = 0; k < _dataPerAgent[i][j].Activites.Count; k++)
                 {
                     int actorIndex = -1;
@@ -211,7 +191,23 @@ public class CreateScenario : MonoBehaviour
                 }
                 if (tempLevel.Activites.Count != 0)
                 {
-                    sequence.Add(DrawAnActivity(tempLevel));
+                    if (i != 0)
+                    {
+                        Activity forcedActity;
+                        if (ForceActivity(sequences, i, tempLevel, out forcedActity))
+                        {
+                            sequence.Add(forcedActity);
+                        }
+                        else
+                        {
+                            RemoveComplexActivity(sequences, i, ref tempLevel);
+                            sequence.Add(DrawAnActivity(tempLevel, _agentsNames[i]));
+                        }
+                    }
+                    else
+                    {
+                        sequence.Add(DrawAnActivity(tempLevel, _agentsNames[i]));
+                    }
                 }
             }
             sequences.Add(sequence);
@@ -220,26 +216,31 @@ public class CreateScenario : MonoBehaviour
         return sequences;
     }
 
-    public void PrintOut(List<List<ActivityToPerform>> abc)
+    public void PrintOut(List<List<Activity>> abc)
     {
         foreach (var a in abc)
         {
             foreach (var b in a)
             {
-                if (b.Blend == null)
+                if (b.Blends == null)
                 {
                     Debug.Log("Name: " + b.Name + " Id: " + b.Index);
                 }
                 else
                 {
-                    Debug.Log("Name: " + b.Name + " Id: " + b.Index + " Blend: " + b.Blend);
+                    string blends = "";
+                    foreach (var c in b.Blends)
+                    {
+                        blends += " " + c.Name;
+                    }
+                    Debug.Log("Name: " + b.Name + " Id: " + b.Index + " Blend: " + blends);
                 }
 
             }
         }
     }
 
-    private bool CheckActivityFeasibility(List<ActivityToPerform> sequenceOfPreviousActivities, Actor actorInActivity, int currentLevelIndex)
+    private bool CheckActivityFeasibility(List<Activity> sequence, Actor actorInActivity, int currentLevelIndex)
     {
         if (currentLevelIndex == 0)
         {
@@ -247,7 +248,7 @@ public class CreateScenario : MonoBehaviour
         }
         for (int i = 0; i < actorInActivity.PreviousActivitiesIndexes.Length; i++)
         {
-            if (actorInActivity.PreviousActivitiesIndexes[i] == sequenceOfPreviousActivities[currentLevelIndex - 1].Index)
+            if (actorInActivity.PreviousActivitiesIndexes[i] == sequence[currentLevelIndex - 1].Index)
             {
                 return true;
             }
@@ -255,7 +256,52 @@ public class CreateScenario : MonoBehaviour
         return false;
     }
 
-    private ActivityToPerform DrawAnActivity(Level level)
+    private bool ForceActivity(List<List<Activity>> sequences, int actorIndex, Level level, out Activity forcedActivity)
+    {
+        for (int i = 0; i < sequences.Count; i++)
+        {
+            if (i == actorIndex)
+            {
+                continue;
+            }
+            foreach (Activity activity in level.Activites)
+            {
+                if (sequences[i][level.Index].Index == activity.Index)
+                {
+                    forcedActivity = sequences[i][level.Index];
+                    return true;
+                }
+            }
+        }
+
+        forcedActivity = new Activity();
+        return false;
+    }
+
+    //Think a bit more about this one, as it may not work properly with 3 or more agents 
+    private void RemoveComplexActivity(List<List<Activity>> sequences, int actorIndex, ref Level level)
+    {
+        List<int> indexes = new List<int>();
+        for (int i = 0; i < level.Activites.Count; i++)
+        {
+            if (level.Activites[i].Actors.Count < 1)
+            {
+                for (int j = 0; j < sequences.Count; j++)
+                {
+                    if (sequences[j][level.Index].Index != level.Activites[i].Index)
+                    {
+                        indexes.Remove(j);
+                    } 
+                }
+            }
+        }
+        foreach (int index in indexes)
+        {
+            level.Activites.RemoveAt(index);
+        }
+    }
+
+    private Activity DrawAnActivity(Level level, string actorName)
     {
         float[] probabilityArray = new float[level.Activites.Count];
         for (int i = 0; i < level.Activites.Count; i++)
@@ -269,7 +315,7 @@ public class CreateScenario : MonoBehaviour
                 probabilityArray[i] = level.Activites[i].Probability;
             }
         }
-        float randomValue = Random.Range(0.0f, 1.0f);
+        float randomValue = Random.Range(0.0f, probabilityArray[probabilityArray.Length - 1]);
         int index = -1;
         for (int i = 0; i < probabilityArray.Length; i++)
         {
@@ -314,10 +360,25 @@ public class CreateScenario : MonoBehaviour
             }
             if (indexBlend < blendProbabilityArray.Length - 1)
             {
-                return new ActivityToPerform(level.Activites[index].Name, level.Activites[index].Blends[indexBlend].Name, level.Activites[index].Index);
+                Activity tempWithBlend = new Activity
+                {
+                    Name = level.Activites[index].Name,
+                    Index = level.Activites[index].Index,
+                    Actors = level.Activites[index].Actors,
+                    Blends = new List<Blend>()
+                };
+                tempWithBlend.Blends.Add(level.Activites[index].Blends[indexBlend]);
+                return tempWithBlend;
             }
         }
-        return new ActivityToPerform(level.Activites[index].Name, level.Activites[index].Index);
+        Activity temp = new Activity
+        {
+            Name = level.Activites[index].Name,
+            Index = level.Activites[index].Index,
+            Actors = level.Activites[index].Actors,
+            Blends = null
+        };
+        return temp;
     }
 
     private List<string> GetListOfActorsNames(List<Level> data)
