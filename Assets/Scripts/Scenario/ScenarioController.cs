@@ -110,7 +110,7 @@ public class ScenarioController : MonoBehaviour
                 _actionScript.OtherAgents = _scenario[_currentActivityIndex + 1].action.RequiredAgents;
                 _actionScript.ExitObject = _scenario[_currentActivityIndex + 1].action.ExitObject;
                 _actionScript.ExitTime = _scenario[_currentActivityIndex + 1].action.ExitTime;
-                _actionScript.ParamName = _scenario[_currentActivityIndex + 1].action.ParameterName;
+                _actionScript.ParamName = _scenario[_currentActivityIndex + 1].action.ParameterName.ToLower();
                 GetComponent<DisplayActivityText>().ChangeText(_scenario[_currentActivityIndex + 1].action.ParameterName);
             }
             IsFinished = false;

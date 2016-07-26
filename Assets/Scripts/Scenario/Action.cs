@@ -92,7 +92,7 @@ public class Action : MonoBehaviour
         set
         {
             _otherRequiredAgents = value;
-            if (_otherRequiredAgents.Length > 0)
+            if (_otherRequiredAgents != null)
             {
                 _complexAction = true;
                 _canExecuteComplexAction = false;

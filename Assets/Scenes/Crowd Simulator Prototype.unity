@@ -600,7 +600,7 @@ MonoBehaviour:
   Characters:
   - {fileID: 148640, guid: c773ba4c6043f364fa4b808a81da66f0, type: 2}
   - {fileID: 149782, guid: 9bf85170419c2b940a670eb3f6f2c1f6, type: 2}
-  MaxPeople: 50
+  MaxPeople: 10
   RangeX_Min: -37
   RangeX_Max: 37
   RangeZ_Min: -37
@@ -639,8 +639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d770248ae0a979d45b4a1d9b9d024b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScenarioRepeats: 3
-  SimultaneousScenarioInstances: 3
+  ScenarioRepeats: 1
+  SimultaneousScenarioInstances: 1
   ScenarioFileName: TestScenario
 --- !u!114 &1922732266
 MonoBehaviour:

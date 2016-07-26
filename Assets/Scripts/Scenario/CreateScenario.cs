@@ -42,78 +42,72 @@ public class CreateScenario : MonoBehaviour
 
     public void GenerateInGameSequence(int simultaneousInstances)
     {
-        CreateAgentsFromCrowd(simultaneousInstances, 2);
+        CreateAgentsFromCrowd(simultaneousInstances, _agentsNames.Count);
+        List<List<Activity>> scenarioPerAgent = CreateActivitySequencePerAgent();
+        PrintOut(scenarioPerAgent);
         int agentIndex = 0;
 
         for (int i = 0; i < simultaneousInstances; i++)
         {
-            GameObject agent1 = _agentsGameObjects[agentIndex];
-            ScenarioController scenario1 = agent1.AddComponent<ScenarioController>();
+            for (int j = 0; j < scenarioPerAgent.Count; j++)
+            {
+                GameObject agent = _agentsGameObjects[agentIndex];
+                ScenarioController scenario = agent.AddComponent<ScenarioController>();
 
-            GameObject agent2 = _agentsGameObjects[agentIndex + 1];
-            ScenarioController scenario2 = agent2.AddComponent<ScenarioController>();
-
-            //Currently: directly from code with no option for diversity. Temporary solution.
-
-            //Scenario for agent1
-            //Visit first randomly genareted point by walking there
-            Vector3 point1_1 = agent1.GetComponent<GenerateDestination>().GenerateWaypoint(GetComponent<SpawnCrowd>().RangeX_Min, GetComponent<SpawnCrowd>().RangeX_Max, GetComponent<SpawnCrowd>().RangeZ_Min, GetComponent<SpawnCrowd>().RangeZ_Max);
-            float speed1_1 = 3.0f;
-            MovementData movData1_1 = new MovementData(point1_1, speed1_1);
-            scenario1.AddNewActivity(movData1_1, null);
-
-            //Visit second randomly generated point by running there
-            Vector3 point1_2 = agent1.GetComponent<GenerateDestination>().GenerateWaypoint(GetComponent<SpawnCrowd>().RangeX_Min, GetComponent<SpawnCrowd>().RangeX_Max, GetComponent<SpawnCrowd>().RangeZ_Min, GetComponent<SpawnCrowd>().RangeZ_Max);
-            float speed1_2 = 6.0f;
-            MovementData movData1_2 = new MovementData(point1_2, speed1_2);
-            scenario1.AddNewActivity(movData1_2, null);
-
-
-            ////Change animator state with parameter "Sit", self explanatory, for 10 seconds, then return to normal state
-            //ActionData actionData1_3 = new ActionData("Sit", 10.0f);
-            //scenario1.AddNewActivity(null, actionData1_3);
-
-            //Complex action for two agents
-            //Change animator state with parameter "Sit" together with agent2 for 10 seconds, then return to normal state
-            GameObject[] requiredActors = new GameObject[1];
-            requiredActors[0] = agent2;
-            ActionData actionData1_3 = new ActionData("Sit", requiredActors, 10.0f);
-            scenario1.AddNewActivity(null, actionData1_3);
-
-            //Once again visit first randomly generated point by running there
-            MovementData movData1_4 = new MovementData(point1_1, speed1_2);
-            scenario1.AddNewActivity(movData1_4, null);
-            //End of scenario for agent1
-
-            //Scenario for agent2
-            //Visit second point from agent1's scenario by running there
-            scenario2.AddNewActivity(movData1_2, null);
-
-
-            ////Change animator state with parameter "Squat", self explanatory, until agent1 gets near, then return to normal state
-            //ActionData actionData2_2 = new ActionData("Squat", agent1);
-            //scenario2.AddNewActivity(null, actionData2_2);
-
-            GameObject[] requiredActors1 = new GameObject[1];
-            requiredActors1[0] = agent1;
-            ActionData actionData2_2 = new ActionData("Sit", requiredActors1, 10.0f);
-            scenario2.AddNewActivity(null, actionData2_2);
-
-            //Visit point 0,0,0 by walking there slightly faster
-            MovementData movData2_3 = new MovementData(Vector3.zero, 3.5f);
-            scenario2.AddNewActivity(movData2_3, null);
-
-            ////Change animator state with parameter "Wave", self explanatory, then return to normal state
-            //ActionData actionData2_4 = new ActionData("Wave", 15.0f);
-            //scenario2.AddNewActivity(null, actionData2_4);
-
-            agentIndex += 2;
+                for (int k = 0; k < scenarioPerAgent[j].Count; k++)
+                {
+                    if (scenarioPerAgent[j][k].Actors.Count == 1)
+                    {
+                        switch (scenarioPerAgent[j][k].Name.ToLower())
+                        {
+                            case "walk":
+                                Vector3 pointW = agent.GetComponent<GenerateDestination>().GenerateWaypoint();
+                                float speedW = 3.0f;
+                                MovementData movDataW = new MovementData(pointW, speedW);
+                                if (scenarioPerAgent[j][k].Blends == null)
+                                {
+                                    scenario.AddNewActivity(movDataW, null);
+                                }
+                                else
+                                {
+                                    ActionData blendData = new ActionData(scenarioPerAgent[j][k].Blends[0].Name, 5.0f);
+                                    scenario.AddNewActivity(movDataW, blendData);
+                                }
+                                break;
+                            case "run":
+                                Vector3 pointR = agent.GetComponent<GenerateDestination>().GenerateWaypoint();
+                                float speedR = 10.0f;
+                                MovementData movDataR = new MovementData(pointR, speedR);
+                                if (scenarioPerAgent[j][k].Blends == null)
+                                {
+                                    scenario.AddNewActivity(movDataR, null);
+                                }
+                                else
+                                {
+                                    ActionData blendData = new ActionData(scenarioPerAgent[j][k].Blends[0].Name, 5.0f);
+                                    scenario.AddNewActivity(movDataR, blendData);
+                                }
+                                break;
+                            default:
+                                ActionData aData = new ActionData(scenarioPerAgent[j][k].Name, 10.0f);
+                                scenario.AddNewActivity(null, aData);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        ActionData complAcData = new ActionData(scenarioPerAgent[j][k].Name, 10.0f);
+                        scenario.AddNewActivity(null, complAcData);
+                    }
+                }
+                agentIndex++;
+            }
         }
 
-        foreach (GameObject agent in _agentsGameObjects)
+        foreach(GameObject agent in _agentsGameObjects)
         {
             agent.GetComponent<ScenarioController>().LoadNewActivity();
-        }
+        }   
     }
 
     private void CreateAgentsFromCrowd(int simultaneousInstances, int agents)
@@ -161,7 +155,7 @@ public class CreateScenario : MonoBehaviour
         }
     }
 
-    public List<List<Activity>> CreateActivitySequencePerAgent()
+    private List<List<Activity>> CreateActivitySequencePerAgent()
     {
         List<List<Activity>> sequences = new List<List<Activity>>();
         sequences.Capacity = _agentsNames.Count;
@@ -216,7 +210,7 @@ public class CreateScenario : MonoBehaviour
         return sequences;
     }
 
-    public void PrintOut(List<List<Activity>> abc)
+    private void PrintOut(List<List<Activity>> abc)
     {
         foreach (var a in abc)
         {

@@ -21,7 +21,6 @@ public class SimulationController : MonoBehaviour
         _xmlReader = new XmlReader();
         _xmlReader.LoadXmlScenario(ScenarioFileName);
         _scenarioCreator.RawInfoToListPerAgent(_xmlReader.LevelsData);
-        _scenarioCreator.PrintOut(_scenarioCreator.CreateActivitySequencePerAgent());
         StartInstanceOfSimulation();
 	}
 	
