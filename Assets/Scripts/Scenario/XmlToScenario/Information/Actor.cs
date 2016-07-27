@@ -9,9 +9,9 @@
         PreviousActivitiesIndexes = null;
     }
 
-    public Actor(string name, int previousActivityCount)
+    public Actor(string name, int[] previousIndexes)
     {
         Name = name;
-        PreviousActivitiesIndexes = new int[previousActivityCount];
+        PreviousActivitiesIndexes = previousIndexes;
     }
 }
