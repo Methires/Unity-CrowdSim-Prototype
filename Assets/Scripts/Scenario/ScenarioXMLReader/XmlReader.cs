@@ -57,7 +57,7 @@ public class XmlReader
                             XmlNode activityElement = levelElement.ChildNodes.Item(j);
                             if (activityElement.Name.ToLower().Equals("activity".ToLower()))
                             {
-                                Activity activityData = new Activity();
+                                Action activityData = new Action();
                                 int probParamIndex, nameParamIndex, idParamIndex;
                                 if (FindAttributeIndex(activityElement.Attributes, "prob", out probParamIndex) && FindAttributeIndex(activityElement.Attributes, "name", out nameParamIndex) && FindAttributeIndex(activityElement.Attributes, "id", out idParamIndex))
                                 {
@@ -114,7 +114,7 @@ public class XmlReader
                                             }
                                         }
                                     }
-                                    levelData.Activites.Add(activityData);
+                                    levelData.Actions.Add(activityData);
                                 }
                             }
                         }
@@ -131,20 +131,20 @@ public class XmlReader
         for (int i = 0; i < LevelsData.Count; i++)
         {
             Debug.Log("Level Id: " + LevelsData[i].Index);
-            for (int j = 0; j < LevelsData[i].Activites.Count; j++)
+            for (int j = 0; j < LevelsData[i].Actions.Count; j++)
             {
-                Debug.Log(" Activity Id: " + LevelsData[i].Activites[j].Index + " Name: '" + LevelsData[i].Activites[j].Name + "' Probability: " + LevelsData[i].Activites[j].Probability);
-                for (int k = 0; k < LevelsData[i].Activites[j].Actors.Count; k++)
+                Debug.Log(" Activity Id: " + LevelsData[i].Actions[j].Index + " Name: '" + LevelsData[i].Actions[j].Name + "' Probability: " + LevelsData[i].Actions[j].Probability);
+                for (int k = 0; k < LevelsData[i].Actions[j].Actors.Count; k++)
                 {
-                    Debug.Log("     Actor Name: '" + LevelsData[i].Activites[j].Actors[k].Name + "'");
-                    foreach (var previousActivity in LevelsData[i].Activites[j].Actors[k].PreviousActivitiesIndexes)
+                    Debug.Log("     Actor Name: '" + LevelsData[i].Actions[j].Actors[k].Name + "'");
+                    foreach (var previousActivity in LevelsData[i].Actions[j].Actors[k].PreviousActivitiesIndexes)
                     {
                         Debug.Log("         Parent activity Id: " + previousActivity + "");
                     }
                 }
-                for (int k = 0; k < LevelsData[i].Activites[j].Blends.Count; k++)
+                for (int k = 0; k < LevelsData[i].Actions[j].Blends.Count; k++)
                 {
-                    Debug.Log("     Blend Name: '" + LevelsData[i].Activites[j].Blends[k].Name + "' Probability: " + LevelsData[i].Activites[j].Blends[k].Probability);
+                    Debug.Log("     Blend Name: '" + LevelsData[i].Actions[j].Blends[k].Name + "' Probability: " + LevelsData[i].Actions[j].Blends[k].Probability);
                 }
             }
         }

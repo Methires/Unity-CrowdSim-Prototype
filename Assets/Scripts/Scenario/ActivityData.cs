@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-public class ActionData
+public class ActivityData
 {
     public float ExitTime;
     public GameObject ExitObject;
     public string ParameterName;
     public GameObject[] RequiredAgents;
 
-    public ActionData()
+    public ActivityData()
     {
         ExitTime = 0.0f;
         ExitObject = null;
@@ -15,7 +15,7 @@ public class ActionData
         RequiredAgents = null;
     }
 
-    public ActionData(string parameterName, float exitTime)
+    public ActivityData(string parameterName, float exitTime)
     {
         ExitTime = exitTime;
         ExitObject = null;
@@ -23,7 +23,7 @@ public class ActionData
         RequiredAgents = null;
     }
 
-    public ActionData(string parameterName, GameObject exitObject)
+    public ActivityData(string parameterName, GameObject exitObject)
     {
         ExitTime = 0.0f;
         ExitObject = exitObject;
@@ -31,7 +31,7 @@ public class ActionData
         RequiredAgents = null;
     }
 
-    public ActionData(string parameterName, GameObject[] requiredAgents, float exitTime)
+    public ActivityData(string parameterName, GameObject[] requiredAgents, float exitTime)
     {
         ExitTime = exitTime;
         ExitObject = null;

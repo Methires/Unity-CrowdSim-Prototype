@@ -3,17 +3,17 @@
 public class Level
 {
     public int Index;
-    public List<Activity> Activites;
+    public List<Action> Actions;
 
     public Level()
     {
         Index = 0;
-        Activites = new List<Activity>();
+        Actions = new List<Action>();
     }
 
     public Level(int id)
     {
         Index = id;
-        Activites = new List<Activity>();
+        Actions = new List<Action>();
     }
 }

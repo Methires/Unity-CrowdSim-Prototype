@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Movement))]
-[RequireComponent(typeof(Action))]
+[RequireComponent(typeof(ActivityInfo))]
 public class ScenarioController : MonoBehaviour
 {
-    public struct Activity
+    public struct ActivityInfo
     {
         public MovementData movement;
-        public ActionData action;
+        public ActivityData action;
 
-        public Activity(MovementData movementData)
+        public ActivityInfo(MovementData movementData)
         {
             movement = movementData;
             action = null;
         }
 
-        public Activity(ActionData actionData)
+        public ActivityInfo(ActivityData actionData)
         {
             movement = null;
             action = actionData;
         }
 
-        public Activity(MovementData movementData, ActionData actionData)
+        public ActivityInfo(MovementData movementData, ActivityData actionData)
         {
             movement = movementData;
             action = actionData;
@@ -30,8 +30,8 @@ public class ScenarioController : MonoBehaviour
     }
 
     private Movement _movementScript;
-    private Action _actionScript;
-    private List<Activity> _scenario;
+    private Activity _actionScript;
+    private List<ActivityInfo> _scenario;
     private int _currentActivityIndex;
     private bool _isFinished;
     private List<GameObject> _planes;
@@ -51,11 +51,11 @@ public class ScenarioController : MonoBehaviour
 
     void Awake()
     {
-        _scenario = new List<Activity>();
+        _scenario = new List<ActivityInfo>();
         _planes = new List<GameObject>();
         _currentActivityIndex = -1;
         _movementScript = GetComponent<Movement>();
-        _actionScript = GetComponent<Action>();
+        _actionScript = GetComponent<Activity>();
         IsFinished = true;
     }
 
@@ -124,12 +124,12 @@ public class ScenarioController : MonoBehaviour
         }
     }
 
-    public void AddNewActivity(MovementData movementData, ActionData actionData)
+    public void AddNewActivity(MovementData movementData, ActivityData actionData)
     {
-        Activity activity;
+        ActivityInfo activity;
         if (movementData != null)
         {
-            activity = new Activity(movementData);
+            activity = new ActivityInfo(movementData);
             _scenario.Add(activity);
 
             GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -141,7 +141,7 @@ public class ScenarioController : MonoBehaviour
         }
         if (actionData != null)
         {
-            activity = new Activity(actionData);
+            activity = new ActivityInfo(actionData);
             _scenario.Add(activity);
 
             GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);

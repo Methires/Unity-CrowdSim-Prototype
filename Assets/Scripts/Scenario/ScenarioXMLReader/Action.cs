@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class Activity
+public class Action
 {
     public string Name;
     public float Probability;
@@ -8,7 +8,7 @@ public class Activity
     public List<Actor> Actors;
     public List<Blend> Blends;
 
-    public Activity()
+    public Action()
     {
         Name = "";
         Probability = 0.0f;
@@ -17,7 +17,7 @@ public class Activity
         Blends = new List<Blend>();
     }
 
-    public Activity(string name, float probability, int index)
+    public Action(string name, float probability, int index)
     {
         Name = name;
         Probability = probability;

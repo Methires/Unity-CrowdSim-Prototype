@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SphereCollider))]
-public class Action : MonoBehaviour
+public class Activity : MonoBehaviour
 {
     //Reference for required components
     private Animator _animator;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(SpawnCrowd))]
+[RequireComponent(typeof(CrowdController))]
 [RequireComponent(typeof(CreateScenario))]
 public class SimulationController : MonoBehaviour
 {
@@ -10,13 +10,13 @@ public class SimulationController : MonoBehaviour
     public string ScenarioFileName;
 
     private XmlReader _xmlReader;
-    private SpawnCrowd _crowdSpawner;
+    private CrowdController _crowdSpawner;
     private CreateScenario _scenarioCreator;
     private int _repeatsCounter;
 
 	void Start()
     {
-        _crowdSpawner = GetComponent<SpawnCrowd>();
+        _crowdSpawner = GetComponent<CrowdController>();
         _scenarioCreator = GetComponent<CreateScenario>();
         _xmlReader = new XmlReader();
         _xmlReader.LoadXmlScenario(ScenarioFileName);
