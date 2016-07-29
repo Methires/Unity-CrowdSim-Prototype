@@ -3,12 +3,12 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 
-public class XmlReader
+public class XmlScenarioReader
 {
     private string _scenarioName;
     private List<Level> _levelsData;
 
-    public List<Level> scenarioData
+    public List<Level> ScenarioData
     {
         get
         {
@@ -30,6 +30,7 @@ public class XmlReader
             _scenarioName = value;
         }
     }
+
     private XmlDocument LoadXmlFromFile(string fileName)
     {
         XmlDocument xml = new XmlDocument();
@@ -47,8 +48,9 @@ public class XmlReader
         if (scenarioElement.HasAttribute("name") && scenarioElement.Name.ToLower().Equals("scenario".ToLower()))
         {
             ScenarioName = scenarioElement.GetAttribute("name");
+            ScenarioData = new List<Level>();
             for (int i = 0; i < scenarioElement.ChildNodes.Count; i++)
-            {
+            { 
                 XmlNode levelElement = scenarioElement.ChildNodes.Item(i);
                 if (levelElement.Name.ToLower().Equals("level".ToLower()))
                 {
@@ -125,7 +127,7 @@ public class XmlReader
                                 }
                             }
                         }
-                        scenarioData.Add(levelData);
+                        ScenarioData.Add(levelData);
                     }
                 }
             }
@@ -135,23 +137,23 @@ public class XmlReader
     public void ShowOnConsole()
     {
         Debug.Log("Scenario: " + ScenarioName);
-        for (int i = 0; i < scenarioData.Count; i++)
+        for (int i = 0; i < ScenarioData.Count; i++)
         {
-            Debug.Log("Level Id: " + scenarioData[i].Index);
-            for (int j = 0; j < scenarioData[i].Actions.Count; j++)
+            Debug.Log("Level Id: " + ScenarioData[i].Index);
+            for (int j = 0; j < ScenarioData[i].Actions.Count; j++)
             {
-                Debug.Log(" Activity Id: " + scenarioData[i].Actions[j].Index + " Name: '" + scenarioData[i].Actions[j].Name + "' Probability: " + scenarioData[i].Actions[j].Probability);
-                for (int k = 0; k < scenarioData[i].Actions[j].Actors.Count; k++)
+                Debug.Log(" Activity Id: " + ScenarioData[i].Actions[j].Index + " Name: '" + ScenarioData[i].Actions[j].Name + "' Probability: " + ScenarioData[i].Actions[j].Probability);
+                for (int k = 0; k < ScenarioData[i].Actions[j].Actors.Count; k++)
                 {
-                    Debug.Log("     Actor Name: '" + scenarioData[i].Actions[j].Actors[k].Name + "'");
-                    foreach (var previousActivity in scenarioData[i].Actions[j].Actors[k].PreviousActivitiesIndexes)
+                    Debug.Log("     Actor Name: '" + ScenarioData[i].Actions[j].Actors[k].Name + "'");
+                    foreach (var previousActivity in ScenarioData[i].Actions[j].Actors[k].PreviousActivitiesIndexes)
                     {
                         Debug.Log("         Parent activity Id: " + previousActivity + "");
                     }
                 }
-                for (int k = 0; k < scenarioData[i].Actions[j].Blends.Count; k++)
+                for (int k = 0; k < ScenarioData[i].Actions[j].Blends.Count; k++)
                 {
-                    Debug.Log("     Blend Name: '" + scenarioData[i].Actions[j].Blends[k].Name + "' Probability: " + scenarioData[i].Actions[j].Blends[k].Probability);
+                    Debug.Log("     Blend Name: '" + ScenarioData[i].Actions[j].Blends[k].Name + "' Probability: " + ScenarioData[i].Actions[j].Blends[k].Probability);
                 }
             }
         }

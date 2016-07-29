@@ -37,7 +37,7 @@ public class GenerateNavMeshAgentDestination : MonoBehaviour
         return false;
     }
 
-    private Vector3 FindNewDestiation()
+    public Vector3 FindNewDestiation()
     {
         bool pointFound, pointWithCorrectY = false;
         Vector3 point;

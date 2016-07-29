@@ -1,39 +1,69 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CrowdController))]
-[RequireComponent(typeof(CreateScenario))]
+[RequireComponent(typeof(ScenarioInstanceCreator))]
 public class SimulationController : MonoBehaviour
 {
     public int ScenarioRepeats;
     public int SimultaneousScenarioInstances;
     public string ScenarioFileName;
 
-    private XmlReader _xmlReader;
-    private CrowdController _crowdSpawner;
-    private CreateScenario _scenarioCreator;
+    private XmlScenarioReader _xmlReader;
+    private CrowdController _crowdController;
+    private ScenarioInstanceCreator _scenarioCreator;
+    private List<ScenarioController> _agentsScenarios;
     private int _repeatsCounter;
+    private bool _instanceFinished;
 
 	void Start()
     {
-        _crowdSpawner = GetComponent<CrowdController>();
-        _scenarioCreator = GetComponent<CreateScenario>();
-        _xmlReader = new XmlReader();
+        _crowdController = GetComponent<CrowdController>();
+        _scenarioCreator = GetComponent<ScenarioInstanceCreator>();
+        _xmlReader = new XmlScenarioReader();
         _xmlReader.ParseXmlWithScenario(ScenarioFileName);
-        _scenarioCreator.RawInfoToListPerAgent(_xmlReader.scenarioData);
+        _scenarioCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
+        _agentsScenarios = new List<ScenarioController>();
         StartInstanceOfSimulation();
 	}
-	
-    public void StartInstanceOfSimulation()
+
+    void Update()
     {
-        _crowdSpawner.GenerateCrowd();
+        if (!_instanceFinished)
+        {
+            if (_agentsScenarios.Count > 0)
+            {
+                bool endInstance = true;
+                foreach (ScenarioController agentScenario in _agentsScenarios)
+                {
+                    if (!agentScenario.IsFinished)
+                    {
+                        endInstance = false;
+                        break;
+                    }
+                }
+                if (endInstance)
+                {
+                    EndInstanceOfSimulation();
+                }
+            }
+        }
+    }
+	
+    private void StartInstanceOfSimulation()
+    {
+        _crowdController.GenerateCrowd();
         _scenarioCreator.GenerateInGameSequence(SimultaneousScenarioInstances);
+        _agentsScenarios = _scenarioCreator.AgentsScenarios;
         _repeatsCounter++;
+        _instanceFinished = false;
     }
 
-    public void EndInstanceOfSimulation()
+    private void EndInstanceOfSimulation()
     {
-        _crowdSpawner.RemoveCrowd();
+        _instanceFinished = true;
+        _crowdController.RemoveCrowd();
         StartCoroutine(EndInstance());
     }
 

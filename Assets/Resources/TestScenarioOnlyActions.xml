@@ -1,0 +1,29 @@
+﻿<scenario name="SingularAgentActionAndMovement">
+  <level id="0">
+    <activity prob="1.0" name="wave" id ="0">
+      <actor name="actor1">
+      </actor>
+    </activity>
+  </level>
+  <level id="1">
+    <activity prob="1.0" name="sit" id ="1">
+      <actor name="actor1">
+        <prev id ="0"></prev>
+      </actor>
+    </activity>
+  </level>
+  <level id="2">
+    <activity prob="1.0" name="wave" id ="2">
+      <actor name="actor1">
+        <prev id="1"></prev>
+      </actor>
+    </activity>
+  </level>
+  <level id="3">
+    <activity prob="1.0" name="sit" id="3">
+      <actor name="actor1">
+        <prev id="2"></prev>
+      </actor>
+    </activity>
+  </level>
+</scenario>

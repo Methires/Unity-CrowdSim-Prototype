@@ -1,4 +1,4 @@
-﻿<scenario name="TestScenario1">
+﻿<scenario name="TwoAgentsActionAndMovement">
 	<level id="0">
 		<activity prob="1.0" name="walk" id ="0">
 			<actor name="actor1">

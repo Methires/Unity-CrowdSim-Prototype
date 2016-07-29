@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Agent : MonoBehaviour
@@ -32,8 +33,14 @@ public class Agent : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        agent.velocity = animator.deltaPosition / Time.deltaTime;
-        transform.rotation = animator.rootRotation;
+        try
+        {
+            agent.velocity = animator.deltaPosition / Time.deltaTime;
+            transform.rotation = animator.rootRotation;
+        }
+        catch (NullReferenceException e)
+        {
+        }
     }
 
     protected bool AgentDone()
