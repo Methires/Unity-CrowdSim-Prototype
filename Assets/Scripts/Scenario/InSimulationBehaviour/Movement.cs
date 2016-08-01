@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour
     private NavMeshAgent _nMA;
     //Parameters for NavMeshAgent
     private float _speed;
-    private float _destinationOffset = 1.0f;
     //Point to be visited by agent
     private Vector3 _destination;
     private bool _isFinished;
@@ -70,7 +69,7 @@ public class Movement : MonoBehaviour
 
     private void CheckPosition()
     {
-        if (_nMA.remainingDistance < _nMA.stoppingDistance + _destinationOffset)
+        if (_nMA.remainingDistance < _nMA.stoppingDistance + Mathf.Epsilon)
         {
             IsFinished = true;
             _nMA.Stop();

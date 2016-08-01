@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(CrowdController))]
-[RequireComponent(typeof(ScenarioInstanceCreator))]
+[RequireComponent(typeof(SequencesCreator))]
 public class SimulationController : MonoBehaviour
 {
     public int ScenarioRepeats;
@@ -12,19 +12,19 @@ public class SimulationController : MonoBehaviour
 
     private XmlScenarioReader _xmlReader;
     private CrowdController _crowdController;
-    private ScenarioInstanceCreator _scenarioCreator;
-    private List<ScenarioController> _agentsScenarios;
+    private SequencesCreator _scenarioCreator;
+    private List<SequenceController> _agentsScenarios;
     private int _repeatsCounter;
     private bool _instanceFinished;
 
 	void Start()
     {
         _crowdController = GetComponent<CrowdController>();
-        _scenarioCreator = GetComponent<ScenarioInstanceCreator>();
+        _scenarioCreator = GetComponent<SequencesCreator>();
         _xmlReader = new XmlScenarioReader();
         _xmlReader.ParseXmlWithScenario(ScenarioFileName);
         _scenarioCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
-        _agentsScenarios = new List<ScenarioController>();
+        _agentsScenarios = new List<SequenceController>();
         StartInstanceOfSimulation();
 	}
 
@@ -35,7 +35,7 @@ public class SimulationController : MonoBehaviour
             if (_agentsScenarios.Count > 0)
             {
                 bool endInstance = true;
-                foreach (ScenarioController agentScenario in _agentsScenarios)
+                foreach (SequenceController agentScenario in _agentsScenarios)
                 {
                     if (!agentScenario.IsFinished)
                     {
@@ -54,8 +54,7 @@ public class SimulationController : MonoBehaviour
     private void StartInstanceOfSimulation()
     {
         _crowdController.GenerateCrowd();
-        _scenarioCreator.GenerateInGameSequence(SimultaneousScenarioInstances);
-        _agentsScenarios = _scenarioCreator.AgentsScenarios;
+        _scenarioCreator.GenerateInGameSequences(SimultaneousScenarioInstances);
         _repeatsCounter++;
         _instanceFinished = false;
     }
