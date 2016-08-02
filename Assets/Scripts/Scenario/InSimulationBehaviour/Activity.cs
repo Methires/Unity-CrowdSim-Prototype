@@ -4,23 +4,16 @@
 [RequireComponent(typeof(SphereCollider))]
 public class Activity : MonoBehaviour
 {
-    //Reference for required components
     private Animator _animator;
     private SphereCollider _sphereCollider;
-    //Transition parameter name 
     private string _paramName;
-    //Action requires two or more agents to happen
+    private string _blendParam;
     private bool _complexAction;
     private bool _canExecuteComplexAction;
     private GameObject[] _otherRequiredAgents;
     private bool[] _requiredAgentsNearbyCheck;
-    //End action conditions
-    //Time related
     private float _exitTime;
     private float _elapsedTimeCounter;
-    //Object in proximity related
-    private GameObject _exitObject;
-    //Action has ended
     private bool _isFinished;
 
     public bool IsFinished
@@ -29,7 +22,6 @@ public class Activity : MonoBehaviour
         {
             return _isFinished;
         }
-
         private set
         {
             _isFinished = value;
@@ -41,25 +33,9 @@ public class Activity : MonoBehaviour
         {
             return _exitTime;
         }
-
         set
         {
             _exitTime = value;
-            IsFinished = false;
-        }
-    }
-    public GameObject ExitObject
-    {
-        get
-        {
-            return _exitObject;
-        }
-
-        set
-        {
-            _exitObject = value;
-            IsFinished = false;
-            _sphereCollider.enabled = true;
         }
     }
     public string ParamName
@@ -68,18 +44,11 @@ public class Activity : MonoBehaviour
         {
             return _paramName;
         }
-
         set
         {
             _paramName = value;
-            foreach (var parameter in _animator.parameters)
-            {
-                if (parameter.name == _paramName && !_complexAction)
-                {
-                    _animator.SetBool(_paramName, true);
-                }
-            }
             _isFinished = false;
+            _elapsedTimeCounter = 0.0f;
         }
     }
     public GameObject[] OtherAgents
@@ -97,9 +66,19 @@ public class Activity : MonoBehaviour
                 _complexAction = true;
                 _canExecuteComplexAction = false;
                 _requiredAgentsNearbyCheck = new bool[_otherRequiredAgents.Length];
-                _isFinished = false;
                 _sphereCollider.enabled = true;
             }
+        }
+    }
+    public string BlendParameter
+    {
+        get
+        {
+            return _blendParam;
+        }
+        set
+        {
+            _blendParam = value;
         }
     }
 
@@ -142,16 +121,6 @@ public class Activity : MonoBehaviour
                             break;
                         }
                     }
-                    if (_canExecuteComplexAction)
-                    {
-                        foreach (var parameter in _animator.parameters)
-                        {
-                            if (parameter.name == ParamName)
-                            {
-                                _animator.SetBool(ParamName, true);
-                            }
-                        }
-                    }
                 }
                 else
                 {
@@ -169,16 +138,8 @@ public class Activity : MonoBehaviour
         }
         else
         {
-            foreach (var parameter in _animator.parameters)
-            {
-                if (parameter.name == ParamName)
-                {
-                    _animator.SetBool(ParamName, false);
-                }
-            } 
-            _exitTime = 0.0f;
             _elapsedTimeCounter = 0.0f;
-            _exitObject = null;
+            _otherRequiredAgents = null;
             _complexAction = false;
             _sphereCollider.enabled = false;
         }
@@ -188,13 +149,6 @@ public class Activity : MonoBehaviour
     {
         if (!IsFinished)
         {
-            if (ExitObject != null)
-            {
-                if (other.gameObject == ExitObject.gameObject)
-                {
-                    IsFinished = true;
-                }
-            }
             if (_complexAction)
             {
                 for (int i = 0; i < _otherRequiredAgents.Length; i++)
@@ -203,7 +157,7 @@ public class Activity : MonoBehaviour
                     {
                         _requiredAgentsNearbyCheck[i] = true;
                     }
-                } 
+                }
             }
         }
     }

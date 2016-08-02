@@ -637,7 +637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScenarioRepeats: 2
   SimultaneousScenarioInstances: 2
-  ScenarioFileName: TwoAgentTest
+  ScenarioFileName: TestScenarioOnlyActions
 --- !u!114 &1922732266
 MonoBehaviour:
   m_ObjectHideFlags: 0

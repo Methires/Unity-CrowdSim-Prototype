@@ -70,23 +70,24 @@ public class SequenceController : MonoBehaviour
             if (_sequence[_currentActivityIndex + 1].Movement != null)
             {
                 _movementScript.Speed = _sequence[_currentActivityIndex + 1].Movement.Speed;
+                _movementScript.BlendParameter = _sequence[_currentActivityIndex + 1].Movement.Blend;
                 _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint;
-
                 if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
                 {
-                    GetComponent<DisplayActivityText>().ChangeText("Walking");
+                    GetComponent<DisplayActivityText>().ChangeText("Walking" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
                 }
                 else
                 {
-                    GetComponent<DisplayActivityText>().ChangeText("Running");
+                    GetComponent<DisplayActivityText>().ChangeText("Running" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
                 }
             }
             if (_sequence[_currentActivityIndex + 1].Activity != null)
             {
-                _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;
                 _actionScript.ExitTime = _sequence[_currentActivityIndex + 1].Activity.ExitTime;
-                _actionScript.ParamName = _sequence[_currentActivityIndex + 1].Activity.ParameterName.ToLower();
-                GetComponent<DisplayActivityText>().ChangeText(_sequence[_currentActivityIndex + 1].Activity.ParameterName);
+                _actionScript.BlendParameter = _sequence[_currentActivityIndex + 1].Activity.Blend;
+                _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;
+                _actionScript.ParamName = _sequence[_currentActivityIndex + 1].Activity.ParameterName;
+                GetComponent<DisplayActivityText>().ChangeText(_sequence[_currentActivityIndex + 1].Activity.ParameterName + " " + _sequence[_currentActivityIndex + 1].Activity.Blend);
             }
             IsFinished = false;
             _currentActivityIndex++;
@@ -99,24 +100,18 @@ public class SequenceController : MonoBehaviour
         }
     }
 
-    public void AddNewActivity(InGameActionInfo activity)
+    public void AddNewInGameAction(InGameActionInfo action)
     {
-        if (activity.Movement != null)
+        _sequence.Add(action);
+        GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        if (action.Movement != null)
         {
-            _sequence.Add(activity);
-
-            GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
             planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
-            planeMarkup.transform.position = new Vector3(activity.Movement.Waypoint.x, -0.4f, activity.Movement.Waypoint.z);
+            planeMarkup.transform.position = new Vector3(action.Movement.Waypoint.x, -0.4f, action.Movement.Waypoint.z);
             planeMarkup.GetComponent<Renderer>().material.color = Color.red;
-            Destroy(planeMarkup.GetComponent<MeshCollider>());
-            _planes.Add(planeMarkup);
         }
-        if (activity.Activity != null)
+        if (action.Activity != null)
         {
-            _sequence.Add(activity);
-
-            GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
             planeMarkup.transform.localScale = new Vector3(0.05f, 1.0f, 0.05f);
             Vector3 position = new Vector3();
             for (int i = _sequence.Count - 1; i>= 0; i--)
@@ -129,9 +124,9 @@ public class SequenceController : MonoBehaviour
             }
             planeMarkup.transform.position = position;
             planeMarkup.GetComponent<Renderer>().material.color = Color.yellow;
-            Destroy(planeMarkup.GetComponent<MeshCollider>());
-            _planes.Add(planeMarkup);
         }
+        Destroy(planeMarkup.GetComponent<MeshCollider>());
+        _planes.Add(planeMarkup);
     }
 
     private void CleanUpPlanes()

@@ -6,8 +6,9 @@ public class SequencesCreator : MonoBehaviour
 {
     private List<string> _agentsNames;
     private List<GameObject> _agentsGameObjects;
+    private List<SequenceController> _sequenceControllers;
     private List<List<Level>> _scenariosPerAgent;
-    private List<List<List<InGameActionInfo>>> _SequencesPerAgentPerInstance;
+    private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
 
     public void RawInfoToListPerAgent(List<Level> data)
     {
@@ -59,7 +60,8 @@ public class SequencesCreator : MonoBehaviour
         CreateAgentsFromCrowd(simultaneousInstances, _agentsNames.Count);
         List<List<Action>> actionSequencesPerAgent = CreateSequencesPerAgent();
         ShowSequencesOnConsole(actionSequencesPerAgent);
-        _SequencesPerAgentPerInstance = new List<List<List<InGameActionInfo>>>();
+        _sequenceControllers = new List<SequenceController>();
+        _sequencesPerAgentPerInstance = new List<List<List<InGameActionInfo>>>();
         int agentIndex = 0;
 
         for (int instanceIndex = 0; instanceIndex < simultaneousInstances; instanceIndex++)
@@ -69,67 +71,60 @@ public class SequencesCreator : MonoBehaviour
             {
                 List<InGameActionInfo> inGameAgentSequence = new List<InGameActionInfo>();
                 GameObject agent = _agentsGameObjects[agentIndex];
-                //SequenceController seqController = agent.AddComponent<SequenceController>();
+                SequenceController seqController = agent.AddComponent<SequenceController>();
                 for (int j = 0; j < actionSequencesPerAgent[i].Count; j++)
                 {
-                    if (i == 0)
+                    bool activityAdded = false;
+                    if (i != 0 && j + 1 < actionSequencesPerAgent[i].Count)
                     {
-                        inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], Vector3.zero));
-                    }
-                    else
-                    {
-                        if (j + 1 < actionSequencesPerAgent[i].Count)
+                        if (actionSequencesPerAgent[i][j + 1].Actors.Count > 1)
                         {
-                            if (actionSequencesPerAgent[i][j + 1].Actors.Count > 1)
+                            int otherAgentId = 0;
+                            for (int k = i - 1; k != -1; k--)
                             {
-                                int otherAgentId;
-                                bool agentFound = false;
-                                for (otherAgentId = i - 1; otherAgentId != -1; otherAgentId--)
+                                foreach (Actor actor in actionSequencesPerAgent[i][j + 1].Actors)
                                 {
-                                    foreach (Actor actor in actionSequencesPerAgent[i][j + 1].Actors)
+                                    if (actor.Name == _agentsNames[k])
                                     {
-                                        if (actor.Name == _agentsNames[otherAgentId])
-                                        {
-                                            agentFound = true;
-                                            break;
-                                        }
+                                        otherAgentId = k;
+                                        break;
                                     }
                                 }
-                                if (agentFound)
-                                {
-                                    inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], inGameSequencesPerAgent[otherAgentId][j].Movement.Waypoint));
-                                }
-                                else
-                                {
-                                    inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], Vector3.zero));
-                                }
                             }
-                            else
+                            if (otherAgentId >= 0)
                             {
-                                inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], Vector3.zero));
+                                inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], FindLastWaypoint(inGameSequencesPerAgent[otherAgentId], j), instanceIndex));
+                                activityAdded = true;
                             }
-                        }
-                        else
-                        {
-                            inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], Vector3.zero));
                         }
                     }
+                    if (!activityAdded)
+                    {
+                        inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], Vector3.zero, instanceIndex));
+                    }
+                    seqController.AddNewInGameAction(inGameAgentSequence.Last());
                 }
                 agentIndex++;
+                _sequenceControllers.Add(seqController);
                 inGameSequencesPerAgent.Add(inGameAgentSequence);
             }
-            _SequencesPerAgentPerInstance.Add(inGameSequencesPerAgent);
+            _sequencesPerAgentPerInstance.Add(inGameSequencesPerAgent);
         }
+        foreach (SequenceController controller in _sequenceControllers)
+        {
+            controller.LoadNewActivity();
+        }
+        Debug.Log("Testing...");
     }
 
     private void CreateAgentsFromCrowd(int simultaneousInstances, int agents)
     {
         _agentsGameObjects = new List<GameObject>();
-        GameObject[] crowd = GameObject.FindGameObjectsWithTag("Crowd");
         for (int i = 0; i < simultaneousInstances; i++)
         {
-            for (int j = 0; i < agents; i++)
+            for (int j = 0; j < agents; j++)
             {
+                GameObject[] crowd = GameObject.FindGameObjectsWithTag("Crowd");
                 int index = Random.Range(0, crowd.Length);
                 crowd[index].tag = "ScenarioAgent";
                 crowd[index].name = _agentsNames[j] + "_" + i;
@@ -367,7 +362,7 @@ public class SequencesCreator : MonoBehaviour
         }
     }
 
-    private InGameActionInfo ActionToActivity(Action action, Vector3 forcedWaypoint)
+    private InGameActionInfo ActionToActivity(Action action, Vector3 forcedWaypoint, int instanceIndex)
     {
         MovementData mData = null;
         ActivityData aData = null;
@@ -378,13 +373,13 @@ public class SequencesCreator : MonoBehaviour
         }
         else
         {
-            point = FindObjectOfType<GenerateNavMeshAgentDestination>().FindNewDestiation();
+            point = new Vector3(Random.Range(-25.0f, 25.0f), -0.4f ,Random.Range(-25.0f, 25.0f)); //TO DO
         }
 
         switch (action.Name.ToLower())
         {
             case "walk":
-                float speedW = Random.Range(2.5f, 4.5f);
+                float speedW = Random.Range(2.5f, 5.0f);
                 mData = new MovementData(point, speedW);
                 if (action.Blends != null)
                 {
@@ -401,12 +396,40 @@ public class SequencesCreator : MonoBehaviour
                 break;
             default:
                 aData = new ActivityData(action.Name, 10.0f);
+                if (action.Actors.Count > 1)
+                {
+                    List<GameObject> requiredAgents = new List<GameObject>();
+                    for (int i  = 0; i < _agentsNames.Count; i++)
+                    {
+                        for (int j = 0; j < action.Actors.Count; j++)
+                        {
+                            if (_agentsNames[i].Equals(action.Actors[j].Name))
+                            {
+                                GameObject agent = GameObject.Find(_agentsNames[i] + "_" + instanceIndex);
+                                requiredAgents.Add(agent);
+                            }
+                        }
+                    }
+                    aData.RequiredAgents = requiredAgents.ToArray();
+                }
                 if (action.Blends != null)
                 {
-                    mData.Blend = action.Blends[0].Name;
+                    aData.Blend = action.Blends[0].Name;
                 }
                 break;
         }
         return new InGameActionInfo(mData, aData);
+    }
+
+    private Vector3 FindLastWaypoint(List<InGameActionInfo> actions, int level)
+    {
+        for (int i = level; i != -1; i--)
+        {
+            if (actions[i].Movement != null)
+            {
+                return actions[i].Movement.Waypoint;
+            }
+        }
+        return Vector3.zero;
     }
 }
