@@ -6,7 +6,6 @@ public class SequencesCreator : MonoBehaviour
 {
     private List<string> _agentsNames;
     private List<GameObject> _agentsGameObjects;
-    private List<SequenceController> _sequenceControllers;
     private List<List<Level>> _scenariosPerAgent;
     private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
 
@@ -55,12 +54,12 @@ public class SequencesCreator : MonoBehaviour
         return actors;
     }
 
-    public void GenerateInGameSequences(int simultaneousInstances)
+    public List<SequenceController> GenerateInGameSequences(int simultaneousInstances)
     {
         CreateAgentsFromCrowd(simultaneousInstances, _agentsNames.Count);
         List<List<Action>> actionSequencesPerAgent = CreateSequencesPerAgent();
         ShowSequencesOnConsole(actionSequencesPerAgent);
-        _sequenceControllers = new List<SequenceController>();
+        List<SequenceController> sequenceControllers = new List<SequenceController>();
         _sequencesPerAgentPerInstance = new List<List<List<InGameActionInfo>>>();
         int agentIndex = 0;
 
@@ -105,16 +104,17 @@ public class SequencesCreator : MonoBehaviour
                     seqController.AddNewInGameAction(inGameAgentSequence.Last());
                 }
                 agentIndex++;
-                _sequenceControllers.Add(seqController);
+                sequenceControllers.Add(seqController);
                 inGameSequencesPerAgent.Add(inGameAgentSequence);
             }
             _sequencesPerAgentPerInstance.Add(inGameSequencesPerAgent);
         }
-        foreach (SequenceController controller in _sequenceControllers)
+        foreach (SequenceController controller in sequenceControllers)
         {
             controller.LoadNewActivity();
         }
         Debug.Log("Testing...");
+        return sequenceControllers;
     }
 
     private void CreateAgentsFromCrowd(int simultaneousInstances, int agents)
@@ -129,7 +129,7 @@ public class SequencesCreator : MonoBehaviour
                 crowd[index].tag = "ScenarioAgent";
                 crowd[index].name = _agentsNames[j] + "_" + i;
                 crowd[index].GetComponent<NavMeshAgent>().avoidancePriority = 0;
-                crowd[index].GetComponent<GenerateNavMeshAgentDestination>().enabled = false;
+                crowd[index].GetComponent<GenerateDestination>().enabled = false;
                 crowd[index].AddComponent<DisplayActivityText>();
                 _agentsGameObjects.Add(crowd[index]);
                 MarkAgentWithPlane(crowd[index]);
@@ -366,6 +366,7 @@ public class SequencesCreator : MonoBehaviour
     {
         MovementData mData = null;
         ActivityData aData = null;
+        NavMeshPointGenerator generator = new NavMeshPointGenerator(50.0f);
         Vector3 point;
         if (forcedWaypoint != Vector3.zero)
         {
@@ -373,7 +374,8 @@ public class SequencesCreator : MonoBehaviour
         }
         else
         {
-            point = new Vector3(Random.Range(-25.0f, 25.0f), -0.4f ,Random.Range(-25.0f, 25.0f)); //TO DO
+            //Doesn't work perfectly :(
+            point = generator.RandomPointOnNavMesh(transform.position);
         }
 
         switch (action.Name.ToLower())
@@ -410,7 +412,7 @@ public class SequencesCreator : MonoBehaviour
                             }
                         }
                     }
-                    aData.RequiredAgents = requiredAgents.ToArray();
+                    aData.RequiredAgents = requiredAgents;
                 }
                 if (action.Blends != null)
                 {

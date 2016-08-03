@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ActivityData
 {
     public string ParameterName;
     public float ExitTime;
-    public GameObject[] RequiredAgents;
+    public List<GameObject> RequiredAgents;
     public string Blend;
 
     public ActivityData()
@@ -31,7 +32,7 @@ public class ActivityData
         Blend = blend;
     }
 
-    public ActivityData(string parameterName, float exitTime, GameObject[] requiredAgents)
+    public ActivityData(string parameterName, float exitTime, List<GameObject> requiredAgents)
     {
         ParameterName = parameterName;
         ExitTime = exitTime;       
@@ -39,7 +40,7 @@ public class ActivityData
         Blend = "";
     }
 
-    public ActivityData(string parameterName, float exitTime, GameObject[] requiredAgents, string blend)
+    public ActivityData(string parameterName, float exitTime, List<GameObject> requiredAgents, string blend)
     {
         ParameterName = parameterName;
         ExitTime = exitTime;

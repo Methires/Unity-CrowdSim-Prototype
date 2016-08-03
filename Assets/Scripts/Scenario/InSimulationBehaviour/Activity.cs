@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SphereCollider))]
@@ -10,7 +11,7 @@ public class Activity : MonoBehaviour
     private string _blendParam;
     private bool _complexAction;
     private bool _canExecuteComplexAction;
-    private GameObject[] _otherRequiredAgents;
+    private List<GameObject> _otherRequiredAgents;
     private bool[] _requiredAgentsNearbyCheck;
     private float _exitTime;
     private float _elapsedTimeCounter;
@@ -51,7 +52,7 @@ public class Activity : MonoBehaviour
             _elapsedTimeCounter = 0.0f;
         }
     }
-    public GameObject[] OtherAgents
+    public List<GameObject> OtherAgents
     {
         get
         {
@@ -63,10 +64,11 @@ public class Activity : MonoBehaviour
             _otherRequiredAgents = value;
             if (_otherRequiredAgents != null)
             {
+                _otherRequiredAgents.Remove(gameObject);
+                _requiredAgentsNearbyCheck = new bool[_otherRequiredAgents.Count];
                 _complexAction = true;
-                _canExecuteComplexAction = false;
-                _requiredAgentsNearbyCheck = new bool[_otherRequiredAgents.Length];
-                _sphereCollider.enabled = true;
+                _canExecuteComplexAction = false;               
+                _sphereCollider.enabled = true;             
             }
         }
     }
@@ -151,7 +153,7 @@ public class Activity : MonoBehaviour
         {
             if (_complexAction)
             {
-                for (int i = 0; i < _otherRequiredAgents.Length; i++)
+                for (int i = 0; i < _otherRequiredAgents.Count; i++)
                 {
                     if (other.gameObject == _otherRequiredAgents[i])
                     {
@@ -166,7 +168,7 @@ public class Activity : MonoBehaviour
     {
         if (!IsFinished && _complexAction)
         {
-            for (int i = 0; i < _otherRequiredAgents.Length; i++)
+            for (int i = 0; i < _otherRequiredAgents.Count; i++)
             {
                 if (other.gameObject == _otherRequiredAgents[i])
                 {

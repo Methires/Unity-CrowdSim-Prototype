@@ -12,19 +12,19 @@ public class SimulationController : MonoBehaviour
 
     private XmlScenarioReader _xmlReader;
     private CrowdController _crowdController;
-    private SequencesCreator _scenarioCreator;
-    private List<SequenceController> _agentsScenarios;
+    private SequencesCreator _sequenceCreator;
+    private List<SequenceController> _sequencesControllers;
     private int _repeatsCounter;
     private bool _instanceFinished;
 
 	void Start()
     {
         _crowdController = GetComponent<CrowdController>();
-        _scenarioCreator = GetComponent<SequencesCreator>();
+        _sequenceCreator = GetComponent<SequencesCreator>();
         _xmlReader = new XmlScenarioReader();
         _xmlReader.ParseXmlWithScenario(ScenarioFileName);
-        _scenarioCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
-        _agentsScenarios = new List<SequenceController>();
+        _sequenceCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
+        _sequencesControllers = new List<SequenceController>();
         StartInstanceOfSimulation();
 	}
 
@@ -32,10 +32,10 @@ public class SimulationController : MonoBehaviour
     {
         if (!_instanceFinished)
         {
-            if (_agentsScenarios.Count > 0)
+            if (_sequencesControllers.Count > 0)
             {
                 bool endInstance = true;
-                foreach (SequenceController agentScenario in _agentsScenarios)
+                foreach (SequenceController agentScenario in _sequencesControllers)
                 {
                     if (!agentScenario.IsFinished)
                     {
@@ -54,7 +54,7 @@ public class SimulationController : MonoBehaviour
     private void StartInstanceOfSimulation()
     {
         _crowdController.GenerateCrowd();
-        _scenarioCreator.GenerateInGameSequences(SimultaneousScenarioInstances);
+        _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances);
         _repeatsCounter++;
         _instanceFinished = false;
     }
@@ -72,6 +72,14 @@ public class SimulationController : MonoBehaviour
         if (_repeatsCounter < ScenarioRepeats)
         {
             StartInstanceOfSimulation();
+        }
+        else
+        {
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                Application.Quit();
+            #endif
         }
     }
 }
