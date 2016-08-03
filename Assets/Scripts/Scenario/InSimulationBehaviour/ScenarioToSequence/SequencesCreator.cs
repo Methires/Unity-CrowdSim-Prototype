@@ -113,7 +113,6 @@ public class SequencesCreator : MonoBehaviour
         {
             controller.LoadNewActivity();
         }
-        Debug.Log("Testing...");
         return sequenceControllers;
     }
 
@@ -352,7 +351,12 @@ public class SequencesCreator : MonoBehaviour
             string sequence = "";
             for (int j = 0; j < sequences[i].Count; j++)
             {
-                sequence += sequences[i][j].Name + "(id=" + sequences[i][j].Index + ")";
+                sequence += sequences[i][j].Name;
+                if (sequences[i][j].Blends != null)
+                {
+                    sequence += " " + sequences[i][j].Blends[0].Name;
+                }
+                sequence += " (id=" + sequences[i][j].Index + ")";
                 if (j != sequences[i].Count - 1)
                 {
                     sequence += "->";

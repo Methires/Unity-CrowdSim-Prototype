@@ -481,11 +481,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: MaxPeople
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: ScenarioRepeats
-      value: 100
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: ScenarioFileName
+      value: TwoAgentsActionAndMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: SimultaneousScenarioInstances
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
