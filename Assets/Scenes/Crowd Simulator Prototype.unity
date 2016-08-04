@@ -75,15 +75,15 @@ NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
     serializedVersion: 2
-    agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentRadius: 0.4
+    agentHeight: 1.75
+    agentSlope: 15
+    agentClimb: 0.1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    cellSize: 0.16666667
+    cellSize: 0.13333334
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: e511c7a8f565b0c499af33132f6b426e, type: 2}
 --- !u!1 &877407756
@@ -156,7 +156,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 877407756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.95, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 75, y: 1, z: 75}
   m_Children: []
   m_Father: {fileID: 0}
@@ -199,6 +199,10 @@ Prefab:
     - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: ScenarioFileName
+      value: TwoAgentsActionAndMovement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}

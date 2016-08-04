@@ -141,7 +141,7 @@ public class SequencesCreator : MonoBehaviour
         GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
         planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
         planeMarkup.transform.parent = agent.transform;
-        planeMarkup.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        planeMarkup.transform.localPosition = new Vector3(0.0f, 0.1f, 0.0f);
         Destroy(planeMarkup.GetComponent<MeshCollider>());
     }
 

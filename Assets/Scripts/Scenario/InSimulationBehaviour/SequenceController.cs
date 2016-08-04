@@ -107,7 +107,7 @@ public class SequenceController : MonoBehaviour
         if (action.Movement != null)
         {
             planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
-            planeMarkup.transform.position = new Vector3(action.Movement.Waypoint.x, -0.4f, action.Movement.Waypoint.z);
+            planeMarkup.transform.position = new Vector3(action.Movement.Waypoint.x, action.Movement.Waypoint.y + 0.01f, action.Movement.Waypoint.z);
             planeMarkup.GetComponent<Renderer>().material.color = Color.red;
         }
         if (action.Activity != null)
@@ -118,7 +118,7 @@ public class SequenceController : MonoBehaviour
             {
                 if (_sequence[i].Movement != null)
                 {
-                    position = new Vector3(_sequence[i].Movement.Waypoint.x, -0.38f, _sequence[i].Movement.Waypoint.z);
+                    position = new Vector3(_sequence[i].Movement.Waypoint.x, _sequence[i].Movement.Waypoint.y + 0.015f, _sequence[i].Movement.Waypoint.z);
                     break;
                 }
             }
