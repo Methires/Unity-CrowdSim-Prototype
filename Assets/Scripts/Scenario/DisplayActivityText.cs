@@ -8,7 +8,24 @@ public class DisplayActivityText : MonoBehaviour
     private Vector3[] pts = new Vector3[8];
     private Plane[] planes;
     private Camera cam;
+    private Texture2D _borderTexture;
 
+    void Awake()
+    {
+        _borderTexture = Resources.Load("redRect") as Texture2D;
+
+        //Color[] colors =_borderTexture.GetPixels();
+        //Color borderColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+
+        //for (int i = 0; i < colors.Length; i++)
+        //{
+        //    colors[i] = colors[i].a == 1.0f ? colors[i] : borderColor;
+        //}
+
+        //Texture2D coloredTexture = new Texture2D(_borderTexture.width, _borderTexture.height);
+        //coloredTexture.SetPixels(colors);
+        //_borderTexture = coloredTexture;
+    }
 
     public void OnGUI()
     {
@@ -23,25 +40,20 @@ public class DisplayActivityText : MonoBehaviour
 
     private bool IsVisibleFromCamera()
     {
-        List<bool> visibility = new List<bool>();
+        bool visible = false;
         RaycastHit hit;
 
-        foreach (Transform part in transform)
+        Vector3 direction = cam.transform.position  - (transform.position + transform.up);
+        if (Physics.Raycast(transform.position + transform.up, direction, out hit))
         {
-            Vector3 direction = cam.transform.position - part.position;
-            if (Physics.Raycast(part.position,direction,out hit))
-            {
-                visibility.Add(hit.collider.tag == "MainCamera");
-            }
+            visible = hit.collider.tag == "MainCamera";
         }
 
-        return !visibility.All(x => x == false);
+        return visible;
     }
 
     private void RenderLabels(Bounds b)
     {              
-        Texture texture = Resources.Load("redRect") as Texture;
-        //The object is behind us
         if (cam.WorldToScreenPoint(b.center).z < 0) return;
 
         //All 8 vertices of the bounds
@@ -70,13 +82,12 @@ public class DisplayActivityText : MonoBehaviour
         Rect r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
 
         //GUI.Box(r, GUIContent.none);
-        GUI.DrawTexture(r, texture);
+        GUI.DrawTexture(r, _borderTexture);
         GUI.Label(new Rect(min.x, max.y, 200, 20), _text);
     }
 
     public void ChangeText(string text)
     {
-        //_textMesh.text = text;
         _text = text;
     }
 
