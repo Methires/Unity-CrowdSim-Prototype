@@ -204,6 +204,18 @@ Prefab:
       propertyPath: ScenarioFileName
       value: TwoAgentsActionAndMovement
       objectReference: {fileID: 0}
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Characters.Array.data[0]
+      value: 
+      objectReference: {fileID: 133344, guid: 824bafab7c66dac4b833410ae74dd4cc, type: 2}
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Characters.Array.data[1]
+      value: 
+      objectReference: {fileID: 168082, guid: eccf136b42718ab4baf8eaa6f6216c64, type: 2}
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: MaxPeople
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
   m_IsPrefabParent: 0

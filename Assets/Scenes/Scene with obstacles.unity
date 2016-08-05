@@ -74,15 +74,15 @@ NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
     serializedVersion: 2
-    agentRadius: 0.5
+    agentRadius: 0.4
     agentHeight: 1.75
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 15
+    agentClimb: 0.1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    cellSize: 0.16666667
+    cellSize: 0.13333334
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: c22128c9f7185cb4aab1a813ffe3e13d, type: 2}
 --- !u!1001 &149418182
@@ -122,9 +122,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458568, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8118946, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &423053611
@@ -407,6 +408,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Characters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -437,11 +442,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: MaxPeople
-      value: 25
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: ScenarioRepeats
@@ -453,8 +458,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: SimultaneousScenarioInstances
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Characters.Array.data[1]
+      value: 
+      objectReference: {fileID: 168082, guid: eccf136b42718ab4baf8eaa6f6216c64, type: 2}
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Characters.Array.data[0]
+      value: 
+      objectReference: {fileID: 133344, guid: 824bafab7c66dac4b833410ae74dd4cc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
   m_IsPrefabParent: 0
@@ -481,7 +494,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1311937882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1637162384}
@@ -502,7 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Characters:
-  - {fileID: 148640, guid: c773ba4c6043f364fa4b808a81da66f0, type: 2}
+  - {fileID: 0}
   - {fileID: 149782, guid: 9bf85170419c2b940a670eb3f6f2c1f6, type: 2}
   MaxPeople: 50
 --- !u!1 &1365672941
@@ -728,7 +741,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1924919936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
