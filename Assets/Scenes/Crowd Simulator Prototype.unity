@@ -177,6 +177,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Characters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -216,7 +220,7 @@ Prefab:
     - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: Characters.Array.data[0]
       value: 
-      objectReference: {fileID: 133344, guid: 824bafab7c66dac4b833410ae74dd4cc, type: 2}
+      objectReference: {fileID: 181550, guid: 6c7bfe7003b34a849affe84b05013ee1, type: 2}
     - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: Characters.Array.data[1]
       value: 

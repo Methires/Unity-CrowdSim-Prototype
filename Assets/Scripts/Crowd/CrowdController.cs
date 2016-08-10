@@ -28,8 +28,6 @@ public class CrowdController : MonoBehaviour
                 {
                     agent.GetComponent<NavMeshAgent>().speed = 10.0f;
                 }
-                int avoid = Random.Range(10, 99);
-                agent.GetComponent<NavMeshAgent>().avoidancePriority = avoid;
                 _crowd.Add(agent);
             }
         }
