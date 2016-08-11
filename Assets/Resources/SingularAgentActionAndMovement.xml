@@ -6,12 +6,12 @@
     </activity>
   </level>
   <level id="1">
-    <activity prob="0.5" name="sit" id ="1">
+    <activity prob="0.5" name="MoCap@Sit_T01" id ="1">
       <actor name="actor1">
         <prev id ="0"></prev>
       </actor>
     </activity>
-    <activity prob="0.5" name="wave" id="2">
+    <activity prob="0.5" name="MoCap@Wave_T01" id="2">
       <actor name="actor1">
         <prev id ="0"></prev>
       </actor>
@@ -23,14 +23,14 @@
         <prev id="2"></prev>
       </actor>
     </activity>
-    <activity prob="1.0" name="wave" id ="4">
+    <activity prob="1.0" name="MoCap@Wave_T01" id ="4">
       <actor name="actor1">
         <prev id="1"></prev>
       </actor>
     </activity>
   </level>
   <level id="3">
-    <activity prob="0.25" name="sit" id="5">
+    <activity prob="0.25" name="MoCap@Sit_T01" id="5">
       <actor name="actor1">
         <prev id="4"></prev>
       </actor>

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SphereCollider))]
@@ -17,17 +18,16 @@ public class Activity : MonoBehaviour
     private float _elapsedTimeCounter;
     private bool _isFinished;
 
+    public DynamicAnimationState _dynamicAnimationState;
+
     public bool IsFinished
     {
         get
         {
             return _isFinished;
         }
-        private set
-        {
-            _isFinished = value;
-        }
     }
+
     public float ExitTime
     {
         get
@@ -39,6 +39,7 @@ public class Activity : MonoBehaviour
             _exitTime = value;
         }
     }
+
     public string ParamName
     {
         get
@@ -50,8 +51,12 @@ public class Activity : MonoBehaviour
             _paramName = value;
             _isFinished = false;
             _elapsedTimeCounter = 0.0f;
+
+            _dynamicAnimationState = new DynamicAnimationState(_animator, _paramName);
+            _exitTime = _dynamicAnimationState.Length;
         }
     }
+
     public List<GameObject> OtherAgents
     {
         get
@@ -84,6 +89,14 @@ public class Activity : MonoBehaviour
         }
     }
 
+    private void CreateLocalAnimatorControllerCopy()
+    {
+        AnimatorController currentController = _animator.runtimeAnimatorController as AnimatorController;
+        AnimatorController newController = currentController.Clone();
+        newController.name = _animator.gameObject.name + "LocalController";
+        _animator.runtimeAnimatorController = newController;
+    }
+
     void Awake()
     {
         _animator = gameObject.GetComponent<Animator>();
@@ -91,23 +104,28 @@ public class Activity : MonoBehaviour
         _sphereCollider.radius = 1.5f;
         _sphereCollider.isTrigger = true;
         _sphereCollider.enabled = false;
-        IsFinished = true;
+        _isFinished = true;
+
+        CreateLocalAnimatorControllerCopy();
     }
 
     void Update()
     {
         if (!IsFinished)
         {
+
             if (!_complexAction)
             {
                 if (ExitTime > 0.0f)
                 {
                     _elapsedTimeCounter += Time.deltaTime;
+                    _dynamicAnimationState.EnterState();
                 }
 
                 if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
                 {
-                    IsFinished = true;
+                    _isFinished = true;
+                    _dynamicAnimationState.ExitState();
                 }
             }
             else
@@ -133,7 +151,7 @@ public class Activity : MonoBehaviour
 
                     if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
                     {
-                        IsFinished = true;
+                        _isFinished = true;
                     }
                 }
             }

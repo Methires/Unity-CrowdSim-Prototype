@@ -15,7 +15,7 @@
 				<prev id ="0"></prev>
 			</actor>
 		</activity>
-		<activity prob="0.5" name="wave" id="3">
+		<activity prob="0.5" name="MoCap@Wave_T01" id="3">
 			<actor name="actor1">
 				<prev id ="0"></prev>
 			</actor>
@@ -45,7 +45,7 @@
 				<prev id="3"></prev>
 			</actor>
 		</activity>
-		<activity prob="1.0" name="wave" id ="8">
+		<activity prob="1.0" name="MoCap@Wave_T01" id ="8">
 			<actor name="actor1">
 				<prev id="2"></prev>
 			</actor>

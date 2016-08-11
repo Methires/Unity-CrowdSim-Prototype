@@ -69,7 +69,7 @@ public class XmlScenarioReader
                                     && FindAttributeIndex(activityElement.Attributes, "id", out idParamIndex))
                                 {
                                     Action activityData = new Action(
-                                        activityElement.Attributes.Item(nameParamIndex).Value.ToLower(), 
+                                        activityElement.Attributes.Item(nameParamIndex).Value, 
                                         Convert.ToSingle(activityElement.Attributes.Item(probParamIndex).Value.Replace(",", ".")), 
                                         int.Parse(activityElement.Attributes.Item(idParamIndex).Value)
                                         );
@@ -117,7 +117,7 @@ public class XmlScenarioReader
                                                 && FindAttributeIndex(blendElement.Attributes, "name", out blendNameParamIndex))
                                             {
                                                 Blend blendData = new Blend();
-                                                blendData.Name = blendElement.Attributes.Item(nameParamIndex).Value.ToLower();
+                                                blendData.Name = blendElement.Attributes.Item(nameParamIndex).Value;
                                                 blendData.Probability = Convert.ToSingle(blendElement.Attributes.Item(blendProbParamIndex).Value.Replace(",", "."));
                                                 activityData.Blends.Add(blendData);
                                             }

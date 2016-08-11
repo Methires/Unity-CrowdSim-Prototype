@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 [System.Serializable]
-public class DynamicAnimationState
+public class DynamicAnimationState_old
 {
     private AnimatorStateMachine _rootMachine;
     private AnimatorController _controller;
@@ -34,7 +34,7 @@ public class DynamicAnimationState
         get { return _self;}
     }
 
-    public DynamicAnimationState(Motion motion, AnimatorState from, AnimatorState to, AnimatorController controller, string name)
+    public DynamicAnimationState_old(Motion motion, AnimatorState from, AnimatorState to, AnimatorController controller, string name)
     {
         _controller = controller;
         _rootMachine = controller.layers[0].stateMachine;
@@ -46,7 +46,7 @@ public class DynamicAnimationState
         _parameterName = name + "Parameter";
     }
 
-    ~DynamicAnimationState()
+    ~DynamicAnimationState_old()
     {
         RemoveFromController();
     }
@@ -145,7 +145,7 @@ public class AnimationScript : MonoBehaviour
     private Animator _anim;
     private AnimatorController _animController;
 
-    public List<DynamicAnimationState> dynamicAnimationsList = new List<DynamicAnimationState>();
+    public List<DynamicAnimationState_old> dynamicAnimationsList = new List<DynamicAnimationState_old>();
 
     void Start ()
     {
@@ -161,7 +161,7 @@ public class AnimationScript : MonoBehaviour
         AnimatorStateMachine rootStateMachine = _animController.layers[0].stateMachine;
         AnimatorState squat = rootStateMachine.states.First(x => x.state.name == "SlavicSquat").state;
         AnimatorState movementTree = rootStateMachine.states.First(x => x.state.name == "BranchedMovementTree").state;
-        DynamicAnimationState d = new DynamicAnimationState(newMotion, squat, movementTree, _animController, "fako");
+        DynamicAnimationState_old d = new DynamicAnimationState_old(newMotion, squat, movementTree, _animController, "fako");
 
         dynamicAnimationsList.Add(d);
         AddAnimationStates();
