@@ -9,22 +9,28 @@ public class SimulationController : MonoBehaviour
     public int ScenarioRepeats;
     public int SimultaneousScenarioInstances;
     public string ScenarioFileName;
+    public bool Tracking;
+    public float SessionLength;
 
     private XmlScenarioReader _xmlReader;
     private CrowdController _crowdController;
     private SequencesCreator _sequenceCreator;
     private List<SequenceController> _sequencesControllers;
     private int _repeatsCounter;
+    private float _elapsedTimeCounter;
     private bool _instanceFinished;
 
 	void Start()
     {
         _crowdController = GetComponent<CrowdController>();
         _sequenceCreator = GetComponent<SequencesCreator>();
-        _xmlReader = new XmlScenarioReader();
-        _xmlReader.ParseXmlWithScenario(ScenarioFileName);
-        _sequenceCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
-        _sequencesControllers = new List<SequenceController>();
+        if (!Tracking)
+        {
+            _xmlReader = new XmlScenarioReader();
+            _xmlReader.ParseXmlWithScenario(ScenarioFileName);
+            _sequenceCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
+            _sequencesControllers = new List<SequenceController>();
+        }
         StartInstanceOfSimulation();
 	}
 
@@ -32,18 +38,29 @@ public class SimulationController : MonoBehaviour
     {
         if (!_instanceFinished)
         {
-            if (_sequencesControllers.Count > 0)
+            if (!Tracking)
             {
-                bool endInstance = true;
-                foreach (SequenceController agentScenario in _sequencesControllers)
+                if (_sequencesControllers.Count > 0)
                 {
-                    if (!agentScenario.IsFinished)
+                    bool endInstance = true;
+                    foreach (SequenceController agentScenario in _sequencesControllers)
                     {
-                        endInstance = false;
-                        break;
+                        if (!agentScenario.IsFinished)
+                        {
+                            endInstance = false;
+                            break;
+                        }
+                    }
+                    if (endInstance)
+                    {
+                        EndInstanceOfSimulation();
                     }
                 }
-                if (endInstance)
+            }
+            else
+            {
+                _elapsedTimeCounter += Time.deltaTime;
+                if (_elapsedTimeCounter >= SessionLength )
                 {
                     EndInstanceOfSimulation();
                 }
@@ -54,9 +71,13 @@ public class SimulationController : MonoBehaviour
     private void StartInstanceOfSimulation()
     {
         _crowdController.GenerateCrowd();
-        _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances);
+        if (!Tracking)
+        {
+            _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances);
+        }
         _repeatsCounter++;
         _instanceFinished = false;
+        _elapsedTimeCounter = 0.0f;
     }
 
     private void EndInstanceOfSimulation()

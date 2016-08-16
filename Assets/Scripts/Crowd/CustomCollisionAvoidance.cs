@@ -10,18 +10,20 @@ public class CustomCollisionAvoidance : MonoBehaviour
     void Start()
     {
         _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
-        _radius = 0.5f + Mathf.Epsilon;
+        _radius = 0.6f + Mathf.Epsilon;
     }
 
     void Update()
     {
-        Vector3 dir = _navMeshAgent.desiredVelocity;
+        Vector3 dir = _navMeshAgent.velocity;
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, dir, out hit, 2.0f))
+        if (Physics.Raycast(transform.position, dir, out hit, dir.magnitude * 2))
         {
             DrawnperpendicularPlane(transform.position, hit.point, Color.red);
             if (hit.collider.tag == "Crowd" || hit.collider.tag == "AgentScenario")
-            { 
+            {
+                Vector3 otherVelocity = hit.collider.gameObject.GetComponent<NavMeshAgent>().desiredVelocity;
+                float dot = Vector3.Dot(_navMeshAgent.desiredVelocity, _navMeshAgent.desiredVelocity - otherVelocity);
                 DrawnperpendicularPlane(transform.position, hit.point, Color.red);
                 DrawnperpendicularPlane(transform.position, hit.collider.transform.position, Color.blue);
                 Vector3 a = hit.collider.transform.position - transform.position;
@@ -29,12 +31,15 @@ public class CustomCollisionAvoidance : MonoBehaviour
                 Vector3 avoidancePoint = hit.collider.transform.position - (Vector3.Cross(a, b).normalized * _radius);
                 DrawnperpendicularPlane(hit.collider.transform.position, avoidancePoint, Color.green);
 
-                if (!_isAvoiding)
+                if (dot > 0)
                 {
-                    _destination = _navMeshAgent.destination;
+                    if (!_isAvoiding)
+                    {
+                        _destination = _navMeshAgent.destination;
+                    }
+                    _navMeshAgent.destination = avoidancePoint;
+                    _isAvoiding = true;
                 }
-                _navMeshAgent.destination = avoidancePoint;
-                _isAvoiding = true;
             }
         }
 

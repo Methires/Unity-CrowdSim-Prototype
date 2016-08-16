@@ -10,7 +10,7 @@ public class GenerateDestination : MonoBehaviour
     void Start()
     {
         _navAgent = GetComponent<NavMeshAgent>();
-        _range = 50.0f;
+        _range = 25.0f;
         _generator = new NavMeshPointGenerator(_range);
     }
 

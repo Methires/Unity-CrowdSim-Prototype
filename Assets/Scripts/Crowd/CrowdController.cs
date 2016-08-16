@@ -14,8 +14,6 @@ public class CrowdController : MonoBehaviour
     private float _range = 100.0f;
     private List<GameObject> _crowd;
 
-    private string[] _fileNames;
-
     void Awake()
     {
         if (CreatePrefabs)
@@ -72,9 +70,6 @@ public class CrowdController : MonoBehaviour
             files[i] = "Assets" + (files[i].Remove(0, Application.dataPath.Length));
             CreateAgentPrefab(files[i]);
         }
-
-        _fileNames = files;
-
         LoadAgents();   
     }
 
