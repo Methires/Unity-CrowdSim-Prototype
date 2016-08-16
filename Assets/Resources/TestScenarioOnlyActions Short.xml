@@ -1,0 +1,8 @@
+﻿<scenario name="SingularAgentActionAndMovement">
+  <level id="0">
+    <activity prob="1.0" name="MoCap@Wave_T01" id ="0">
+      <actor name="actor1">
+      </actor>
+    </activity>
+  </level>
+</scenario>
