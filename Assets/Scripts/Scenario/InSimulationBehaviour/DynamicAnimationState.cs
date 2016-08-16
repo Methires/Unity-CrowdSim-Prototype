@@ -16,6 +16,7 @@ public class DynamicAnimationState
     private string _toStateName = "Idle";
     private string _parameterName;
     private float _length;
+    private float _transitionLenght = 0.2f;
 
     public float Length
     {
@@ -49,13 +50,22 @@ public class DynamicAnimationState
         AnimatorState toState = _rootStateMachine.states.FirstOrDefault(x => x.state.name == _toStateName).state;
         AnimatorState fromState = _rootStateMachine.states.FirstOrDefault(x => x.state.name == _fromStateName).state;
 
-        var toTransition = _self.AddTransition(toState);
-        var fromTranistion = fromState.AddTransition(_self);
+        AnimatorStateTransition toTransition = _self.AddTransition(toState);
+        AnimatorStateTransition fromTranistion = fromState.AddTransition(_self);
+
+        SetupTransition(toTransition);
+        SetupTransition(fromTranistion);
 
         toTransition.AddCondition(AnimatorConditionMode.IfNot, 0, _parameterName);
         fromTranistion.AddCondition(AnimatorConditionMode.If, 0, _parameterName);
 
         _anim.runtimeAnimatorController = _animController;
+    }
+
+    private void SetupTransition(AnimatorStateTransition transition)
+    {
+        transition.duration = _transitionLenght;
+        transition.hasFixedDuration = false;
     }
 
     private void LoadMotion(string name)

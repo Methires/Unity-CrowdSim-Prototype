@@ -9,6 +9,9 @@ public class SimulationController : MonoBehaviour
     public int ScenarioRepeats;
     public int SimultaneousScenarioInstances;
     public string ScenarioFileName;
+    public string ScreenshotsDirectory = "D:/Screenshots";
+    private Screenshooter _screenshooter;
+
 
     private XmlScenarioReader _xmlReader;
     private CrowdController _crowdController;
@@ -25,6 +28,11 @@ public class SimulationController : MonoBehaviour
         _xmlReader.ParseXmlWithScenario(ScenarioFileName);
         _sequenceCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
         _sequencesControllers = new List<SequenceController>();
+        _screenshooter = FindObjectOfType<Screenshooter>();
+
+        string dir = string.Format("/Session-{0:yyyy-MM-dd_hh-mm-ss-tt}", System.DateTime.Now);
+
+        ScreenshotsDirectory += dir;
         StartInstanceOfSimulation();
 	}
 
@@ -63,6 +71,7 @@ public class SimulationController : MonoBehaviour
     {
         _instanceFinished = true;
         _crowdController.RemoveCrowd();
+        _screenshooter.SaveScreenshotsAtDirectory(ScreenshotsDirectory + "/Take_" + _repeatsCounter);
         StartCoroutine(EndInstance());
     }
 

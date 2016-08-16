@@ -72,9 +72,7 @@ public class CrowdController : MonoBehaviour
             files[i] = "Assets" + (files[i].Remove(0, Application.dataPath.Length));
             CreateAgentPrefab(files[i]);
         }
-
         _fileNames = files;
-
         LoadAgents();   
     }
 

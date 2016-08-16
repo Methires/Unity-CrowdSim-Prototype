@@ -37,10 +37,15 @@ public class Agent : MonoBehaviour
         {
             agent.velocity = animator.deltaPosition / Time.deltaTime;
             transform.rotation = animator.rootRotation;
+            transform.position = new Vector3(transform.position.x, animator.rootPosition.y, transform.position.z);
         }
         catch (NullReferenceException e)
         {
         }
+
+        //Vector3 position = animator.rootPosition;
+        //position.y = agent.nextPosition.y;
+        //transform.position = position;
     }
 
     protected bool AgentDone()

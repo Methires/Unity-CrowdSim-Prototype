@@ -19,7 +19,7 @@ public class Activity : MonoBehaviour
     private bool _isFinished;
 
     public DynamicAnimationState _dynamicAnimationState;
-
+    
     public bool IsFinished
     {
         get

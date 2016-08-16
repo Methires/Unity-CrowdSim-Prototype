@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d5df29b7ba519654096a52dadae315fb
-timeCreated: 1470652386
+guid: c843c70f6c1295e48a099e026a13135a
+timeCreated: 1470992686
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -249,7 +249,7 @@ ModelImporter:
     400238: System:Vantage_5_2107778
     400240: System:Vantage_5_2108360
     400242: Unlabeled_Markers
-    7400000: Wave_T01
+    7400000: Bow_T01
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -262,10 +262,10 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'wave_hello_T01_x2d' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Daniel_ROM:Solving:Spine1' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'Daniel_ROM:Solving:Spine3'
+    animationImportWarnings: "\nClip 'bow_T01_x2d' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'Daniel_ROM:Solving:Spine1' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'Daniel_ROM:Solving:Spine3'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -277,10 +277,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Wave_T01
-      takeName: wave_hello_T01_x2d
-      firstFrame: 202
-      lastFrame: 877
+      name: Bow_T01
+      takeName: bow_T01_x2d
+      firstFrame: 127
+      lastFrame: 479
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -743,7 +743,7 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: MoCap@Wave_T01(Clone)
+    - name: MoCap@Bow_T01(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -754,257 +754,257 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:ARIEL
-      position: {x: 0.061749484, y: 1.820438, z: 0.24719508}
+      position: {x: 0.12878717, y: 1.8176403, z: 0.32263446}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:C7
-      position: {x: 0.06713357, y: 1.5510385, z: 0.19349925}
+      position: {x: 0.1217724, y: 1.5506103, z: 0.28731456}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:CLAV
-      position: {x: 0.06413166, y: 1.4665647, z: 0.36808258}
+      position: {x: 0.11326481, y: 1.4720052, z: 0.46644542}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LANK
-      position: {x: -0.08095474, y: 0.1300667, z: 0.16219516}
+      position: {x: -0.030052101, y: 0.13060968, z: 0.2549653}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LBHD
-      position: {x: -0.022153297, y: 1.6923916, z: 0.24387148}
+      position: {x: 0.03809421, y: 1.6951457, z: 0.32289252}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LBSH
-      position: {x: -0.07109448, y: 1.50863, z: 0.16766688}
+      position: {x: -0.006008268, y: 1.5094037, z: 0.25203097}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LBWT
-      position: {x: -0.052148122, y: 1.0988693, z: 0.19232906}
+      position: {x: -0.0016733595, y: 1.1002914, z: 0.29175222}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LELB
-      position: {x: -0.4057083, y: 1.4273336, z: 0.21372469}
+      position: {x: -0.3448035, y: 1.4586002, z: 0.26029104}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LFHD
-      position: {x: -0.022746576, y: 1.7702836, z: 0.3264582}
+      position: {x: 0.041034363, y: 1.7757039, z: 0.40230688}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LFSH
-      position: {x: -0.06193097, y: 1.5029756, z: 0.30887005}
+      position: {x: -0.009710938, y: 1.5048971, z: 0.39586538}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LFWT
-      position: {x: -0.08589752, y: 1.065989, z: 0.3605034}
+      position: {x: -0.03711653, y: 1.0684206, z: 0.45667994}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LHEL
-      position: {x: -0.018294228, y: 0.10253982, z: 0.084508926}
+      position: {x: 0.030235678, y: 0.10468454, z: 0.17514946}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LHIP
-      position: {x: -0.080742285, y: 0.68905294, z: 0.33887595}
+      position: {x: -0.032194223, y: 0.6892365, z: 0.4376289}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LIEL
-      position: {x: -0.38269413, y: 1.3330295, z: 0.23832813}
+      position: {x: -0.33598414, y: 1.3627722, z: 0.28674066}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LIHAND
-      position: {x: -0.7456619, y: 1.356735, z: 0.3440165}
+      position: {x: -0.70302886, y: 1.4414599, z: 0.36087838}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LIWR
-      position: {x: -0.64156383, y: 1.3554177, z: 0.34535524}
+      position: {x: -0.603008, y: 1.4233645, z: 0.3676731}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LKNE
-      position: {x: -0.08854141, y: 0.5129949, z: 0.2560606}
+      position: {x: -0.03784401, y: 0.51206523, z: 0.35509518}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LKNI
-      position: {x: 0.03317043, y: 0.5058112, z: 0.2454861}
+      position: {x: 0.08321582, y: 0.5059943, z: 0.3423724}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LMT1
-      position: {x: -0.004695942, y: 0.069401264, z: 0.31178978}
+      position: {x: 0.052138638, y: 0.0690988, z: 0.40178102}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LMT5
-      position: {x: -0.09611288, y: 0.067458324, z: 0.3123583}
+      position: {x: -0.04009506, y: 0.06602543, z: 0.4061466}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LMWT
-      position: {x: 0.07206387, y: 1.1019478, z: 0.40438536}
+      position: {x: 0.11922301, y: 1.1041635, z: 0.5091077}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LOHAND
-      position: {x: -0.71866155, y: 1.3267848, z: 0.2416064}
+      position: {x: -0.68069947, y: 1.3931541, z: 0.2636302}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LOWR
-      position: {x: -0.6539626, y: 1.3361965, z: 0.2503577}
+      position: {x: -0.61119604, y: 1.3928634, z: 0.27508563}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LSHN
-      position: {x: -0.08700491, y: 0.3500109, z: 0.23609968}
+      position: {x: -0.035218824, y: 0.34914768, z: 0.33303437}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LTOE
-      position: {x: -0.045920525, y: 0.079544626, z: 0.35232338}
+      position: {x: 0.012063019, y: 0.07729323, z: 0.44469738}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LUPA
-      position: {x: -0.2644502, y: 1.4679829, z: 0.2113766}
+      position: {x: -0.19953963, y: 1.4827143, z: 0.2721772}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:LWRE
-      position: {x: -0.5079708, y: 1.4179661, z: 0.24035332}
+      position: {x: -0.45067173, y: 1.4614911, z: 0.2749972}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RANK
-      position: {x: 0.29084823, y: 0.13158521, z: 0.15753266}
+      position: {x: 0.28101373, y: 0.12884974, z: 0.23441276}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RBHD
-      position: {x: 0.13686422, y: 1.6925269, z: 0.23484913}
+      position: {x: 0.1968955, y: 1.6856838, z: 0.31543994}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RBSH
-      position: {x: 0.20008083, y: 1.4974644, z: 0.17068653}
+      position: {x: 0.24683884, y: 1.5000523, z: 0.26139757}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RBWT
-      position: {x: 0.16504052, y: 1.0815108, z: 0.17807934}
+      position: {x: 0.2166728, y: 1.0820816, z: 0.27980337}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RELB
-      position: {x: 0.52033955, y: 1.3997023, z: 0.20978943}
+      position: {x: 0.5685242, y: 1.4188802, z: 0.2701215}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RFHD
-      position: {x: 0.14533716, y: 1.7542285, z: 0.3395127}
+      position: {x: 0.20795757, y: 1.7510654, z: 0.4177959}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RFSH
-      position: {x: 0.19079822, y: 1.5097342, z: 0.29952067}
+      position: {x: 0.24362418, y: 1.5106055, z: 0.39220396}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RFWT
-      position: {x: 0.22219123, y: 1.0757296, z: 0.35327446}
+      position: {x: 0.2701404, y: 1.0770231, z: 0.4570888}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RHEL
-      position: {x: 0.22402392, y: 0.0658628, z: 0.0908415}
+      position: {x: 0.20759216, y: 0.065611504, z: 0.16842487}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RHIP
-      position: {x: 0.25412646, y: 0.70726883, z: 0.3276858}
+      position: {x: 0.2864625, y: 0.70295423, z: 0.4222423}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RIEL
-      position: {x: 0.5062817, y: 1.317374, z: 0.26151356}
+      position: {x: 0.5606666, y: 1.3326993, z: 0.31718042}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RIHAND
-      position: {x: 0.8748415, y: 1.3408853, z: 0.29197204}
+      position: {x: 0.93985975, y: 1.390932, z: 0.3264147}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RIWR
-      position: {x: 0.7875272, y: 1.3417202, z: 0.29769754}
+      position: {x: 0.85079753, y: 1.3771107, z: 0.3460775}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RKNE
-      position: {x: 0.2738682, y: 0.5170985, z: 0.23298532}
+      position: {x: 0.29230553, y: 0.51368517, z: 0.32124946}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RKNI
-      position: {x: 0.14041135, y: 0.5019941, z: 0.25628677}
+      position: {x: 0.15776433, y: 0.5072295, z: 0.3439722}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RMT1
-      position: {x: 0.22441737, y: 0.0652891, z: 0.34228474}
+      position: {x: 0.22062993, y: 0.06820884, z: 0.41937828}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RMT5
-      position: {x: 0.3391235, y: 0.052607693, z: 0.32512766}
+      position: {x: 0.3333805, y: 0.050089415, z: 0.39704934}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RMWT
-      position: {x: 0.054427862, y: 1.1079283, z: 0.1390613}
+      position: {x: 0.10607332, y: 1.1093231, z: 0.24191028}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:ROHAND
-      position: {x: 0.86413556, y: 1.2906641, z: 0.19687776}
+      position: {x: 0.9203098, y: 1.3388275, z: 0.2331531}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:ROWR
-      position: {x: 0.78182626, y: 1.3221866, z: 0.20041412}
+      position: {x: 0.838485, y: 1.3603715, z: 0.24822177}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RSHN
-      position: {x: 0.29268244, y: 0.35609996, z: 0.22717564}
+      position: {x: 0.29926312, y: 0.35073066, z: 0.31040573}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RTOE
-      position: {x: 0.2786948, y: 0.07723023, z: 0.37099364}
+      position: {x: 0.2767394, y: 0.07788678, z: 0.44571006}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RUPA
-      position: {x: 0.39909568, y: 1.4589715, z: 0.23382257}
+      position: {x: 0.44584498, y: 1.46901, z: 0.3049327}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:RWRE
-      position: {x: 0.62758106, y: 1.3793777, z: 0.20593522}
+      position: {x: 0.6823508, y: 1.4036099, z: 0.26253173}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1014,28 +1014,28 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:Hips
-      position: {x: 0.0021835566, y: 0.955014, z: -0.0005540252}
-      rotation: {x: -0.7132038, y: 0.044266097, z: -0.015273898, w: 0.6993909}
+      position: {x: 0.002028264, y: 0.9557818, z: -0.0005065501}
+      rotation: {x: -0.71306324, y: 0.035355583, z: -0.019815577, w: 0.6999273}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftUpLeg
       position: {x: -0.08929515, y: 0, z: -0.026086222}
-      rotation: {x: 0.045340486, y: -0.72855186, z: -0.035649166, w: 0.6825581}
+      rotation: {x: 0.057211198, y: -0.72684515, z: -0.024563152, w: 0.68397343}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftLeg
       position: {x: -0.40890598, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.07023775, w: 0.9975303}
+      rotation: {x: 0, y: -0, z: -0.075678945, w: 0.99713224}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftFoot
       position: {x: -0.43740162, y: 0, z: 0}
-      rotation: {x: -0.029067744, y: -0.038937442, z: 0.65226537, w: 0.75643164}
+      rotation: {x: -0.019652788, y: -0.044486392, z: 0.65184087, w: 0.7567947}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftToeBase
       position: {x: -0.18833049, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.18061122, w: 0.9835546}
+      rotation: {x: 0, y: 0, z: 0.17121607, w: 0.98523355}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftToeBaseEnd
@@ -1045,22 +1045,22 @@ ModelImporter:
       transformModified: 1
     - name: Daniel_ROM:Solving:RightUpLeg
       position: {x: 0.08929515, y: 0, z: -0.026086222}
-      rotation: {x: 0.07172617, y: -0.78875554, z: 0.008007358, w: 0.6104555}
+      rotation: {x: 0.09014897, y: -0.76270753, z: -0.005049807, w: 0.64040995}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightLeg
       position: {x: -0.40890598, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.043817203, w: 0.9990396}
+      rotation: {x: 0, y: -0, z: -0.041122854, w: 0.9991541}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightFoot
       position: {x: -0.43740162, y: 0, z: 0}
-      rotation: {x: 0.01648427, y: 0.09294174, z: 0.63799465, w: 0.7642336}
+      rotation: {x: 0.036524426, y: 0.06781877, z: 0.65667915, w: 0.750226}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightToeBase
       position: {x: -0.18833049, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.16064547, w: 0.9870122}
+      rotation: {x: 0, y: 0, z: 0.15744221, w: 0.9875282}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightToeBaseEnd
@@ -1070,42 +1070,42 @@ ModelImporter:
       transformModified: 1
     - name: Daniel_ROM:Solving:Spine
       position: {x: -0, y: 0.044864774, z: 0.06729716}
-      rotation: {x: -0.059578374, y: -0.034429822, z: -0.0045652143, w: 0.9976193}
+      rotation: {x: -0.061360613, y: -0.030372145, z: -0.003916001, w: 0.9976458}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:Spine1
       position: {x: -0, y: 0, z: 0.08972955}
-      rotation: {x: 0.06179095, y: -0.007340662, z: -0.00036022576, w: 0.9980621}
+      rotation: {x: 0.06775235, y: -0.008633277, z: -0.0004810573, w: 0.99766475}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:Spine2
       position: {x: -0, y: 0, z: 0.08972955}
-      rotation: {x: 0.021467535, y: -0.004507273, z: 0.0011128255, w: 0.9997588}
+      rotation: {x: 0.009190008, y: -0.0008215981, z: 0.0012124357, w: 0.9999567}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:Spine3
       position: {x: -0, y: 0, z: 0.08972955}
-      rotation: {x: -0.006472771, y: -0.00010221489, z: -0.00016299747, w: 0.999979}
+      rotation: {x: -0.010562745, y: 0.0022374298, z: 0.0005434699, w: 0.9999416}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftShoulder
       position: {x: -0.030099489, y: -0.050165813, z: 0.16253723}
-      rotation: {x: 0.019009218, y: 0.06751043, z: -0.022413764, w: 0.99728566}
+      rotation: {x: 0.03002217, y: 0.05939578, z: -0.06893209, w: 0.995399}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftArm
       position: {x: -0.14949413, y: 0, z: 0}
-      rotation: {x: -0.036644854, y: -0.09178963, z: -0.005228449, w: 0.9950902}
+      rotation: {x: -0.06696541, y: -0.07814779, z: 0.02759882, w: 0.9943072}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftForeArm
       position: {x: -0.29621905, y: 0, z: 0}
-      rotation: {x: -0.0051050284, y: 0.0226855, z: 0.056553174, w: 0.99812883}
+      rotation: {x: -0.0024281736, y: 0.0104009705, z: 0.066992335, w: 0.99769634}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftHand
       position: {x: -0.2730592, y: 0, z: 0}
-      rotation: {x: -0.10225219, y: 0.04949259, z: -0.161592, w: 0.98029745}
+      rotation: {x: -0.14208175, y: 0.059670933, z: -0.10381602, w: 0.9825856}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:LeftHandEnd
@@ -1130,12 +1130,12 @@ ModelImporter:
       transformModified: 1
     - name: Daniel_ROM:Solving:Neck
       position: {x: -0, y: -0.03364858, z: 0.23554006}
-      rotation: {x: 0.05340862, y: -0.014789742, z: -0.0038411063, w: 0.9984558}
+      rotation: {x: 0.025567047, y: 0.00033978975, z: -0.002143991, w: 0.99967074}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:Head
       position: {x: -0, y: 0, z: 0.12337812}
-      rotation: {x: -0.06748052, y: -0.012129289, z: 0.0044971164, w: 0.99763674}
+      rotation: {x: -0.055539902, y: -0.00379476, z: 0.0063858386, w: 0.9984289}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:HeadEnd
@@ -1145,22 +1145,22 @@ ModelImporter:
       transformModified: 1
     - name: Daniel_ROM:Solving:RightShoulder
       position: {x: 0.030099489, y: -0.050165813, z: 0.16253723}
-      rotation: {x: -0.00034919556, y: 0.9982679, z: 0.018892191, w: 0.055715818}
+      rotation: {x: -0.03915741, y: 0.9969397, z: 0.047491454, w: 0.04819241}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightArm
       position: {x: -0.14949413, y: 0, z: 0}
-      rotation: {x: 0.08532892, y: 0.09501958, z: -0.010220226, w: 0.991759}
+      rotation: {x: 0.08718858, y: 0.07480049, z: 0.01805263, w: 0.9932156}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightForeArm
       position: {x: -0.29621905, y: 0, z: 0}
-      rotation: {x: 0.0011825854, y: -0.015177237, z: 0.049214084, w: 0.9986723}
+      rotation: {x: 0.0012322956, y: -0.011898378, z: 0.06571386, w: 0.99776685}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightHand
       position: {x: -0.2730592, y: 0, z: 0}
-      rotation: {x: 0.1648034, y: 0.004987405, z: -0.028288642, w: 0.9859081}
+      rotation: {x: 0.1905262, y: -0.03754596, z: -0.064347945, w: 0.9788511}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:Solving:RightHandEnd
@@ -1184,12 +1184,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:STRN
-      position: {x: 0.061321624, y: 1.2746965, z: 0.3952392}
+      position: {x: 0.10875334, y: 1.2794515, z: 0.4992853}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Daniel_ROM:T10
-      position: {x: 0.07112658, y: 1.3918054, z: 0.13461922}
+      position: {x: 0.12261572, y: 1.3919064, z: 0.2339509}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
