@@ -87,7 +87,6 @@ GameObject:
   - 20: {fileID: 2080970}
   - 92: {fileID: 9297646}
   - 124: {fileID: 12426368}
-  - 81: {fileID: 8118946}
   - 135: {fileID: 13569964}
   m_Layer: 0
   m_Name: Main Camera
@@ -104,6 +103,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 458568}
+  - 114: {fileID: 114000011431000132}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -139,6 +139,7 @@ Transform:
   m_LocalRotation: {x: -0.0828279, y: 0.9019798, z: -0.19996414, w: -0.3736125}
   m_LocalPosition: {x: 25, y: 10, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 458568}
   m_RootOrder: 3
@@ -151,6 +152,7 @@ Transform:
   m_LocalRotation: {x: -0.19996417, y: 0.37361217, z: -0.08282783, w: -0.90198}
   m_LocalPosition: {x: 25, y: 10, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 458568}
   m_RootOrder: 4
@@ -163,6 +165,7 @@ Transform:
   m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   m_LocalPosition: {x: 0, y: 20, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 458568}
   m_RootOrder: 5
@@ -175,6 +178,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 462390}
   - {fileID: 467174}
@@ -193,6 +197,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 458568}
   m_RootOrder: 0
@@ -205,6 +210,7 @@ Transform:
   m_LocalRotation: {x: 0.082827844, y: 0.90198, z: -0.19996417, w: 0.37361223}
   m_LocalPosition: {x: -25, y: 10, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 458568}
   m_RootOrder: 1
@@ -217,6 +223,7 @@ Transform:
   m_LocalRotation: {x: -0.19996414, y: -0.37361252, z: 0.08282791, w: -0.9019798}
   m_LocalPosition: {x: -25, y: 10, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 458568}
   m_RootOrder: 2
@@ -238,7 +245,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -272,7 +279,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -306,7 +313,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -340,7 +347,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -374,7 +381,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -408,7 +415,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -424,13 +431,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &8118946
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154924}
-  m_Enabled: 1
 --- !u!92 &9215822
 Behaviour:
   m_ObjectHideFlags: 1
@@ -598,3 +598,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 160840}
   m_IsPrefabParent: 1
+--- !u!114 &114000011431000132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b58a6d67d6ad147a9e2e734c31f2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resWidth: 800
+  resHeight: 600
+  TakeScreenshots: 0

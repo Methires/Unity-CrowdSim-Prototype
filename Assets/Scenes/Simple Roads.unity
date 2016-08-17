@@ -206,20 +206,48 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: MaxPeople
-      value: 400
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: Characters.Array.data[1]
       value: 
-      objectReference: {fileID: 168082, guid: eccf136b42718ab4baf8eaa6f6216c64, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: Characters.Array.data[0]
       value: 
-      objectReference: {fileID: 133344, guid: 824bafab7c66dac4b833410ae74dd4cc, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Tracking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: SessionLength
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: ScenarioRepeats
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: LoadAgentsFromResources
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: DayTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: WeatherConditions
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+      propertyPath: Repeats
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
   m_IsPrefabParent: 0
@@ -260,7 +288,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458568, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011431000132, guid: d4f7ba566d0f24140869be01ea5cc9f8,
+        type: 2}
+      propertyPath: TakeScreenshots
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
