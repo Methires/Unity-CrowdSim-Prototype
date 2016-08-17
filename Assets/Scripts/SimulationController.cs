@@ -6,12 +6,17 @@ using System.Collections.Generic;
 [RequireComponent(typeof(SequencesCreator))]
 public class SimulationController : MonoBehaviour
 {
-    public int ScenarioRepeats;
+    public int Repeats;
     public int SimultaneousScenarioInstances;
     public string ScenarioFileName;
     public string ScreenshotsDirectory = "D:/Screenshots";
     public bool Tracking;
     public float SessionLength;
+    [Header("Weather")]
+    [Range(1, 3)]
+    public int DayTime;
+    [Range(1, 5)]
+    public int WeatherConditions;
 
     private XmlScenarioReader _xmlReader;
     private CrowdController _crowdController;
@@ -36,6 +41,8 @@ public class SimulationController : MonoBehaviour
         _screenshooter = FindObjectOfType<Screenshooter>();
         string dir = string.Format("/Session-{0:yyyy-MM-dd_hh-mm-ss-tt}", System.DateTime.Now);
         ScreenshotsDirectory += dir;
+        SetDayTimeLight(DayTime);
+        SetWeatherConditions(WeatherConditions);
         StartInstanceOfSimulation();
 	}
 
@@ -96,7 +103,7 @@ public class SimulationController : MonoBehaviour
     private IEnumerator EndInstance()
     {
         yield return new WaitForSeconds(0.5f);
-        if (_repeatsCounter < ScenarioRepeats)
+        if (_repeatsCounter < Repeats)
         {
             StartInstanceOfSimulation();
         }
@@ -107,6 +114,74 @@ public class SimulationController : MonoBehaviour
             #else
                 Application.Quit();
             #endif
+        }
+    }
+
+    private void SetDayTimeLight(int id)
+    {
+        GameObject light;
+        if (FindObjectOfType<Light>() == null)
+        {
+            light = new GameObject();
+            light.name = "Light";
+            light.AddComponent<Light>();
+            light.transform.position = Vector3.zero;
+            light.GetComponent<Light>().type = LightType.Directional;
+            light.GetComponent<Light>().shadows = LightShadows.Soft;
+        }
+        else
+        {
+            light = FindObjectOfType<Light>().gameObject;
+        }
+        float value = light.transform.eulerAngles.x;
+        switch (id)
+        {
+            case 1:
+                value = 30.0f;
+                light.GetComponent<Light>().color = Color.white;
+                break;
+            case 2:
+                value = 90.0f;
+                light.GetComponent<Light>().color = Color.white;
+                break;
+            case 3:
+                value = 170.0f;
+                light.GetComponent<Light>().color = new Color32(144, 124, 70, 255);
+                break;
+            default:
+                break;
+        }
+        light.transform.rotation = Quaternion.Euler(value, 0.0f, 0.0f);
+    }
+
+    private void SetWeatherConditions(int id)
+    {
+        Light light = FindObjectOfType<Light>();
+        switch (id)
+        {
+            case 2:
+                Instantiate(Resources.Load("Weather/Rain"));
+                light.intensity = 0.75f;
+                light.shadowStrength = 0.5f;
+                break;
+            case 3:
+                Instantiate(Resources.Load("Weather/Snow"));
+                light.intensity = 0.65f;
+                light.shadowStrength = 0.5f;
+                break;
+            case 4:
+                light.color = Color.gray;
+                light.intensity = 0.5f;
+                light.shadowStrength = 0.5f;
+                break;
+            case 5:
+                Instantiate(Resources.Load("Weather/Fog"));
+                light.color = Color.gray;
+                light.intensity = 0.5f;
+                light.shadowStrength = 0.45f;
+                break;
+            default:
+                break;
         }
     }
 }
