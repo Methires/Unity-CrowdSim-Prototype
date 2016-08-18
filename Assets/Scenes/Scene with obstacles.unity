@@ -153,6 +153,30 @@ Prefab:
       propertyPath: field of view
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 462390, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 154924, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 148836, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 130834, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 187960, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112142, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8118946, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
@@ -517,6 +541,31 @@ Prefab:
       propertyPath: LoadAgentsFromResources
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: MaxPeople
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: SimultaneousScenarioInstances
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Conditions
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Tracking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: SessionLength
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
   m_IsPrefabParent: 0
@@ -528,7 +577,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1311937883}
-  - 114: {fileID: 1311937884}
   m_Layer: 0
   m_Name: Obstacles
   m_TagString: Untagged
@@ -553,23 +601,6 @@ Transform:
   - {fileID: 1099585268}
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &1311937884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1311937882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c6fcff505b1c4e43ba9c28107f828cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Characters:
-  - {fileID: 0}
-  - {fileID: 0}
-  MaxPeople: 50
-  CreatePrefabs: 0
-  LoadAgentsFromResources: 0
 --- !u!1 &1365672941
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resWidth: 800
   resHeight: 600
-  TakeScreenshots: 1
+  TakeScreenshots: 0
 --- !u!1 &1924919936
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@
     </activity>
   </level>
   <level id="1">
-    <activity prob="1" name="wave" id="2">
+    <activity prob="1" name="MoCap@Wave_T01" id="2">
       <actor name="actor1">
         <prev id ="0"></prev>
       </actor>

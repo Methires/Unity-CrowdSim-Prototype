@@ -9,15 +9,13 @@ public class Movement : MonoBehaviour
     private bool _isFinished;
     private string _blendParam;
 
+    private Vector3 _lastPosition;
+
     public bool IsFinished
     {
         get
         {
             return _isFinished;
-        }
-        private set
-        {
-            _isFinished = value;
         }
     }
     public float Speed
@@ -44,7 +42,7 @@ public class Movement : MonoBehaviour
             _destination = value;
             _nMA.Resume();
             _nMA.destination = value;
-            IsFinished = false;
+            _isFinished = false;
         }
     }
     public string BlendParameter
@@ -63,14 +61,20 @@ public class Movement : MonoBehaviour
     void Awake()
     {
         _nMA = GetComponent<NavMeshAgent>();
-        IsFinished = true;
+        _isFinished = true;
     }
 
     void Update()
     {
         if (!IsFinished)
         {
+            if (_lastPosition == transform.position)
+            {
+                Debug.Log(gameObject.name + " in the same place");
+            }
+            Debug.Log(gameObject.name + " moving");
             CheckPosition();
+            _lastPosition = transform.position;
         }
     }
 
@@ -78,8 +82,15 @@ public class Movement : MonoBehaviour
     {
         if (_nMA.remainingDistance < _nMA.stoppingDistance + Mathf.Epsilon)
         {
-            IsFinished = true;
-            _nMA.Stop();
+            if (Vector3.Distance(_destination, transform.position) < 1.0f)
+            {
+                _isFinished = true;
+                _nMA.Stop();
+            }
+            else
+            {
+                _nMA.SetDestination(_destination);
+            }
         }
     }
 }

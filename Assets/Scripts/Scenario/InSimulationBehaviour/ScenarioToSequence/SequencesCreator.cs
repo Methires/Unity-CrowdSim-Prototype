@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -54,7 +55,7 @@ public class SequencesCreator : MonoBehaviour
         return actors;
     }
 
-    public List<SequenceController> GenerateInGameSequences(int simultaneousInstances)
+    public List<SequenceController> GenerateInGameSequences(int simultaneousInstances, out float longestSequenceLenght)
     {
         CreateAgentsFromCrowd(simultaneousInstances, _agentsNames.Count);
         List<List<Action>> actionSequencesPerAgent = CreateSequencesPerAgent();
@@ -62,6 +63,7 @@ public class SequencesCreator : MonoBehaviour
         List<SequenceController> sequenceControllers = new List<SequenceController>();
         _sequencesPerAgentPerInstance = new List<List<List<InGameActionInfo>>>();
         int agentIndex = 0;
+        longestSequenceLenght = 0.0f;
 
         for (int instanceIndex = 0; instanceIndex < simultaneousInstances; instanceIndex++)
         {
@@ -106,6 +108,8 @@ public class SequencesCreator : MonoBehaviour
                 agentIndex++;
                 sequenceControllers.Add(seqController);
                 inGameSequencesPerAgent.Add(inGameAgentSequence);
+                float sequenceTime = CalculateAnticipatedTimeOfSequence(inGameAgentSequence, agent);
+                longestSequenceLenght = sequenceTime > longestSequenceLenght ? sequenceTime : longestSequenceLenght;
             }
             _sequencesPerAgentPerInstance.Add(inGameSequencesPerAgent);
         }
@@ -118,6 +122,13 @@ public class SequencesCreator : MonoBehaviour
 
     private void CreateAgentsFromCrowd(int simultaneousInstances, int agents)
     {
+        CrowdController crowdController = GetComponent<CrowdController>();
+        if (crowdController.MaxPeople < agents * simultaneousInstances)
+        {
+            crowdController.RemoveCrowd();
+            crowdController.MaxPeople = agents * simultaneousInstances;
+            crowdController.GenerateCrowd();
+        }
         _agentsGameObjects = new List<GameObject>();
         for (int i = 0; i < simultaneousInstances; i++)
         {
@@ -128,6 +139,7 @@ public class SequencesCreator : MonoBehaviour
                 crowd[index].tag = "ScenarioAgent";
                 crowd[index].name = _agentsNames[j] + "_" + i;
                 crowd[index].GetComponent<NavMeshAgent>().avoidancePriority = 0;
+                crowd[index].GetComponent<NavMeshAgent>().stoppingDistance = 0.4f;
                 crowd[index].GetComponent<GenerateDestination>().enabled = false;
                 crowd[index].AddComponent<DisplayActivityText>();
                 _agentsGameObjects.Add(crowd[index]);
@@ -378,7 +390,6 @@ public class SequencesCreator : MonoBehaviour
         }
         else
         {
-            //Doesn't work perfectly :(
             point = generator.RandomPointOnNavMesh(transform.position);
         }
 
@@ -437,5 +448,28 @@ public class SequencesCreator : MonoBehaviour
             }
         }
         return Vector3.zero;
+    }
+
+    private float CalculateAnticipatedTimeOfSequence(List<InGameActionInfo> sequence, GameObject agent)
+    {
+        float time = 0.0f;
+        Vector3 lastPos = agent.transform.position;
+        for (int i = 0; i < sequence.Count; i++)
+        {
+            if (sequence[i].Movement != null)
+            {
+                float distance = Vector3.Distance(sequence[i].Movement.Waypoint, lastPos);
+                lastPos = sequence[i].Movement.Waypoint;
+                time += (distance / sequence[i].Movement.Speed);
+            }
+            else if (sequence[i].Activity != null)
+            {
+                string[] folders = new string[] { "Assets/Resources/Animations"};
+                string[] guids = AssetDatabase.FindAssets(sequence[i].Activity.ParameterName, folders);
+                AnimationClip anim = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guids[0]), typeof(AnimationClip)) as AnimationClip;
+                time += anim.length;
+            }
+        }
+        return time;
     }
 }

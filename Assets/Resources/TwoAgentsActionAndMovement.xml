@@ -10,7 +10,7 @@
 		</activity>
 	</level>
 	<level id="1">
-		<activity prob="0.5" name="sit" id ="2">
+		<activity prob="0.5" name="MoCap@Sit_T01" id ="2">
 			<actor name="actor1">
 				<prev id ="0"></prev>
 			</actor>
@@ -56,7 +56,7 @@
 		</activity>
 	</level>
 	<level id="3">
-		<activity prob="1.0" name="sit" id="9">
+		<activity prob="1.0" name="MoCap@Sit_T01" id="9">
 			<actor name="actor1">
 				<prev id="8"></prev>
 			</actor>

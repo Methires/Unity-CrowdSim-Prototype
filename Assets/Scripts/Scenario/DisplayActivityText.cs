@@ -6,25 +6,12 @@ public class DisplayActivityText : MonoBehaviour
 {
     private string _text;
     private Vector3[] _pts = new Vector3[8];
-    private Plane[] _planes;
     private Camera _cam;
     private Texture2D _borderTexture;
 
     void Awake()
     {
         _borderTexture = Resources.Load("redRect") as Texture2D;
-
-        //Color[] colors = _borderTexture.GetPixels();
-        //Color borderColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-
-        //for (int i = 0; i < colors.Length; i++)
-        //{
-        //    colors[i] = colors[i].a == 1.0f ? colors[i] : borderColor;
-        //}
-
-        //Texture2D coloredTexture = new Texture2D(_borderTexture.width, _borderTexture.height);
-        //coloredTexture.SetPixels(colors);
-        //_borderTexture = coloredTexture;
     }
 
     public void OnGUI()
