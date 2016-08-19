@@ -10,9 +10,11 @@ public class CrowdController : MonoBehaviour
     public int MaxPeople;
     public bool CreatePrefabs = false;
     public bool LoadAgentsFromResources = false;
+    public string AgentsFilter = "";
 
     private float _range = 100.0f;
     private List<GameObject> _crowd;
+    
 
     void Awake()
     {
@@ -106,6 +108,13 @@ public class CrowdController : MonoBehaviour
     private void LoadAgents()
     {
         string[] agentPaths = Directory.GetFiles(Application.dataPath + "/Resources/Agents","*.prefab",SearchOption.AllDirectories).Select(path => Path.GetFileNameWithoutExtension(path)).ToArray();
+        string[] agentsToLoad = AgentsFilter.Split('|');
+        agentsToLoad = agentPaths.Where(x => agentsToLoad.Contains(x)).ToArray();
+        if (agentsToLoad != null && agentsToLoad.Length != 0)
+        {
+            agentPaths = agentsToLoad;
+        }
+        
         List<GameObject> agents = new List<GameObject>();
         foreach (var path in agentPaths)
         {

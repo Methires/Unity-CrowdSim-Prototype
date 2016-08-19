@@ -27,6 +27,7 @@ public class SimulationController : MonoBehaviour
     private int _repeatsCounter;
     private float _elapsedTimeCounter;
     private bool _instanceFinished;
+    private bool _screnshooterActive;
 
     void Start()
     {
@@ -39,8 +40,16 @@ public class SimulationController : MonoBehaviour
             _sequencesControllers = new List<SequenceController>();
         }
         _screenshooter = FindObjectOfType<Screenshooter>();
-        string dir = string.Format("/Session-{0:yyyy-MM-dd_hh-mm-ss-tt}", System.DateTime.Now);
-        ScreenshotsDirectory += dir;
+        _screnshooterActive = _screenshooter.TakeScreenshots;
+
+        if (_screnshooterActive)
+        {
+            string dir = string.Format("/Session-{0:yyyy-MM-dd_hh-mm-ss-tt}", System.DateTime.Now);
+            ScreenshotsDirectory += dir;
+        }
+
+        _screenshooter.TakeScreenshots = false;
+        
         Invoke("StartInstanceOfSimulation", 0.1f);
     }
 
@@ -90,6 +99,7 @@ public class SimulationController : MonoBehaviour
     private void StartInstanceOfSimulation()
     {
         _crowdController.GenerateCrowd();
+        _screenshooter.TakeScreenshots = _screnshooterActive;
         if (!Tracking)
         {
             _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
@@ -103,7 +113,11 @@ public class SimulationController : MonoBehaviour
     {
         _instanceFinished = true;
         _crowdController.RemoveCrowd();
-        _screenshooter.SaveScreenshotsAtDirectory(ScreenshotsDirectory + "/Take_" + _repeatsCounter);
+        if (_screnshooterActive)
+        {
+            _screenshooter.SaveScreenshotsAtDirectory(ScreenshotsDirectory + "/Take_" + _repeatsCounter);
+            _screenshooter.TakeScreenshots = false;
+        }       
         StartCoroutine(EndInstance());
     }
 

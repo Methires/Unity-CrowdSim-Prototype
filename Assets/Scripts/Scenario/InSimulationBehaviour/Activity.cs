@@ -154,6 +154,7 @@ public class Activity : MonoBehaviour
                     {
                         _dynamicAnimationState.ExitState();
                         _isFinished = true;
+                        _dynamicAnimationState.ExitState();
                     }
                 }
             }

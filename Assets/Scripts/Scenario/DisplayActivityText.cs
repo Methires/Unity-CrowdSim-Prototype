@@ -8,6 +8,8 @@ public class DisplayActivityText : MonoBehaviour
     private Vector3[] _pts = new Vector3[8];
     private Camera _cam;
     private Texture2D _borderTexture;
+    //private Bounds _bounds;
+    //private List<Rect> _
 
     void Awake()
     {
@@ -19,10 +21,7 @@ public class DisplayActivityText : MonoBehaviour
         _cam = Camera.main;
         Bounds b = gameObject.GetComponentsInChildren<Renderer>().Aggregate((i1, i2) => i1.bounds.extents.magnitude > i2.bounds.extents.magnitude ? i1 : i2).bounds;
 
-        if (IsVisibleFromCamera())
-        {
-            RenderLabels(b);
-        }
+        RenderLabels(b);       
     }
 
     private bool IsVisibleFromCamera()
@@ -67,9 +66,11 @@ public class DisplayActivityText : MonoBehaviour
 
         //Construct a rect of the min and max positions and apply some margin
         Rect r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
-
-        GUI.DrawTexture(r, _borderTexture);
-        GUI.Label(new Rect(min.x, max.y, 200, 20), _text);
+        if (IsVisibleFromCamera())
+        {
+            GUI.DrawTexture(r, _borderTexture);
+            GUI.Label(new Rect(min.x, max.y, 200, 20), _text);
+        }
     }
 
     public void ChangeText(string text)

@@ -5,14 +5,13 @@ using System.Collections;
 
 public class Screenshooter : MonoBehaviour {
 
+    
     Camera[] cameras;
     public int resWidth = 2550;
     public int resHeight = 3300;
     //List<Texture2D> screenshots;
     Dictionary<string, List<Texture2D>> screenshots;
     public bool TakeScreenshots = false;
-
-
 
     void Awake ()
     {
@@ -21,22 +20,21 @@ public class Screenshooter : MonoBehaviour {
         foreach (var camera in cameras)
         {
             screenshots.Add(camera.gameObject.name, new List<Texture2D>());
+            //RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
+            //camera.targetTexture = rt;
         }
         //screenshots = new List<Texture2D>();  
-	}
-	
-	// Update is called once per frame
+    }
+
 	void LateUpdate ()
     {
         if (TakeScreenshots)
         {
-            //TakeScreenshot(cameras[0]);
             foreach (var camera in cameras)
             {
                 StartCoroutine(TakeScreenshot(camera));
             }
         }
-
     }
 
     private static int screenshotId = 0;
@@ -51,19 +49,23 @@ public class Screenshooter : MonoBehaviour {
     private IEnumerator TakeScreenshot(Camera camera)
     {
         yield return new WaitForEndOfFrame();
-
+        string previousTag = camera.tag;
+        camera.tag = "MainCamera";
         RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
         camera.targetTexture = rt;
         Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.ARGB32, false);
-        RenderTexture.active = rt;
+        RenderTexture.active = camera.targetTexture;//rt;
         camera.Render();
         
         screenShot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
         screenShot.Apply();
         camera.targetTexture = null;
-        RenderTexture.active = null; // JC: added to avoid errors
+        RenderTexture.active = null;
+        screenShot.DrawRectangle(new Rect(0,0,100,100),Color.blue);
         screenshots[camera.gameObject.name].Add(screenShot);
+        
         DestroyImmediate(rt);
+        camera.tag = previousTag;
     }
 
     public void SaveScreenshotsAtDirectory(string directory)
@@ -95,7 +97,7 @@ public class Screenshooter : MonoBehaviour {
     {
         byte[] bytes = screenshot.EncodeToPNG();
         string filename = directory + ScreenShotName(cameraName);
-        Debug.Log("Saving: " + filename);
+        //Debug.Log("Saving: " + filename);
         File.WriteAllBytes(filename, bytes);
     }
 }
