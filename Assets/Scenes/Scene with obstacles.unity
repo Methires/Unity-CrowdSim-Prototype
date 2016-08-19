@@ -566,6 +566,11 @@ Prefab:
       propertyPath: SessionLength
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: ScenarioFilePath
+      value: TwoAgentsActionAndMovement
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
   m_IsPrefabParent: 0

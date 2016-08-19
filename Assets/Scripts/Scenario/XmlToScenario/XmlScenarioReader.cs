@@ -1,54 +1,56 @@
 ﻿using UnityEngine;
 using System;
+using System.IO;
 using System.Xml;
 using System.Collections.Generic;
 
-public class XmlScenarioReader
+public static class XmlScenarioReader
 {
-    private string _scenarioName;
-    private List<Level> _levelsData;
+    private static string _scenarioName;
+    private static List<Level> _levelsData;
 
-    public List<Level> ScenarioData
+    public static List<Level> ScenarioData
     {
         get
         {
             return _levelsData;
         }
-        private set
-        {
-            _levelsData = value;
-        }
     }
-    public string ScenarioName
+    public static string ScenarioName
     {
         get
         {
             return _scenarioName;
         }
-        private set
-        {
-            _scenarioName = value;
-        }
     }
 
-    private XmlDocument LoadXmlFromFile(string fileName)
+    private static XmlDocument LoadXmlFromFile(string path)
     {
+        string xmlText;
+        if (Path.HasExtension(path))
+        {
+            xmlText = File.ReadAllText(path);
+        }
+        else
+        {
+            TextAsset tAsset = Resources.Load(path) as TextAsset;
+            xmlText = tAsset.text;
+        }
         XmlDocument xml = new XmlDocument();
-        TextAsset textAsset = Resources.Load(fileName) as TextAsset;
-        xml.LoadXml(textAsset.text);
+        xml.LoadXml(xmlText);
 
         return xml;
     }
 
-    public void ParseXmlWithScenario(string fileName)
+    public static void ParseXmlWithScenario(string fileName)
     {
         XmlDocument scenario = LoadXmlFromFile(fileName);
 
         XmlElement scenarioElement = scenario.DocumentElement;
         if (scenarioElement.HasAttribute("name") && scenarioElement.Name.ToLower().Equals("scenario".ToLower()))
         {
-            ScenarioName = scenarioElement.GetAttribute("name");
-            ScenarioData = new List<Level>();
+            _scenarioName = scenarioElement.GetAttribute("name");
+            _levelsData = new List<Level>();
             for (int i = 0; i < scenarioElement.ChildNodes.Count; i++)
             { 
                 XmlNode levelElement = scenarioElement.ChildNodes.Item(i);
@@ -127,39 +129,39 @@ public class XmlScenarioReader
                                 }
                             }
                         }
-                        ScenarioData.Add(levelData);
+                        _levelsData.Add(levelData);
                     }
                 }
             }
         }
     }
 
-    public void ShowOnConsole()
+    public static void ShowOnConsole()
     {
         Debug.Log("Scenario: " + ScenarioName);
-        for (int i = 0; i < ScenarioData.Count; i++)
+        for (int i = 0; i < _levelsData.Count; i++)
         {
-            Debug.Log("Level Id: " + ScenarioData[i].Index);
-            for (int j = 0; j < ScenarioData[i].Actions.Count; j++)
+            Debug.Log("Level Id: " + _levelsData[i].Index);
+            for (int j = 0; j < _levelsData[i].Actions.Count; j++)
             {
-                Debug.Log(" Activity Id: " + ScenarioData[i].Actions[j].Index + " Name: '" + ScenarioData[i].Actions[j].Name + "' Probability: " + ScenarioData[i].Actions[j].Probability);
-                for (int k = 0; k < ScenarioData[i].Actions[j].Actors.Count; k++)
+                Debug.Log(" Activity Id: " + _levelsData[i].Actions[j].Index + " Name: '" + _levelsData[i].Actions[j].Name + "' Probability: " + _levelsData[i].Actions[j].Probability);
+                for (int k = 0; k < _levelsData[i].Actions[j].Actors.Count; k++)
                 {
-                    Debug.Log("     Actor Name: '" + ScenarioData[i].Actions[j].Actors[k].Name + "'");
-                    foreach (var previousActivity in ScenarioData[i].Actions[j].Actors[k].PreviousActivitiesIndexes)
+                    Debug.Log("     Actor Name: '" + _levelsData[i].Actions[j].Actors[k].Name + "'");
+                    foreach (var previousActivity in _levelsData[i].Actions[j].Actors[k].PreviousActivitiesIndexes)
                     {
                         Debug.Log("         Parent activity Id: " + previousActivity + "");
                     }
                 }
-                for (int k = 0; k < ScenarioData[i].Actions[j].Blends.Count; k++)
+                for (int k = 0; k < _levelsData[i].Actions[j].Blends.Count; k++)
                 {
-                    Debug.Log("     Blend Name: '" + ScenarioData[i].Actions[j].Blends[k].Name + "' Probability: " + ScenarioData[i].Actions[j].Blends[k].Probability);
+                    Debug.Log("     Blend Name: '" + _levelsData[i].Actions[j].Blends[k].Name + "' Probability: " + _levelsData[i].Actions[j].Blends[k].Probability);
                 }
             }
         }
     }
 
-    static private bool FindAttributeIndex(XmlAttributeCollection attributes, string attributeName, out int index)
+    private static bool FindAttributeIndex(XmlAttributeCollection attributes, string attributeName, out int index)
     {
         index = -1;
         for (int i = 0; i < attributes.Count; i++)

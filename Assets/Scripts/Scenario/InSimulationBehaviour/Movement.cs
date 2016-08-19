@@ -9,8 +9,6 @@ public class Movement : MonoBehaviour
     private bool _isFinished;
     private string _blendParam;
 
-    private Vector3 _lastPosition;
-
     public bool IsFinished
     {
         get
@@ -68,13 +66,7 @@ public class Movement : MonoBehaviour
     {
         if (!IsFinished)
         {
-            if (_lastPosition == transform.position)
-            {
-                Debug.Log(gameObject.name + " in the same place");
-            }
-            Debug.Log(gameObject.name + " moving");
             CheckPosition();
-            _lastPosition = transform.position;
         }
     }
 
@@ -82,7 +74,7 @@ public class Movement : MonoBehaviour
     {
         if (_nMA.remainingDistance < _nMA.stoppingDistance + Mathf.Epsilon)
         {
-            if (Vector3.Distance(_destination, transform.position) < 1.0f)
+            if (Vector3.Distance(_destination, transform.position) < _nMA.stoppingDistance * 2)
             {
                 _isFinished = true;
                 _nMA.Stop();

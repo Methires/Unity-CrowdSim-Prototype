@@ -147,10 +147,12 @@ public class Activity : MonoBehaviour
                     if (ExitTime > 0.0f)
                     {
                         _elapsedTimeCounter += Time.deltaTime;
+                        _dynamicAnimationState.EnterState();
                     }
 
                     if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
                     {
+                        _dynamicAnimationState.ExitState();
                         _isFinished = true;
                     }
                 }

@@ -9,15 +9,17 @@ using System.Collections.Generic;
 public class SimulationController : MonoBehaviour
 {
     public int Repeats;
-    public int SimultaneousScenarioInstances;
-    public string ScenarioFileName;
-    public string ScreenshotsDirectory = "D:/Screenshots";
+    [Header("Scenario")]
+    public string ScenarioFilePath;
+    public int SimultaneousScenarioInstances;  
+    [Header("Tracking")]
     public bool Tracking;
     public float SessionLength;
+    [Header("Results")]
+    public string ScreenshotsDirectory = "D:/Screenshots";
     [Header("Closing editor")]
     public bool Close;
 
-    private XmlScenarioReader _xmlReader;
     private CrowdController _crowdController;
     private SequencesCreator _sequenceCreator;
     private Screenshooter _screenshooter;
@@ -32,16 +34,14 @@ public class SimulationController : MonoBehaviour
         _sequenceCreator = GetComponent<SequencesCreator>();
         if (!Tracking)
         {
-            _xmlReader = new XmlScenarioReader();
-            _xmlReader.ParseXmlWithScenario(ScenarioFileName);
-            _sequenceCreator.RawInfoToListPerAgent(_xmlReader.ScenarioData);
+            XmlScenarioReader.ParseXmlWithScenario(ScenarioFilePath);
+            _sequenceCreator.RawInfoToListPerAgent(XmlScenarioReader.ScenarioData);
             _sequencesControllers = new List<SequenceController>();
         }
         _screenshooter = FindObjectOfType<Screenshooter>();
         string dir = string.Format("/Session-{0:yyyy-MM-dd_hh-mm-ss-tt}", System.DateTime.Now);
         ScreenshotsDirectory += dir;
         Invoke("StartInstanceOfSimulation", 0.1f);
-        //StartInstanceOfSimulation();
     }
 
     void Update()

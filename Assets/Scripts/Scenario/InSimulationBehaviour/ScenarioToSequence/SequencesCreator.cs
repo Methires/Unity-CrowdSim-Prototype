@@ -9,6 +9,14 @@ public class SequencesCreator : MonoBehaviour
     private List<GameObject> _agentsGameObjects;
     private List<List<Level>> _scenariosPerAgent;
     private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
+    
+    public List<GameObject> Agents
+    {
+        get
+        {
+            return _agentsGameObjects;
+        }
+    }
 
     public void RawInfoToListPerAgent(List<Level> data)
     {
