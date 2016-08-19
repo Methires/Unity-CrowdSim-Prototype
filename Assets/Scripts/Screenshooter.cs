@@ -5,25 +5,41 @@ using System.Collections;
 
 public class Screenshooter : MonoBehaviour {
 
-    
+    private Dictionary<string, List<Texture2D>> screenshots;
     Camera[] cameras;
-    public int resWidth = 2550;
-    public int resHeight = 3300;
-    //List<Texture2D> screenshots;
-    Dictionary<string, List<Texture2D>> screenshots;
+    private int resWidth = 2550;
+    private int resHeight = 3300;
+
+    //public int resWidth = 2550;
+    //public int resHeight = 3300;
     public bool TakeScreenshots = false;
+
+    private AnnotationCreator _annotationsCreator;
+    public AnnotationCreator AnnotationsCreator
+    {
+        get
+        {
+            return _annotationsCreator;
+        }
+
+        set
+        {
+            _annotationsCreator = value;
+        }
+    }
 
     void Awake ()
     {
-        cameras = GetComponentsInChildren<Camera>();
+
+    resWidth = Screen.width;
+    resHeight = Screen.height;
+
+    cameras = GetComponentsInChildren<Camera>();
         screenshots = new Dictionary<string, List<Texture2D>>();
         foreach (var camera in cameras)
         {
             screenshots.Add(camera.gameObject.name, new List<Texture2D>());
-            //RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
-            //camera.targetTexture = rt;
         }
-        //screenshots = new List<Texture2D>();  
     }
 
 	void LateUpdate ()
@@ -53,6 +69,7 @@ public class Screenshooter : MonoBehaviour {
         camera.tag = "MainCamera";
         RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
         camera.targetTexture = rt;
+
         Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.ARGB32, false);
         RenderTexture.active = camera.targetTexture;//rt;
         camera.Render();
@@ -61,7 +78,13 @@ public class Screenshooter : MonoBehaviour {
         screenShot.Apply();
         camera.targetTexture = null;
         RenderTexture.active = null;
-        screenShot.DrawRectangle(new Rect(0,0,100,100),Color.blue);
+       
+        List<Annotation> annotations = _annotationsCreator.GetAnnotations(camera);
+        foreach (var annotation in annotations)
+        {
+            screenShot.DrawRectangle(annotation.bounds, Color.blue);
+        } 
+
         screenshots[camera.gameObject.name].Add(screenShot);
         
         DestroyImmediate(rt);

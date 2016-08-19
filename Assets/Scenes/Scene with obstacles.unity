@@ -179,6 +179,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8118946, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+    - {fileID: 114000011431000132, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &423053611
@@ -569,7 +570,7 @@ Prefab:
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: ScenarioFilePath
-      value: TwoAgentsActionAndMovement
+      value: TestScenarioOnlyActions Short
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
@@ -780,9 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b58a6d67d6ad147a9e2e734c31f2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resWidth: 800
-  resHeight: 600
-  TakeScreenshots: 0
+  TakeScreenshots: 1
 --- !u!1 &1924919936
 GameObject:
   m_ObjectHideFlags: 0

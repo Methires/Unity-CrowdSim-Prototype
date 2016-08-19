@@ -42,6 +42,8 @@ public class SimulationController : MonoBehaviour
         _screenshooter = FindObjectOfType<Screenshooter>();
         _screnshooterActive = _screenshooter.TakeScreenshots;
 
+
+
         if (_screnshooterActive)
         {
             string dir = string.Format("/Session-{0:yyyy-MM-dd_hh-mm-ss-tt}", System.DateTime.Now);
@@ -100,10 +102,15 @@ public class SimulationController : MonoBehaviour
     {
         _crowdController.GenerateCrowd();
         _screenshooter.TakeScreenshots = _screnshooterActive;
+
+        
         if (!Tracking)
         {
             _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
         }
+
+        //AnnotationCreator annotationCreator = 
+        _screenshooter.AnnotationsCreator = new AnnotationCreator(_sequenceCreator.Agents);//annotationCreator;
         _repeatsCounter++;
         _instanceFinished = false;
         _elapsedTimeCounter = 0.0f;
