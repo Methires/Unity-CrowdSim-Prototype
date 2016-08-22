@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Screenshooter : MonoBehaviour {
 
-    public Dictionary<string, List<AnnotatedFrame>> _screenshots;
+    private Dictionary<string, List<AnnotatedFrame>> _screenshots;
     private Camera[] _cameras;
     private int _resWidth;
     private int _resHeight;
@@ -114,8 +114,23 @@ public class Screenshooter : MonoBehaviour {
     {
         foreach (KeyValuePair<string, List<AnnotatedFrame>> entry in _screenshots)
         {
+            for (int i = 0; i < entry.Value.Count; i++)
+            {
+                DestroyImmediate(entry.Value[i].frame);
+            }
             entry.Value.Clear();
         }
+        _screenshots.Clear();
+
+        Debug.Log(_screenshots.Count);
+
+        _screenshots = new Dictionary<string, List<AnnotatedFrame>>();
+        foreach (var camera in _cameras)
+        {
+            _screenshots.Add(camera.gameObject.name, new List<AnnotatedFrame>());
+        }
+
+        System.GC.Collect();
     }
 
     private void Save(Texture2D screenshot, string cameraName, string directory)
@@ -135,11 +150,6 @@ public class Screenshooter : MonoBehaviour {
             screenshotId = 0;
             var dirInfo = Directory.CreateDirectory(outerDirInfo.FullName + "/" + entry.Key + "/");
             _annotationFileWriter.SaveAnnotatedFramesAtDirectory(entry.Value, dirInfo.FullName);
-
-            //foreach (var screenshot in entry.Value)
-            //{
-            //    Save(screenshot, entry.Key, dirInfo.FullName);
-            //}
         }
 
         ClearDictionary();

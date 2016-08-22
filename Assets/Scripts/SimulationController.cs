@@ -109,10 +109,14 @@ public class SimulationController : MonoBehaviour
         if (!Tracking)
         {
             _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
+            _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);
+        }
+        else
+        {
+            _screenshooter.Annotator = new Annotator(_crowdController.Crowd);
         }
 
-        //AnnotationCreator annotationCreator = 
-        _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);//annotationCreator;
+        
         _repeatsCounter++;
         _instanceFinished = false;
         _elapsedTimeCounter = 0.0f;

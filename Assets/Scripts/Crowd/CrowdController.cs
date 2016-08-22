@@ -14,7 +14,14 @@ public class CrowdController : MonoBehaviour
 
     private float _range = 100.0f;
     private List<GameObject> _crowd;
-    
+
+    public List<GameObject> Crowd
+    {
+        get
+        {
+            return _crowd;
+        }
+    }
 
     void Awake()
     {
