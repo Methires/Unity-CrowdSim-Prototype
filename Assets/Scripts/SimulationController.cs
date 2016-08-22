@@ -110,7 +110,7 @@ public class SimulationController : MonoBehaviour
         }
 
         //AnnotationCreator annotationCreator = 
-        _screenshooter.AnnotationsCreator = new AnnotationCreator(_sequenceCreator.Agents);//annotationCreator;
+        _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);//annotationCreator;
         _repeatsCounter++;
         _instanceFinished = false;
         _elapsedTimeCounter = 0.0f;

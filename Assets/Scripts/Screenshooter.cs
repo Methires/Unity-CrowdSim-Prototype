@@ -5,40 +5,40 @@ using System.Collections;
 
 public class Screenshooter : MonoBehaviour {
 
-    private Dictionary<string, List<Texture2D>> screenshots;
-    Camera[] cameras;
-    private int resWidth = 2550;
-    private int resHeight = 3300;
+    private Dictionary<string, List<Texture2D>> _screenshots;
+    private Camera[] _cameras;
+    private int _resWidth;
+    private int _resHeight;
+    private Annotator _annotator;
+    private static int screenshotId = 0;
 
-    //public int resWidth = 2550;
-    //public int resHeight = 3300;
     public bool TakeScreenshots = false;
+    public bool MarkAgentsOnScreenshots = false;
 
-    private AnnotationCreator _annotationsCreator;
-    public AnnotationCreator AnnotationsCreator
+    public Annotator Annotator
     {
         get
         {
-            return _annotationsCreator;
+            return _annotator;
         }
 
         set
         {
-            _annotationsCreator = value;
+            _annotator = value;
         }
     }
 
     void Awake ()
     {
 
-    resWidth = Screen.width;
-    resHeight = Screen.height;
+    _resWidth = Screen.width;
+    _resHeight = Screen.height;
 
-    cameras = GetComponentsInChildren<Camera>();
-        screenshots = new Dictionary<string, List<Texture2D>>();
-        foreach (var camera in cameras)
+    _cameras = GetComponentsInChildren<Camera>();
+        _screenshots = new Dictionary<string, List<Texture2D>>();
+        foreach (var camera in _cameras)
         {
-            screenshots.Add(camera.gameObject.name, new List<Texture2D>());
+            _screenshots.Add(camera.gameObject.name, new List<Texture2D>());
         }
     }
 
@@ -46,16 +46,15 @@ public class Screenshooter : MonoBehaviour {
     {
         if (TakeScreenshots)
         {
-            foreach (var camera in cameras)
+            foreach (var camera in _cameras)
             {
                 StartCoroutine(TakeScreenshot(camera));
             }
         }
     }
 
-    private static int screenshotId = 0;
 
-    public static string ScreenShotName(string cameraName)
+    private static string ScreenShotName(string cameraName)
     {
         return string.Format("{0}_{1}.png",
                              cameraName,                                                         
@@ -67,50 +66,41 @@ public class Screenshooter : MonoBehaviour {
         yield return new WaitForEndOfFrame();
         string previousTag = camera.tag;
         camera.tag = "MainCamera";
-        RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
+        RenderTexture rt = new RenderTexture(_resWidth, _resHeight, 24);
         camera.targetTexture = rt;
 
-        Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.ARGB32, false);
-        RenderTexture.active = camera.targetTexture;//rt;
+        Texture2D screenShot = new Texture2D(_resWidth, _resHeight, TextureFormat.ARGB32, false);
+        RenderTexture.active = camera.targetTexture;
         camera.Render();
         
-        screenShot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
+        screenShot.ReadPixels(new Rect(0, 0, _resWidth, _resHeight), 0, 0);
         screenShot.Apply();
         camera.targetTexture = null;
         RenderTexture.active = null;
-       
-        List<Annotation> annotations = _annotationsCreator.GetAnnotations(camera);
-        foreach (var annotation in annotations)
-        {
-            screenShot.DrawRectangle(annotation.bounds, Color.blue);
-        } 
 
-        screenshots[camera.gameObject.name].Add(screenShot);
+        if (MarkAgentsOnScreenshots)
+        {
+            DrawAnnotationRectangles(camera, screenShot);
+        }        
+
+        _screenshots[camera.gameObject.name].Add(screenShot);
         
         DestroyImmediate(rt);
         camera.tag = previousTag;
     }
 
-    public void SaveScreenshotsAtDirectory(string directory)
+    private void DrawAnnotationRectangles(Camera camera, Texture2D screenShot)
     {
-        //string s = string.Format("Session-{0:yyyy-MM-dd_hh-mm-ss-tt}",System.DateTime.Now);
-        var outerDirInfo = Directory.CreateDirectory(directory + "/");        
-        foreach (KeyValuePair<string, List<Texture2D>> entry in screenshots)
+        List<Annotation> annotations = _annotator.MarkAgents(camera);
+        foreach (var annotation in annotations)
         {
-            screenshotId = 0;
-            var dirInfo = Directory.CreateDirectory(outerDirInfo.FullName + "/" + entry.Key + "/");
-            foreach (var screenshot in entry.Value)
-            {
-                Save(screenshot, entry.Key, dirInfo.FullName);
-            }           
+            screenShot.DrawRectangle(annotation.bounds, Color.blue);
         }
-
-        ClearDictionary();
     }
 
     private void ClearDictionary()
     {
-        foreach (KeyValuePair<string, List<Texture2D>> entry in screenshots)
+        foreach (KeyValuePair<string, List<Texture2D>> entry in _screenshots)
         {
             entry.Value.Clear();
         }
@@ -122,5 +112,22 @@ public class Screenshooter : MonoBehaviour {
         string filename = directory + ScreenShotName(cameraName);
         //Debug.Log("Saving: " + filename);
         File.WriteAllBytes(filename, bytes);
+    }
+
+    public void SaveScreenshotsAtDirectory(string directory)
+    {
+        //string s = string.Format("Session-{0:yyyy-MM-dd_hh-mm-ss-tt}",System.DateTime.Now);
+        var outerDirInfo = Directory.CreateDirectory(directory + "/");
+        foreach (KeyValuePair<string, List<Texture2D>> entry in _screenshots)
+        {
+            screenshotId = 0;
+            var dirInfo = Directory.CreateDirectory(outerDirInfo.FullName + "/" + entry.Key + "/");
+            foreach (var screenshot in entry.Value)
+            {
+                Save(screenshot, entry.Key, dirInfo.FullName);
+            }
+        }
+
+        ClearDictionary();
     }
 }

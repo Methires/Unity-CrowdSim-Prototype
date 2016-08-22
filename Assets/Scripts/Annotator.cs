@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class AnnotationCreator
+public class Annotator
 {
     private List<GameObject> _agents;
     private Vector3[] _pts = new Vector3[8];
 
-    public AnnotationCreator(List<GameObject> agents)
+    public Annotator(List<GameObject> agents)
     {
         _agents = agents;
     }
@@ -27,7 +27,7 @@ public class AnnotationCreator
         return visible;
     }
 
-    public List<Annotation> GetAnnotations(Camera camera)
+    public List<Annotation> MarkAgents(Camera camera)
     {
         List<Annotation> annotations = new List<Annotation>();
 
@@ -48,7 +48,6 @@ public class AnnotationCreator
     {
         //if (camera.WorldToScreenPoint(bounds.center).z < 0) return;
 
-        //All 8 vertices of the bounds
         _pts[0] = camera.WorldToScreenPoint(new Vector3(bounds.center.x + bounds.extents.x, bounds.center.y + bounds.extents.y, bounds.center.z + bounds.extents.z));
         _pts[1] = camera.WorldToScreenPoint(new Vector3(bounds.center.x + bounds.extents.x, bounds.center.y + bounds.extents.y, bounds.center.z - bounds.extents.z));
         _pts[2] = camera.WorldToScreenPoint(new Vector3(bounds.center.x + bounds.extents.x, bounds.center.y - bounds.extents.y, bounds.center.z + bounds.extents.z));
@@ -58,13 +57,11 @@ public class AnnotationCreator
         _pts[6] = camera.WorldToScreenPoint(new Vector3(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y, bounds.center.z + bounds.extents.z));
         _pts[7] = camera.WorldToScreenPoint(new Vector3(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y, bounds.center.z - bounds.extents.z));
 
-        //Get them in GUI space
         for (int i = 0; i < _pts.Length; i++)
         {
             _pts[i].y = Screen.height - _pts[i].y;
         }
             
-        //Calculate the min and max positions
         Vector3 min = _pts[0];
         Vector3 max = _pts[0];
         for (int i = 1; i < _pts.Length; i++)
@@ -73,7 +70,6 @@ public class AnnotationCreator
             max = Vector3.Max(max, _pts[i]);
         }
 
-        //Construct a rect of the min and max positions and apply some margin
         Rect r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
         return r;
     }
