@@ -8,8 +8,6 @@ public class DisplayActivityText : MonoBehaviour
     private Vector3[] _pts = new Vector3[8];
     private Camera _cam;
     private Texture2D _borderTexture;
-    //private Bounds _bounds;
-    //private List<Rect> _
 
     void Awake()
     {

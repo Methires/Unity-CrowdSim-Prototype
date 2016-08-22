@@ -7,6 +7,23 @@ public class Agent : MonoBehaviour
     protected Animator animator;
     protected Locomotion locomotion;
 
+    private uint _agentId;
+
+    public uint AgentId
+    {
+        get
+        {
+            return _agentId;
+        }
+    }
+
+    private static uint idCounter = 0;
+    private static uint GetId()
+    {
+        return idCounter++;
+    }
+
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -14,6 +31,8 @@ public class Agent : MonoBehaviour
 
         animator = GetComponent<Animator>();
         locomotion = new Locomotion(animator);
+
+        _agentId = GetId();
     }
 
     protected void SetupAgentLocomotion()

@@ -16,6 +16,7 @@ public class Annotator
     private bool IsVisibleFromCamera(Camera camera, GameObject agent)
     {
         bool visible = false;
+        bool inFrustum = false;
         RaycastHit hit;
 
         Vector3 direction = camera.transform.position - (agent.transform.position + agent.transform.up);
@@ -24,7 +25,12 @@ public class Annotator
             visible = hit.collider.name == camera.name;
         }
 
-        return visible;
+        Bounds bounds = agent.GetComponentsInChildren<Renderer>().Aggregate((i1, i2) => i1.bounds.extents.magnitude > i2.bounds.extents.magnitude ? i1 : i2).bounds;
+
+        Plane[] frustum = GeometryUtility.CalculateFrustumPlanes(camera);
+        inFrustum = GeometryUtility.TestPlanesAABB(frustum,bounds);
+
+        return visible && inFrustum;
     }
 
     public List<Annotation> MarkAgents(Camera camera)
@@ -37,7 +43,8 @@ public class Annotator
             {
                 Bounds bounds = agent.GetComponentsInChildren<Renderer>().Aggregate((i1, i2) => i1.bounds.extents.magnitude > i2.bounds.extents.magnitude ? i1 : i2).bounds;
                 Rect rekt = GetRect(bounds, camera);
-                annotations.Add(new Annotation(agent.name, rekt));
+                Agent a = agent.GetComponent<Agent>();            
+                annotations.Add(new Annotation(agent.name, rekt, a.AgentId,1.0f, agent.transform.position));
             }           
         }
         return annotations;

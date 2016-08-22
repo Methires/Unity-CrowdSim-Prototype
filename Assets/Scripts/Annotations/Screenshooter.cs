@@ -5,11 +5,12 @@ using System.Collections;
 
 public class Screenshooter : MonoBehaviour {
 
-    private Dictionary<string, List<Texture2D>> _screenshots;
+    public Dictionary<string, List<AnnotatedFrame>> _screenshots;
     private Camera[] _cameras;
     private int _resWidth;
     private int _resHeight;
     private Annotator _annotator;
+    private AnnotationFileWriter _annotationFileWriter;
     private static int screenshotId = 0;
 
     public bool TakeScreenshots = false;
@@ -28,17 +29,25 @@ public class Screenshooter : MonoBehaviour {
         }
     }
 
+    public Dictionary<string, List<AnnotatedFrame>> Screenshots
+    {
+        get
+        {
+            return _screenshots;
+        }
+    }
+
     void Awake ()
     {
+        _resWidth = Screen.width;
+        _resHeight = Screen.height;
+        _annotationFileWriter = new AnnotationFileWriter();
 
-    _resWidth = Screen.width;
-    _resHeight = Screen.height;
-
-    _cameras = GetComponentsInChildren<Camera>();
-        _screenshots = new Dictionary<string, List<Texture2D>>();
+        _cameras = GetComponentsInChildren<Camera>();
+        _screenshots = new Dictionary<string, List<AnnotatedFrame>>();
         foreach (var camera in _cameras)
         {
-            _screenshots.Add(camera.gameObject.name, new List<Texture2D>());
+            _screenshots.Add(camera.gameObject.name, new List<AnnotatedFrame>());
         }
     }
 
@@ -52,7 +61,6 @@ public class Screenshooter : MonoBehaviour {
             }
         }
     }
-
 
     private static string ScreenShotName(string cameraName)
     {
@@ -78,20 +86,24 @@ public class Screenshooter : MonoBehaviour {
         camera.targetTexture = null;
         RenderTexture.active = null;
 
+        List<Annotation> annotations = _annotator.MarkAgents(camera);
+
         if (MarkAgentsOnScreenshots)
         {
-            DrawAnnotationRectangles(camera, screenShot);
-        }        
+            DrawAnnotationRectangles(camera, screenShot, annotations);
+        }
 
-        _screenshots[camera.gameObject.name].Add(screenShot);
-        
+        AnnotatedFrame annotatedScreenshot = new AnnotatedFrame(screenShot, annotations);
+
+        //_screenshots[camera.gameObject.name].Add(screenShot);
+        _screenshots[camera.gameObject.name].Add(annotatedScreenshot);
+
         DestroyImmediate(rt);
         camera.tag = previousTag;
     }
 
-    private void DrawAnnotationRectangles(Camera camera, Texture2D screenShot)
-    {
-        List<Annotation> annotations = _annotator.MarkAgents(camera);
+    private void DrawAnnotationRectangles(Camera camera, Texture2D screenShot, List<Annotation> annotations)
+    {       
         foreach (var annotation in annotations)
         {
             screenShot.DrawRectangle(annotation.bounds, Color.blue);
@@ -100,7 +112,7 @@ public class Screenshooter : MonoBehaviour {
 
     private void ClearDictionary()
     {
-        foreach (KeyValuePair<string, List<Texture2D>> entry in _screenshots)
+        foreach (KeyValuePair<string, List<AnnotatedFrame>> entry in _screenshots)
         {
             entry.Value.Clear();
         }
@@ -116,16 +128,18 @@ public class Screenshooter : MonoBehaviour {
 
     public void SaveScreenshotsAtDirectory(string directory)
     {
-        //string s = string.Format("Session-{0:yyyy-MM-dd_hh-mm-ss-tt}",System.DateTime.Now);
         var outerDirInfo = Directory.CreateDirectory(directory + "/");
-        foreach (KeyValuePair<string, List<Texture2D>> entry in _screenshots)
+
+        foreach (KeyValuePair<string, List<AnnotatedFrame>> entry in Screenshots)
         {
             screenshotId = 0;
             var dirInfo = Directory.CreateDirectory(outerDirInfo.FullName + "/" + entry.Key + "/");
-            foreach (var screenshot in entry.Value)
-            {
-                Save(screenshot, entry.Key, dirInfo.FullName);
-            }
+            _annotationFileWriter.SaveAnnotatedFramesAtDirectory(entry.Value, dirInfo.FullName);
+
+            //foreach (var screenshot in entry.Value)
+            //{
+            //    Save(screenshot, entry.Key, dirInfo.FullName);
+            //}
         }
 
         ClearDictionary();

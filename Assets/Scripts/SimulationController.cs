@@ -119,12 +119,14 @@ public class SimulationController : MonoBehaviour
     private void EndInstanceOfSimulation()
     {
         _instanceFinished = true;
-        _crowdController.RemoveCrowd();
+
         if (_screnshooterActive)
         {
             _screenshooter.SaveScreenshotsAtDirectory(ScreenshotsDirectory + "/Take_" + _repeatsCounter);
             _screenshooter.TakeScreenshots = false;
-        }       
+        }
+
+        _crowdController.RemoveCrowd();      
         StartCoroutine(EndInstance());
     }
 
