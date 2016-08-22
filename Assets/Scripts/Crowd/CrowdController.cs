@@ -55,11 +55,14 @@ public class CrowdController : MonoBehaviour
 
     public void RemoveCrowd()
     {
-        for (int i = 0; i < MaxPeople; i++)
+        if (_crowd != null)
         {
-            Destroy(_crowd[i].gameObject);
+            for (int i = 0; i < MaxPeople; i++)
+            {
+                Destroy(_crowd[i].gameObject);
+            }
+            _crowd.Clear(); 
         }
-        _crowd.Clear();
     }
 
     private void CreateAgentPrefabs()

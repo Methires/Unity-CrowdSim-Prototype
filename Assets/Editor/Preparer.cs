@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
-public class Preparer
+public class Preparer: EditorWindow
 {
     static void PrepareSimulation()
     {
@@ -21,5 +22,22 @@ public class Preparer
         Debug.Log(XmlConfigReader.Data.VisualResultsType);
         Debug.Log(XmlConfigReader.Data.AnnotationsFileExtension);
         Debug.Log(XmlConfigReader.Data.AnnotationsType);
+        EditorSceneManager.OpenScene(string.Format("Assets/Scenes/{0}.unity", XmlConfigReader.Data.SceneName), OpenSceneMode.Single);
+        Debug.Log(Lightmapping.isRunning);
+        
+        //EditorApplication.isPlaying = true;
+    }
+
+    void Update()
+    {
+        if (Lightmapping.isRunning)
+        {
+            Debug.Log("Waiting for lights");
+        }
+        else
+        {
+            Debug.Log("Zajebongo");
+            EditorApplication.isPlaying = true;
+        }
     }
 }
