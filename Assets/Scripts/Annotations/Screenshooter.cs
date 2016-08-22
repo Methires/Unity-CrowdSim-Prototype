@@ -29,14 +29,6 @@ public class Screenshooter : MonoBehaviour {
         }
     }
 
-    public Dictionary<string, List<AnnotatedFrame>> Screenshots
-    {
-        get
-        {
-            return _screenshots;
-        }
-    }
-
     void Awake ()
     {
         _resWidth = Screen.width;
@@ -57,7 +49,7 @@ public class Screenshooter : MonoBehaviour {
         {
             foreach (var camera in _cameras)
             {
-                StartCoroutine(TakeScreenshot(camera));
+                TakeScreenshot(camera);
             }
         }
     }
@@ -69,9 +61,9 @@ public class Screenshooter : MonoBehaviour {
                              screenshotId++);     
     }
 
-    private IEnumerator TakeScreenshot(Camera camera)
+    private void TakeScreenshot(Camera camera)
     {
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
         string previousTag = camera.tag;
         camera.tag = "MainCamera";
         RenderTexture rt = new RenderTexture(_resWidth, _resHeight, 24);
@@ -93,10 +85,8 @@ public class Screenshooter : MonoBehaviour {
             DrawAnnotationRectangles(camera, screenShot, annotations);
         }
 
-        AnnotatedFrame annotatedScreenshot = new AnnotatedFrame(screenShot, annotations);
-
-        //_screenshots[camera.gameObject.name].Add(screenShot);
-        _screenshots[camera.gameObject.name].Add(annotatedScreenshot);
+        //AnnotatedFrame annotatedScreenshot = new AnnotatedFrame(screenShot, annotations);
+        _screenshots[camera.gameObject.name].Add(new AnnotatedFrame(screenShot, annotations));
 
         DestroyImmediate(rt);
         camera.tag = previousTag;
@@ -129,8 +119,6 @@ public class Screenshooter : MonoBehaviour {
         {
             _screenshots.Add(camera.gameObject.name, new List<AnnotatedFrame>());
         }
-
-        System.GC.Collect();
     }
 
     private void Save(Texture2D screenshot, string cameraName, string directory)
@@ -145,7 +133,7 @@ public class Screenshooter : MonoBehaviour {
     {
         var outerDirInfo = Directory.CreateDirectory(directory + "/");
 
-        foreach (KeyValuePair<string, List<AnnotatedFrame>> entry in Screenshots)
+        foreach (KeyValuePair<string, List<AnnotatedFrame>> entry in _screenshots)
         {
             screenshotId = 0;
             var dirInfo = Directory.CreateDirectory(outerDirInfo.FullName + "/" + entry.Key + "/");
