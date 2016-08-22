@@ -9,12 +9,25 @@ public class SequencesCreator : MonoBehaviour
     private List<GameObject> _agentsGameObjects;
     private List<List<Level>> _scenariosPerAgent;
     private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
-    
+    private bool _markAgents;
+
     public List<GameObject> Agents
     {
         get
         {
             return _agentsGameObjects;
+        }
+    }
+
+    public bool MarkAgents
+    {
+        get
+        {
+            return _markAgents;
+        }
+        set
+        {
+            _markAgents = value;
         }
     }
 
@@ -63,7 +76,7 @@ public class SequencesCreator : MonoBehaviour
         return actors;
     }
 
-    public List<SequenceController> GenerateInGameSequences(int simultaneousInstances, out float longestSequenceLenght)
+    public List<SequenceController> GenerateInGameSequences(int simultaneousInstances, out int longestSequenceLenght)
     {
         CreateAgentsFromCrowd(simultaneousInstances, _agentsNames.Count);
         List<List<Action>> actionSequencesPerAgent = CreateSequencesPerAgent();
@@ -71,7 +84,7 @@ public class SequencesCreator : MonoBehaviour
         List<SequenceController> sequenceControllers = new List<SequenceController>();
         _sequencesPerAgentPerInstance = new List<List<List<InGameActionInfo>>>();
         int agentIndex = 0;
-        longestSequenceLenght = 0.0f;
+        longestSequenceLenght = 0;
 
         for (int instanceIndex = 0; instanceIndex < simultaneousInstances; instanceIndex++)
         {
@@ -81,6 +94,7 @@ public class SequencesCreator : MonoBehaviour
                 List<InGameActionInfo> inGameAgentSequence = new List<InGameActionInfo>();
                 GameObject agent = _agentsGameObjects[agentIndex];
                 SequenceController seqController = agent.AddComponent<SequenceController>();
+                seqController.MarkActivities = MarkAgents;
                 for (int j = 0; j < actionSequencesPerAgent[i].Count; j++)
                 {
                     bool activityAdded = false;
@@ -117,7 +131,7 @@ public class SequencesCreator : MonoBehaviour
                 sequenceControllers.Add(seqController);
                 inGameSequencesPerAgent.Add(inGameAgentSequence);
                 float sequenceTime = CalculateAnticipatedTimeOfSequence(inGameAgentSequence, agent);
-                longestSequenceLenght = sequenceTime > longestSequenceLenght ? sequenceTime : longestSequenceLenght;
+                longestSequenceLenght = (int)sequenceTime > longestSequenceLenght ? (int)sequenceTime : longestSequenceLenght;
             }
             _sequencesPerAgentPerInstance.Add(inGameSequencesPerAgent);
         }
@@ -151,7 +165,10 @@ public class SequencesCreator : MonoBehaviour
                 crowd[index].GetComponent<GenerateDestination>().enabled = false;
                 crowd[index].AddComponent<DisplayActivityText>();
                 _agentsGameObjects.Add(crowd[index]);
-                MarkAgentWithPlane(crowd[index]);
+                if (MarkAgents)
+                {
+                    MarkAgentWithPlane(crowd[index]);
+                }
             }
         }
     }
@@ -424,7 +441,7 @@ public class SequencesCreator : MonoBehaviour
                 if (action.Actors.Count > 1)
                 {
                     List<GameObject> requiredAgents = new List<GameObject>();
-                    for (int i  = 0; i < _agentsNames.Count; i++)
+                    for (int i = 0; i < _agentsNames.Count; i++)
                     {
                         for (int j = 0; j < action.Actors.Count; j++)
                         {
@@ -472,7 +489,7 @@ public class SequencesCreator : MonoBehaviour
             }
             else if (sequence[i].Activity != null)
             {
-                string[] folders = new string[] { "Assets/Resources/Animations"};
+                string[] folders = new string[] { "Assets/Resources/Animations" };
                 string[] guids = AssetDatabase.FindAssets(sequence[i].Activity.ParameterName, folders);
                 AnimationClip anim = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guids[0]), typeof(AnimationClip)) as AnimationClip;
                 time += anim.length;

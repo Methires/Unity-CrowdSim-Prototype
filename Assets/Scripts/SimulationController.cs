@@ -11,13 +11,14 @@ public class SimulationController : MonoBehaviour
     public int Repeats;
     [Header("Scenario")]
     public string ScenarioFilePath;
-    public int SimultaneousScenarioInstances;  
+    public int SimultaneousScenarioInstances;
     [Header("Tracking")]
     public bool Tracking;
-    public float SessionLength;
+    public int SessionLength = 1;
     [Header("Results")]
     public string ScreenshotsDirectory = "D:/Screenshots";
-    [Header("Closing editor")]
+    [Header("Testing")]
+    public bool MarkWithPlanes;
     public bool Close;
 
     private CrowdController _crowdController;
@@ -33,6 +34,7 @@ public class SimulationController : MonoBehaviour
     {
         _crowdController = GetComponent<CrowdController>();
         _sequenceCreator = GetComponent<SequencesCreator>();
+        _sequenceCreator.MarkAgents = MarkWithPlanes;
         if (!Tracking)
         {
             XmlScenarioReader.ParseXmlWithScenario(ScenarioFilePath);
@@ -51,7 +53,7 @@ public class SimulationController : MonoBehaviour
         }
 
         _screenshooter.TakeScreenshots = false;
-        
+
         Invoke("StartInstanceOfSimulation", 0.1f);
     }
 
@@ -86,7 +88,7 @@ public class SimulationController : MonoBehaviour
                 {
                     EndInstanceOfSimulation();
                 }
-            } 
+            }
             else
             {
                 if (_elapsedTimeCounter >= SessionLength * 5.0f)
@@ -124,7 +126,7 @@ public class SimulationController : MonoBehaviour
         {
             _screenshooter.SaveScreenshotsAtDirectory(ScreenshotsDirectory + "/Take_" + _repeatsCounter);
             _screenshooter.TakeScreenshots = false;
-        }       
+        }
         StartCoroutine(EndInstance());
     }
 
@@ -138,7 +140,7 @@ public class SimulationController : MonoBehaviour
         else
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            EditorApplication.isPlaying = false;
             if (Close)
             {
                 EditorApplication.Exit(0);

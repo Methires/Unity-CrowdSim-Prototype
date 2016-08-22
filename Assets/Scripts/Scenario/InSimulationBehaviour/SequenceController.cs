@@ -11,17 +11,25 @@ public class SequenceController : MonoBehaviour
     private int _currentActivityIndex;
     private bool _isFinished;
     private List<GameObject> _planes;
+    private bool _markActivities;
+
+    public bool MarkActivities
+    {
+        get
+        {
+            return _markActivities;
+        }
+        set
+        {
+            _markActivities = value;
+        }
+    }
 
     public bool IsFinished
     {
         get
         {
             return _isFinished;
-        }
-
-        set
-        {
-            _isFinished = value;
         }
     }
 
@@ -32,7 +40,7 @@ public class SequenceController : MonoBehaviour
         _currentActivityIndex = -1;
         _movementScript = GetComponent<Movement>();
         _actionScript = GetComponent<Activity>();
-        IsFinished = true;
+        _isFinished = true;
     }
 
     void Update()
@@ -89,44 +97,50 @@ public class SequenceController : MonoBehaviour
                 _actionScript.ParamName = _sequence[_currentActivityIndex + 1].Activity.ParameterName;
                 GetComponent<DisplayActivityText>().ChangeText(_sequence[_currentActivityIndex + 1].Activity.ParameterName + " " + _sequence[_currentActivityIndex + 1].Activity.Blend);
             }
-            IsFinished = false;
+            _isFinished = false;
             _currentActivityIndex++;
         }
         else
         {
             GetComponent<DisplayActivityText>().ChangeText("Scenario has ended");
-            CleanUpPlanes();
-            IsFinished = true;
+            if (_markActivities)
+            {
+                CleanUpPlanes();
+            }
+            _isFinished = true;
         }
     }
 
     public void AddNewInGameAction(InGameActionInfo action)
     {
         _sequence.Add(action);
-        GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        if (action.Movement != null)
+        if (_markActivities)
         {
-            planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
-            planeMarkup.transform.position = new Vector3(action.Movement.Waypoint.x, action.Movement.Waypoint.y + 0.01f, action.Movement.Waypoint.z);
-            planeMarkup.GetComponent<Renderer>().material.color = Color.red;
-        }
-        if (action.Activity != null)
-        {
-            planeMarkup.transform.localScale = new Vector3(0.05f, 1.0f, 0.05f);
-            Vector3 position = new Vector3();
-            for (int i = _sequence.Count - 1; i>= 0; i--)
+            GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            if (action.Movement != null)
             {
-                if (_sequence[i].Movement != null)
-                {
-                    position = new Vector3(_sequence[i].Movement.Waypoint.x, _sequence[i].Movement.Waypoint.y + 0.015f, _sequence[i].Movement.Waypoint.z);
-                    break;
-                }
+                planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
+                planeMarkup.transform.position = new Vector3(action.Movement.Waypoint.x, action.Movement.Waypoint.y + 0.01f, action.Movement.Waypoint.z);
+                planeMarkup.GetComponent<Renderer>().material.color = Color.red;
             }
-            planeMarkup.transform.position = position;
-            planeMarkup.GetComponent<Renderer>().material.color = Color.yellow;
+            if (action.Activity != null)
+            {
+                planeMarkup.transform.localScale = new Vector3(0.05f, 1.0f, 0.05f);
+                Vector3 position = new Vector3();
+                for (int i = _sequence.Count - 1; i >= 0; i--)
+                {
+                    if (_sequence[i].Movement != null)
+                    {
+                        position = new Vector3(_sequence[i].Movement.Waypoint.x, _sequence[i].Movement.Waypoint.y + 0.015f, _sequence[i].Movement.Waypoint.z);
+                        break;
+                    }
+                }
+                planeMarkup.transform.position = position;
+                planeMarkup.GetComponent<Renderer>().material.color = Color.yellow;
+            }
+            Destroy(planeMarkup.GetComponent<MeshCollider>());
+            _planes.Add(planeMarkup); 
         }
-        Destroy(planeMarkup.GetComponent<MeshCollider>());
-        _planes.Add(planeMarkup);
     }
 
     private void CleanUpPlanes()

@@ -10357,6 +10357,41 @@ Prefab:
       propertyPath: WeatherConditions
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: MaxPeople
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: ScenarioFilePath
+      value: TwoAgentTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: SessionLength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: UnmarkEverything
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: MarkWithPlanes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Tracking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Time
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
   m_IsPrefabParent: 0
