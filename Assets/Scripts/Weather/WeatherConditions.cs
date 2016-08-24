@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class WeatherConditions : MonoBehaviour
 {   
@@ -9,7 +10,7 @@ public class WeatherConditions : MonoBehaviour
     [Range(1, 5)]
     public int Conditions;
 
-    void Start()
+    public void GenerateWeatherConditions()
     {
         SetLight(Time);
         SetConditions(Conditions);
@@ -55,15 +56,30 @@ public class WeatherConditions : MonoBehaviour
     private void SetConditions(int id)
     {
         Light light = FindObjectOfType<Light>();
+        Camera[] cameras = FindObjectsOfType<Camera>();
         switch (id)
         {
             case 2:
-                Instantiate(Resources.Load("Weather/Rain"));
+                foreach (var camera in cameras)
+                {
+                    GameObject rain = (GameObject)Instantiate(Resources.Load("Weather/Rain"));
+                    rain.transform.position = camera.transform.position;
+                    rain.transform.GetChild(0).transform.Translate(0.0f, 50.0f, 0.0f);
+                    rain.transform.GetChild(0).transform.rotation = Quaternion.Euler(0.0f, camera.transform.rotation.eulerAngles.y, 0.0f);
+                    rain.transform.GetChild(1).transform.Translate(0.0f, 10.0f, 0.0f);
+                }      
                 light.intensity = 0.75f;
                 light.shadowStrength = 0.5f;
                 break;
             case 3:
-                Instantiate(Resources.Load("Weather/Snow"));
+                foreach (var camera in cameras)
+                {
+                    GameObject snow = (GameObject)Instantiate(Resources.Load("Weather/Snow"));
+                    snow.transform.position = camera.transform.position;
+                    snow.transform.GetChild(0).transform.Translate(0.0f, 50.0f, 0.0f);
+                    snow.transform.GetChild(0).transform.rotation = Quaternion.Euler(0.0f, camera.transform.rotation.eulerAngles.y, 0.0f);
+                    snow.transform.GetChild(1).transform.Translate(0.0f, 10.0f, 0.0f);                  
+                }
                 light.intensity = 0.65f;
                 light.shadowStrength = 0.5f;
                 break;
@@ -73,7 +89,11 @@ public class WeatherConditions : MonoBehaviour
                 light.shadowStrength = 0.5f;
                 break;
             case 5:
-                Instantiate(Resources.Load("Weather/Fog"));
+                foreach (var camera in cameras)
+                {
+                    GameObject fog = (GameObject)Instantiate(Resources.Load("Weather/Fog"));
+                    fog.transform.position = camera.transform.position;
+                }
                 light.color = Color.gray;
                 light.intensity = 0.5f;
                 light.shadowStrength = 0.45f;

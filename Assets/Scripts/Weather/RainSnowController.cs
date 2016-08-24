@@ -43,28 +43,6 @@ public class RainSnowController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        UpdateRain();
-    }
-
-    private void UpdateRain()
-    {
-        // keep rain and mist above the camera
-        if (RainFallParticleSystem != null)
-        {
-            RainFallParticleSystem.transform.position = Camera.main.transform.position;
-            RainFallParticleSystem.transform.Translate(0.0f, 50.0f, 0.0f);
-            RainFallParticleSystem.transform.rotation = Quaternion.Euler(0.0f, Camera.main.transform.rotation.eulerAngles.y, 0.0f);
-        }
-        if (RainMistParticleSystem != null)
-        {
-            Vector3 pos = Camera.main.transform.position;
-            pos.y += 10.0f;
-            RainMistParticleSystem.transform.position = pos;
-        }
-    }
-
     private float RainFallEmissionRate()
     {
         return (RainFallParticleSystem.maxParticles / RainFallParticleSystem.startLifetime);

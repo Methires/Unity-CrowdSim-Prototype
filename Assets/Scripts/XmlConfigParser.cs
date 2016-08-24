@@ -3,11 +3,10 @@ using System;
 using System.IO;
 using System.Xml;
 
-public static class XmlConfigReader
+public static class XmlConfigParser
 {
     public struct Config
     {
-        public string SceneName;
         public int DayTime;
         public int WeatherConditions;
         public string Models;
@@ -54,7 +53,6 @@ public static class XmlConfigReader
                 switch (configElement.ChildNodes.Item(i).Name)
                 {
                     case "scene":
-                        Data.SceneName = configElement.ChildNodes.Item(i).Attributes.Item(0).Value;
                         Data.DayTime = int.Parse(configElement.ChildNodes.Item(i).Attributes.Item(1).Value);
                         Data.WeatherConditions = int.Parse(configElement.ChildNodes.Item(i).Attributes.Item(2).Value);
                         break;

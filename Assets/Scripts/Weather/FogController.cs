@@ -29,7 +29,5 @@ public class FogController : MonoBehaviour
         _material.SetFloat("_AlphaSub", AlphaSub);
         _material.SetFloat("_Pow", Pow);
         _material.SetColor("_Color", FogColor);
-        Vector3 pos = Camera.main.transform.position;
-        transform.position = pos;
     }
 }

@@ -4,8 +4,8 @@ using System.IO;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class Screenshooter : MonoBehaviour {
-
+public class Screenshooter : MonoBehaviour
+{
     private Dictionary<string, List<AnnotatedFrame>> _screenshots;
     private Camera[] _cameras;
     private int _resWidth;
@@ -36,7 +36,7 @@ public class Screenshooter : MonoBehaviour {
         _resHeight = Screen.height;
         _annotationFileWriter = new AnnotationFileWriter();
 
-        _cameras = GetComponentsInChildren<Camera>();
+        _cameras = FindObjectsOfType<Camera>();
         _screenshots = new Dictionary<string, List<AnnotatedFrame>>();
         foreach (var camera in _cameras)
         {

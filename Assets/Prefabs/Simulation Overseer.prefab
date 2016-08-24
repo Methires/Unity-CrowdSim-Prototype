@@ -9,10 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 472626}
   - 114: {fileID: 114000010119231640}
-  - 114: {fileID: 114000010568512236}
   - 114: {fileID: 114000012837680498}
+  - 114: {fileID: 114000010568512236}
   - 114: {fileID: 114000010065995636}
-  - 114: {fileID: 11424732}
+  - 114: {fileID: 114000010572236710}
+  - 114: {fileID: 114000010009204016}
   m_Layer: 0
   m_Name: Simulation Overseer
   m_TagString: GameController
@@ -33,17 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11424732
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a27f9db904c82d14891ad310acfef165, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -55,6 +45,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 166372}
   m_IsPrefabParent: 1
+--- !u!114 &114000010009204016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27f9db904c82d14891ad310acfef165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010065995636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,12 +78,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d770248ae0a979d45b4a1d9b9d024b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Repeats: 3
-  SimultaneousScenarioInstances: 2
-  ScenarioFileName: TwoAgentTest
-  ScreenshotsDirectory: D:/Screenshots
+  Repeats: 0
+  ScenarioFilePath: 
+  SimultaneousScenarioInstances: 0
   Tracking: 0
-  SessionLength: 0
+  SessionLength: 1
+  ScreenshotsDirectory: D:/Screenshots
+  LoadFromConfig: 0
+  MarkWithPlanes: 0
   Close: 0
 --- !u!114 &114000010568512236
 MonoBehaviour:
@@ -98,7 +101,21 @@ MonoBehaviour:
   Characters: []
   MaxPeople: 0
   CreatePrefabs: 0
-  LoadAgentsFromResources: 1
+  LoadAgentsFromResources: 0
+  AgentsFilter: 
+--- !u!114 &114000010572236710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b58a6d67d6ad147a9e2e734c31f2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeScreenshots: 0
+  MarkAgentsOnScreenshots: 0
 --- !u!114 &114000012837680498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e19cae10a41a8848920ae714048998d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Time: 1
-  Conditions: 1
+  Time: 0
+  Conditions: 0
