@@ -17,8 +17,6 @@ class AnnotationFileWriter
 
     public void SaveAnnotatedFramesAtDirectory(List<AnnotatedFrame> annotatedFrames, string directory)
     {
-
-        //int predictedLineSize = 50;
         StringBuilder stringBuilder = new StringBuilder();
         foreach (var annotatedFrame in annotatedFrames)
         {           

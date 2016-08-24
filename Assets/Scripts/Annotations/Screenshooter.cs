@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class Screenshooter : MonoBehaviour {
 
@@ -75,6 +76,16 @@ public class Screenshooter : MonoBehaviour {
         
         screenShot.ReadPixels(new Rect(0, 0, _resWidth, _resHeight), 0, 0);
         screenShot.Apply();
+
+        long size = 0;       
+        using (Stream s = new MemoryStream())
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(s, screenShot);
+            size = s.Length;
+            Debug.Log(size);
+        }
+
         camera.targetTexture = null;
         RenderTexture.active = null;
 

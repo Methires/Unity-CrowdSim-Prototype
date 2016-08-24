@@ -76,6 +76,8 @@ public class CrowdController : MonoBehaviour
     {
         string path = Application.dataPath + "/Characters";
         string[] files = Directory.GetFiles(path, "*.fbx", SearchOption.AllDirectories);
+        path = files[2].Remove(files[2].Length - 4, 4);
+        ModelImporter objsToPrefab = AssetDatabase.LoadAssetAtPath(path, typeof(ModelImporter)) as ModelImporter;
 
         for (int i = 0; i < files.Length; i++)
         {
@@ -90,7 +92,7 @@ public class CrowdController : MonoBehaviour
         string prefabPath = "/Resources/Agents/" + Path.GetFileNameWithoutExtension(path) + ".prefab";
         if (!PrefabExistsAtPath(Application.dataPath + prefabPath))
         {
-            GameObject objToPrefab = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) as GameObject;
+            GameObject objToPrefab = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) as GameObject;            
             objToPrefab = Instantiate(objToPrefab);
             objToPrefab = EquipAgentPrefab(objToPrefab);
             PrefabUtility.CreatePrefab("Assets" + prefabPath, objToPrefab);
@@ -106,8 +108,15 @@ public class CrowdController : MonoBehaviour
     private GameObject EquipAgentPrefab(GameObject obj)
     {
         Animator agentAnimator = obj.GetComponent<Animator>();
+
+        //Animator agentAnimator = obj.GetComponent<Animator>();
+        //string[] paths = AssetDatabase.FindAssets("Kawai_retardedAvatar.avatar");
+        //string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
+        //Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>("Assets/Resources/Kawai_retardedAvatar.avatar");
+
         var c = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Locomotion.controller");
         agentAnimator.runtimeAnimatorController = c;
+        //agentAnimator.avatar = avatar;
         obj.AddComponent<NavMeshAgent>();
         obj.AddComponent<Rigidbody>().isKinematic = true;
         obj.AddComponent<Agent>();
