@@ -159,19 +159,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 154924, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 148836, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 130834, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 187960, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 112142, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
       propertyPath: m_IsActive
@@ -478,6 +478,11 @@ Prefab:
       propertyPath: Characters.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Characters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -550,7 +555,7 @@ Prefab:
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: SimultaneousScenarioInstances
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
@@ -560,17 +565,47 @@ Prefab:
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: Tracking
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: SessionLength
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: ScenarioFilePath
       value: TestScenarioOnlyActions Short
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Repeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: LoadAgentsFromResources
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: CreatePrefabs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Characters.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010572236710, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: TakeScreenshots
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010572236710, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: MarkAgentsOnScreenshots
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
@@ -766,22 +801,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0
---- !u!1 &1667094950 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 160840, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
-  m_PrefabInternal: {fileID: 149418182}
---- !u!114 &1667094951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1667094950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b58a6d67d6ad147a9e2e734c31f2d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TakeScreenshots: 1
 --- !u!1 &1924919936
 GameObject:
   m_ObjectHideFlags: 0

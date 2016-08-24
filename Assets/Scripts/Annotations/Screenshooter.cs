@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.InteropServices;
 
 public class Screenshooter : MonoBehaviour
 {
@@ -12,10 +14,13 @@ public class Screenshooter : MonoBehaviour
     private int _resHeight;
     private Annotator _annotator;
     private AnnotationFileWriter _annotationFileWriter;
+    private SimulationController _simulationController;
+    private int _framesCounter = 0;
     private static int screenshotId = 0;
 
     public bool TakeScreenshots = false;
     public bool MarkAgentsOnScreenshots = false;
+    public int ScreenshotLimit = 1000;
 
     public Annotator Annotator
     {
@@ -35,16 +40,13 @@ public class Screenshooter : MonoBehaviour
         _resWidth = Screen.width;
         _resHeight = Screen.height;
         _annotationFileWriter = new AnnotationFileWriter();
-
+        _simulationController = FindObjectOfType<SimulationController>();
         _cameras = FindObjectsOfType<Camera>();
-        _screenshots = new Dictionary<string, List<AnnotatedFrame>>();
-        foreach (var camera in _cameras)
-        {
-            _screenshots.Add(camera.gameObject.name, new List<AnnotatedFrame>());
-        }
+
+        SetupDictionary();
     }
 
-	void LateUpdate ()
+	void Update ()
     {
         if (TakeScreenshots)
         {
@@ -53,38 +55,29 @@ public class Screenshooter : MonoBehaviour
                 TakeScreenshot(camera);
             }
         }
-    }
 
-    private static string ScreenShotName(string cameraName)
-    {
-        return string.Format("{0}_{1}.png",
-                             cameraName,                                                         
-                             screenshotId++);     
+        _framesCounter++;
+
+        if (_framesCounter * _cameras.Length > ScreenshotLimit)
+        {
+            _framesCounter = 0;
+            _simulationController.NotifyScreenshotBufferFull();
+        }
     }
 
     private void TakeScreenshot(Camera camera)
     {
-        //yield return new WaitForEndOfFrame();
         string previousTag = camera.tag;
         camera.tag = "MainCamera";
         RenderTexture rt = new RenderTexture(_resWidth, _resHeight, 24);
         camera.targetTexture = rt;
 
-        Texture2D screenShot = new Texture2D(_resWidth, _resHeight, TextureFormat.ARGB32, false);
+        Texture2D screenShot = new Texture2D(_resWidth, _resHeight, TextureFormat.RGB24, false);
         RenderTexture.active = camera.targetTexture;
         camera.Render();
         
         screenShot.ReadPixels(new Rect(0, 0, _resWidth, _resHeight), 0, 0);
         screenShot.Apply();
-
-        long size = 0;       
-        using (Stream s = new MemoryStream())
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(s, screenShot);
-            size = s.Length;
-            Debug.Log(size);
-        }
 
         camera.targetTexture = null;
         RenderTexture.active = null;
@@ -96,10 +89,10 @@ public class Screenshooter : MonoBehaviour
             DrawAnnotationRectangles(camera, screenShot, annotations);
         }
 
-        //AnnotatedFrame annotatedScreenshot = new AnnotatedFrame(screenShot, annotations);
         _screenshots[camera.gameObject.name].Add(new AnnotatedFrame(screenShot, annotations));
 
         DestroyImmediate(rt);
+        //DestroyImmediate(screenShot);
         camera.tag = previousTag;
     }
 
@@ -122,22 +115,16 @@ public class Screenshooter : MonoBehaviour
             entry.Value.Clear();
         }
         _screenshots.Clear();
+        SetupDictionary();
+    }
 
-        Debug.Log(_screenshots.Count);
-
+    private void SetupDictionary()
+    {
         _screenshots = new Dictionary<string, List<AnnotatedFrame>>();
         foreach (var camera in _cameras)
         {
             _screenshots.Add(camera.gameObject.name, new List<AnnotatedFrame>());
         }
-    }
-
-    private void Save(Texture2D screenshot, string cameraName, string directory)
-    {
-        byte[] bytes = screenshot.EncodeToPNG();
-        string filename = directory + ScreenShotName(cameraName);
-        //Debug.Log("Saving: " + filename);
-        File.WriteAllBytes(filename, bytes);
     }
 
     public void SaveScreenshotsAtDirectory(string directory)
@@ -146,7 +133,6 @@ public class Screenshooter : MonoBehaviour
 
         foreach (KeyValuePair<string, List<AnnotatedFrame>> entry in _screenshots)
         {
-            screenshotId = 0;
             var dirInfo = Directory.CreateDirectory(outerDirInfo.FullName + "/" + entry.Key + "/");
             _annotationFileWriter.SaveAnnotatedFramesAtDirectory(entry.Value, dirInfo.FullName);
         }

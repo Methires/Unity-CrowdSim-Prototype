@@ -76,8 +76,6 @@ public class CrowdController : MonoBehaviour
     {
         string path = Application.dataPath + "/Characters";
         string[] files = Directory.GetFiles(path, "*.fbx", SearchOption.AllDirectories);
-        path = files[2].Remove(files[2].Length - 4, 4);
-        ModelImporter objsToPrefab = AssetDatabase.LoadAssetAtPath(path, typeof(ModelImporter)) as ModelImporter;
 
         for (int i = 0; i < files.Length; i++)
         {

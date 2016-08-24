@@ -32,6 +32,7 @@ public class SimulationController : MonoBehaviour
     private float _elapsedTimeCounter;
     private bool _instanceFinished;
     private bool _screnshooterActive;
+    private bool _screenshotBufferFull = false;
 
     void Start()
     {
@@ -135,13 +136,24 @@ public class SimulationController : MonoBehaviour
                     Debug.Log("Aborting sequence");
                 }
             }
+
+            if (_screenshotBufferFull)
+            {
+                //EditorApplication.isPaused = true;
+                string path = ScreenshotsDirectory + "/Take_" + _repeatsCounter;
+
+                Debug.Log("Screenshot buffer full! Saving to: " +  path);
+                _screenshooter.SaveScreenshotsAtDirectory(path);
+                _screenshotBufferFull = false;
+                //EditorApplication.isPaused = false;
+            }
         }
     }
 
     private void StartInstanceOfSimulation()
     {
         _crowdController.GenerateCrowd();
-        _screenshooter.TakeScreenshots = _screnshooterActive;
+        
 
 
         if (!Tracking)
@@ -153,7 +165,7 @@ public class SimulationController : MonoBehaviour
         {
             _screenshooter.Annotator = new Annotator(_crowdController.Crowd);
         }
-
+        _screenshooter.TakeScreenshots = _screnshooterActive;
 
         _repeatsCounter++;
         _instanceFinished = false;
@@ -193,5 +205,10 @@ public class SimulationController : MonoBehaviour
                 Application.Quit();
 #endif
         }
+    }
+
+    public void NotifyScreenshotBufferFull()
+    {
+        _screenshotBufferFull = true;
     }
 }

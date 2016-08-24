@@ -12,12 +12,14 @@ class AnnotationFileWriter
 
     private void CreateAnnotationsFile(string directory, string contents)
     {
-        File.WriteAllText(directory + "annotations.txt", contents);
+        //File.WriteAllText(directory + "annotations.txt", contents);
+        File.AppendAllText(directory + "annotations.txt", contents);
     }
 
     public void SaveAnnotatedFramesAtDirectory(List<AnnotatedFrame> annotatedFrames, string directory)
     {
         StringBuilder stringBuilder = new StringBuilder();
+
         foreach (var annotatedFrame in annotatedFrames)
         {           
             foreach (var annotation in annotatedFrame.annotations)
@@ -38,7 +40,7 @@ class AnnotationFileWriter
         }
 
         CreateAnnotationsFile(directory, stringBuilder.ToString());
-        screenshotId = 0;
+        //screenshotId = 0;
     }
 
     private string ScreenShotName()
@@ -46,11 +48,17 @@ class AnnotationFileWriter
         return string.Format("{0}.png", screenshotId++);
     }
 
-    private void Save(Texture2D screenshot,  string directory)
+    private void Save(Texture2D screenshot, string directory)
     {
         byte[] bytes = screenshot.EncodeToPNG();
         string filename = directory + ScreenShotName();
-        //Debug.Log("Saving: " + filename);
-        File.WriteAllBytes(filename, bytes);
+        File.WriteAllBytes(filename, bytes);     
     }
+
+    //private void Save(byte[] screenshot, string directory)
+    //{
+    //    //byte[] bytes = screenshot.EncodeToPNG();
+    //    string filename = directory + ScreenShotName();
+    //    File.WriteAllBytes(filename, screenshot);
+    //}
 }
