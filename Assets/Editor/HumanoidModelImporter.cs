@@ -7,28 +7,44 @@ using System;
 class HumanoidModelImporter : AssetPostprocessor
 {
     private Avatar a;
+    ModelImporter modelImporter;
     private static SkeletonBone[] skeletonDescription;
     private static bool secondPass = false;
-    private static string pathfako;
+    private static string path;
+    private string htFilepath;
 
     void OnPreprocessModel()
     {
-        ModelImporter modelImporter = assetImporter as ModelImporter;
+        //htFilepath = "/Resources/Daniel.ht";
+        htFilepath = "/Resources/HumanTemplateFull.ht";
+
+        modelImporter = assetImporter as ModelImporter;
+
         modelImporter.animationType = ModelImporterAnimationType.Human;
-        AssetDatabase.WriteImportSettingsIfDirty(this.assetPath);
+        modelImporter.animationCompression = ModelImporterAnimationCompression.Optimal;
+        modelImporter.animationPositionError = 0.5f;
+        modelImporter.animationRotationError = 0.5f;
+        modelImporter.animationScaleError = 0.5f;
+        modelImporter.generateAnimations = ModelImporterGenerateAnimations.GenerateAnimations;
+        modelImporter.importAnimation = true;
+        modelImporter.resampleCurves = true;
+        var s = modelImporter.defaultClipAnimations;
+        modelImporter.optimizeGameObjects = true;
+
         modelImporter.humanDescription = ReadHumanDescription();
-        pathfako = assetPath;
+        modelImporter.sourceAvatar = null;
 
-        if (!secondPass)
-        {
-            string[] paths = AssetDatabase.FindAssets("ReptiliuszAvatar");
-            string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);//fullPath
-            Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
-            modelImporter.sourceAvatar = avatar;
-        }
 
-        //EditorUtility.SetDirty(modelImporter);
-        //EditorApplication.SaveAssets();
+        //if (!secondPass)
+        //{
+        //    string[] paths = AssetDatabase.FindAssets("MoCapAvatar");
+        //    string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);//fullPath
+        //    Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
+        //    modelImporter.sourceAvatar = avatar;
+        //}
+
+        path = assetPath;
+        AssetDatabase.WriteImportSettingsIfDirty(this.assetPath);
     }
 
     void OnPostprocessModel(GameObject g)
@@ -37,41 +53,56 @@ class HumanoidModelImporter : AssetPostprocessor
         {
             ModelImporter modelImporter = assetImporter as ModelImporter;
             skeletonDescription = modelImporter.humanDescription.skeleton;
-            //Avatar avatar = AvatarBuilder.BuildHumanAvatar(g, modelImporter.humanDescription);
-            //g.AddComponent<Animator>().avatar = avatar;
-            
+            List<GameObject> children = new List<GameObject>();
+            foreach (Transform child in g.transform)
+            {
+                children.Add(child.gameObject);
+            }
+
+            children = new List<GameObject>();
+
+            //g.AddComponent<SkinnedMeshCombiner>();
+
+            //secondPass = true;
+            //AssetDatabase.ImportAsset(path);
         }
-        
-        //avatar.name = g.name + "Avatar";
-        //AssetDatabase.CreateAsset(avatar, "Assets/Resources/" + avatar.name + ".avatar");
+    }
+
+    void OnPreprocessAnimation()
+    {
+        var modelImporter = assetImporter as ModelImporter;
+        modelImporter.clipAnimations = modelImporter.defaultClipAnimations;
+        int i = 0;
     }
 
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {
-        if (!secondPass)
-        {
-            secondPass = true;
-            AssetDatabase.ImportAsset(pathfako);
-        }
+        int i = 0;
     }
 
     private HumanDescription ReadHumanDescription()
     {
         HumanDescription humanDescription = new HumanDescription();
         List<HumanBone> humanBones = new List<HumanBone>();
-        string[] lines = ReadFileLines();      
+        string[] lines = ReadFileLines();
         string[] pair;
 
         //Description starts in 10th line
         for (int i = 9; i < lines.Length; i++)
         {
-            lines[i] = lines[i].Replace(" ", string.Empty);
-            pair = lines[i].Split(':');
+            pair = lines[i].Split(new string[] { ": " }, StringSplitOptions.None);
+            pair[0] = pair[0].Replace(" ", string.Empty);
+            pair[1] = pair[1].Replace(" ", string.Empty);
+
             HumanBone newBone = new HumanBone();
             newBone.humanName = pair[0];
             newBone.boneName = pair[1];
+            HumanLimit limit = new HumanLimit();
+            limit.useDefaultValues = true;
+            newBone.limit = limit;
             humanBones.Add(newBone);
         }
+
         humanDescription.human = humanBones.ToArray();
         humanDescription.upperArmTwist = 0.5f;
         humanDescription.lowerArmTwist = 0.5f;
@@ -80,37 +111,19 @@ class HumanoidModelImporter : AssetPostprocessor
         humanDescription.armStretch = 0.05f;
         humanDescription.legStretch = 0.05f;
         humanDescription.feetSpacing = 0.0f;
-
+        humanDescription.hasTranslationDoF = true;
 
         if (secondPass)
         {
-            humanDescription.skeleton = skeletonDescription;
+            //Uncomment to have avatar based on Reptiliusz
+            //humanDescription.skeleton = skeletonDescription;
         }
-
-        //foreach (KeyValuePair<string, string> equivalent in boneEquivalents)
-        //{
-        //    HumanBone newBone = new HumanBone();
-        //    newBone.humanName = equivalent.Key;
-
-
-        //    humanBones.Add(newBone);
-        //}
-        //HumanBone b = new HumanBone();
-        //humanDescription.skeleton
-
-        //SkeletonBone a = new SkeletonBone();
-        //HumanPose a = new HumanPose();
-
-        //var b = HumanTrait.BoneName;
-        //var c = HumanTrait.MuscleName;
-        //var d = HumanTrait.RequiredBoneCount;
-        //var e = HumanTrait.MuscleCount;
         return humanDescription;
     }
 
     private string[] ReadFileLines()
     {
-        string path = Application.dataPath + "/Resources/HumanTemplate.ht";
+        string path = Application.dataPath + htFilepath;
         List<string> readLines = new List<string>();
 
         try
@@ -131,7 +144,5 @@ class HumanoidModelImporter : AssetPostprocessor
 
         return readLines.ToArray();
     }
-    
-
 
 }

@@ -105,16 +105,16 @@ public class CrowdController : MonoBehaviour
 
     private GameObject EquipAgentPrefab(GameObject obj)
     {
+        //Animator agentAnimator = obj.AddComponent<Animator>();
         Animator agentAnimator = obj.GetComponent<Animator>();
 
-        //Animator agentAnimator = obj.GetComponent<Animator>();
-        //string[] paths = AssetDatabase.FindAssets("Kawai_retardedAvatar.avatar");
+        //string[] paths = AssetDatabase.FindAssets("ReptiliuszAvatar");
         //string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
-        //Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>("Assets/Resources/Kawai_retardedAvatar.avatar");
+        //Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);//("Assets/Resources/Kawai_retardedAvatar.avatar");
+        //agentAnimator.avatar = avatar;
 
         var c = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Locomotion.controller");
         agentAnimator.runtimeAnimatorController = c;
-        //agentAnimator.avatar = avatar;
         obj.AddComponent<NavMeshAgent>();
         obj.AddComponent<Rigidbody>().isKinematic = true;
         obj.AddComponent<Agent>();

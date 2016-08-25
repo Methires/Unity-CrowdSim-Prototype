@@ -54,14 +54,14 @@ public class Screenshooter : MonoBehaviour
             {
                 TakeScreenshot(camera);
             }
-        }
 
-        _framesCounter++;
+            _framesCounter++;
 
-        if (_framesCounter * _cameras.Length > ScreenshotLimit)
-        {
-            _framesCounter = 0;
-            _simulationController.NotifyScreenshotBufferFull();
+            if (_framesCounter * _cameras.Length > ScreenshotLimit)
+            {
+                _framesCounter = 0;
+                _simulationController.NotifyScreenshotBufferFull();
+            }
         }
     }
 
