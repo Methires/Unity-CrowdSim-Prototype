@@ -105,14 +105,15 @@ public class CrowdController : MonoBehaviour
 
     private GameObject EquipAgentPrefab(GameObject obj)
     {
+        ////Uncomment to find avatar when none is generated
         //Animator agentAnimator = obj.AddComponent<Animator>();
-        Animator agentAnimator = obj.GetComponent<Animator>();
-
         //string[] paths = AssetDatabase.FindAssets("ReptiliuszAvatar");
         //string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
         //Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);//("Assets/Resources/Kawai_retardedAvatar.avatar");
         //agentAnimator.avatar = avatar;
 
+
+        Animator agentAnimator = obj.GetComponent<Animator>();
         var c = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Locomotion.controller");
         agentAnimator.runtimeAnimatorController = c;
         obj.AddComponent<NavMeshAgent>();

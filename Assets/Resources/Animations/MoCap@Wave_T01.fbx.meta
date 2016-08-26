@@ -263,8 +263,7 @@ ModelImporter:
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: "\nClip 'wave_hello_T01_x2d' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Daniel_ROM:Solving:Spine1' is inbetween
+      that might lower retargeting quality:\n\t'Daniel_ROM:Solving:Spine1' is inbetween
       humanoid transforms and has rotation animation that will be discarded.\n\t'Daniel_ROM:Solving:Spine3'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
@@ -279,7 +278,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Wave_T01
       takeName: wave_hello_T01_x2d
-      firstFrame: 1
+      firstFrame: 273
       lastFrame: 864
       wrapMode: 0
       orientationOffsetY: 0
@@ -1361,8 +1360,9 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+    hasTranslationDoF: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b5863b0cf7c0afa4cb2d0b5c2a1d0f52,
+    type: 3}
   animationType: 3
   humanoidOversampling: 1
   additionalBone: 0

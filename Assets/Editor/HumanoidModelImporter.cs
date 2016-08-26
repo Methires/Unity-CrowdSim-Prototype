@@ -1,24 +1,34 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System;
+using UnityEngine;
+using UnityEditor;
 
 class HumanoidModelImporter : AssetPostprocessor
 {
-    private Avatar a;
-    ModelImporter modelImporter;
+    private string _htFilepath;
+    private string _mocapActorId;
+    private bool _isAnimation = false;
+
     private static SkeletonBone[] skeletonDescription;
     private static bool secondPass = false;
     private static string path;
-    private string htFilepath;
 
     void OnPreprocessModel()
     {
-        //htFilepath = "/Resources/Daniel.ht";
-        htFilepath = "/Resources/HumanTemplateFull.ht";
+        if (assetPath.Contains("@"))
+        {
+            _mocapActorId = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
+            _isAnimation = true;
+            _htFilepath = "/Resources/MocapTemplate.ht";
+        }
+        else
+        {
+            _htFilepath = "/Resources/HumanTemplateFull.ht";
+        }
 
-        modelImporter = assetImporter as ModelImporter;
+
+        ModelImporter modelImporter = assetImporter as ModelImporter;
 
         modelImporter.animationType = ModelImporterAnimationType.Human;
         modelImporter.animationCompression = ModelImporterAnimationCompression.Optimal;
@@ -44,15 +54,18 @@ class HumanoidModelImporter : AssetPostprocessor
         //}
 
         path = assetPath;
-        AssetDatabase.WriteImportSettingsIfDirty(this.assetPath);
+        //AssetDatabase.WriteImportSettingsIfDirty(this.assetPath);
     }
 
     void OnPostprocessModel(GameObject g)
     {
         if (!secondPass)
         {
+            AnimationClip[] clips = AnimationUtility.GetAnimationClips(g);
+
             ModelImporter modelImporter = assetImporter as ModelImporter;
             skeletonDescription = modelImporter.humanDescription.skeleton;
+
             List<GameObject> children = new List<GameObject>();
             foreach (Transform child in g.transform)
             {
@@ -60,11 +73,7 @@ class HumanoidModelImporter : AssetPostprocessor
             }
 
             children = new List<GameObject>();
-
-            //g.AddComponent<SkinnedMeshCombiner>();
-
             //secondPass = true;
-            //AssetDatabase.ImportAsset(path);
         }
     }
 
@@ -87,12 +96,17 @@ class HumanoidModelImporter : AssetPostprocessor
         string[] lines = ReadFileLines();
         string[] pair;
 
-        //Description starts in 10th line
+        //Description starts in the 10th line
         for (int i = 9; i < lines.Length; i++)
         {
             pair = lines[i].Split(new string[] { ": " }, StringSplitOptions.None);
             pair[0] = pair[0].Replace(" ", string.Empty);
             pair[1] = pair[1].Replace(" ", string.Empty);
+
+            if (_isAnimation)
+            {
+                pair[1] = _mocapActorId + ":" + pair[1];
+            }
 
             HumanBone newBone = new HumanBone();
             newBone.humanName = pair[0];
@@ -123,7 +137,7 @@ class HumanoidModelImporter : AssetPostprocessor
 
     private string[] ReadFileLines()
     {
-        string path = Application.dataPath + htFilepath;
+        string path = Application.dataPath + _htFilepath;
         List<string> readLines = new List<string>();
 
         try
