@@ -1,6 +1,6 @@
-<config>
-	<scene name="City like scene" daytime="1" conditions="2"/>
-	<crowd models="Helena|John|Reptiliusz" maxpeople="75"/>
-	<simulation tracking="True" scenariopath="TwoAgentTest" length="15" repeats="1" instances="2"/>
-	<results path="D:/Screenshots" file="jpg" type="3" annotationsfile="txt" annotationstype="1" />
+ <config>
+	<scene name="City like scene" daytime="2" conditions="1"/>
+	<crowd models="" maxpeople="100" actions=""/>
+	<simulation tracking="True" scenariofile="" length="15" repeats="2" instances="1"/>
+	<results path="D:/Screenshots" boundingboxes="True"/>
 </config>

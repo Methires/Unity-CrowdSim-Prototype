@@ -11,9 +11,11 @@ public class CrowdController : MonoBehaviour
     public bool CreatePrefabs = false;
     public bool LoadAgentsFromResources = false;
     public string AgentsFilter = "";
+    public string ActionsFilter = "";
 
     private float _range = 100.0f;
     private List<GameObject> _crowd;
+    private Level _crowdActions;
 
     public List<GameObject> Crowd
     {
@@ -139,5 +141,33 @@ public class CrowdController : MonoBehaviour
             agents.Add(Resources.Load<GameObject>("Agents/" + path));
         }
         Characters = agents.ToArray();       
+    }
+
+    private void PrepareScenario()
+    {
+        _crowdActions = new Level();
+        List<Action> actions = new List<Action>();
+        string[] actionsNames = ActionsFilter.Split('|');
+        float movementProbability = 0.9f;
+        float actionsProbability = 1.0f - movementProbability;
+        foreach (string actionName in actionsNames)
+        {
+            actions.Add(new Action
+            {
+                Name = actionName,
+                Probability = actionsProbability / actionsNames.Length
+            });
+        }
+        actions.Add(new Action
+        {
+            Name = "walk",
+            Probability = movementProbability * 3 /4
+        });
+        actions.Add(new Action
+        {
+            Name = "run",
+            Probability = actionsProbability / 4
+        });
+        _crowdActions.Actions = actions;
     }
 }

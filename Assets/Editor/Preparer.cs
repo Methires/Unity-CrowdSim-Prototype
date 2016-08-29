@@ -6,9 +6,8 @@ public class Preparer
 {
     static void PrepareSimulation()
     {
-        XmlConfigReader.ParseXmlWithConfiguration(Application.dataPath + "/config.xml");
-        EditorSceneManager.OpenScene(string.Format("Assets/Scenes/{0}.unity", XmlConfigReader.Data.SceneName), OpenSceneMode.Single);
-        //LayoutHack.LoadLayoutHack();
+        SceneNameGetter.ParseXmlConfig(Application.dataPath + "/config.xml");
+        EditorSceneManager.OpenScene(string.Format("Assets/Scenes/{0}.unity", SceneNameGetter.SceneName), OpenSceneMode.Single);
         EditorApplication.isPlaying = true;
     }
 }
