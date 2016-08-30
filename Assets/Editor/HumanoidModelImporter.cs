@@ -3,11 +3,13 @@ using System.IO;
 using System;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 class HumanoidModelImporter : AssetPostprocessor
 {
-    private string _htFilepath;
-    private string _mocapActorId;
+    private string _mocapActorIds;
+    private string _htFilepath = "/Resources/HumanTemplateFull.ht";
+    private string _referenceAvatarName = "B3010@Kopanie-E19-R02-T01Avatar";
     private bool _isAnimation = false;
 
     private static SkeletonBone[] skeletonDescription;
@@ -18,15 +20,10 @@ class HumanoidModelImporter : AssetPostprocessor
     {
         if (assetPath.Contains("@"))
         {
-            _mocapActorId = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
+            _mocapActorIds = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
             _isAnimation = true;
             _htFilepath = "/Resources/MocapTemplate.ht";
         }
-        else
-        {
-            _htFilepath = "/Resources/HumanTemplateFull.ht";
-        }
-
 
         ModelImporter modelImporter = assetImporter as ModelImporter;
 
@@ -38,55 +35,96 @@ class HumanoidModelImporter : AssetPostprocessor
         modelImporter.generateAnimations = ModelImporterGenerateAnimations.GenerateAnimations;
         modelImporter.importAnimation = true;
         modelImporter.resampleCurves = true;
-        var s = modelImporter.defaultClipAnimations;
         modelImporter.optimizeGameObjects = true;
-
         modelImporter.humanDescription = ReadHumanDescription();
         modelImporter.sourceAvatar = null;
 
 
-        //if (!secondPass)
-        //{
-        //    string[] paths = AssetDatabase.FindAssets("MoCapAvatar");
-        //    string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);//fullPath
-        //    Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
-        //    modelImporter.sourceAvatar = avatar;
-        //}
+        if (!secondPass && _isAnimation)
+        {
+            string[] paths = AssetDatabase.FindAssets(_referenceAvatarName);
+            string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
+            Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
+            modelImporter.sourceAvatar = avatar;
+        }
 
         path = assetPath;
-        //AssetDatabase.WriteImportSettingsIfDirty(this.assetPath);
     }
 
     void OnPostprocessModel(GameObject g)
     {
-        if (!secondPass)
+        ModelImporter modelImporter = assetImporter as ModelImporter;
+        if (_isAnimation && !secondPass)
         {
-            AnimationClip[] clips = AnimationUtility.GetAnimationClips(g);
-
-            ModelImporter modelImporter = assetImporter as ModelImporter;
-            skeletonDescription = modelImporter.humanDescription.skeleton;
-
-            List<GameObject> children = new List<GameObject>();
-            foreach (Transform child in g.transform)
+            if (skeletonDescription == null)
             {
-                children.Add(child.gameObject);
+                PrepareSkeletonDescription(modelImporter);
             }
 
-            children = new List<GameObject>();
-            //secondPass = true;
+            foreach (Transform child in g.transform)
+            {
+                if (child.name == this._mocapActorIds)
+                { 
+                    modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", child.name) };
+                }
+            }
+
+            secondPass = true;
+            AssetDatabase.ImportAsset(path);
+        }
+        else
+        {
+            secondPass = false;
         }
     }
 
-    void OnPreprocessAnimation()
-    {
-        var modelImporter = assetImporter as ModelImporter;
-        modelImporter.clipAnimations = modelImporter.defaultClipAnimations;
-        int i = 0;
-    }
-
+    static bool done = false;
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {
-        int i = 0;
+        foreach (var asset in importedAssets)
+        {
+            Debug.Log("Imported: " + asset);
+            if (asset.Count(x => x == '@') > 1)
+            {
+                string[] derivedAssetNames = GenerateDerivedNames(Path.GetFileName(asset));
+
+                foreach (var assetName in derivedAssetNames)
+                {
+                    AssetDatabase.CopyAsset(asset, Path.GetDirectoryName(asset) + "/" + assetName);
+                }
+                AssetDatabase.DeleteAsset(asset);
+                AssetDatabase.Refresh();
+            }
+        }
+    }
+
+    private static string[] GenerateDerivedNames(string primordialName)
+    {
+        List<string> namesList = primordialName.Split('@').ToList();
+        string commonPart = namesList.Last();
+        namesList.Remove(commonPart);
+
+        for (int i = 0; i < namesList.Count; i++)
+        {
+            namesList[i] = string.Format("{0}@{1}", namesList[i], commonPart);
+        }
+        return namesList.ToArray();
+    }
+
+    private void PrepareSkeletonDescription(ModelImporter modelImporter)
+    {
+        skeletonDescription = modelImporter.humanDescription.skeleton;
+        List<SkeletonBone> tempSkeletonBoneList = skeletonDescription.ToList();
+
+        string refereneAvatarId = _referenceAvatarName.Split('@')[0];
+        for (int i = 0; i < tempSkeletonBoneList.Count; i++)
+        {
+            if (!tempSkeletonBoneList[i].name.Contains(refereneAvatarId))
+            {
+                tempSkeletonBoneList.RemoveAt(i);
+            }
+        }
+        skeletonDescription = tempSkeletonBoneList.ToArray();
     }
 
     private HumanDescription ReadHumanDescription()
@@ -105,7 +143,7 @@ class HumanoidModelImporter : AssetPostprocessor
 
             if (_isAnimation)
             {
-                pair[1] = _mocapActorId + ":" + pair[1];
+                pair[1] = string.Format("{0}:{1}", _mocapActorIds, pair[1]);
             }
 
             HumanBone newBone = new HumanBone();
@@ -127,10 +165,27 @@ class HumanoidModelImporter : AssetPostprocessor
         humanDescription.feetSpacing = 0.0f;
         humanDescription.hasTranslationDoF = true;
 
-        if (secondPass)
+        if (secondPass && _isAnimation)
         {
-            //Uncomment to have avatar based on Reptiliusz
-            //humanDescription.skeleton = skeletonDescription;
+            string refereneAvatarId = _referenceAvatarName.Split('@')[0];
+
+            List<SkeletonBone> skeletonBones = new List<SkeletonBone>();
+            for (int i = 0; i < skeletonDescription.Length; i++)
+            {
+                string oldName = skeletonDescription[i].name;
+                string newName = oldName.Replace(refereneAvatarId, _mocapActorIds);
+
+                SkeletonBone newSkeletonBone = new SkeletonBone();
+                newSkeletonBone.name = newName;
+                newSkeletonBone.position = skeletonDescription[i].position;
+                newSkeletonBone.rotation = skeletonDescription[i].rotation;
+                newSkeletonBone.scale = skeletonDescription[i].scale;
+                newSkeletonBone.transformModified = skeletonDescription[i].transformModified;
+
+                skeletonBones.Add(newSkeletonBone);
+            }
+
+            humanDescription.skeleton = skeletonBones.ToArray();
         }
         return humanDescription;
     }
@@ -158,5 +213,4 @@ class HumanoidModelImporter : AssetPostprocessor
 
         return readLines.ToArray();
     }
-
 }
