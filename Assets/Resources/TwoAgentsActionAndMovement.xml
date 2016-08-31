@@ -1,72 +1,72 @@
 ﻿<scenario name="TwoAgentsActionAndMovement">
 	<level id="0">
-		<activity prob="1.0" name="walk" id ="0">
+		<action prob="1.0" name="walk" id ="0">
 			<actor name="actor1">
 			</actor>
-		</activity>
-		<activity prob="1.0" name="walk" id ="1">
+		</action>
+		<action prob="1.0" name="walk" id ="1">
 			<actor name="actor2">
 			</actor>
-		</activity>
+		</action>
 	</level>
 	<level id="1">
-		<activity prob="0.5" name="MoCap@Sit_T01" id ="2">
-			<actor name="actor1">
+		<action prob="0.5" name="Sit_T01" id ="2">
+			<actor name="actor1" mocapId ="MoCap">
 				<prev id ="0"></prev>
 			</actor>
-		</activity>
-		<activity prob="0.5" name="MoCap@Wave_T01" id="3">
-			<actor name="actor1">
+		</action>
+		<action prob="0.5" name="Wave_T01" id="3">
+			<actor name="actor1" mocapId ="MoCap">
 				<prev id ="0"></prev>
 			</actor>
+			<actor name="actor2" mocapId ="MoCap">
+				<prev id="1"></prev>
+			</actor>
+		</action>
+		<action prob="0.3" name="walk" id="4">
 			<actor name="actor2">
 				<prev id="1"></prev>
 			</actor>
-		</activity>
-		<activity prob="0.3" name="walk" id="4">
+		</action>
+		<action prob="0.2" name="run" id="5">
 			<actor name="actor2">
 				<prev id="1"></prev>
 			</actor>
-		</activity>
-		<activity prob="0.2" name="run" id="5">
-			<actor name="actor2">
-				<prev id="1"></prev>
-			</actor>
-		</activity>
+		</action>
 	</level>
 	<level id="2">
-		<activity prob="1.0" name="walk" id="6">
+		<action prob="1.0" name="walk" id="6">
 			<actor name="actor1">
 				<prev id="3"></prev>
 			</actor>
-		</activity>
-		<activity prob="1.0" name="run" id="7">
+		</action>
+		<action prob="1.0" name="run" id="7">
 			<actor name="actor2">
 				<prev id="3"></prev>
 			</actor>
-		</activity>
-		<activity prob="1.0" name="MoCap@Wave_T01" id ="8">
-			<actor name="actor1">
+		</action>
+		<action prob="1.0" name="Wave_T01" id ="8">
+			<actor name="actor1" mocapId ="MoCap">
 				<prev id="2"></prev>
 			</actor>
-			<actor name="actor2">
+			<actor name="actor2" mocapId ="MoCap">
 				<prev id="4"></prev>
 				<prev id="5"></prev>
 			</actor>
-		</activity>
+		</action>
 	</level>
 	<level id="3">
-		<activity prob="1.0" name="MoCap@Sit_T01" id="9">
-			<actor name="actor1">
+		<action prob="1.0" name="Sit_T01" id="9">
+			<actor name="actor1" mocapId ="MoCap">
 				<prev id="8"></prev>
 			</actor>
-		</activity>
-		<activity prob="1.0" name="walk" id="10">
+		</action>
+		<action prob="1.0" name="walk" id="10">
 			<actor name="actor2">
         <prev id="8"></prev>
 			</actor>
 			<blend prob="0.5" name = "phone"></blend>
-		</activity>
+		</action>
 	</level>
 </scenario>
 

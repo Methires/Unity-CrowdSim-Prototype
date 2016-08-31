@@ -1,29 +1,29 @@
 ﻿<scenario name="SingularAgentActionAndMovement">
   <level id="0">
-    <activity prob="1.0" name="MoCap@Wave_T01" id ="0">
-      <actor name="actor1">
+    <action prob="1.0" name="Wave_T01" id ="0">
+      <actor name="actor1" mocapId ="MoCap">
       </actor>
-    </activity>
+    </action>
   </level>
   <level id="1">
-    <activity prob="1.0" name="MoCap@Sit_T01" id ="1">
-      <actor name="actor1">
+    <action prob="1.0" name="Sit_T01" id ="1">
+      <actor name="actor1" mocapId ="MoCap">
         <prev id ="0"></prev>
       </actor>
-    </activity>
+    </action>
   </level>
   <level id="2">
-    <activity prob="1.0" name="MoCap@Wave_T01" id ="2">
-      <actor name="actor1">
+    <action prob="1.0" name="Wave_T01" id ="2">
+      <actor name="actor1" mocapId ="MoCap">
         <prev id="1"></prev>
       </actor>
-    </activity>
+    </action>
   </level>
   <level id="3">
-    <activity prob="1.0" name="MoCap@Sit_T01" id="3">
-      <actor name="actor1">
+    <action prob="1.0" name="Sit_T01" id="3">
+      <actor name="actor1" mocapId ="MoCap">
         <prev id="2"></prev>
       </actor>
-    </activity>
+    </action>
   </level>
 </scenario>
