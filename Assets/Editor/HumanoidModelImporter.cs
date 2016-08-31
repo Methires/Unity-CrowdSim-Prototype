@@ -9,7 +9,7 @@ class HumanoidModelImporter : AssetPostprocessor
 {
     private string _mocapActorId;
     private string _htFilepath = "/Resources/HumanTemplateFull.ht";
-    private string _referenceAvatarName = "B3010@Kopanie-E19-R02-T01Avatar";
+    private string _referenceAvatarName = "B3010@ReferenceAvatar";
     private bool _isAnimation = false;
 
     private static SkeletonBone[] skeletonDescription;
