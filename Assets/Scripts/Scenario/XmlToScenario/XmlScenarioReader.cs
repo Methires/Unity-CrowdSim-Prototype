@@ -62,24 +62,24 @@ public static class XmlScenarioReader
                         Level levelData = new Level(int.Parse(levelElement.Attributes.Item(levelIndex).Value));
                         for (int j = 0; j < levelElement.ChildNodes.Count; j++)
                         {
-                            XmlNode activityElement = levelElement.ChildNodes.Item(j);
-                            if (activityElement.Name.ToLower().Equals("activity".ToLower()))
+                            XmlNode actionElement = levelElement.ChildNodes.Item(j);
+                            if (actionElement.Name.ToLower().Equals("action".ToLower()))
                             {
                                 int probParamIndex, nameParamIndex, idParamIndex;
-                                if (FindAttributeIndex(activityElement.Attributes, "prob", out probParamIndex) 
-                                    && FindAttributeIndex(activityElement.Attributes, "name", out nameParamIndex) 
-                                    && FindAttributeIndex(activityElement.Attributes, "id", out idParamIndex))
+                                if (FindAttributeIndex(actionElement.Attributes, "prob", out probParamIndex) 
+                                    && FindAttributeIndex(actionElement.Attributes, "name", out nameParamIndex) 
+                                    && FindAttributeIndex(actionElement.Attributes, "id", out idParamIndex))
                                 {
-                                    Action activityData = new Action(
-                                        activityElement.Attributes.Item(nameParamIndex).Value, 
-                                        Convert.ToSingle(activityElement.Attributes.Item(probParamIndex).Value.Replace(",", ".")), 
-                                        int.Parse(activityElement.Attributes.Item(idParamIndex).Value)
+                                    Action actionData = new Action(
+                                        actionElement.Attributes.Item(nameParamIndex).Value, 
+                                        Convert.ToSingle(actionElement.Attributes.Item(probParamIndex).Value.Replace(",", ".")), 
+                                        int.Parse(actionElement.Attributes.Item(idParamIndex).Value)
                                         );
-                                    for (int k = 0; k < activityElement.ChildNodes.Count; k++)
+                                    for (int k = 0; k < actionElement.ChildNodes.Count; k++)
                                     {
-                                        if (activityElement.ChildNodes.Item(k).Name.ToLower().Equals("actor".ToLower()))
+                                        if (actionElement.ChildNodes.Item(k).Name.ToLower().Equals("actor".ToLower()))
                                         {
-                                            XmlNode actorElement = activityElement.ChildNodes.Item(k);
+                                            XmlNode actorElement = actionElement.ChildNodes.Item(k);
                                             int actorNameIndex;
                                             if (FindAttributeIndex(actorElement.Attributes, "name", out actorNameIndex))
                                             {
@@ -106,13 +106,18 @@ public static class XmlScenarioReader
                                                         }
                                                     }
                                                 }
-                                                Actor actorData = new Actor(actorElement.Attributes.Item(actorNameIndex).Value.ToLower(),previousActionsIndexes );
-                                                activityData.Actors.Add(actorData);
+                                                Actor actorData = new Actor(actorElement.Attributes.Item(actorNameIndex).Value.ToLower(), previousActionsIndexes);
+                                                int actorMocapIdIndex;
+                                                if (FindAttributeIndex(actorElement.Attributes, "mocapId", out actorMocapIdIndex))
+                                                {
+                                                    actorData.MocapId = actorElement.Attributes.Item(actorMocapIdIndex).Value;
+                                                }                                             
+                                                actionData.Actors.Add(actorData);
                                             }
                                         }
-                                        else if (activityElement.ChildNodes.Item(k).Name.ToLower().Equals("blend".ToLower()))
+                                        else if (actionElement.ChildNodes.Item(k).Name.ToLower().Equals("blend".ToLower()))
                                         {
-                                            XmlNode blendElement = activityElement.ChildNodes.Item(k);
+                                            XmlNode blendElement = actionElement.ChildNodes.Item(k);
                                             int blendProbParamIndex;
                                             int blendNameParamIndex;
                                             if (FindAttributeIndex(blendElement.Attributes, "prob", out blendProbParamIndex) 
@@ -121,11 +126,11 @@ public static class XmlScenarioReader
                                                 Blend blendData = new Blend();
                                                 blendData.Name = blendElement.Attributes.Item(nameParamIndex).Value;
                                                 blendData.Probability = Convert.ToSingle(blendElement.Attributes.Item(blendProbParamIndex).Value.Replace(",", "."));
-                                                activityData.Blends.Add(blendData);
+                                                actionData.Blends.Add(blendData);
                                             }
                                         }
                                     }
-                                    levelData.Actions.Add(activityData);
+                                    levelData.Actions.Add(actionData);
                                 }
                             }
                         }

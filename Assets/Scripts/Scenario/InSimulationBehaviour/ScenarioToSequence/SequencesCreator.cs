@@ -97,7 +97,7 @@ public class SequencesCreator : MonoBehaviour
                 seqController.MarkActivities = MarkAgents;
                 for (int j = 0; j < actionSequencesPerAgent[i].Count; j++)
                 {
-                    bool activityAdded = false;
+                    bool actionAdded = false;
                     if (i != 0 && j + 1 < actionSequencesPerAgent[i].Count)
                     {
                         if (actionSequencesPerAgent[i][j + 1].Actors.Count > 1)
@@ -116,14 +116,14 @@ public class SequencesCreator : MonoBehaviour
                             }
                             if (otherAgentId >= 0)
                             {
-                                inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], FindLastWaypoint(inGameSequencesPerAgent[otherAgentId], j), instanceIndex));
-                                activityAdded = true;
+                                inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], FindLastWaypoint(inGameSequencesPerAgent[otherAgentId], j), instanceIndex, agent));
+                                actionAdded = true;
                             }
                         }
                     }
-                    if (!activityAdded)
+                    if (!actionAdded)
                     {
-                        inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], Vector3.zero, instanceIndex));
+                        inGameAgentSequence.Add(ActionToActivity(actionSequencesPerAgent[i][j], Vector3.zero, instanceIndex, agent));
                     }
                     seqController.AddNewInGameAction(inGameAgentSequence.Last());
                 }
@@ -262,9 +262,9 @@ public class SequencesCreator : MonoBehaviour
             {
                 continue;
             }
-            foreach (Action activity in allActions.Actions)
+            foreach (Action action in allActions.Actions)
             {
-                if (sequences[i][allActions.Index].Index == activity.Index)
+                if (sequences[i][allActions.Index].Index == action.Index)
                 {
                     forcedAction = sequences[i][allActions.Index];
                     return true;
@@ -403,7 +403,7 @@ public class SequencesCreator : MonoBehaviour
         }
     }
 
-    private InGameActionInfo ActionToActivity(Action action, Vector3 forcedWaypoint, int instanceIndex)
+    private InGameActionInfo ActionToActivity(Action action, Vector3 forcedWaypoint, int instanceIndex, GameObject agent)
     {
         MovementData mData = null;
         ActivityData aData = null;
@@ -437,7 +437,11 @@ public class SequencesCreator : MonoBehaviour
                 }
                 break;
             default:
-                aData = new ActivityData(action.Name, 10.0f);
+                string agentName = agent.name.Remove(agent.name.Length - 2, 2);
+                int agentIndex = action.Actors.IndexOf(action.Actors.FirstOrDefault(x => x.Name == agentName));
+
+                string animationClip = string.Format("{0}@{1}", action.Actors[agentIndex].MocapId, action.Name);
+                aData = new ActivityData(animationClip, 10.0f);
                 if (action.Actors.Count > 1)
                 {
                     List<GameObject> requiredAgents = new List<GameObject>();
@@ -447,8 +451,8 @@ public class SequencesCreator : MonoBehaviour
                         {
                             if (_agentsNames[i].Equals(action.Actors[j].Name))
                             {
-                                GameObject agent = GameObject.Find(_agentsNames[i] + "_" + instanceIndex);
-                                requiredAgents.Add(agent);
+                                GameObject requiredAgent = GameObject.Find(_agentsNames[i] + "_" + instanceIndex);
+                                requiredAgents.Add(requiredAgent);
                             }
                         }
                     }

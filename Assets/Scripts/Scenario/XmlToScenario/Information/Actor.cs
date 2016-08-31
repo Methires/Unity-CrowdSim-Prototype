@@ -1,6 +1,7 @@
 ﻿public class Actor
 {
     public string Name;
+    public string MocapId;
     public int[] PreviousActivitiesIndexes;
 
     public Actor()
