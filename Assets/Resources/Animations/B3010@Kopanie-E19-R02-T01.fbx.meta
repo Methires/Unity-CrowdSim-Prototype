@@ -266,7 +266,8 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - B3010:Solving:Hips
     clipAnimations:
     - serializedVersion: 16
       name: B3010_Kopanie_E19_R02_T01_x2d
@@ -562,80 +563,8 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     human:
-    - boneName: B3010:Solving:Hips
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftUpLeg
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightUpLeg
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftLeg
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightLeg
-      humanName: RightLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftFoot
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightFoot
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:Spine
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:Spine2
+    - boneName: B3010:Solving:Spine3
       humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:Neck
-      humanName: Neck
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -650,48 +579,16 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: B3010:Solving:LeftShoulder
-      humanName: LeftShoulder
+    - boneName: B3010:Solving:Hips
+      humanName: Hips
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: B3010:Solving:RightShoulder
-      humanName: RightShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftArm
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftForeArm
-      humanName: LeftLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightForeArm
-      humanName: RightLowerArm
+    - boneName: B3010:Solving:LeftFoot
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -706,8 +603,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: B3010:Solving:RightHand
-      humanName: RightHand
+    - boneName: B3010:Solving:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:LeftShoulder
+      humanName: LeftShoulder
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -722,8 +635,96 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: B3010:Solving:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: B3010:Solving:RightToeBase
       humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:Spine
+      humanName: Spine
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -736,19 +737,9 @@ ModelImporter:
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:T40_15462
       position: {x: -3.664356, y: 3.206229, z: -5.6430435}
       rotation: {x: -0.4338611, y: -0.07201153, z: 0.88248044, w: 0.16675477}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15298
-      position: {x: -3.5667272, y: 3.1869066, z: -2.198657}
-      rotation: {x: -0.2888708, y: -0.030220404, z: 0.92563134, w: 0.24258421}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:T40_12695
@@ -756,19 +747,9 @@ ModelImporter:
       rotation: {x: -0.6703001, y: -0.15014519, z: 0.7103238, w: 0.15360463}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:T40_15469
-      position: {x: -3.2990572, y: 3.1704473, z: 2.7218294}
-      rotation: {x: 0.38308492, y: 0.09336381, z: 0.87879086, w: 0.26880455}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:T40_15290
       position: {x: -3.0884511, y: 3.1387277, z: 6.0343866}
       rotation: {x: 0.46650702, y: 0.07267644, z: 0.85627186, w: 0.20949432}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_16731
-      position: {x: 0.41671866, y: 3.124783, z: 6.0754466}
-      rotation: {x: 0.7177035, y: 0.1472483, z: 0.66591686, w: 0.1406213}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:T40_16795
@@ -776,19 +757,9 @@ ModelImporter:
       rotation: {x: 0.8819163, y: 0.19947343, z: 0.4235929, w: 0.0548002}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:T40_15482
-      position: {x: 3.7772336, y: 3.178247, z: 2.347555}
-      rotation: {x: 0.92002016, y: 0.27171987, z: 0.27652222, w: 0.057155706}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:T40_13827
       position: {x: 3.58583, y: 3.1948192, z: -1.8881024}
       rotation: {x: 0.9170039, y: 0.27858385, z: -0.2832495, w: -0.035562363}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15475
-      position: {x: 3.3651416, y: 3.2115347, z: -5.8525705}
-      rotation: {x: 0.84297067, y: 0.17517146, z: -0.49693, w: -0.10851756}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Vantage_5_2107712
@@ -796,19 +767,9 @@ ModelImporter:
       rotation: {x: 0.2302817, y: 0.6860645, z: 0.21348266, w: 0.65628576}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2108360
-      position: {x: -2.6717706, y: 3.296993, z: -5.988167}
-      rotation: {x: 0.2568273, y: 0.84269327, z: 0.18399474, w: 0.43595165}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:Bonita_10_2099034
       position: {x: -3.6972644, y: 1.0161825, z: -2.695211}
       rotation: {x: 0.14387757, y: 0.9868781, z: -0.04626694, w: 0.05683486}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100738
-      position: {x: 3.8825586, y: 0.6843996, z: 2.5543985}
-      rotation: {x: 0.03553074, y: -0.17803846, z: 0.07839767, w: 0.98025185}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Bonita_10_2100716
@@ -816,19 +777,9 @@ ModelImporter:
       rotation: {x: 0.033516943, y: 0.9903162, z: -0.031460166, w: -0.13099901}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107693
-      position: {x: 2.925715, y: 3.2396648, z: 5.956731}
-      rotation: {x: -0.1730039, y: -0.4775701, z: 0.28583002, w: 0.812587}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:Vantage_5_2107733
       position: {x: -3.585263, y: 3.301673, z: -4.161928}
       rotation: {x: 0.22828148, y: 0.83735937, z: 0.21020885, w: 0.45003232}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107676
-      position: {x: -3.1727648, y: 3.2469945, z: 4.5133924}
-      rotation: {x: 0.26036772, y: 0.8344983, z: -0.15816973, w: -0.4591336}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Bonita_10_2100727
@@ -836,19 +787,9 @@ ModelImporter:
       rotation: {x: 0.21016794, y: 0.9681904, z: -0.0032240588, w: -0.13574448}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Bonita_10_2100712
-      position: {x: -3.5075817, y: 2.3488262, z: 0.4054011}
-      rotation: {x: 0.20552908, y: 0.9774007, z: 0.003920074, w: -0.04929838}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:Vantage_5_2107617
       position: {x: 3.3844185, y: 3.3133767, z: -4.455191}
       rotation: {x: 0.18269132, y: 0.45892063, z: 0.20989981, w: 0.843776}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107744
-      position: {x: 3.8428035, y: 3.259318, z: 4.1924586}
-      rotation: {x: -0.19071747, y: -0.41276568, z: 0.26287588, w: 0.85096866}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Bonita_10_2100729
@@ -856,29 +797,14 @@ ModelImporter:
       rotation: {x: 0.017219909, y: 0.09973393, z: 0.28390843, w: 0.95349497}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107727
-      position: {x: 1.0849258, y: 3.1825206, z: -4.851169}
-      rotation: {x: 0.27273098, y: 0.5844436, z: 0.16313647, w: 0.7466123}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:Bonita_10_2100744
       position: {x: 3.6609569, y: 1.2606049, z: -3.0438173}
       rotation: {x: 0.06876698, y: 0.18060787, z: 0.08873061, w: 0.97712785}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Bonita_10_2100745
-      position: {x: -3.6545894, y: 2.3550463, z: -2.6689098}
-      rotation: {x: 0.25638685, y: 0.9518196, z: 0.015334181, w: 0.16754137}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: System:Bonita_10_2100719
       position: {x: 3.8615904, y: 2.3267272, z: 2.5599658}
       rotation: {x: -0.021937625, y: -0.1671679, z: 0.28413934, w: 0.9438424}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100709
-      position: {x: 3.5719316, y: 2.3618448, z: -3.0504098}
-      rotation: {x: -0.047520846, y: 0.12044926, z: 0.25867224, w: 0.9572473}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010
@@ -1323,11 +1249,6 @@ ModelImporter:
       transformModified: 1
     - name: B3010:Solving:LeftToeBaseEnd
       position: {x: -0.0714192, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Unlabeled_Markers
-      position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1

@@ -7,7 +7,7 @@ using System.Linq;
 
 class HumanoidModelImporter : AssetPostprocessor
 {
-    private string _mocapActorIds;
+    private string _mocapActorId;
     private string _htFilepath = "/Resources/HumanTemplateFull.ht";
     private string _referenceAvatarName = "B3010@Kopanie-E19-R02-T01Avatar";
     private bool _isAnimation = false;
@@ -20,7 +20,7 @@ class HumanoidModelImporter : AssetPostprocessor
     {
         if (assetPath.Contains("@"))
         {
-            _mocapActorIds = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
+            _mocapActorId = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
             _isAnimation = true;
             _htFilepath = "/Resources/MocapTemplate.ht";
         }
@@ -38,7 +38,7 @@ class HumanoidModelImporter : AssetPostprocessor
         modelImporter.optimizeGameObjects = true;
         modelImporter.humanDescription = ReadHumanDescription();
         modelImporter.sourceAvatar = null;
-
+        modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", _mocapActorId) };
 
         if (!secondPass && _isAnimation)
         {
@@ -46,6 +46,7 @@ class HumanoidModelImporter : AssetPostprocessor
             string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
             Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
             modelImporter.sourceAvatar = avatar;
+            
         }
 
         path = assetPath;
@@ -60,15 +61,7 @@ class HumanoidModelImporter : AssetPostprocessor
             {
                 PrepareSkeletonDescription(modelImporter);
             }
-
-            foreach (Transform child in g.transform)
-            {
-                if (child.name == this._mocapActorIds)
-                { 
-                    modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", child.name) };
-                }
-            }
-
+          
             secondPass = true;
             AssetDatabase.ImportAsset(path);
         }
@@ -76,9 +69,16 @@ class HumanoidModelImporter : AssetPostprocessor
         {
             secondPass = false;
         }
+
+        //foreach (Transform child in g.transform)
+        //{
+        //    if (child.name == _mocapActorId)
+        //    {
+        //        modelImporter.extraExposedTransformPaths = new string[] { _mocapActorId + ":Solving:Hips" };//string.Format("{0}:Solving:Hips", _mocapActorId) };
+        //    }
+        //}
     }
 
-    static bool done = false;
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {
         foreach (var asset in importedAssets)
@@ -143,7 +143,7 @@ class HumanoidModelImporter : AssetPostprocessor
 
             if (_isAnimation)
             {
-                pair[1] = string.Format("{0}:{1}", _mocapActorIds, pair[1]);
+                pair[1] = string.Format("{0}:{1}", _mocapActorId, pair[1]);
             }
 
             HumanBone newBone = new HumanBone();
@@ -173,7 +173,7 @@ class HumanoidModelImporter : AssetPostprocessor
             for (int i = 0; i < skeletonDescription.Length; i++)
             {
                 string oldName = skeletonDescription[i].name;
-                string newName = oldName.Replace(refereneAvatarId, _mocapActorIds);
+                string newName = oldName.Replace(refereneAvatarId, _mocapActorId);
 
                 SkeletonBone newSkeletonBone = new SkeletonBone();
                 newSkeletonBone.name = newName;

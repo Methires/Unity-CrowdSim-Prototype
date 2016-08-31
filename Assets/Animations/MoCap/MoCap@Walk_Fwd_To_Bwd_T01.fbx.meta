@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 99cce735eed487f479d81b2c28a1debe
-timeCreated: 1468327055
+timeCreated: 1472132162
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -258,10 +258,16 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
-    optimizeGameObjects: 0
+    resampleCurves: 1
+    optimizeGameObjects: 1
     motionNodeName: 
-    animationImportErrors: 
+    animationImportErrors: '
+
+      Imported file ''MoCap@Walk_Fwd_To_Bwd_T01'' conversion failed: Transform ''Daniel_ROM:Solving:Hips''
+      for human bone ''Hips'' not found
+
+
+'
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -473,268 +479,268 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:ARIEL
       position: {x: 0.17168042, y: 1.7726922, z: -0.55484587}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:C7
       position: {x: 0.17660402, y: 1.504233, z: -0.6320811}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:CLAV
       position: {x: 0.15949827, y: 1.4383987, z: -0.45036563}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LANK
       position: {x: -0.033065546, y: 0.091660224, z: -0.614213}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LBHD
       position: {x: 0.07119705, y: 1.6706047, z: -0.55139375}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LBSH
       position: {x: 0.021739619, y: 1.4568514, z: -0.6627639}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LBWT
       position: {x: 0.1076104, y: 0.97917217, z: -0.6596694}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LELB
       position: {x: -0.31532332, y: 1.395588, z: -0.59570557}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LFHD
       position: {x: 0.07827844, y: 1.7139449, z: -0.47979927}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LFSH
       position: {x: 0.047901798, y: 1.4581021, z: -0.48277828}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LFWT
       position: {x: 0.024767691, y: 0.98376864, z: -0.41824585}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LHEL
       position: {x: 0.037445806, y: 0.038166784, z: -0.6659841}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LHIP
       position: {x: -0.022276083, y: 0.66582566, z: -0.4653512}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LIEL
       position: {x: -0.30334166, y: 1.291684, z: -0.557045}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LIHAND
       position: {x: -0.6388333, y: 1.3811934, z: -0.4775131}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LIWR
       position: {x: -0.5421003, y: 1.3347435, z: -0.47604534}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LKNE
       position: {x: -0.024241962, y: 0.4783742, z: -0.5591255}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LKNI
       position: {x: 0.11191062, y: 0.46005264, z: -0.52934456}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LMT1
       position: {x: 0.04797954, y: 0.045366, z: -0.47169107}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LMT5
       position: {x: -0.06920594, y: 0.03694482, z: -0.48041406}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LMWT
       position: {x: 0.14981458, y: 1.0702454, z: -0.37018}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LOHAND
       position: {x: -0.6484776, y: 1.3613404, z: -0.55244267}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LOWR
       position: {x: -0.566286, y: 1.3726292, z: -0.5516651}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LSHN
       position: {x: -0.03290401, y: 0.28674236, z: -0.5617517}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LTOE
       position: {x: -0.008962386, y: 0.054292347, z: -0.41213936}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LUPA
       position: {x: -0.15351667, y: 1.443704, z: -0.6039957}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:LWRE
       position: {x: -0.416375, y: 1.3712372, z: -0.59498173}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RANK
       position: {x: 0.3194031, y: 0.10892272, z: -0.6051902}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RBHD
       position: {x: 0.25208575, y: 1.677412, z: -0.5564589}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RBSH
       position: {x: 0.306139, y: 1.4479737, z: -0.6524658}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RBWT
       position: {x: 0.2247595, y: 0.9861028, z: -0.6611745}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RELB
       position: {x: 0.6289548, y: 1.3563449, z: -0.5551117}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RFHD
       position: {x: 0.24027874, y: 1.7163785, z: -0.4614232}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RFSH
       position: {x: 0.2622173, y: 1.4376183, z: -0.4552572}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RFWT
       position: {x: 0.29364005, y: 0.9697424, z: -0.40675452}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RHEL
       position: {x: 0.26081303, y: 0.046034932, z: -0.66841245}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RHIP
       position: {x: 0.33178133, y: 0.7003407, z: -0.4472751}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RIEL
       position: {x: 0.61889344, y: 1.2691969, z: -0.5318271}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RIHAND
       position: {x: 0.9781742, y: 1.3344772, z: -0.44949698}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RIWR
       position: {x: 0.89345086, y: 1.3221443, z: -0.4328641}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RKNE
       position: {x: 0.3343641, y: 0.47579306, z: -0.5532302}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RKNI
       position: {x: 0.19921714, y: 0.44785327, z: -0.53019136}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RMT1
       position: {x: 0.2445046, y: 0.029743657, z: -0.4474985}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RMT5
       position: {x: 0.3712094, y: 0.035255197, z: -0.44706672}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RMWT
       position: {x: 0.16207859, y: 1.0461935, z: -0.65959936}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:ROHAND
       position: {x: 0.9710493, y: 1.3080844, z: -0.530006}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:ROWR
       position: {x: 0.9021206, y: 1.3132282, z: -0.5236502}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RSHN
       position: {x: 0.33371222, y: 0.27448183, z: -0.56125736}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RTOE
       position: {x: 0.31368047, y: 0.049520943, z: -0.3958577}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RUPA
       position: {x: 0.49426115, y: 1.41789, z: -0.5619332}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:RWRE
       position: {x: 0.77376586, y: 1.3413032, z: -0.53043926}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:Hips
@@ -764,7 +770,7 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:LeftToeBaseEnd
       position: {x: -0.072694175, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:RightUpLeg
@@ -789,7 +795,7 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:RightToeBaseEnd
       position: {x: -0.072694175, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:Spine
@@ -799,12 +805,12 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:Spine1
       position: {x: -0, y: 0, z: 0.09460335}
-      rotation: {x: 0.038892698, y: 0.0052890102, z: 0.0015502564, w: 0.9992282}
+      rotation: {x: 0.038892705, y: 0.0052890102, z: 0.0015502566, w: 0.9992282}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:Spine2
       position: {x: -0, y: 0, z: 0.09460335}
-      rotation: {x: 0.06280781, y: 0.002732108, z: -0.0067406655, w: 0.99799913}
+      rotation: {x: 0.06280783, y: 0.002732108, z: -0.0067406665, w: 0.99799913}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:Spine3
@@ -819,12 +825,12 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:LeftArm
       position: {x: -0.15043655, y: 0, z: 0}
-      rotation: {x: 0.084511876, y: -0.06996748, z: 0.020271888, w: 0.9937562}
+      rotation: {x: 0.08451183, y: -0.06996748, z: 0.020271905, w: 0.9937562}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:LeftForeArm
       position: {x: -0.3152942, y: 0, z: 0}
-      rotation: {x: -0.0067493664, y: 0.033490922, z: 0.03510466, w: 0.99879956}
+      rotation: {x: -0.006749308, y: 0.033491023, z: 0.035104964, w: 0.9987995}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:LeftHand
@@ -839,7 +845,7 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:L_FingersEnd
       position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:LeftHandThumb1
@@ -849,12 +855,12 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:LeftHandThumb2
       position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:Neck
       position: {x: -0, y: -0.035476256, z: 0.24833381}
-      rotation: {x: 0.13728973, y: -0.020940071, z: -0.021930752, w: 0.9900667}
+      rotation: {x: 0.13728975, y: -0.020940071, z: -0.021930754, w: 0.9900667}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:Head
@@ -864,7 +870,7 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:HeadEnd
       position: {x: -0, y: 0, z: 0.15313917}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:RightShoulder
@@ -874,12 +880,12 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:RightArm
       position: {x: -0.15043655, y: 0, z: 0}
-      rotation: {x: 0.1151668, y: 0.08598907, z: -0.015303891, w: 0.989499}
+      rotation: {x: 0.11516692, y: 0.0859889, z: -0.015303976, w: 0.9894991}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:RightForeArm
       position: {x: -0.3152942, y: 0, z: 0}
-      rotation: {x: 0.003130942, y: -0.023965286, z: 0.05018648, w: 0.9984474}
+      rotation: {x: 0.0031308592, y: -0.023964971, z: 0.0501865, w: 0.9984475}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:RightHand
@@ -894,7 +900,7 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:R_FingersEnd
       position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:Solving:RightHandThumb1
@@ -904,22 +910,22 @@ ModelImporter:
       transformModified: 1
     - name: Maciek:Solving:RightHandThumb2
       position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:STRN
       position: {x: 0.14373326, y: 1.263454, z: -0.39997658}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Maciek:T10
       position: {x: 0.17075242, y: 1.1920093, z: -0.6836372}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Bonita_10_2099034
@@ -999,7 +1005,7 @@ ModelImporter:
       transformModified: 1
     - name: System:T40_15469
       position: {x: -3.4467156, y: 3.1693082, z: 2.5918367}
-      rotation: {x: 0.36519912, y: 0.08968307, z: 0.88543874, w: 0.27310243}
+      rotation: {x: 0.36519912, y: 0.08968308, z: 0.8854387, w: 0.27310246}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:T40_15475
@@ -1073,8 +1079,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Unlabeled_Markers
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     armTwist: 0.5
@@ -1085,8 +1091,9 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+    hasTranslationDoF: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b5863b0cf7c0afa4cb2d0b5c2a1d0f52,
+    type: 3}
   animationType: 3
   humanoidOversampling: 1
   additionalBone: 0

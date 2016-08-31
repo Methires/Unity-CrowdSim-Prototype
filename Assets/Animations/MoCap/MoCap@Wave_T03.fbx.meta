@@ -258,10 +258,16 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
-    optimizeGameObjects: 0
+    resampleCurves: 1
+    optimizeGameObjects: 1
     motionNodeName: 
-    animationImportErrors: 
+    animationImportErrors: '
+
+      Imported file ''MoCap@Wave_T03'' conversion failed: Transform ''MoCap:Solving:Hips''
+      for human bone ''Hips'' not found
+
+
+'
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -298,71 +304,7 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     human:
-    - boneName: Daniel_ROM:Solving:Hips
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:LeftUpLeg
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:RightUpLeg
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:LeftLeg
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:RightLeg
-      humanName: RightLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:LeftFoot
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:RightFoot
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:Spine
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:Spine2
+    - boneName: MoCap:Solving:Spine3
       humanName: Chest
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -370,15 +312,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Daniel_ROM:Solving:Neck
-      humanName: Neck
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:Head
+    - boneName: MoCap:Solving:Head
       humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -386,55 +320,23 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Daniel_ROM:Solving:LeftShoulder
-      humanName: LeftShoulder
+    - boneName: MoCap:Solving:Hips
+      humanName: Hips
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Daniel_ROM:Solving:RightShoulder
-      humanName: RightShoulder
+    - boneName: MoCap:Solving:LeftFoot
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Daniel_ROM:Solving:LeftArm
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:RightArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:LeftForeArm
-      humanName: LeftLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:RightForeArm
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Daniel_ROM:Solving:LeftHand
+    - boneName: MoCap:Solving:LeftHand
       humanName: LeftHand
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -442,15 +344,31 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Daniel_ROM:Solving:RightHand
-      humanName: RightHand
+    - boneName: MoCap:Solving:LeftForeArm
+      humanName: LeftLowerArm
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Daniel_ROM:Solving:LeftToeBase
+    - boneName: MoCap:Solving:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:LeftToeBase
       humanName: LeftToes
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -458,7 +376,71 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Daniel_ROM:Solving:RightToeBase
+    - boneName: MoCap:Solving:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightToeBase
       humanName: RightToes
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -466,615 +448,549 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: MoCap:Solving:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
-    - name: MoCap@Wave_T03(Clone)
+    - name: MoCap-Kopanie-E19-R02-T01(Clone)(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:ARIEL
-      position: {x: 0.15819982, y: 1.8224325, z: 0.31545508}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:C7
-      position: {x: 0.14744134, y: 1.5497466, z: 0.27467248}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:CLAV
-      position: {x: 0.13278054, y: 1.4720124, z: 0.45366278}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LANK
-      position: {x: -0.05371671, y: 0.1328848, z: 0.2619573}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LBHD
-      position: {x: 0.06735784, y: 1.6997972, z: 0.30812386}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LBSH
-      position: {x: 0.013312585, y: 1.5122573, z: 0.2416778}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LBWT
-      position: {x: 0.019529644, y: 1.0995346, z: 0.27298328}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LELB
-      position: {x: -0.32643524, y: 1.4564903, z: 0.2552093}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LFHD
-      position: {x: 0.06565499, y: 1.7787857, z: 0.38907915}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LFSH
-      position: {x: 0.010900599, y: 1.5071864, z: 0.3835336}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LFWT
-      position: {x: -0.024368444, y: 1.0744869, z: 0.43701747}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LHEL
-      position: {x: 0.008693458, y: 0.10317556, z: 0.18623096}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LHIP
-      position: {x: -0.034143116, y: 0.69642955, z: 0.42542043}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LIEL
-      position: {x: -0.31494918, y: 1.359968, z: 0.2802023}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LIHAND
-      position: {x: -0.6751822, y: 1.4148232, z: 0.3794056}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LIWR
-      position: {x: -0.575375, y: 1.4046109, z: 0.37445068}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LKNE
-      position: {x: -0.04532157, y: 0.51654816, z: 0.34816033}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LKNI
-      position: {x: 0.076486215, y: 0.50414425, z: 0.34327915}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LMT1
-      position: {x: 0.017782647, y: 0.06918335, z: 0.41468742}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LMT5
-      position: {x: -0.07489209, y: 0.06599738, z: 0.41422603}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LMWT
-      position: {x: 0.12886475, y: 1.1047584, z: 0.49880636}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LOHAND
-      position: {x: -0.65892226, y: 1.3873215, z: 0.27337468}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LOWR
-      position: {x: -0.58940876, y: 1.3942702, z: 0.2776}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LSHN
-      position: {x: -0.050705835, y: 0.35369244, z: 0.33145294}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LTOE
-      position: {x: -0.025052646, y: 0.07744975, z: 0.4554024}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LUPA
-      position: {x: -0.18234806, y: 1.4837831, z: 0.26513442}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:LWRE
-      position: {x: -0.43137988, y: 1.4572569, z: 0.27411935}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RANK
-      position: {x: 0.31844172, y: 0.12739033, z: 0.2546696}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RBHD
-      position: {x: 0.22639622, y: 1.690044, z: 0.31050506}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RBSH
-      position: {x: 0.2760051, y: 1.4942627, z: 0.2559969}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RBWT
-      position: {x: 0.2364442, y: 1.082826, z: 0.27658305}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RELB
-      position: {x: 0.6003306, y: 1.4178131, z: 0.29792595}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RFHD
-      position: {x: 0.23092845, y: 1.7534655, z: 0.41440383}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RFSH
-      position: {x: 0.26463038, y: 1.5051624, z: 0.38513035}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RFWT
-      position: {x: 0.28035513, y: 1.0781862, z: 0.45332813}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RHEL
-      position: {x: 0.247951, y: 0.06361009, z: 0.18861109}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RHIP
-      position: {x: 0.30260065, y: 0.70629185, z: 0.4275499}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RIEL
-      position: {x: 0.59197366, y: 1.3349785, z: 0.34843242}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RIHAND
-      position: {x: 0.95809203, y: 1.4062953, z: 0.40056938}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RIWR
-      position: {x: 0.8726065, y: 1.3892616, z: 0.40417317}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RKNE
-      position: {x: 0.31818664, y: 0.51407385, z: 0.3315692}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RKNI
-      position: {x: 0.18273056, y: 0.50634503, z: 0.34897226}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RMT1
-      position: {x: 0.25227642, y: 0.06597691, z: 0.44033894}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RMT5
-      position: {x: 0.3663875, y: 0.05249632, z: 0.42060488}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RMWT
-      position: {x: 0.12867472, y: 1.1108689, z: 0.22970358}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:ROHAND
-      position: {x: 0.9515532, y: 1.3365507, z: 0.31574765}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:ROWR
-      position: {x: 0.87184864, y: 1.3695514, z: 0.3056074}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RSHN
-      position: {x: 0.32912105, y: 0.35061988, z: 0.32547614}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RTOE
-      position: {x: 0.3073733, y: 0.07834946, z: 0.467652}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RUPA
-      position: {x: 0.47400722, y: 1.4661195, z: 0.3197307}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:RWRE
-      position: {x: 0.71133816, y: 1.4071454, z: 0.29998186}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:Hips
-      position: {x: 0.0019835979, y: 0.9572954, z: -0.00061038136}
-      rotation: {x: -0.7151776, y: 0.014841583, z: -0.03868242, w: 0.69771373}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftUpLeg
-      position: {x: -0.08929515, y: 0, z: -0.026086222}
-      rotation: {x: 0.04841205, y: -0.7053217, z: -0.020695934, w: 0.70692945}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftLeg
-      position: {x: -0.40890598, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.07014583, w: 0.9975368}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftFoot
-      position: {x: -0.43740162, y: 0, z: 0}
-      rotation: {x: -0.031782847, y: -0.07227676, z: 0.63910717, w: 0.7650543}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftToeBase
-      position: {x: -0.18833049, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.16952571, w: 0.9855258}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftToeBaseEnd
-      position: {x: -0.07223877, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightUpLeg
-      position: {x: 0.08929515, y: 0, z: -0.026086222}
-      rotation: {x: 0.08727499, y: -0.7670744, z: 0.006929302, w: 0.6355564}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightLeg
-      position: {x: -0.40890598, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.04106193, w: 0.9991566}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightFoot
-      position: {x: -0.43740162, y: 0, z: 0}
-      rotation: {x: 0.03479037, y: 0.05518737, z: 0.6469882, w: 0.75970405}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightToeBase
-      position: {x: -0.18833049, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.16182703, w: 0.98681915}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightToeBaseEnd
-      position: {x: -0.07223877, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:Spine
-      position: {x: -0, y: 0.044864774, z: 0.06729716}
-      rotation: {x: -0.058861207, y: -0.026901323, z: -0.0046384893, w: 0.9978929}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:Spine1
-      position: {x: -0, y: 0, z: 0.08972955}
-      rotation: {x: 0.07373338, y: -0.006911579, z: -0.00019813517, w: 0.997254}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:Spine2
-      position: {x: -0, y: 0, z: 0.08972955}
-      rotation: {x: 0.0035056062, y: 0.0020768608, z: 0.009279778, w: 0.9999487}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:Spine3
-      position: {x: -0, y: 0, z: 0.08972955}
-      rotation: {x: -0.012473359, y: 0.001955255, z: 0.00027685278, w: 0.99992025}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftShoulder
-      position: {x: -0.030099489, y: -0.050165813, z: 0.16253723}
-      rotation: {x: 0.0364487, y: 0.051081967, z: -0.040741567, w: 0.9971972}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftArm
-      position: {x: -0.14949413, y: 0, z: 0}
-      rotation: {x: -0.036841698, y: -0.06808563, z: 0.006958075, w: 0.99697477}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftForeArm
-      position: {x: -0.29621905, y: 0, z: 0}
-      rotation: {x: -0.004399956, y: 0.017964548, z: 0.062359966, w: 0.9978824}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftHand
-      position: {x: -0.2730592, y: 0, z: 0}
-      rotation: {x: -0.077949695, y: 0.024074713, z: -0.097884186, w: 0.99184823}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftHandEnd
-      position: {x: -0.07380835, y: 0, z: 0}
-      rotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:L_FingersEnd
-      position: {x: -0.07380835, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftHandThumb1
-      position: {x: -0.02952334, y: -0.049205564, z: -0.019682225}
-      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:LeftHandThumb2
-      position: {x: -0.07380835, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:Neck
-      position: {x: -0, y: -0.03364858, z: 0.23554006}
-      rotation: {x: 0.032875393, y: 0.0067406376, z: 0.0016913435, w: 0.9994353}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:Head
-      position: {x: -0, y: 0, z: 0.12337812}
-      rotation: {x: -0.05395111, y: -0.014146987, z: -0.007525492, w: 0.998415}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:HeadEnd
-      position: {x: -0, y: 0, z: 0.14524971}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightShoulder
-      position: {x: 0.030099489, y: -0.050165813, z: 0.16253723}
-      rotation: {x: -0.032524686, y: 0.9980634, z: 0.040926564, w: 0.033714555}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightArm
-      position: {x: -0.14949413, y: 0, z: 0}
-      rotation: {x: 0.10394676, y: 0.07021467, z: 0.008817242, w: 0.9920621}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightForeArm
-      position: {x: -0.29621905, y: 0, z: 0}
-      rotation: {x: 0.0016009805, y: -0.014152819, z: 0.06655254, w: 0.9976813}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightHand
-      position: {x: -0.2730592, y: 0, z: 0}
-      rotation: {x: 0.25038388, y: 0.01103271, z: -0.025734887, w: 0.96774167}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightHandEnd
-      position: {x: -0.07380835, y: 0, z: 0}
-      rotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071069}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:R_FingersEnd
-      position: {x: -0.07380835, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightHandThumb1
-      position: {x: -0.02952334, y: -0.049205564, z: 0.019682225}
-      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:Solving:RightHandThumb2
-      position: {x: -0.07380835, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:STRN
-      position: {x: 0.122601725, y: 1.2807491, z: 0.49043506}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Daniel_ROM:T10
-      position: {x: 0.14950998, y: 1.390314, z: 0.22847418}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2099034
-      position: {x: -3.6164715, y: 1.0199147, z: -2.843539}
-      rotation: {x: 0.1458715, y: 0.9852687, z: -0.043462362, w: 0.077962264}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100709
-      position: {x: 3.6691723, y: 2.350152, z: -2.8813512}
-      rotation: {x: -0.05318399, y: 0.09924396, z: 0.25622898, w: 0.96003586}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100712
-      position: {x: -3.5633981, y: 2.3542511, z: 0.26597333}
-      rotation: {x: 0.20523345, y: 0.97818834, z: 0.008045647, w: -0.031018496}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100716
-      position: {x: -3.5417824, y: 0.75113565, z: 2.8389854}
-      rotation: {x: 0.035399817, y: 0.992972, z: -0.030859664, w: -0.10863294}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100719
-      position: {x: 3.7149413, y: 2.3155763, z: 2.7477155}
-      rotation: {x: -0.028241497, y: -0.1888094, z: 0.28237623, w: 0.94011545}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100727
-      position: {x: -3.516202, y: 2.3488083, z: 2.8589876}
-      rotation: {x: 0.21115653, y: 0.9706571, z: 0.0017612608, w: -0.11504177}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100729
-      position: {x: 3.7058437, y: 2.3320315, z: -0.29766878}
-      rotation: {x: 0.011120834, y: 0.054006338, z: 0.34164158, w: 0.93821144}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100738
-      position: {x: 3.73129, y: 0.6706404, z: 2.742753}
-      rotation: {x: 0.03356264, y: -0.20039335, z: 0.07806124, w: 0.9760238}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100744
-      position: {x: 3.7578154, y: 1.2481939, z: -2.8699658}
-      rotation: {x: 0.06685641, y: 0.160307, z: 0.08885315, w: 0.9807839}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100745
-      position: {x: -3.5769777, y: 2.360553, z: -2.8160286}
-      rotation: {x: 0.258021, y: 0.9469085, z: 0.020333678, w: 0.19072509}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_12695
-      position: {x: 0.06526856, y: 3.209693, z: -6.050905}
-      rotation: {x: -0.6857817, y: -0.15254053, z: 0.6954783, w: 0.15081365}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_13827
-      position: {x: 3.636197, y: 3.1867278, z: -1.7181878}
-      rotation: {x: 0.92328054, y: 0.27824587, z: -0.2631546, w: -0.0296969}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15290
-      position: {x: -3.390587, y: 3.14382, z: 5.917823}
-      rotation: {x: 0.44730538, y: 0.06769051, z: 0.8662446, w: 0.21202897}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15298
-      position: {x: -3.5057778, y: 3.1934493, z: -2.3405037}
-      rotation: {x: -0.30890882, y: -0.035298847, z: 0.91890544, w: 0.24278004}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:T40_15462
-      position: {x: -3.4531722, y: 3.2130923, z: -5.792656}
-      rotation: {x: -0.45308053, y: -0.07505995, z: 0.87269074, w: 0.16581583}
+      position: {x: -3.664356, y: 3.206229, z: -5.6430435}
+      rotation: {x: -0.4338611, y: -0.07201153, z: 0.88248044, w: 0.16675477}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:T40_15469
-      position: {x: -3.4540389, y: 3.1759472, z: 2.5916698}
-      rotation: {x: 0.3636907, y: 0.08700803, z: 0.88670534, w: 0.2718682}
+    - name: System:T40_12695
+      position: {x: -0.1647838, y: 3.208966, z: -6.0520587}
+      rotation: {x: -0.6703001, y: -0.15014519, z: 0.7103238, w: 0.15360463}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:T40_15475
-      position: {x: 3.5878878, y: 3.2027724, z: -5.692968}
-      rotation: {x: 0.85386175, y: 0.17653917, z: -0.47824004, w: -0.10507364}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15482
-      position: {x: 3.6417868, y: 3.171155, z: 2.5323784}
-      rotation: {x: 0.91399395, y: 0.26932418, z: 0.29679093, w: 0.063203774}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_16731
-      position: {x: 0.11386396, y: 3.123266, z: 6.113944}
-      rotation: {x: 0.7034477, y: 0.14322577, z: 0.680951, w: 0.14475352}
+    - name: System:T40_15290
+      position: {x: -3.0884511, y: 3.1387277, z: 6.0343866}
+      rotation: {x: 0.46650702, y: 0.07267644, z: 0.85627186, w: 0.20949432}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:T40_16795
-      position: {x: 3.6578112, y: 3.1412272, z: 5.795622}
-      rotation: {x: 0.87235194, y: 0.19821347, z: 0.4428272, w: 0.060146622}
+      position: {x: 3.939542, y: 3.1506336, z: 5.603598}
+      rotation: {x: 0.8819163, y: 0.19947343, z: 0.4235929, w: 0.0548002}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107617
-      position: {x: 3.5469854, y: 3.3046453, z: -4.2954135}
-      rotation: {x: 0.17860043, y: 0.44008484, z: 0.21279271, w: 0.85390073}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107676
-      position: {x: -3.411451, y: 3.254371, z: 4.3946056}
-      rotation: {x: 0.26592958, y: 0.84437203, z: -0.15330936, w: -0.43910548}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107693
-      position: {x: 2.631483, y: 3.235562, z: 6.1102123}
-      rotation: {x: -0.17903148, y: -0.49534693, z: 0.27963397, w: 0.8027353}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107709
-      position: {x: -2.3691738, y: 3.237411, z: 6.1920643}
-      rotation: {x: 0.26585644, y: 0.82052857, z: -0.12391399, w: -0.49061042}
+    - name: System:T40_13827
+      position: {x: 3.58583, y: 3.1948192, z: -1.8881024}
+      rotation: {x: 0.9170039, y: 0.27858385, z: -0.2832495, w: -0.035562363}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Vantage_5_2107712
-      position: {x: 0.2793067, y: 3.2974849, z: -6.0892053}
-      rotation: {x: 0.22532806, y: 0.67233294, z: 0.21683702, w: 0.67095256}
+      position: {x: 0.045582183, y: 3.2948067, z: -6.095933}
+      rotation: {x: 0.2302817, y: 0.6860645, z: 0.21348266, w: 0.65628576}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107727
-      position: {x: 1.2636892, y: 3.179967, z: -4.7935767}
-      rotation: {x: 0.26905933, y: 0.56784016, z: 0.16737391, w: 0.7597043}
+    - name: System:Bonita_10_2099034
+      position: {x: -3.6972644, y: 1.0161825, z: -2.695211}
+      rotation: {x: 0.14387757, y: 0.9868781, z: -0.04626694, w: 0.05683486}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100716
+      position: {x: -3.3656032, y: 0.75029755, z: 2.970485}
+      rotation: {x: 0.033516943, y: 0.9903162, z: -0.031460166, w: -0.13099901}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Vantage_5_2107733
-      position: {x: -3.435914, y: 3.3060124, z: -4.3046937}
-      rotation: {x: 0.22452931, y: 0.82764053, z: 0.21512252, w: 0.46724725}
+      position: {x: -3.585263, y: 3.301673, z: -4.161928}
+      rotation: {x: 0.22828148, y: 0.83735937, z: 0.21020885, w: 0.45003232}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107744
-      position: {x: 3.6260927, y: 3.2507482, z: 4.3814816}
-      rotation: {x: -0.19710547, y: -0.4309932, z: 0.257696, w: 0.8420137}
+    - name: System:Bonita_10_2100727
+      position: {x: -3.3352, y: 2.3408165, z: 2.9862802}
+      rotation: {x: 0.21016794, y: 0.9681904, z: -0.0032240588, w: -0.13574448}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107778
-      position: {x: -0.23079848, y: 3.237054, z: 6.182694}
-      rotation: {x: -0.22957478, y: -0.6747906, z: 0.21934187, w: 0.6662148}
+    - name: System:Vantage_5_2107617
+      position: {x: 3.3844185, y: 3.3133767, z: -4.455191}
+      rotation: {x: 0.18269132, y: 0.45892063, z: 0.20989981, w: 0.843776}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2108360
-      position: {x: -2.4456, y: 3.3025298, z: -6.0959806}
-      rotation: {x: 0.25314614, y: 0.833341, z: 0.18939057, w: 0.4534216}
+    - name: System:Bonita_10_2100729
+      position: {x: 3.702577, y: 2.3426487, z: -0.4666372}
+      rotation: {x: 0.017219909, y: 0.09973393, z: 0.28390843, w: 0.95349497}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: Unlabeled_Markers
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+    - name: System:Bonita_10_2100744
+      position: {x: 3.6609569, y: 1.2606049, z: -3.0438173}
+      rotation: {x: 0.06876698, y: 0.18060787, z: 0.08873061, w: 0.97712785}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100719
+      position: {x: 3.8615904, y: 2.3267272, z: 2.5599658}
+      rotation: {x: -0.021937625, y: -0.1671679, z: 0.28413934, w: 0.9438424}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:ARIEL
+      position: {x: 0.12941188, y: 1.7216742, z: -1.0459158}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LFHD
+      position: {x: 0.083095044, y: 1.7213933, z: -0.9183603}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LBHD
+      position: {x: 0.030702204, y: 1.6297626, z: -1.0194697}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RFHD
+      position: {x: 0.21040675, y: 1.6782751, z: -0.9373369}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RBHD
+      position: {x: 0.20848571, y: 1.6115426, z: -1.0208344}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:C7
+      position: {x: 0.100032, y: 1.4877396, z: -1.1089119}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:T10
+      position: {x: 0.095121115, y: 1.2155557, z: -1.1452643}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:CLAV
+      position: {x: 0.11377631, y: 1.3983697, z: -0.8981879}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:STRN
+      position: {x: 0.12116513, y: 1.1872623, z: -0.8040736}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LFSH
+      position: {x: -0.030685319, y: 1.4426743, z: -0.9436022}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LBSH
+      position: {x: -0.052176416, y: 1.4059329, z: -1.1233549}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LUPA
+      position: {x: -0.18756925, y: 1.4957243, z: -1.0328121}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LELB
+      position: {x: -0.31220347, y: 1.4935273, z: -0.9978865}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LIEL
+      position: {x: -0.31025136, y: 1.3951483, z: -0.948619}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LOWR
+      position: {x: -0.52323055, y: 1.4928519, z: -0.9236563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LIWR
+      position: {x: -0.48499918, y: 1.4979925, z: -0.83062965}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LWRE
+      position: {x: -0.41306174, y: 1.5099096, z: -0.96367425}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LIHAND
+      position: {x: -0.57627964, y: 1.5437264, z: -0.82686967}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LOHAND
+      position: {x: -0.5800807, y: 1.5178795, z: -0.9168749}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RFSH
+      position: {x: 0.24204853, y: 1.4438035, z: -0.980262}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RBSH
+      position: {x: 0.245727, y: 1.4050587, z: -1.1366603}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RUPA
+      position: {x: 0.40501568, y: 1.4599249, z: -1.1026542}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RELB
+      position: {x: 0.5373904, y: 1.477236, z: -1.0914159}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RIEL
+      position: {x: 0.5684668, y: 1.3814651, z: -1.0613718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:ROWR
+      position: {x: 0.7429584, y: 1.4958439, z: -1.0730776}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RIWR
+      position: {x: 0.73525435, y: 1.4983648, z: -0.9770871}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RWRE
+      position: {x: 0.6359917, y: 1.5034126, z: -1.0777193}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RIHAND
+      position: {x: 0.81268615, y: 1.5303353, z: -0.9800749}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:ROHAND
+      position: {x: 0.8237083, y: 1.5155003, z: -1.059069}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LFWT
+      position: {x: -0.048348274, y: 0.9130547, z: -0.87024117}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LMWT
+      position: {x: 0.12747264, y: 1.0173154, z: -0.76761407}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LBWT
+      position: {x: 0.025039965, y: 0.973281, z: -1.1059853}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RFWT
+      position: {x: 0.27541018, y: 0.936039, z: -0.88808864}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RMWT
+      position: {x: 0.10323525, y: 0.9894652, z: -1.0996236}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RBWT
+      position: {x: 0.19330096, y: 0.96588004, z: -1.1156837}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LHIP
+      position: {x: -0.029162716, y: 0.5840102, z: -0.89687437}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LKNE
+      position: {x: -0.06450409, y: 0.43443838, z: -1.044491}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LKNI
+      position: {x: 0.07543777, y: 0.4382003, z: -0.9980977}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LSHN
+      position: {x: -0.059992608, y: 0.23922575, z: -0.9891737}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LANK
+      position: {x: -0.07693469, y: 0.0989105, z: -1.0424359}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LHEL
+      position: {x: 0.017990928, y: 0.07943945, z: -1.0830562}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LMT5
+      position: {x: -0.12013791, y: 0.04139523, z: -0.92596555}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LMT1
+      position: {x: -0.00078447966, y: 0.034937464, z: -0.90967923}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LTOE
+      position: {x: -0.086726435, y: 0.046061218, z: -0.8614166}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RHIP
+      position: {x: 0.260935, y: 0.54060024, z: -0.92797834}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RKNE
+      position: {x: 0.28506517, y: 0.424025, z: -1.0602834}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RKNI
+      position: {x: 0.16267769, y: 0.4156996, z: -0.98581004}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RSHN
+      position: {x: 0.27435452, y: 0.26885864, z: -1.0142759}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RANK
+      position: {x: 0.26693678, y: 0.08587681, z: -1.0910798}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RHEL
+      position: {x: 0.19720358, y: 0.07897911, z: -1.1199386}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RMT5
+      position: {x: 0.34131926, y: 0.04465154, z: -0.98768544}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RMT1
+      position: {x: 0.22056037, y: 0.03630891, z: -0.94152355}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RTOE
+      position: {x: 0.3039063, y: 0.051424935, z: -0.89872426}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Hips
+      position: {x: 0.0019542128, y: 0.9038253, z: -0.0007008314}
+      rotation: {x: -0.71470815, y: 0.052723173, z: -0.0015613104, w: 0.6974311}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine
+      position: {x: -0, y: 0.04313815, z: 0.06470722}
+      rotation: {x: -0.08991302, y: -0.03742667, z: -0.008774064, w: 0.9952075}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine1
+      position: {x: -0, y: 0, z: 0.0862763}
+      rotation: {x: 0.052590724, y: -0.0016305244, z: 0.00040166997, w: 0.9986148}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine2
+      position: {x: -0, y: 0, z: 0.0862763}
+      rotation: {x: 0.046037268, y: 0.0032435516, z: 0.011735177, w: 0.99886554}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine3
+      position: {x: -0, y: 0, z: 0.0862763}
+      rotation: {x: 0.0052488926, y: 0.0061917333, z: 0.0016465157, w: 0.9999657}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Neck
+      position: {x: -0, y: -0.03235361, z: 0.22647527}
+      rotation: {x: 0.092424475, y: -0.0005403856, z: 0.02061299, w: 0.99550617}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Head
+      position: {x: -0, y: 0, z: 0.11862991}
+      rotation: {x: -0.09181412, y: 0.00467369, z: 0.027073028, w: 0.99539715}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:HeadEnd
+      position: {x: -0, y: 0, z: 0.13965975}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightShoulder
+      position: {x: 0.029757999, y: -0.049596667, z: 0.1606932}
+      rotation: {x: 0.025464252, y: 0.99943465, z: -0.0014133824, w: -0.02190769}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightArm
+      position: {x: -0.14779806, y: 0, z: 0}
+      rotation: {x: -0.066462986, y: -0.047587436, z: -0.037239585, w: 0.9959575}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightForeArm
+      position: {x: -0.28405353, y: 0, z: 0}
+      rotation: {x: -0.0054405094, y: 0.023560371, z: 0.05271576, w: 0.9983168}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHand
+      position: {x: -0.20037927, y: 0, z: 0}
+      rotation: {x: 0.19128291, y: 0.06555472, z: -0.071879916, w: 0.976702}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHandEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071069}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:R_FingersEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHandThumb1
+      position: {x: -0.024915682, y: -0.04152614, z: 0.016610455}
+      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHandThumb2
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftShoulder
+      position: {x: -0.029757999, y: -0.049596667, z: 0.1606932}
+      rotation: {x: 0.0052331993, y: -0.03233437, z: 0.011325983, w: 0.99939924}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftArm
+      position: {x: -0.14779806, y: 0, z: 0}
+      rotation: {x: 0.014847753, y: 0.06874729, z: -0.032903776, w: 0.9969808}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftForeArm
+      position: {x: -0.28405353, y: 0, z: 0}
+      rotation: {x: 0.008321354, y: -0.030180924, z: 0.044643775, w: 0.99851227}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHand
+      position: {x: -0.20037927, y: 0, z: 0}
+      rotation: {x: -0.13043894, y: 0.031470623, z: -0.22317274, w: 0.96549946}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHandEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:L_FingersEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHandThumb1
+      position: {x: -0.024915682, y: -0.04152614, z: -0.016610455}
+      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHandThumb2
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightUpLeg
+      position: {x: 0.08828207, y: 0, z: -0.025790267}
+      rotation: {x: 0.16679879, y: -0.75239336, z: 0.09112259, w: 0.6306973}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightLeg
+      position: {x: -0.41859066, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.034673344, w: 0.9993987}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightFoot
+      position: {x: -0.40022987, y: 0, z: 0}
+      rotation: {x: 0.02687109, y: 0.1094049, z: 0.6516812, w: 0.7500801}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightToeBase
+      position: {x: -0.14929587, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.18097281, w: 0.98348814}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightToeBaseEnd
+      position: {x: -0.0714192, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftUpLeg
+      position: {x: -0.08828207, y: 0, z: -0.025790267}
+      rotation: {x: -0.082737334, y: -0.6881737, z: -0.23377922, w: 0.6818496}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftLeg
+      position: {x: -0.41859066, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.08436016, w: 0.99643534}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftFoot
+      position: {x: -0.40022987, y: 0, z: 0}
+      rotation: {x: 0.020862125, y: -0.11842328, z: 0.5247042, w: 0.8427492}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftToeBase
+      position: {x: -0.14929587, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.2610112, w: 0.9653358}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftToeBaseEnd
+      position: {x: -0.0714192, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     armTwist: 0.5
@@ -1085,7 +1001,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
   humanoidOversampling: 1

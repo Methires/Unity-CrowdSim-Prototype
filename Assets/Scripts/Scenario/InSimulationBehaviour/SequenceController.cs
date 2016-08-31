@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Activity))]
@@ -79,7 +80,27 @@ public class SequenceController : MonoBehaviour
             {
                 _movementScript.Speed = _sequence[_currentActivityIndex + 1].Movement.Speed;
                 _movementScript.BlendParameter = _sequence[_currentActivityIndex + 1].Movement.Blend;
-                _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint;
+
+                Vector3 positionOffsetForMultiActorActivity = Vector3.zero;
+                if (_currentActivityIndex + 1 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null)
+                {
+                    if ( _sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
+                    {
+                        string[] paths = AssetDatabase.FindAssets(_sequence[_currentActivityIndex + 2].Activity.ParameterName);
+                        string assetPath = AssetDatabase.GUIDToAssetPath(paths[0]);
+                        GameObject exactSpotParent = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);                       
+                        Transform exactSpot = exactSpotParent.transform.GetChild(0).transform;
+                        if (exactSpot != null)
+                        {
+                            positionOffsetForMultiActorActivity.x = exactSpot.position.x;
+                            positionOffsetForMultiActorActivity.z = exactSpot.position.z;
+                        }
+                       
+                    }
+                    
+                }
+
+                _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
                 if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
                 {
                     GetComponent<DisplayActivityText>().ChangeText("Walking" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);

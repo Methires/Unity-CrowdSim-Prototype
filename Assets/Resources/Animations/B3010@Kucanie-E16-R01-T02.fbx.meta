@@ -255,14 +255,10 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'B3010_Kucanie_E16_R01_T02_x2d' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'B3010:Solving:Spine1' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'B3010:Solving:Spine3'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -270,7 +266,8 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - B3010:Solving:Hips
     clipAnimations:
     - serializedVersion: 16
       name: B3010_Kucanie_E16_R01_T02_x2d
@@ -566,80 +563,8 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     human:
-    - boneName: B3010:Solving:Hips
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftUpLeg
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightUpLeg
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftLeg
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightLeg
-      humanName: RightLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftFoot
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightFoot
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:Spine
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:Spine2
+    - boneName: B3010:Solving:Spine3
       humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:Neck
-      humanName: Neck
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -654,48 +579,16 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: B3010:Solving:LeftShoulder
-      humanName: LeftShoulder
+    - boneName: B3010:Solving:Hips
+      humanName: Hips
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: B3010:Solving:RightShoulder
-      humanName: RightShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftArm
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:LeftForeArm
-      humanName: LeftLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: B3010:Solving:RightForeArm
-      humanName: RightLowerArm
+    - boneName: B3010:Solving:LeftFoot
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -710,8 +603,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: B3010:Solving:RightHand
-      humanName: RightHand
+    - boneName: B3010:Solving:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:LeftShoulder
+      humanName: LeftShoulder
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -726,6 +635,70 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: B3010:Solving:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: B3010:Solving:RightToeBase
       humanName: RightToes
       limit:
@@ -734,10 +707,104 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: B3010:Solving:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: B3010:Solving:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
-    - name: B3010-Kucanie-E16-R01-T02(Clone)
+    - name: B3010-Kopanie-E19-R02-T01(Clone)(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15462
+      position: {x: -3.664356, y: 3.206229, z: -5.6430435}
+      rotation: {x: -0.4338611, y: -0.07201153, z: 0.88248044, w: 0.16675477}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_12695
+      position: {x: -0.1647838, y: 3.208966, z: -6.0520587}
+      rotation: {x: -0.6703001, y: -0.15014519, z: 0.7103238, w: 0.15360463}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_15290
+      position: {x: -3.0884511, y: 3.1387277, z: 6.0343866}
+      rotation: {x: 0.46650702, y: 0.07267644, z: 0.85627186, w: 0.20949432}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_16795
+      position: {x: 3.939542, y: 3.1506336, z: 5.603598}
+      rotation: {x: 0.8819163, y: 0.19947343, z: 0.4235929, w: 0.0548002}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:T40_13827
+      position: {x: 3.58583, y: 3.1948192, z: -1.8881024}
+      rotation: {x: 0.9170039, y: 0.27858385, z: -0.2832495, w: -0.035562363}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107712
+      position: {x: 0.045582183, y: 3.2948067, z: -6.095933}
+      rotation: {x: 0.2302817, y: 0.6860645, z: 0.21348266, w: 0.65628576}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2099034
+      position: {x: -3.6972644, y: 1.0161825, z: -2.695211}
+      rotation: {x: 0.14387757, y: 0.9868781, z: -0.04626694, w: 0.05683486}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100716
+      position: {x: -3.3656032, y: 0.75029755, z: 2.970485}
+      rotation: {x: 0.033516943, y: 0.9903162, z: -0.031460166, w: -0.13099901}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107733
+      position: {x: -3.585263, y: 3.301673, z: -4.161928}
+      rotation: {x: 0.22828148, y: 0.83735937, z: 0.21020885, w: 0.45003232}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100727
+      position: {x: -3.3352, y: 2.3408165, z: 2.9862802}
+      rotation: {x: 0.21016794, y: 0.9681904, z: -0.0032240588, w: -0.13574448}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Vantage_5_2107617
+      position: {x: 3.3844185, y: 3.3133767, z: -4.455191}
+      rotation: {x: 0.18269132, y: 0.45892063, z: 0.20989981, w: 0.843776}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100729
+      position: {x: 3.702577, y: 2.3426487, z: -0.4666372}
+      rotation: {x: 0.017219909, y: 0.09973393, z: 0.28390843, w: 0.95349497}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100744
+      position: {x: 3.6609569, y: 1.2606049, z: -3.0438173}
+      rotation: {x: 0.06876698, y: 0.18060787, z: 0.08873061, w: 0.97712785}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100719
+      position: {x: 3.8615904, y: 2.3267272, z: 2.5599658}
+      rotation: {x: -0.021937625, y: -0.1671679, z: 0.28413934, w: 0.9438424}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010
@@ -746,257 +813,267 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:ARIEL
-      position: {x: 0.23311481, y: 1.707919, z: -0.27046162}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:C7
-      position: {x: 0.20836194, y: 1.4826113, z: -0.29394415}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:CLAV
-      position: {x: 0.21151985, y: 1.40768, z: -0.07674252}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LANK
-      position: {x: 0.04899547, y: 0.095718265, z: -0.21318251}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LBHD
-      position: {x: 0.13284108, y: 1.6229233, z: -0.23438625}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LBSH
-      position: {x: 0.054250058, y: 1.4063903, z: -0.3134988}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LBWT
-      position: {x: 0.13201822, y: 0.9707218, z: -0.28440973}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LELB
-      position: {x: -0.20918766, y: 1.5191951, z: -0.23976634}
+      position: {x: 0.12941188, y: 1.7216742, z: -1.0459158}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:LFHD
-      position: {x: 0.17972921, y: 1.7308694, z: -0.14804025}
+      position: {x: 0.083095044, y: 1.7213933, z: -0.9183603}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: B3010:LFSH
-      position: {x: 0.0707145, y: 1.4535675, z: -0.13263968}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LFWT
-      position: {x: 0.05655537, y: 0.9184437, z: -0.049285684}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LHEL
-      position: {x: 0.14430651, y: 0.07768728, z: -0.2544456}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LHIP
-      position: {x: 0.07807432, y: 0.59055066, z: -0.06341329}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LIEL
-      position: {x: -0.22123998, y: 1.4326558, z: -0.17219141}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LIHAND
-      position: {x: -0.47406366, y: 1.6298367, z: -0.1040795}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LIWR
-      position: {x: -0.3850718, y: 1.5809923, z: -0.09227589}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LKNE
-      position: {x: 0.050125804, y: 0.4330085, z: -0.20855545}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LKNI
-      position: {x: 0.18808174, y: 0.44394076, z: -0.15993947}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LMT1
-      position: {x: 0.12843956, y: 0.032681458, z: -0.079841346}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LMT5
-      position: {x: 0.008159286, y: 0.040130496, z: -0.09700442}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LMWT
-      position: {x: 0.23058194, y: 1.026964, z: 0.056922477}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LOHAND
-      position: {x: -0.4789655, y: 1.5772012, z: -0.18142305}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LOWR
-      position: {x: -0.42221263, y: 1.5482949, z: -0.17956294}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LSHN
-      position: {x: 0.061905563, y: 0.23722614, z: -0.15844563}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LTOE
-      position: {x: 0.04276526, y: 0.045373693, z: -0.031906027}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LUPA
-      position: {x: -0.07583074, y: 1.5140038, z: -0.24023966}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:LWRE
-      position: {x: -0.31290522, y: 1.5467764, z: -0.21684177}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RANK
-      position: {x: 0.37344137, y: 0.08092186, z: -0.24383579}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RBHD
-      position: {x: 0.3111013, y: 1.6055177, z: -0.22120012}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RBSH
-      position: {x: 0.3542851, y: 1.4093268, z: -0.32033083}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RBWT
-      position: {x: 0.30009663, y: 0.9624635, z: -0.29123518}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RELB
-      position: {x: 0.634813, y: 1.5056998, z: -0.2859809}
+    - name: B3010:LBHD
+      position: {x: 0.030702204, y: 1.6297626, z: -1.0194697}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:RFHD
-      position: {x: 0.30804682, y: 1.6877855, z: -0.15214086}
+      position: {x: 0.21040675, y: 1.6782751, z: -0.9373369}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RBHD
+      position: {x: 0.20848571, y: 1.6115426, z: -1.0208344}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:C7
+      position: {x: 0.100032, y: 1.4877396, z: -1.1089119}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:T10
+      position: {x: 0.095121115, y: 1.2155557, z: -1.1452643}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:CLAV
+      position: {x: 0.11377631, y: 1.3983697, z: -0.8981879}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:STRN
+      position: {x: 0.12116513, y: 1.1872623, z: -0.8040736}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LFSH
+      position: {x: -0.030685319, y: 1.4426743, z: -0.9436022}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LBSH
+      position: {x: -0.052176416, y: 1.4059329, z: -1.1233549}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LUPA
+      position: {x: -0.18756925, y: 1.4957243, z: -1.0328121}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LELB
+      position: {x: -0.31220347, y: 1.4935273, z: -0.9978865}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LIEL
+      position: {x: -0.31025136, y: 1.3951483, z: -0.948619}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LOWR
+      position: {x: -0.52323055, y: 1.4928519, z: -0.9236563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LIWR
+      position: {x: -0.48499918, y: 1.4979925, z: -0.83062965}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LWRE
+      position: {x: -0.41306174, y: 1.5099096, z: -0.96367425}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LIHAND
+      position: {x: -0.57627964, y: 1.5437264, z: -0.82686967}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LOHAND
+      position: {x: -0.5800807, y: 1.5178795, z: -0.9168749}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:RFSH
-      position: {x: 0.3407711, y: 1.453432, z: -0.15980352}
+      position: {x: 0.24204853, y: 1.4438035, z: -0.980262}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: B3010:RFWT
-      position: {x: 0.380746, y: 0.9431272, z: -0.06396144}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RHEL
-      position: {x: 0.30869403, y: 0.0745941, z: -0.28053656}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RHIP
-      position: {x: 0.371606, y: 0.54356396, z: -0.08970364}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RIEL
-      position: {x: 0.6742525, y: 1.41785, z: -0.24739215}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RIHAND
-      position: {x: 0.89428145, y: 1.5976259, z: -0.15510236}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RIWR
-      position: {x: 0.81629777, y: 1.5614413, z: -0.15662101}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RKNE
-      position: {x: 0.39410993, y: 0.4226975, z: -0.21731156}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RKNI
-      position: {x: 0.26685107, y: 0.4198389, z: -0.14969236}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RMT1
-      position: {x: 0.31255823, y: 0.033727255, z: -0.10031701}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RMT5
-      position: {x: 0.43840063, y: 0.04251847, z: -0.13126074}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RMWT
-      position: {x: 0.20997256, y: 0.9870596, z: -0.27818492}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:ROHAND
-      position: {x: 0.90957403, y: 1.5824953, z: -0.2341076}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:ROWR
-      position: {x: 0.8305821, y: 1.557095, z: -0.25105986}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RSHN
-      position: {x: 0.37704974, y: 0.26896444, z: -0.17197584}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:RTOE
-      position: {x: 0.38997608, y: 0.049460962, z: -0.047819987}
+    - name: B3010:RBSH
+      position: {x: 0.245727, y: 1.4050587, z: -1.1366603}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:RUPA
-      position: {x: 0.50755405, y: 1.4777726, z: -0.29006678}
+      position: {x: 0.40501568, y: 1.4599249, z: -1.1026542}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RELB
+      position: {x: 0.5373904, y: 1.477236, z: -1.0914159}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RIEL
+      position: {x: 0.5684668, y: 1.3814651, z: -1.0613718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:ROWR
+      position: {x: 0.7429584, y: 1.4958439, z: -1.0730776}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RIWR
+      position: {x: 0.73525435, y: 1.4983648, z: -0.9770871}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:RWRE
-      position: {x: 0.7281125, y: 1.5463058, z: -0.2668509}
+      position: {x: 0.6359917, y: 1.5034126, z: -1.0777193}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RIHAND
+      position: {x: 0.81268615, y: 1.5303353, z: -0.9800749}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:ROHAND
+      position: {x: 0.8237083, y: 1.5155003, z: -1.059069}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LFWT
+      position: {x: -0.048348274, y: 0.9130547, z: -0.87024117}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LMWT
+      position: {x: 0.12747264, y: 1.0173154, z: -0.76761407}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LBWT
+      position: {x: 0.025039965, y: 0.973281, z: -1.1059853}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RFWT
+      position: {x: 0.27541018, y: 0.936039, z: -0.88808864}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RMWT
+      position: {x: 0.10323525, y: 0.9894652, z: -1.0996236}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RBWT
+      position: {x: 0.19330096, y: 0.96588004, z: -1.1156837}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LHIP
+      position: {x: -0.029162716, y: 0.5840102, z: -0.89687437}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LKNE
+      position: {x: -0.06450409, y: 0.43443838, z: -1.044491}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LKNI
+      position: {x: 0.07543777, y: 0.4382003, z: -0.9980977}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LSHN
+      position: {x: -0.059992608, y: 0.23922575, z: -0.9891737}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LANK
+      position: {x: -0.07693469, y: 0.0989105, z: -1.0424359}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LHEL
+      position: {x: 0.017990928, y: 0.07943945, z: -1.0830562}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LMT5
+      position: {x: -0.12013791, y: 0.04139523, z: -0.92596555}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LMT1
+      position: {x: -0.00078447966, y: 0.034937464, z: -0.90967923}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:LTOE
+      position: {x: -0.086726435, y: 0.046061218, z: -0.8614166}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RHIP
+      position: {x: 0.260935, y: 0.54060024, z: -0.92797834}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RKNE
+      position: {x: 0.28506517, y: 0.424025, z: -1.0602834}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RKNI
+      position: {x: 0.16267769, y: 0.4156996, z: -0.98581004}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RSHN
+      position: {x: 0.27435452, y: 0.26885864, z: -1.0142759}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RANK
+      position: {x: 0.26693678, y: 0.08587681, z: -1.0910798}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RHEL
+      position: {x: 0.19720358, y: 0.07897911, z: -1.1199386}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RMT5
+      position: {x: 0.34131926, y: 0.04465154, z: -0.98768544}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RMT1
+      position: {x: 0.22056037, y: 0.03630891, z: -0.94152355}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:RTOE
+      position: {x: 0.3039063, y: 0.051424935, z: -0.89872426}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1006,128 +1083,38 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Hips
-      position: {x: 0.0023649037, y: 0.9048598, z: -0.14461797}
-      rotation: {x: -0.7247417, y: 0.054085284, z: -0.012009456, w: 0.68678975}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftUpLeg
-      position: {x: -0.08828207, y: 0, z: -0.025790267}
-      rotation: {x: -0.078518614, y: -0.70117635, z: -0.22363007, w: 0.67244047}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftLeg
-      position: {x: -0.41859066, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.04447452, w: 0.99901056}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftFoot
-      position: {x: -0.40022987, y: 0, z: 0}
-      rotation: {x: 0.035390288, y: -0.10170317, z: 0.54282033, w: 0.8329166}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftToeBase
-      position: {x: -0.14929587, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.26668963, w: 0.9637825}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftToeBaseEnd
-      position: {x: -0.0714192, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:RightUpLeg
-      position: {x: 0.08828207, y: 0, z: -0.025790267}
-      rotation: {x: 0.15206063, y: -0.7611576, z: 0.075060055, w: 0.6260054}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:RightLeg
-      position: {x: -0.41859066, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.040821567, w: 0.9991664}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:RightFoot
-      position: {x: -0.40022987, y: 0, z: 0}
-      rotation: {x: -0.0027741266, y: 0.117237315, z: 0.64837956, w: 0.7522311}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:RightToeBase
-      position: {x: -0.14929587, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.18079747, w: 0.9835204}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:RightToeBaseEnd
-      position: {x: -0.0714192, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: 0.0019542128, y: 0.9038253, z: -0.0007008314}
+      rotation: {x: -0.71470815, y: 0.052723173, z: -0.0015613104, w: 0.6974311}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Spine
       position: {x: -0, y: 0.04313815, z: 0.06470722}
-      rotation: {x: -0.07921636, y: -0.047522496, z: -0.00887972, w: 0.9956845}
+      rotation: {x: -0.08991302, y: -0.03742667, z: -0.008774064, w: 0.9952075}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Spine1
       position: {x: -0, y: 0, z: 0.0862763}
-      rotation: {x: 0.058140814, y: -0.002634067, z: -0.000007718928, w: 0.99830496}
+      rotation: {x: 0.052590724, y: -0.0016305244, z: 0.00040166997, w: 0.9986148}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Spine2
       position: {x: -0, y: 0, z: 0.0862763}
-      rotation: {x: 0.035511345, y: 0.004503711, z: 0.0018546025, w: 0.9993574}
+      rotation: {x: 0.046037268, y: 0.0032435516, z: 0.011735177, w: 0.99886554}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Spine3
       position: {x: -0, y: 0, z: 0.0862763}
-      rotation: {x: 0.000011139148, y: 0.0026964962, z: -0.000106247404, w: 0.99999636}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftShoulder
-      position: {x: -0.029757999, y: -0.049596667, z: 0.1606932}
-      rotation: {x: -0.016872052, y: 0.029814435, z: 0.009313693, w: 0.9993696}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftArm
-      position: {x: -0.14779806, y: 0, z: 0}
-      rotation: {x: -0.067682534, y: 0.006642476, z: -0.02730098, w: 0.99731123}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftForeArm
-      position: {x: -0.28405353, y: 0, z: 0}
-      rotation: {x: 0.00701238, y: -0.027302537, z: 0.04486853, w: 0.9985952}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftHand
-      position: {x: -0.20037927, y: 0, z: 0}
-      rotation: {x: -0.17685355, y: 0.0136527205, z: -0.16546758, w: 0.97013247}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftHandEnd
-      position: {x: -0.06228921, y: 0, z: 0}
-      rotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:L_FingersEnd
-      position: {x: -0.06228921, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftHandThumb1
-      position: {x: -0.024915682, y: -0.04152614, z: -0.016610455}
-      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: B3010:Solving:LeftHandThumb2
-      position: {x: -0.06228921, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0.0052488926, y: 0.0061917333, z: 0.0016465157, w: 0.9999657}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Neck
       position: {x: -0, y: -0.03235361, z: 0.22647527}
-      rotation: {x: 0.050592832, y: 0.008208717, z: 0.012271961, w: 0.99861026}
+      rotation: {x: 0.092424475, y: -0.0005403856, z: 0.02061299, w: 0.99550617}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Head
       position: {x: -0, y: 0, z: 0.11862991}
-      rotation: {x: -0.12716974, y: 0.008226603, z: 0.020607965, w: 0.99163276}
+      rotation: {x: -0.09181412, y: 0.00467369, z: 0.027073028, w: 0.99539715}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:HeadEnd
@@ -1137,22 +1124,22 @@ ModelImporter:
       transformModified: 1
     - name: B3010:Solving:RightShoulder
       position: {x: 0.029757999, y: -0.049596667, z: 0.1606932}
-      rotation: {x: 0.017865224, y: 0.9996387, z: -0.0074529927, w: 0.018651119}
+      rotation: {x: 0.025464252, y: 0.99943465, z: -0.0014133824, w: -0.02190769}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:RightArm
       position: {x: -0.14779806, y: 0, z: 0}
-      rotation: {x: -0.022349581, y: -0.0040605566, z: -0.032508906, w: 0.9992133}
+      rotation: {x: -0.066462986, y: -0.047587436, z: -0.037239585, w: 0.9959575}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:RightForeArm
       position: {x: -0.28405353, y: 0, z: 0}
-      rotation: {x: -0.006517933, y: 0.024193473, z: 0.046975274, w: 0.9985817}
+      rotation: {x: -0.0054405094, y: 0.023560371, z: 0.05271576, w: 0.9983168}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:RightHand
       position: {x: -0.20037927, y: 0, z: 0}
-      rotation: {x: 0.1509009, y: 0.07376047, z: -0.0713983, w: 0.98320425}
+      rotation: {x: 0.19128291, y: 0.06555472, z: -0.071879916, w: 0.976702}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:RightHandEnd
@@ -1175,163 +1162,93 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: B3010:STRN
-      position: {x: 0.22060977, y: 1.1968125, z: 0.019623144}
+    - name: B3010:Solving:LeftShoulder
+      position: {x: -0.029757999, y: -0.049596667, z: 0.1606932}
+      rotation: {x: 0.0052331993, y: -0.03233437, z: 0.011325983, w: 0.99939924}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:LeftArm
+      position: {x: -0.14779806, y: 0, z: 0}
+      rotation: {x: 0.014847753, y: 0.06874729, z: -0.032903776, w: 0.9969808}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:LeftForeArm
+      position: {x: -0.28405353, y: 0, z: 0}
+      rotation: {x: 0.008321354, y: -0.030180924, z: 0.044643775, w: 0.99851227}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:LeftHand
+      position: {x: -0.20037927, y: 0, z: 0}
+      rotation: {x: -0.13043894, y: 0.031470623, z: -0.22317274, w: 0.96549946}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:LeftHandEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:L_FingersEnd
+      position: {x: -0.06228921, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: B3010:T10
-      position: {x: 0.20280647, y: 1.2148106, z: -0.32731852}
+    - name: B3010:Solving:LeftHandThumb1
+      position: {x: -0.024915682, y: -0.04152614, z: -0.016610455}
+      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:LeftHandThumb2
+      position: {x: -0.06228921, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System
-      position: {x: -0, y: 0, z: 0}
+    - name: B3010:Solving:RightUpLeg
+      position: {x: 0.08828207, y: 0, z: -0.025790267}
+      rotation: {x: 0.16679879, y: -0.75239336, z: 0.09112259, w: 0.6306973}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:RightLeg
+      position: {x: -0.41859066, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.034673344, w: 0.9993987}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:RightFoot
+      position: {x: -0.40022987, y: 0, z: 0}
+      rotation: {x: 0.02687109, y: 0.1094049, z: 0.6516812, w: 0.7500801}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:RightToeBase
+      position: {x: -0.14929587, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.18097281, w: 0.98348814}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: B3010:Solving:RightToeBaseEnd
+      position: {x: -0.0714192, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Bonita_10_2099034
-      position: {x: -3.6972644, y: 1.0161825, z: -2.695211}
-      rotation: {x: 0.14387757, y: 0.9868781, z: -0.04626694, w: 0.05683486}
+    - name: B3010:Solving:LeftUpLeg
+      position: {x: -0.08828207, y: 0, z: -0.025790267}
+      rotation: {x: -0.082737334, y: -0.6881737, z: -0.23377922, w: 0.6818496}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Bonita_10_2100709
-      position: {x: 3.5719316, y: 2.3618448, z: -3.0504098}
-      rotation: {x: -0.047520846, y: 0.12044926, z: 0.25867224, w: 0.9572473}
+    - name: B3010:Solving:LeftLeg
+      position: {x: -0.41859066, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.08436016, w: 0.99643534}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Bonita_10_2100712
-      position: {x: -3.5075817, y: 2.3488262, z: 0.4054011}
-      rotation: {x: 0.20552908, y: 0.9774007, z: 0.003920074, w: -0.04929838}
+    - name: B3010:Solving:LeftFoot
+      position: {x: -0.40022987, y: 0, z: 0}
+      rotation: {x: 0.020862125, y: -0.11842328, z: 0.5247042, w: 0.8427492}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Bonita_10_2100716
-      position: {x: -3.3656032, y: 0.75029755, z: 2.970485}
-      rotation: {x: 0.033516943, y: 0.9903162, z: -0.031460166, w: -0.13099901}
+    - name: B3010:Solving:LeftToeBase
+      position: {x: -0.14929587, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.2610112, w: 0.9653358}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Bonita_10_2100719
-      position: {x: 3.8615904, y: 2.3267272, z: 2.5599658}
-      rotation: {x: -0.021937625, y: -0.1671679, z: 0.28413934, w: 0.9438424}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100727
-      position: {x: -3.3352, y: 2.3408165, z: 2.9862802}
-      rotation: {x: 0.21016794, y: 0.9681904, z: -0.0032240588, w: -0.13574448}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100729
-      position: {x: 3.702577, y: 2.3426487, z: -0.4666372}
-      rotation: {x: 0.017219909, y: 0.09973393, z: 0.28390843, w: 0.95349497}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100738
-      position: {x: 3.8825586, y: 0.6843996, z: 2.5543985}
-      rotation: {x: 0.03553074, y: -0.17803846, z: 0.07839767, w: 0.98025185}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100744
-      position: {x: 3.6609569, y: 1.2606049, z: -3.0438173}
-      rotation: {x: 0.06876698, y: 0.18060787, z: 0.08873061, w: 0.97712785}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100745
-      position: {x: -3.6545894, y: 2.3550463, z: -2.6689098}
-      rotation: {x: 0.25638685, y: 0.9518196, z: 0.015334181, w: 0.16754137}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_12695
-      position: {x: -0.1647838, y: 3.208966, z: -6.0520587}
-      rotation: {x: -0.6703001, y: -0.15014519, z: 0.7103238, w: 0.15360463}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_13827
-      position: {x: 3.58583, y: 3.1948192, z: -1.8881024}
-      rotation: {x: 0.9170039, y: 0.27858385, z: -0.2832495, w: -0.035562363}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15290
-      position: {x: -3.0884511, y: 3.1387277, z: 6.0343866}
-      rotation: {x: 0.46650702, y: 0.07267644, z: 0.85627186, w: 0.20949432}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15298
-      position: {x: -3.5667272, y: 3.1869066, z: -2.198657}
-      rotation: {x: -0.2888708, y: -0.030220404, z: 0.92563134, w: 0.24258421}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15462
-      position: {x: -3.664356, y: 3.206229, z: -5.6430435}
-      rotation: {x: -0.4338611, y: -0.07201153, z: 0.88248044, w: 0.16675477}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15469
-      position: {x: -3.2990572, y: 3.1704473, z: 2.7218294}
-      rotation: {x: 0.38308492, y: 0.09336381, z: 0.87879086, w: 0.26880455}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15475
-      position: {x: 3.3651416, y: 3.2115347, z: -5.8525705}
-      rotation: {x: 0.84297067, y: 0.17517146, z: -0.49693, w: -0.10851756}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15482
-      position: {x: 3.7772336, y: 3.178247, z: 2.347555}
-      rotation: {x: 0.92002016, y: 0.27171987, z: 0.27652222, w: 0.057155706}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_16731
-      position: {x: 0.41671866, y: 3.124783, z: 6.0754466}
-      rotation: {x: 0.7177035, y: 0.1472483, z: 0.66591686, w: 0.1406213}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_16795
-      position: {x: 3.939542, y: 3.1506336, z: 5.603598}
-      rotation: {x: 0.8819163, y: 0.19947343, z: 0.4235929, w: 0.0548002}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107617
-      position: {x: 3.3844185, y: 3.3133767, z: -4.455191}
-      rotation: {x: 0.18269132, y: 0.45892063, z: 0.20989981, w: 0.843776}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107676
-      position: {x: -3.1727648, y: 3.2469945, z: 4.5133924}
-      rotation: {x: 0.26036772, y: 0.8344983, z: -0.15816973, w: -0.4591336}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107693
-      position: {x: 2.925715, y: 3.2396648, z: 5.956731}
-      rotation: {x: -0.1730039, y: -0.4775701, z: 0.28583002, w: 0.812587}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107712
-      position: {x: 0.045582183, y: 3.2948067, z: -6.095933}
-      rotation: {x: 0.2302817, y: 0.6860645, z: 0.21348266, w: 0.65628576}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107727
-      position: {x: 1.0849258, y: 3.1825206, z: -4.851169}
-      rotation: {x: 0.27273098, y: 0.5844436, z: 0.16313647, w: 0.7466123}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107733
-      position: {x: -3.585263, y: 3.301673, z: -4.161928}
-      rotation: {x: 0.22828148, y: 0.83735937, z: 0.21020885, w: 0.45003232}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107744
-      position: {x: 3.8428035, y: 3.259318, z: 4.1924586}
-      rotation: {x: -0.19071747, y: -0.41276568, z: 0.26287588, w: 0.85096866}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2108360
-      position: {x: -2.6717706, y: 3.296993, z: -5.988167}
-      rotation: {x: 0.2568273, y: 0.84269327, z: 0.18399474, w: 0.43595165}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Unlabeled_Markers
-      position: {x: -0, y: 0, z: 0}
+    - name: B3010:Solving:LeftToeBaseEnd
+      position: {x: -0.0714192, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1343,10 +1260,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
-  humanoidOversampling: 1
+  humanoidOversampling: 8
   additionalBone: 0
   userData: 
   assetBundleName: 

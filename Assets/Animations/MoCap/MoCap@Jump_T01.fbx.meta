@@ -258,10 +258,16 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
-    optimizeGameObjects: 0
+    resampleCurves: 1
+    optimizeGameObjects: 1
     motionNodeName: 
-    animationImportErrors: 
+    animationImportErrors: '
+
+      Imported file ''MoCap@Jump_T01'' conversion failed: Transform ''MoCap:Solving:Hips''
+      for human bone ''Hips'' not found
+
+
+'
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -298,71 +304,7 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     human:
-    - boneName: Maciek:Solving:Hips
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:LeftUpLeg
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:RightUpLeg
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:LeftLeg
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:RightLeg
-      humanName: RightLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:LeftFoot
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:RightFoot
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:Spine
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:Spine2
+    - boneName: MoCap:Solving:Spine3
       humanName: Chest
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -370,15 +312,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Maciek:Solving:Neck
-      humanName: Neck
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:Head
+    - boneName: MoCap:Solving:Head
       humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -386,55 +320,23 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Maciek:Solving:LeftShoulder
-      humanName: LeftShoulder
+    - boneName: MoCap:Solving:Hips
+      humanName: Hips
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Maciek:Solving:RightShoulder
-      humanName: RightShoulder
+    - boneName: MoCap:Solving:LeftFoot
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Maciek:Solving:LeftArm
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:RightArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:LeftForeArm
-      humanName: LeftLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:RightForeArm
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Maciek:Solving:LeftHand
+    - boneName: MoCap:Solving:LeftHand
       humanName: LeftHand
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -442,15 +344,31 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Maciek:Solving:RightHand
-      humanName: RightHand
+    - boneName: MoCap:Solving:LeftForeArm
+      humanName: LeftLowerArm
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Maciek:Solving:LeftToeBase
+    - boneName: MoCap:Solving:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:LeftToeBase
       humanName: LeftToes
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -458,7 +376,71 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Maciek:Solving:RightToeBase
+    - boneName: MoCap:Solving:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightToeBase
       humanName: RightToes
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -466,615 +448,549 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: MoCap:Solving:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MoCap:Solving:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
-    - name: MoCap@Jump_T01(Clone)
+    - name: MoCap-Kopanie-E19-R02-T01(Clone)(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:ARIEL
-      position: {x: 0.13295722, y: 1.7793962, z: -0.16619797}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:C7
-      position: {x: 0.13473016, y: 1.5046482, z: -0.26635575}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:CLAV
-      position: {x: 0.13785866, y: 1.4430615, z: -0.08401296}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LANK
-      position: {x: -0.026250027, y: 0.09437631, z: -0.23826812}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LBHD
-      position: {x: 0.03542298, y: 1.6759526, z: -0.14781778}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LBSH
-      position: {x: -0.019807233, y: 1.4486296, z: -0.28198454}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LBWT
-      position: {x: 0.091466434, y: 0.97367346, z: -0.2938528}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LELB
-      position: {x: -0.3496774, y: 1.403139, z: -0.17837964}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LFHD
-      position: {x: 0.060811084, y: 1.7119228, z: -0.07641816}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LFSH
-      position: {x: 0.023682764, y: 1.4605974, z: -0.105871454}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LFWT
-      position: {x: 0.022104528, y: 0.9863728, z: -0.046366256}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LHEL
-      position: {x: 0.05085452, y: 0.04173817, z: -0.27987105}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LHIP
-      position: {x: -0.02136255, y: 0.6592662, z: -0.091576785}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LIEL
-      position: {x: -0.33955336, y: 1.3009648, z: -0.13529079}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LIHAND
-      position: {x: -0.6610942, y: 1.4132453, z: -0.020709893}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LIWR
-      position: {x: -0.5678403, y: 1.3615757, z: -0.02354251}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LKNE
-      position: {x: -0.025458753, y: 0.47452238, z: -0.19213396}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LKNI
-      position: {x: 0.10855917, y: 0.4578141, z: -0.15164675}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LMT1
-      position: {x: 0.039362717, y: 0.04836059, z: -0.08740462}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LMT5
-      position: {x: -0.07608259, y: 0.0370993, z: -0.10989016}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LMWT
-      position: {x: 0.146831, y: 1.0775043, z: -0.0066723553}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LOHAND
-      position: {x: -0.6768717, y: 1.3964938, z: -0.09503165}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LOWR
-      position: {x: -0.59231496, y: 1.4022876, z: -0.09790313}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LSHN
-      position: {x: -0.03258606, y: 0.28246394, z: -0.18989566}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LTOE
-      position: {x: -0.024315238, y: 0.056188013, z: -0.03521701}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LUPA
-      position: {x: -0.1884449, y: 1.441813, z: -0.20604624}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:LWRE
-      position: {x: -0.45209137, y: 1.38601, z: -0.1624722}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RANK
-      position: {x: 0.3409612, y: 0.1124146, z: -0.23398292}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RBHD
-      position: {x: 0.20810163, y: 1.6852754, z: -0.19804233}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RBSH
-      position: {x: 0.26460925, y: 1.455445, z: -0.2982617}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RBWT
-      position: {x: 0.2084322, y: 0.97954404, z: -0.3067464}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RELB
-      position: {x: 0.6058216, y: 1.4268739, z: -0.21757141}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RFHD
-      position: {x: 0.22151764, y: 1.7134367, z: -0.09993509}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RFSH
-      position: {x: 0.23828529, y: 1.4493021, z: -0.09686201}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RFWT
-      position: {x: 0.28828138, y: 0.9802245, z: -0.054250736}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RHEL
-      position: {x: 0.2769502, y: 0.04713308, z: -0.28828654}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RHIP
-      position: {x: 0.34254715, y: 0.70149094, z: -0.09279978}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RIEL
-      position: {x: 0.6159047, y: 1.341876, z: -0.18816979}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RIHAND
-      position: {x: 0.95346487, y: 1.484336, z: -0.10942259}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RIWR
-      position: {x: 0.8733903, y: 1.4589823, z: -0.09557263}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RKNE
-      position: {x: 0.34309447, y: 0.47591367, z: -0.19101353}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RKNI
-      position: {x: 0.21379732, y: 0.44026744, z: -0.14943421}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RMT1
-      position: {x: 0.28873652, y: 0.032094646, z: -0.06741172}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RMT5
-      position: {x: 0.4141258, y: 0.039633483, z: -0.08260356}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RMWT
-      position: {x: 0.14234716, y: 1.0455558, z: -0.30139738}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:ROHAND
-      position: {x: 0.95346236, y: 1.4588977, z: -0.1869548}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:ROWR
-      position: {x: 0.88888526, y: 1.4472032, z: -0.18535799}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RSHN
-      position: {x: 0.35033977, y: 0.27205014, z: -0.19470252}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RTOE
-      position: {x: 0.36255455, y: 0.053023484, z: -0.02463362}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RUPA
-      position: {x: 0.46170047, y: 1.4588307, z: -0.22112684}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:RWRE
-      position: {x: 0.75279194, y: 1.4446806, z: -0.194015}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:Hips
-      position: {x: -0.000070378184, y: 0.910416, z: -0.1651649}
-      rotation: {x: -0.7147513, y: 0.01033483, z: 0.011985185, w: 0.6991996}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftUpLeg
-      position: {x: -0.08985807, y: 0, z: -0.026250672}
-      rotation: {x: -0.035153527, y: -0.6712262, z: -0.089939356, w: 0.73493576}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftLeg
-      position: {x: -0.406571, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.06165462, w: 0.99809754}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftFoot
-      position: {x: -0.41441596, y: 0, z: 0}
-      rotation: {x: -0.041913696, y: -0.079546995, z: 0.638176, w: 0.76462203}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftToeBase
-      position: {x: -0.17557634, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.18029806, w: 0.98361206}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftToeBaseEnd
-      position: {x: -0.072694175, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightUpLeg
-      position: {x: 0.08985807, y: 0, z: -0.026250672}
-      rotation: {x: 0.07880244, y: -0.7469069, z: 0.0670297, w: 0.65683126}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightLeg
-      position: {x: -0.406571, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.07489933, w: 0.99719113}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightFoot
-      position: {x: -0.41441596, y: 0, z: 0}
-      rotation: {x: -0.025657723, y: 0.064865015, z: 0.6286007, w: 0.77459365}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightToeBase
-      position: {x: -0.17557634, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.1847337, w: 0.9827886}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightToeBaseEnd
-      position: {x: -0.072694175, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:Spine
-      position: {x: -0, y: 0.047301676, z: 0.07095251}
-      rotation: {x: -0.080052294, y: -0.010135124, z: -0.0012805235, w: 0.9967384}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:Spine1
-      position: {x: -0, y: 0, z: 0.09460335}
-      rotation: {x: 0.048960995, y: 0.0012003736, z: 0.0005143832, w: 0.99879986}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:Spine2
-      position: {x: -0, y: 0, z: 0.09460335}
-      rotation: {x: 0.05545951, y: -0.0011526686, z: 0.0012960082, w: 0.99845946}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:Spine3
-      position: {x: -0, y: 0, z: 0.09460335}
-      rotation: {x: 0.006483137, y: -0.0010976709, z: 0.00025626304, w: 0.99997836}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftShoulder
-      position: {x: -0.030289236, y: -0.05048206, z: 0.16356188}
-      rotation: {x: 0.025234506, y: 0.028081367, z: -0.008875005, w: 0.99924767}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftArm
-      position: {x: -0.15043655, y: 0, z: 0}
-      rotation: {x: 0.07708198, y: -0.052909337, z: 0.009044542, w: 0.9955788}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftForeArm
-      position: {x: -0.3152942, y: 0, z: 0}
-      rotation: {x: -0.006501573, y: 0.03142109, z: 0.027197259, w: 0.99911505}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftHand
-      position: {x: -0.26045033, y: 0, z: 0}
-      rotation: {x: -0.1637706, y: 0.24442132, z: -0.2069595, w: 0.93306226}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftHandEnd
-      position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:L_FingersEnd
-      position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftHandThumb1
-      position: {x: -0.02970706, y: -0.049511764, z: -0.019804707}
-      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:LeftHandThumb2
-      position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:Neck
-      position: {x: -0, y: -0.035476256, z: 0.24833381}
-      rotation: {x: 0.15912458, y: 0.004180427, z: 0.008244442, w: 0.9872153}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:Head
-      position: {x: -0, y: 0, z: 0.13007961}
-      rotation: {x: -0.06659436, y: 0.018725595, z: 0.0046370123, w: 0.99759364}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:HeadEnd
-      position: {x: -0, y: 0, z: 0.15313917}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightShoulder
-      position: {x: 0.030289236, y: -0.05048206, z: 0.16356188}
-      rotation: {x: 0.000193507, y: 0.9966368, z: 0.013188372, w: 0.08087714}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightArm
-      position: {x: -0.15043655, y: 0, z: 0}
-      rotation: {x: 0.13416709, y: 0.10793353, z: -0.02476343, w: 0.98475194}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightForeArm
-      position: {x: -0.3152942, y: 0, z: 0}
-      rotation: {x: 0.0015751716, y: -0.009669192, z: 0.05529555, w: 0.998422}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightHand
-      position: {x: -0.26045033, y: 0, z: 0}
-      rotation: {x: 0.018901668, y: -0.09201228, z: -0.17427704, w: 0.98020613}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightHandEnd
-      position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071069}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:R_FingersEnd
-      position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightHandThumb1
-      position: {x: -0.02970706, y: -0.049511764, z: 0.019804707}
-      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:Solving:RightHandThumb2
-      position: {x: -0.07426764, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:STRN
-      position: {x: 0.13285406, y: 1.2687534, z: -0.031086966}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Maciek:T10
-      position: {x: 0.14129727, y: 1.1923926, z: -0.31762436}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2099034
-      position: {x: -3.646948, y: 0.9980815, z: -2.8190954}
-      rotation: {x: 0.06130772, y: 0.98840743, z: 0.004806027, w: 0.13881311}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100709
-      position: {x: 3.652117, y: 2.3019881, z: -2.9032853}
-      rotation: {x: -0.05495268, y: 0.10094704, z: 0.25596443, w: 0.9598292}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100712
-      position: {x: -3.5672543, y: 2.3356755, z: 0.2706866}
-      rotation: {x: 0.20572382, y: 0.97812665, z: 0.004512778, w: -0.030424671}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100716
-      position: {x: -3.5300653, y: 0.74771726, z: 2.8505132}
-      rotation: {x: 0.036557116, y: 0.9926355, z: -0.03345009, w: -0.11054184}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100719
-      position: {x: 3.7190619, y: 2.3073945, z: 2.7270484}
-      rotation: {x: 0.012495184, y: -0.16773903, z: 0.24590468, w: 0.95458806}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100727
-      position: {x: -3.5004961, y: 2.3443406, z: 2.861495}
-      rotation: {x: 0.21130599, y: 0.97050893, z: -0.0009472953, w: -0.11602313}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100729
-      position: {x: 3.687301, y: 2.296552, z: -0.31959048}
-      rotation: {x: 0.017553024, y: 0.053127665, z: 0.2884776, w: 0.9558504}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100738
-      position: {x: 3.7439218, y: 0.6598598, z: 2.7214794}
-      rotation: {x: 0.0018401612, y: -0.20116992, z: 0.043052066, w: 0.97860813}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100744
-      position: {x: 3.7398312, y: 1.2010438, z: -2.8881106}
-      rotation: {x: 0.06458527, y: 0.16230026, z: 0.08842504, w: 0.9806469}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Bonita_10_2100745
-      position: {x: -3.589964, y: 2.3226142, z: -2.798759}
-      rotation: {x: 0.23902525, y: 0.93797463, z: 0.010925365, w: 0.2509008}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_12695
-      position: {x: 0.0395735, y: 3.1506343, z: -6.064843}
-      rotation: {x: -0.685173, y: -0.14970908, z: 0.6969328, w: 0.14969914}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_13827
-      position: {x: 3.6257675, y: 3.1450014, z: -1.7459745}
-      rotation: {x: 0.92318463, y: 0.27643546, z: -0.26558372, w: -0.027907752}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15290
-      position: {x: -3.3681524, y: 3.1545289, z: 5.9157}
-      rotation: {x: 0.44910127, y: 0.06973981, z: 0.8648742, w: 0.21315981}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15298
-      position: {x: -3.5186718, y: 3.160579, z: -2.3427668}
-      rotation: {x: -0.3080022, y: -0.031999633, z: 0.9193592, w: 0.24267136}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:T40_15462
-      position: {x: -3.4796507, y: 3.1610687, z: -5.794681}
-      rotation: {x: -0.4520241, y: -0.072057985, z: 0.87355894, w: 0.16545919}
+      position: {x: -3.664356, y: 3.206229, z: -5.6430435}
+      rotation: {x: -0.4338611, y: -0.07201153, z: 0.88248044, w: 0.16675477}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:T40_15469
-      position: {x: -3.4467156, y: 3.1693082, z: 2.5918367}
-      rotation: {x: 0.36519912, y: 0.08968307, z: 0.88543874, w: 0.27310243}
+    - name: System:T40_12695
+      position: {x: -0.1647838, y: 3.208966, z: -6.0520587}
+      rotation: {x: -0.6703001, y: -0.15014519, z: 0.7103238, w: 0.15360463}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:T40_15475
-      position: {x: 3.5620117, y: 3.139425, z: -5.7187133}
-      rotation: {x: 0.8534517, y: 0.174342, z: -0.48013145, w: -0.10343522}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_15482
-      position: {x: 3.6478481, y: 3.1509273, z: 2.5005097}
-      rotation: {x: 0.91477925, y: 0.26929614, z: 0.29393467, w: 0.06527651}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:T40_16731
-      position: {x: 0.13695428, y: 3.1298983, z: 6.098309}
-      rotation: {x: 0.7048082, y: 0.14410329, z: 0.6790498, w: 0.14618897}
+    - name: System:T40_15290
+      position: {x: -3.0884511, y: 3.1387277, z: 6.0343866}
+      rotation: {x: 0.46650702, y: 0.07267644, z: 0.85627186, w: 0.20949432}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:T40_16795
-      position: {x: 3.6770895, y: 3.1383758, z: 5.760704}
-      rotation: {x: 0.87362707, y: 0.1979879, z: 0.44014454, w: 0.062042736}
+      position: {x: 3.939542, y: 3.1506336, z: 5.603598}
+      rotation: {x: 0.8819163, y: 0.19947343, z: 0.4235929, w: 0.0548002}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107617
-      position: {x: 3.5266714, y: 3.248659, z: -4.322343}
-      rotation: {x: 0.17712115, y: 0.4417413, z: 0.21064767, w: 0.8538854}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107676
-      position: {x: -3.3931246, y: 3.256336, z: 4.3914647}
-      rotation: {x: 0.26725432, y: 0.8428728, z: -0.15559286, w: -0.4403765}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107693
-      position: {x: 2.6536632, y: 3.2363336, z: 6.0780573}
-      rotation: {x: -0.18081369, y: -0.4929812, z: 0.28062093, w: 0.80344754}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: System:Vantage_5_2107709
-      position: {x: -2.3424237, y: 3.2456932, z: 6.1809807}
-      rotation: {x: 0.26819426, y: 0.81896394, z: -0.12685648, w: -0.4912}
+    - name: System:T40_13827
+      position: {x: 3.58583, y: 3.1948192, z: -1.8881024}
+      rotation: {x: 0.9170039, y: 0.27858385, z: -0.2832495, w: -0.035562363}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Vantage_5_2107712
-      position: {x: 0.25289166, y: 3.2366197, z: -6.101772}
-      rotation: {x: 0.22516344, y: 0.6729752, z: 0.21446662, w: 0.6711259}
+      position: {x: 0.045582183, y: 3.2948067, z: -6.095933}
+      rotation: {x: 0.2302817, y: 0.6860645, z: 0.21348266, w: 0.65628576}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107727
-      position: {x: 1.2431394, y: 3.125627, z: -4.8111796}
-      rotation: {x: 0.26811835, y: 0.5690737, z: 0.16517419, w: 0.7595954}
+    - name: System:Bonita_10_2099034
+      position: {x: -3.6972644, y: 1.0161825, z: -2.695211}
+      rotation: {x: 0.14387757, y: 0.9868781, z: -0.04626694, w: 0.05683486}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100716
+      position: {x: -3.3656032, y: 0.75029755, z: 2.970485}
+      rotation: {x: 0.033516943, y: 0.9903162, z: -0.031460166, w: -0.13099901}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: System:Vantage_5_2107733
-      position: {x: -3.4572783, y: 3.2632358, z: -4.308029}
-      rotation: {x: 0.22444159, y: 0.82824993, z: 0.21187568, w: 0.46769297}
+      position: {x: -3.585263, y: 3.301673, z: -4.161928}
+      rotation: {x: 0.22828148, y: 0.83735937, z: 0.21020885, w: 0.45003232}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107744
-      position: {x: 3.6401772, y: 3.2412899, z: 4.347615}
-      rotation: {x: -0.19881324, y: -0.42856926, z: 0.25786638, w: 0.8427969}
+    - name: System:Bonita_10_2100727
+      position: {x: -3.3352, y: 2.3408165, z: 2.9862802}
+      rotation: {x: 0.21016794, y: 0.9681904, z: -0.0032240588, w: -0.13574448}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2107778
-      position: {x: -0.20639463, y: 3.2436388, z: 6.165148}
-      rotation: {x: -0.23171073, y: -0.672498, z: 0.22132157, w: 0.6671383}
+    - name: System:Vantage_5_2107617
+      position: {x: 3.3844185, y: 3.3133767, z: -4.455191}
+      rotation: {x: 0.18269132, y: 0.45892063, z: 0.20989981, w: 0.843776}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: System:Vantage_5_2108360
-      position: {x: -2.4737494, y: 3.24819, z: -6.1027045}
-      rotation: {x: 0.25225338, y: 0.8337054, z: 0.18555187, w: 0.45483404}
+    - name: System:Bonita_10_2100729
+      position: {x: 3.702577, y: 2.3426487, z: -0.4666372}
+      rotation: {x: 0.017219909, y: 0.09973393, z: 0.28390843, w: 0.95349497}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
-    - name: Unlabeled_Markers
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+    - name: System:Bonita_10_2100744
+      position: {x: 3.6609569, y: 1.2606049, z: -3.0438173}
+      rotation: {x: 0.06876698, y: 0.18060787, z: 0.08873061, w: 0.97712785}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: System:Bonita_10_2100719
+      position: {x: 3.8615904, y: 2.3267272, z: 2.5599658}
+      rotation: {x: -0.021937625, y: -0.1671679, z: 0.28413934, w: 0.9438424}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:ARIEL
+      position: {x: 0.12941188, y: 1.7216742, z: -1.0459158}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LFHD
+      position: {x: 0.083095044, y: 1.7213933, z: -0.9183603}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LBHD
+      position: {x: 0.030702204, y: 1.6297626, z: -1.0194697}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RFHD
+      position: {x: 0.21040675, y: 1.6782751, z: -0.9373369}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RBHD
+      position: {x: 0.20848571, y: 1.6115426, z: -1.0208344}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:C7
+      position: {x: 0.100032, y: 1.4877396, z: -1.1089119}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:T10
+      position: {x: 0.095121115, y: 1.2155557, z: -1.1452643}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:CLAV
+      position: {x: 0.11377631, y: 1.3983697, z: -0.8981879}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:STRN
+      position: {x: 0.12116513, y: 1.1872623, z: -0.8040736}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LFSH
+      position: {x: -0.030685319, y: 1.4426743, z: -0.9436022}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LBSH
+      position: {x: -0.052176416, y: 1.4059329, z: -1.1233549}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LUPA
+      position: {x: -0.18756925, y: 1.4957243, z: -1.0328121}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LELB
+      position: {x: -0.31220347, y: 1.4935273, z: -0.9978865}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LIEL
+      position: {x: -0.31025136, y: 1.3951483, z: -0.948619}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LOWR
+      position: {x: -0.52323055, y: 1.4928519, z: -0.9236563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LIWR
+      position: {x: -0.48499918, y: 1.4979925, z: -0.83062965}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LWRE
+      position: {x: -0.41306174, y: 1.5099096, z: -0.96367425}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LIHAND
+      position: {x: -0.57627964, y: 1.5437264, z: -0.82686967}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LOHAND
+      position: {x: -0.5800807, y: 1.5178795, z: -0.9168749}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RFSH
+      position: {x: 0.24204853, y: 1.4438035, z: -0.980262}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RBSH
+      position: {x: 0.245727, y: 1.4050587, z: -1.1366603}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RUPA
+      position: {x: 0.40501568, y: 1.4599249, z: -1.1026542}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RELB
+      position: {x: 0.5373904, y: 1.477236, z: -1.0914159}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RIEL
+      position: {x: 0.5684668, y: 1.3814651, z: -1.0613718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:ROWR
+      position: {x: 0.7429584, y: 1.4958439, z: -1.0730776}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RIWR
+      position: {x: 0.73525435, y: 1.4983648, z: -0.9770871}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RWRE
+      position: {x: 0.6359917, y: 1.5034126, z: -1.0777193}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RIHAND
+      position: {x: 0.81268615, y: 1.5303353, z: -0.9800749}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:ROHAND
+      position: {x: 0.8237083, y: 1.5155003, z: -1.059069}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LFWT
+      position: {x: -0.048348274, y: 0.9130547, z: -0.87024117}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LMWT
+      position: {x: 0.12747264, y: 1.0173154, z: -0.76761407}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LBWT
+      position: {x: 0.025039965, y: 0.973281, z: -1.1059853}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RFWT
+      position: {x: 0.27541018, y: 0.936039, z: -0.88808864}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RMWT
+      position: {x: 0.10323525, y: 0.9894652, z: -1.0996236}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RBWT
+      position: {x: 0.19330096, y: 0.96588004, z: -1.1156837}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LHIP
+      position: {x: -0.029162716, y: 0.5840102, z: -0.89687437}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LKNE
+      position: {x: -0.06450409, y: 0.43443838, z: -1.044491}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LKNI
+      position: {x: 0.07543777, y: 0.4382003, z: -0.9980977}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LSHN
+      position: {x: -0.059992608, y: 0.23922575, z: -0.9891737}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LANK
+      position: {x: -0.07693469, y: 0.0989105, z: -1.0424359}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LHEL
+      position: {x: 0.017990928, y: 0.07943945, z: -1.0830562}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LMT5
+      position: {x: -0.12013791, y: 0.04139523, z: -0.92596555}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LMT1
+      position: {x: -0.00078447966, y: 0.034937464, z: -0.90967923}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:LTOE
+      position: {x: -0.086726435, y: 0.046061218, z: -0.8614166}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RHIP
+      position: {x: 0.260935, y: 0.54060024, z: -0.92797834}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RKNE
+      position: {x: 0.28506517, y: 0.424025, z: -1.0602834}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RKNI
+      position: {x: 0.16267769, y: 0.4156996, z: -0.98581004}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RSHN
+      position: {x: 0.27435452, y: 0.26885864, z: -1.0142759}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RANK
+      position: {x: 0.26693678, y: 0.08587681, z: -1.0910798}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RHEL
+      position: {x: 0.19720358, y: 0.07897911, z: -1.1199386}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RMT5
+      position: {x: 0.34131926, y: 0.04465154, z: -0.98768544}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RMT1
+      position: {x: 0.22056037, y: 0.03630891, z: -0.94152355}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:RTOE
+      position: {x: 0.3039063, y: 0.051424935, z: -0.89872426}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Hips
+      position: {x: 0.0019542128, y: 0.9038253, z: -0.0007008314}
+      rotation: {x: -0.71470815, y: 0.052723173, z: -0.0015613104, w: 0.6974311}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine
+      position: {x: -0, y: 0.04313815, z: 0.06470722}
+      rotation: {x: -0.08991302, y: -0.03742667, z: -0.008774064, w: 0.9952075}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine1
+      position: {x: -0, y: 0, z: 0.0862763}
+      rotation: {x: 0.052590724, y: -0.0016305244, z: 0.00040166997, w: 0.9986148}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine2
+      position: {x: -0, y: 0, z: 0.0862763}
+      rotation: {x: 0.046037268, y: 0.0032435516, z: 0.011735177, w: 0.99886554}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Spine3
+      position: {x: -0, y: 0, z: 0.0862763}
+      rotation: {x: 0.0052488926, y: 0.0061917333, z: 0.0016465157, w: 0.9999657}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Neck
+      position: {x: -0, y: -0.03235361, z: 0.22647527}
+      rotation: {x: 0.092424475, y: -0.0005403856, z: 0.02061299, w: 0.99550617}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:Head
+      position: {x: -0, y: 0, z: 0.11862991}
+      rotation: {x: -0.09181412, y: 0.00467369, z: 0.027073028, w: 0.99539715}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:HeadEnd
+      position: {x: -0, y: 0, z: 0.13965975}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightShoulder
+      position: {x: 0.029757999, y: -0.049596667, z: 0.1606932}
+      rotation: {x: 0.025464252, y: 0.99943465, z: -0.0014133824, w: -0.02190769}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightArm
+      position: {x: -0.14779806, y: 0, z: 0}
+      rotation: {x: -0.066462986, y: -0.047587436, z: -0.037239585, w: 0.9959575}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightForeArm
+      position: {x: -0.28405353, y: 0, z: 0}
+      rotation: {x: -0.0054405094, y: 0.023560371, z: 0.05271576, w: 0.9983168}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHand
+      position: {x: -0.20037927, y: 0, z: 0}
+      rotation: {x: 0.19128291, y: 0.06555472, z: -0.071879916, w: 0.976702}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHandEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071069}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:R_FingersEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHandThumb1
+      position: {x: -0.024915682, y: -0.04152614, z: 0.016610455}
+      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightHandThumb2
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftShoulder
+      position: {x: -0.029757999, y: -0.049596667, z: 0.1606932}
+      rotation: {x: 0.0052331993, y: -0.03233437, z: 0.011325983, w: 0.99939924}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftArm
+      position: {x: -0.14779806, y: 0, z: 0}
+      rotation: {x: 0.014847753, y: 0.06874729, z: -0.032903776, w: 0.9969808}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftForeArm
+      position: {x: -0.28405353, y: 0, z: 0}
+      rotation: {x: 0.008321354, y: -0.030180924, z: 0.044643775, w: 0.99851227}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHand
+      position: {x: -0.20037927, y: 0, z: 0}
+      rotation: {x: -0.13043894, y: 0.031470623, z: -0.22317274, w: 0.96549946}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHandEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:L_FingersEnd
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHandThumb1
+      position: {x: -0.024915682, y: -0.04152614, z: -0.016610455}
+      rotation: {x: 0.9876721, y: 0.13002947, z: 0.011375968, w: 0.08641026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftHandThumb2
+      position: {x: -0.06228921, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightUpLeg
+      position: {x: 0.08828207, y: 0, z: -0.025790267}
+      rotation: {x: 0.16679879, y: -0.75239336, z: 0.09112259, w: 0.6306973}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightLeg
+      position: {x: -0.41859066, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.034673344, w: 0.9993987}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightFoot
+      position: {x: -0.40022987, y: 0, z: 0}
+      rotation: {x: 0.02687109, y: 0.1094049, z: 0.6516812, w: 0.7500801}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightToeBase
+      position: {x: -0.14929587, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.18097281, w: 0.98348814}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:RightToeBaseEnd
+      position: {x: -0.0714192, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftUpLeg
+      position: {x: -0.08828207, y: 0, z: -0.025790267}
+      rotation: {x: -0.082737334, y: -0.6881737, z: -0.23377922, w: 0.6818496}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftLeg
+      position: {x: -0.41859066, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.08436016, w: 0.99643534}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftFoot
+      position: {x: -0.40022987, y: 0, z: 0}
+      rotation: {x: 0.020862125, y: -0.11842328, z: 0.5247042, w: 0.8427492}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftToeBase
+      position: {x: -0.14929587, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.2610112, w: 0.9653358}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MoCap:Solving:LeftToeBaseEnd
+      position: {x: -0.0714192, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     armTwist: 0.5
@@ -1085,7 +1001,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
   humanoidOversampling: 1
