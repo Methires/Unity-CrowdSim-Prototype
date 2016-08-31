@@ -69,14 +69,6 @@ class HumanoidModelImporter : AssetPostprocessor
         {
             secondPass = false;
         }
-
-        //foreach (Transform child in g.transform)
-        //{
-        //    if (child.name == _mocapActorId)
-        //    {
-        //        modelImporter.extraExposedTransformPaths = new string[] { _mocapActorId + ":Solving:Hips" };//string.Format("{0}:Solving:Hips", _mocapActorId) };
-        //    }
-        //}
     }
 
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)

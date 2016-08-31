@@ -6,7 +6,9 @@ public class Movement : MonoBehaviour
     private NavMeshAgent _nMA;
     private float _speed;
     private Vector3 _destination;
+    private Quaternion _finalRotation;
     private bool _isFinished;
+    private bool _isInPosition = false;
     private string _blendParam;
 
     public bool IsFinished
@@ -41,6 +43,7 @@ public class Movement : MonoBehaviour
             _nMA.Resume();
             _nMA.destination = value;
             _isFinished = false;
+            _isInPosition = false;
         }
     }
     public string BlendParameter
@@ -56,6 +59,19 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public Quaternion FinalRotation
+    {
+        get
+        {
+            return _finalRotation;
+        }
+
+        set
+        {
+            _finalRotation = value;
+        }
+    }
+
     void Awake()
     {
         _nMA = GetComponent<NavMeshAgent>();
@@ -66,7 +82,15 @@ public class Movement : MonoBehaviour
     {
         if (!IsFinished)
         {
-            CheckPosition();
+            if (!_isInPosition)
+            {
+                CheckPosition();
+            }
+            else
+            {
+                CheckRotation();
+            }
+            
         }
     }
 
@@ -76,7 +100,7 @@ public class Movement : MonoBehaviour
         {
             if (Vector3.Distance(_destination, transform.position) < _nMA.stoppingDistance * 2)
             {
-                _isFinished = true;
+                _isInPosition = true;
                 _nMA.Stop();
             }
             else
@@ -84,5 +108,18 @@ public class Movement : MonoBehaviour
                 _nMA.SetDestination(_destination);
             }
         }
+    }
+
+    private void CheckRotation()
+    {
+        if (Quaternion.Angle(transform.rotation, _finalRotation) > 1.0f)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, _finalRotation, 100 * Time.deltaTime);
+        }
+        else
+        {
+            _isFinished = true;
+        }
+        
     }
 }
