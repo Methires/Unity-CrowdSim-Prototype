@@ -12,7 +12,7 @@ public class SimulationController : MonoBehaviour
 {
     public int Repeats;
     [Header("Scenario")]
-    public string ScenarioFilePath;
+    public string ScenarioFile;
     public int SimultaneousScenarioInstances;
     [Header("Tracking")]
     public bool Tracking;
@@ -43,35 +43,27 @@ public class SimulationController : MonoBehaviour
         WeatherConditions weather = GetComponent<WeatherConditions>();
         if (LoadFromConfig)
         {
-            XmlConfigParser.ParseXmlWithConfiguration(Application.dataPath + "/config.xml");
-            weather.Time = XmlConfigParser.Data.DayTime;
-            weather.Conditions = XmlConfigParser.Data.WeatherConditions;
+            XmlConfigReader.ParseXmlConfig(Application.dataPath + "/config.xml");
+
+            weather.Time = XmlConfigReader.Data.DayTime;
+            weather.Conditions = XmlConfigReader.Data.WeatherConditions;
+
             _crowdController.CreatePrefabs = true;
             _crowdController.LoadAgentsFromResources = true;
-            _crowdController.AgentsFilter = XmlConfigParser.Data.Models;
-            _crowdController.MaxPeople = XmlConfigParser.Data.MaxPeople;
-            Tracking = XmlConfigParser.Data.Tracking;
-            ScenarioFilePath = XmlConfigParser.Data.ScenarioFilePath;
-            SessionLength = XmlConfigParser.Data.Length > 1 ? XmlConfigParser.Data.Length : 1;
-            Repeats = XmlConfigParser.Data.Repeats;
-            SimultaneousScenarioInstances = XmlConfigParser.Data.Instances;
-            ScreenshotsDirectory = XmlConfigParser.Data.ResultsPath;
+            _crowdController.AgentsFilter = XmlConfigReader.Data.Models;
+            _crowdController.MaxPeople = XmlConfigReader.Data.MaxPeople;
+            _crowdController.ActionsFilter = XmlConfigReader.Data.ActionsFilter;
+
+            Tracking = XmlConfigReader.Data.Tracking;
+            ScenarioFile = XmlConfigReader.Data.ScenarioFile;
+            SessionLength = XmlConfigReader.Data.Length > 1 ? XmlConfigReader.Data.Length : 1;
+            Repeats = XmlConfigReader.Data.Repeats > 1 ? XmlConfigReader.Data.Repeats : 1;
+            SimultaneousScenarioInstances = XmlConfigReader.Data.Instances > 1 ? XmlConfigReader.Data.Instances : 1;
+
+            ScreenshotsDirectory = XmlConfigReader.Data.ResultsDirectory;
             _screenshooter.TakeScreenshots = true;
-            switch (XmlConfigParser.Data.VisualResultsType)
-            {
-                case 1:
-                    _screenshooter.MarkAgentsOnScreenshots = false;
-                    break;
-                case 2:
-                    _screenshooter.MarkAgentsOnScreenshots = false;
-                    break;
-                case 3:
-                    _screenshooter.MarkAgentsOnScreenshots = true;
-                    break;
-                default:
-                    _screenshooter.MarkAgentsOnScreenshots = true;
-                    break;
-            }
+            _screenshooter.MarkAgentsOnScreenshots = XmlConfigReader.Data.BoundingBoxes;
+
             Close = true;
             MarkWithPlanes = false;
             GetComponent<CamerasController>().enabled = false;
@@ -80,7 +72,7 @@ public class SimulationController : MonoBehaviour
 
         if (!Tracking)
         {
-            XmlScenarioReader.ParseXmlWithScenario(ScenarioFilePath);
+            XmlScenarioReader.ParseXmlWithScenario(ScenarioFile);
             _sequenceCreator.RawInfoToListPerAgent(XmlScenarioReader.ScenarioData);
             _sequencesControllers = new List<SequenceController>();
         }
@@ -100,7 +92,16 @@ public class SimulationController : MonoBehaviour
     {
         if (!_instanceFinished)
         {
-            if (!Tracking)
+            _elapsedTimeCounter += Time.deltaTime;
+
+            if (Tracking)
+            {
+                if (_elapsedTimeCounter >= SessionLength)
+                {
+                    EndInstanceOfSimulation();
+                }
+            }
+            else
             {
                 if (_sequencesControllers.Count > 0)
                 {
@@ -118,18 +119,6 @@ public class SimulationController : MonoBehaviour
                         EndInstanceOfSimulation();
                     }
                 }
-            }
-
-            _elapsedTimeCounter += Time.deltaTime;
-            if (Tracking)
-            {
-                if (_elapsedTimeCounter >= SessionLength)
-                {
-                    EndInstanceOfSimulation();
-                }
-            }
-            else
-            {
                 if (_elapsedTimeCounter >= SessionLength * 5.0f)
                 {
                     EndInstanceOfSimulation();
@@ -139,13 +128,11 @@ public class SimulationController : MonoBehaviour
 
             if (_screenshotBufferFull)
             {
-                //EditorApplication.isPaused = true;
                 string path = ScreenshotsDirectory + "/Take_" + _repeatsCounter;
 
                 Debug.Log("Screenshot buffer full! Saving to: " +  path);
                 _screenshooter.SaveScreenshotsAtDirectory(path);
                 _screenshotBufferFull = false;
-                //EditorApplication.isPaused = false;
             }
         }
     }
@@ -154,8 +141,6 @@ public class SimulationController : MonoBehaviour
     {
         _crowdController.GenerateCrowd();
         
-
-
         if (!Tracking)
         {
             _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
