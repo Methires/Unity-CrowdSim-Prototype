@@ -161,7 +161,7 @@ public class SequencesCreator : MonoBehaviour
                 crowd[index].tag = "ScenarioAgent";
                 crowd[index].name = _agentsNames[j] + "_" + i;
                 crowd[index].GetComponent<NavMeshAgent>().avoidancePriority = 0;
-                crowd[index].GetComponent<NavMeshAgent>().stoppingDistance = 0.4f;
+                crowd[index].GetComponent<NavMeshAgent>().stoppingDistance = 0.1f;
                 crowd[index].GetComponent<GenerateDestination>().enabled = false;
                 crowd[index].AddComponent<DisplayActivityText>();
                 _agentsGameObjects.Add(crowd[index]);

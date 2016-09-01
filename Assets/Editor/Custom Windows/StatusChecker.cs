@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System;
 
 public class StatusChecker : EditorWindow
-{ 
+{
+    bool _importerExtension = false;
     [MenuItem("Window/Status Checker")]
 
     static void Init()
@@ -21,6 +23,17 @@ public class StatusChecker : EditorWindow
 
         GUILayout.Label("Scripts Compiling", EditorStyles.boldLabel);
         EditorGUILayout.LabelField("Compiling:", EditorApplication.isCompiling? "YES" : "NO");
+
+        GUILayout.Label("Custom importer", EditorStyles.boldLabel);
+        _importerExtension = EditorGUILayout.Toggle("Enable:",_importerExtension);
+        try
+        {
+            HumanoidModelImporter.useImporter = _importerExtension;
+        }
+        catch (Exception e)
+        {
+            Debug.Log("OMG");
+        }
     }
 
     void Update()

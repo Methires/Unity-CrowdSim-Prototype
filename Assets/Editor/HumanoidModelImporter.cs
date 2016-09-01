@@ -7,6 +7,7 @@ using System.Linq;
 
 class HumanoidModelImporter : AssetPostprocessor
 {
+    public static bool useImporter;
     private string _mocapActorId;
     private string _htFilepath = "/Resources/HumanTemplateFull.ht";
     private string _referenceAvatarName = "B3010@ReferenceAvatar";
@@ -18,191 +19,214 @@ class HumanoidModelImporter : AssetPostprocessor
 
     void OnPreprocessModel()
     {
-        if (assetPath.Contains("@"))
+        if (useImporter)
         {
-            _mocapActorId = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
-            _isAnimation = true;
-            _htFilepath = "/Resources/MocapTemplate.ht";
+            if (assetPath.Contains("@"))
+            {
+                _mocapActorId = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
+                _isAnimation = true;
+                _htFilepath = "/Resources/MocapTemplate.ht";
+            }
+
+            ModelImporter modelImporter = assetImporter as ModelImporter;
+
+            modelImporter.animationType = ModelImporterAnimationType.Human;
+            modelImporter.animationCompression = ModelImporterAnimationCompression.Optimal;
+            modelImporter.animationPositionError = 0.5f;
+            modelImporter.animationRotationError = 0.5f;
+            modelImporter.animationScaleError = 0.5f;
+            modelImporter.generateAnimations = ModelImporterGenerateAnimations.GenerateAnimations;
+            modelImporter.importAnimation = true;
+            modelImporter.resampleCurves = true;
+            modelImporter.optimizeGameObjects = true;
+            modelImporter.humanDescription = ReadHumanDescription();
+            modelImporter.sourceAvatar = null;
+            modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", _mocapActorId) };
+
+            if (!secondPass && _isAnimation)
+            {
+                string[] paths = AssetDatabase.FindAssets(_referenceAvatarName);
+                string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
+                Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
+                modelImporter.sourceAvatar = avatar;
+
+            }
+
+            path = assetPath; 
         }
-
-        ModelImporter modelImporter = assetImporter as ModelImporter;
-
-        modelImporter.animationType = ModelImporterAnimationType.Human;
-        modelImporter.animationCompression = ModelImporterAnimationCompression.Optimal;
-        modelImporter.animationPositionError = 0.5f;
-        modelImporter.animationRotationError = 0.5f;
-        modelImporter.animationScaleError = 0.5f;
-        modelImporter.generateAnimations = ModelImporterGenerateAnimations.GenerateAnimations;
-        modelImporter.importAnimation = true;
-        modelImporter.resampleCurves = true;
-        modelImporter.optimizeGameObjects = true;
-        modelImporter.humanDescription = ReadHumanDescription();
-        modelImporter.sourceAvatar = null;
-        modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", _mocapActorId) };
-
-        if (!secondPass && _isAnimation)
-        {
-            string[] paths = AssetDatabase.FindAssets(_referenceAvatarName);
-            string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
-            Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
-            modelImporter.sourceAvatar = avatar;
-            
-        }
-
-        path = assetPath;
     }
 
     void OnPostprocessModel(GameObject g)
     {
-        ModelImporter modelImporter = assetImporter as ModelImporter;
-        if (_isAnimation && !secondPass)
+        if (useImporter)
         {
-            if (skeletonDescription == null)
+            ModelImporter modelImporter = assetImporter as ModelImporter;
+            if (_isAnimation && !secondPass)
             {
-                PrepareSkeletonDescription(modelImporter);
+                if (skeletonDescription == null)
+                {
+                    PrepareSkeletonDescription(modelImporter);
+                }
+
+                secondPass = true;
+                AssetDatabase.ImportAsset(path);
             }
-          
-            secondPass = true;
-            AssetDatabase.ImportAsset(path);
-        }
-        else
-        {
-            secondPass = false;
+            else
+            {
+                secondPass = false;
+            } 
         }
     }
 
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {
-        foreach (var asset in importedAssets)
+        if (useImporter)
         {
-            Debug.Log("Imported: " + asset);
-            if (asset.Count(x => x == '@') > 1)
+            foreach (var asset in importedAssets)
             {
-                string[] derivedAssetNames = GenerateDerivedNames(Path.GetFileName(asset));
-
-                foreach (var assetName in derivedAssetNames)
+                Debug.Log("Imported: " + asset);
+                if (asset.Count(x => x == '@') > 1)
                 {
-                    AssetDatabase.CopyAsset(asset, Path.GetDirectoryName(asset) + "/" + assetName);
+                    string[] derivedAssetNames = GenerateDerivedNames(Path.GetFileName(asset));
+
+                    foreach (var assetName in derivedAssetNames)
+                    {
+                        AssetDatabase.CopyAsset(asset, Path.GetDirectoryName(asset) + "/" + assetName);
+                    }
+                    AssetDatabase.DeleteAsset(asset);
+                    AssetDatabase.Refresh();
                 }
-                AssetDatabase.DeleteAsset(asset);
-                AssetDatabase.Refresh();
-            }
+            } 
         }
     }
 
     private static string[] GenerateDerivedNames(string primordialName)
     {
-        List<string> namesList = primordialName.Split('@').ToList();
-        string commonPart = namesList.Last();
-        namesList.Remove(commonPart);
-
-        for (int i = 0; i < namesList.Count; i++)
+        if (useImporter)
         {
-            namesList[i] = string.Format("{0}@{1}", namesList[i], commonPart);
+            List<string> namesList = primordialName.Split('@').ToList();
+            string commonPart = namesList.Last();
+            namesList.Remove(commonPart);
+
+            for (int i = 0; i < namesList.Count; i++)
+            {
+                namesList[i] = string.Format("{0}@{1}", namesList[i], commonPart);
+            }
+            return namesList.ToArray(); 
         }
-        return namesList.ToArray();
+        return null;
     }
 
     private void PrepareSkeletonDescription(ModelImporter modelImporter)
     {
-        skeletonDescription = modelImporter.humanDescription.skeleton;
-        List<SkeletonBone> tempSkeletonBoneList = skeletonDescription.ToList();
-
-        string refereneAvatarId = _referenceAvatarName.Split('@')[0];
-        for (int i = 0; i < tempSkeletonBoneList.Count; i++)
+        if (useImporter)
         {
-            if (!tempSkeletonBoneList[i].name.Contains(refereneAvatarId))
+            skeletonDescription = modelImporter.humanDescription.skeleton;
+            List<SkeletonBone> tempSkeletonBoneList = skeletonDescription.ToList();
+
+            string refereneAvatarId = _referenceAvatarName.Split('@')[0];
+            for (int i = 0; i < tempSkeletonBoneList.Count; i++)
             {
-                tempSkeletonBoneList.RemoveAt(i);
+                if (!tempSkeletonBoneList[i].name.Contains(refereneAvatarId))
+                {
+                    tempSkeletonBoneList.RemoveAt(i);
+                }
             }
+            skeletonDescription = tempSkeletonBoneList.ToArray(); 
         }
-        skeletonDescription = tempSkeletonBoneList.ToArray();
     }
 
     private HumanDescription ReadHumanDescription()
     {
         HumanDescription humanDescription = new HumanDescription();
-        List<HumanBone> humanBones = new List<HumanBone>();
-        string[] lines = ReadFileLines();
-        string[] pair;
-
-        //Description starts in the 10th line
-        for (int i = 9; i < lines.Length; i++)
+        if (useImporter)
         {
-            pair = lines[i].Split(new string[] { ": " }, StringSplitOptions.None);
-            pair[0] = pair[0].Replace(" ", string.Empty);
-            pair[1] = pair[1].Replace(" ", string.Empty);
+            List<HumanBone> humanBones = new List<HumanBone>();
+            string[] lines = ReadFileLines();
+            string[] pair;
 
-            if (_isAnimation)
+            //Description starts in the 10th line
+            for (int i = 9; i < lines.Length; i++)
             {
-                pair[1] = string.Format("{0}:{1}", _mocapActorId, pair[1]);
+                pair = lines[i].Split(new string[] { ": " }, StringSplitOptions.None);
+                pair[0] = pair[0].Replace(" ", string.Empty);
+                pair[1] = pair[1].Replace(" ", string.Empty);
+
+                if (_isAnimation)
+                {
+                    pair[1] = string.Format("{0}:{1}", _mocapActorId, pair[1]);
+                }
+
+                HumanBone newBone = new HumanBone();
+                newBone.humanName = pair[0];
+                newBone.boneName = pair[1];
+                HumanLimit limit = new HumanLimit();
+                limit.useDefaultValues = true;
+                newBone.limit = limit;
+                humanBones.Add(newBone);
             }
 
-            HumanBone newBone = new HumanBone();
-            newBone.humanName = pair[0];
-            newBone.boneName = pair[1];
-            HumanLimit limit = new HumanLimit();
-            limit.useDefaultValues = true;
-            newBone.limit = limit;
-            humanBones.Add(newBone);
-        }
+            humanDescription.human = humanBones.ToArray();
+            humanDescription.upperArmTwist = 0.5f;
+            humanDescription.lowerArmTwist = 0.5f;
+            humanDescription.upperLegTwist = 0.5f;
+            humanDescription.lowerLegTwist = 0.5f;
+            humanDescription.armStretch = 0.05f;
+            humanDescription.legStretch = 0.05f;
+            humanDescription.feetSpacing = 0.0f;
+            humanDescription.hasTranslationDoF = true;
 
-        humanDescription.human = humanBones.ToArray();
-        humanDescription.upperArmTwist = 0.5f;
-        humanDescription.lowerArmTwist = 0.5f;
-        humanDescription.upperLegTwist = 0.5f;
-        humanDescription.lowerLegTwist = 0.5f;
-        humanDescription.armStretch = 0.05f;
-        humanDescription.legStretch = 0.05f;
-        humanDescription.feetSpacing = 0.0f;
-        humanDescription.hasTranslationDoF = true;
-
-        if (secondPass && _isAnimation)
-        {
-            string refereneAvatarId = _referenceAvatarName.Split('@')[0];
-
-            List<SkeletonBone> skeletonBones = new List<SkeletonBone>();
-            for (int i = 0; i < skeletonDescription.Length; i++)
+            if (secondPass && _isAnimation)
             {
-                string oldName = skeletonDescription[i].name;
-                string newName = oldName.Replace(refereneAvatarId, _mocapActorId);
+                string refereneAvatarId = _referenceAvatarName.Split('@')[0];
 
-                SkeletonBone newSkeletonBone = new SkeletonBone();
-                newSkeletonBone.name = newName;
-                newSkeletonBone.position = skeletonDescription[i].position;
-                newSkeletonBone.rotation = skeletonDescription[i].rotation;
-                newSkeletonBone.scale = skeletonDescription[i].scale;
-                newSkeletonBone.transformModified = skeletonDescription[i].transformModified;
+                List<SkeletonBone> skeletonBones = new List<SkeletonBone>();
+                for (int i = 0; i < skeletonDescription.Length; i++)
+                {
+                    string oldName = skeletonDescription[i].name;
+                    string newName = oldName.Replace(refereneAvatarId, _mocapActorId);
 
-                skeletonBones.Add(newSkeletonBone);
-            }
+                    SkeletonBone newSkeletonBone = new SkeletonBone();
+                    newSkeletonBone.name = newName;
+                    newSkeletonBone.position = skeletonDescription[i].position;
+                    newSkeletonBone.rotation = skeletonDescription[i].rotation;
+                    newSkeletonBone.scale = skeletonDescription[i].scale;
+                    newSkeletonBone.transformModified = skeletonDescription[i].transformModified;
 
-            humanDescription.skeleton = skeletonBones.ToArray();
+                    skeletonBones.Add(newSkeletonBone);
+                }
+
+                humanDescription.skeleton = skeletonBones.ToArray();
+            }     
         }
         return humanDescription;
     }
 
     private string[] ReadFileLines()
     {
-        string path = Application.dataPath + _htFilepath;
-        List<string> readLines = new List<string>();
-
-        try
+        if (useImporter)
         {
-            using (StreamReader sr = new StreamReader(path))
+            string path = Application.dataPath + _htFilepath;
+            List<string> readLines = new List<string>();
+
+            try
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                using (StreamReader sr = new StreamReader(path))
                 {
-                    readLines.Add(line);
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        readLines.Add(line);
+                    }
                 }
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.Message);
-        }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
 
-        return readLines.ToArray();
+            return readLines.ToArray(); 
+        }
+        return null;
     }
 }
