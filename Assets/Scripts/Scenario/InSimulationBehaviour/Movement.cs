@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     private bool _isFinished;
     private bool _isInPosition = false;
     private string _blendParam;
+    private GameObject hips;
 
     public bool IsFinished
     {
@@ -76,6 +77,8 @@ public class Movement : MonoBehaviour
     {
         _nMA = GetComponent<NavMeshAgent>();
         _isFinished = true;
+        hips = this.transform.FindChild("master/Reference/Hips").gameObject;
+
     }
 
     void Update()
@@ -98,7 +101,7 @@ public class Movement : MonoBehaviour
     {
         if (_nMA.remainingDistance < _nMA.stoppingDistance + Mathf.Epsilon)
         {
-            if (Vector3.Distance(_destination, transform.position) < _nMA.stoppingDistance * 2)
+            if (Vector3.Distance(_nMA.destination, transform.position) < _nMA.stoppingDistance * 2)
             {
                 _isInPosition = true;
                 _nMA.Stop();
@@ -112,14 +115,17 @@ public class Movement : MonoBehaviour
 
     private void CheckRotation()
     {
-        if (Quaternion.Angle(transform.rotation, _finalRotation) > 1.0f)
+        if (Mathf.Abs(Quaternion.Angle(transform.rotation, _finalRotation)) > 1.0f)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, _finalRotation, 100 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _finalRotation, 10 * Time.deltaTime);
         }
         else
         {
             _isFinished = true;
         }
+
+           // transform.rotation = transform.rotation * (Quaternion.Inverse(hips.transform.localRotation) * _finalRotation);
+
         
     }
 }

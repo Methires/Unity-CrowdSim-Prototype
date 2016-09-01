@@ -92,11 +92,11 @@ public class SequenceController : MonoBehaviour
                         GameObject exactSpotParent = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);                       
                         Transform exactSpot = exactSpotParent.transform.GetChild(0).transform;
 
-                        //Vector3 flippedEuler = exactSpot.rotation.eulerAngles;
-                        //flippedEuler = new Vector3(0,flippedEuler.x,0);                         
+                        //Vector3 flippedEuler = exactSpot.localEulerAngles; ;
+                        //flippedEuler = new Vector3(0, flippedEuler.z , 0);
                         //finalRotation = Quaternion.Euler(flippedEuler);
 
-                        finalRotation = exactSpot.rotation;
+                        finalRotation = Quaternion.Euler(0, exactSpot.rotation.eulerAngles.y + exactSpot.rotation.eulerAngles.z, 0);
 
                         if (exactSpot != null)
                         {
