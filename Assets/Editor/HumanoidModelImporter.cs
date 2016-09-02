@@ -7,7 +7,7 @@ using System.Linq;
 
 class HumanoidModelImporter : AssetPostprocessor
 {
-    public static bool useImporter;
+    public static bool useImporter = true;
     private string _mocapActorId;
     private string _htFilepath = "/Resources/HumanTemplateFull.ht";
     private string _referenceAvatarName = "B3010@ReferenceAvatar";

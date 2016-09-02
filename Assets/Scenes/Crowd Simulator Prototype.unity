@@ -252,6 +252,71 @@ Prefab:
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: LoadFromConfig
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: CreatePrefabs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: LoadAgentsFromResources
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Conditions
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Tracking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: SessionLength
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: MaxPeople
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: Repeats
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: ScenarioFile
+      value: TwoAgentTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: SimultaneousScenarioInstances
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: MarkWithPlanes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: ActionsFilter
+      value: '|B3010@RozmowaPrzezTelefon-E11-R01-T02|B3010@Kucanie-E16-R01-T02|B3010@Podnoszenie-E14-R03-T02|B3010@Kopanie-E19-R02-T01'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: CrowdActions
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -363,6 +428,70 @@ Prefab:
         type: 2}
       propertyPath: TakeScreenshots
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462390, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 144.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 154924, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 467174, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 467174, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 467174, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 493176, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 493176, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 493176, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 411978, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 411978, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 411978, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 433466, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 433466, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 433466, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 447400, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 447400, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
