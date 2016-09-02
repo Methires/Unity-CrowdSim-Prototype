@@ -8,6 +8,7 @@ public class Agent : MonoBehaviour
     protected Locomotion locomotion;
 
     private uint _agentId;
+    private int _isInDynamicStateHash;
 
     public uint AgentId
     {
@@ -33,6 +34,7 @@ public class Agent : MonoBehaviour
         locomotion = new Locomotion(animator);
 
         _agentId = GetId();
+        _isInDynamicStateHash = Animator.StringToHash("IsInDynamicState");
     }
 
     protected void SetupAgentLocomotion()
@@ -52,16 +54,23 @@ public class Agent : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        try
+        if (!animator.GetBool(_isInDynamicStateHash))
         {
-            agent.velocity = animator.deltaPosition / Time.deltaTime;
-            transform.rotation = animator.rootRotation;
-            transform.position = new Vector3(transform.position.x, animator.rootPosition.y, transform.position.z);
+            try
+            {
+                agent.velocity = animator.deltaPosition / Time.deltaTime;
+                transform.rotation = animator.rootRotation;
+                transform.position = new Vector3(transform.position.x, animator.rootPosition.y, transform.position.z);
+            }
+            catch (NullReferenceException e)
+            {
+            }
         }
-        catch (NullReferenceException e)
+        else
         {
+            animator.ApplyBuiltinRootMotion();
         }
-
+  
         //Vector3 position = animator.rootPosition;
         //position.y = agent.nextPosition.y;
         //transform.position = position;

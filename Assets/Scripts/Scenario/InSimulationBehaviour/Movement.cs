@@ -77,7 +77,6 @@ public class Movement : MonoBehaviour
     {
         _nMA = GetComponent<NavMeshAgent>();
         _isFinished = true;
-        hips = this.transform.FindChild("master/Reference/Hips").gameObject;
 
     }
 

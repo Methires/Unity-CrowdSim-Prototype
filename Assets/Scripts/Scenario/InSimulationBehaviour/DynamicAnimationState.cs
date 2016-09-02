@@ -17,6 +17,8 @@ public class DynamicAnimationState
     private string _parameterName;
     private float _length;
     private float _transitionLenght = 0.2f;
+    private bool _originalRootMotionSetting;
+    private int _isInDynamicStateHash;
 
     public float Length
     {
@@ -30,7 +32,7 @@ public class DynamicAnimationState
 
         _rootStateMachine = _animController.layers[0].stateMachine;
         _parameterName = motionName + "Parameter";
-
+        _isInDynamicStateHash = Animator.StringToHash("IsInDynamicState");
         LoadMotion(motionName);
         AddToController();
     }
@@ -81,12 +83,17 @@ public class DynamicAnimationState
 
     public void EnterState()
     {
+        _originalRootMotionSetting = _anim.applyRootMotion;
+        _anim.applyRootMotion = true;
+        _anim.SetBool(_isInDynamicStateHash, true);
         _anim.SetBool(Animator.StringToHash(_parameterName), true);
     }
 
     public void ExitState()
     {
         _anim.SetBool(Animator.StringToHash(_parameterName), false);
+        _anim.SetBool(_isInDynamicStateHash, false);
+        _anim.applyRootMotion = _originalRootMotionSetting;
     }
 
     public bool HasFinished()
