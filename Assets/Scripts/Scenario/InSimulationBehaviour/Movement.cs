@@ -7,10 +7,10 @@ public class Movement : MonoBehaviour
     private float _speed;
     private Vector3 _destination;
     private Quaternion _finalRotation;
+    private Agent _agent;
     private bool _isFinished;
     private bool _isInPosition = false;
     private string _blendParam;
-    private GameObject hips;
 
     public bool IsFinished
     {
@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
     {
         _nMA = GetComponent<NavMeshAgent>();
         _isFinished = true;
-
+        _agent = GetComponent<Agent>();
     }
 
     void Update()
@@ -114,17 +114,9 @@ public class Movement : MonoBehaviour
 
     private void CheckRotation()
     {
-        if (Mathf.Abs(Quaternion.Angle(transform.rotation, _finalRotation)) > 1.0f)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, _finalRotation, 10 * Time.deltaTime);
-        }
-        else
+        if (_agent.AgentInPlace())
         {
             _isFinished = true;
         }
-
-           // transform.rotation = transform.rotation * (Quaternion.Inverse(hips.transform.localRotation) * _finalRotation);
-
-        
     }
 }

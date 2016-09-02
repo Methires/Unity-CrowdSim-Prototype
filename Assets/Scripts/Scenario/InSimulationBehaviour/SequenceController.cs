@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
 
@@ -9,6 +8,7 @@ public class SequenceController : MonoBehaviour
 {
     private Movement _movementScript;
     private Activity _actionScript;
+    private Agent _agent;
     private List<InGameActionInfo> _sequence;
     private int _currentActivityIndex;
     private bool _isFinished;
@@ -48,7 +48,6 @@ public class SequenceController : MonoBehaviour
         }
     }
 
-
     void Awake()
     {
         _sequence = new List<InGameActionInfo>();
@@ -56,6 +55,7 @@ public class SequenceController : MonoBehaviour
         _currentActivityIndex = -1;
         _movementScript = GetComponent<Movement>();
         _actionScript = GetComponent<Activity>();
+        _agent = GetComponent<Agent>();
         _isFinished = true;
     }
 
@@ -112,7 +112,7 @@ public class SequenceController : MonoBehaviour
                         //finalRotation = Quaternion.Euler(flippedEuler);
 
                         finalRotation = Quaternion.Euler(0, exactSpot.rotation.eulerAngles.y + exactSpot.rotation.eulerAngles.z, 0);
-
+                        _agent.FinalRotation = finalRotation;
                         if (exactSpot != null)
                         {
                             positionOffsetForMultiActorActivity.x = exactSpot.position.x;
@@ -124,7 +124,7 @@ public class SequenceController : MonoBehaviour
                 if (!_isCrowd)
                 {
                     _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
-                    _movementScript.FinalRotation = finalRotation;
+                    //_movementScript.FinalRotation = finalRotation;
 
                     if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
                     {

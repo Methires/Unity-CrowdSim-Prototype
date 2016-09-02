@@ -10,7 +10,7 @@ public class NavigationLocomotion : MonoBehaviour
     public float AngularSpeedDampTime = 0.5f;
     public float DirectionResponseTime = 0.6f;
     public float SpeedReductionWeight = 0.3f;
-
+    public float WarpDistance = 0.2f;
     public float MaxSpeed = 2.0f;
     
     private Animator _animator;
@@ -18,6 +18,12 @@ public class NavigationLocomotion : MonoBehaviour
     private int _speedId;
     private int _angularSpeedId;
     private int _directionId;
+    private int _isInDynamicStateId;
+
+    private bool _inTransition;
+    private bool _inIdle;
+    private bool _inTurn;
+    private bool _inWalkRun;
 
     void Start ()
     {
@@ -27,6 +33,7 @@ public class NavigationLocomotion : MonoBehaviour
         _speedId = Animator.StringToHash("Speed");
         _angularSpeedId = Animator.StringToHash("AngularSpeed");
         _directionId = Animator.StringToHash("Direction");
+        _isInDynamicStateId = Animator.StringToHash("IsInDynamicState");
         MaxSpeed = Mathf.Clamp(MaxSpeed, 0.0f, _agent.speed);
         _agent.speed = MaxSpeed;
 
@@ -42,50 +49,57 @@ public class NavigationLocomotion : MonoBehaviour
         float angularSpeed = 0.0f;
         if (!AgentDone())
         {
-            //speed = Mathf.Lerp(_agent.velocity.magnitude, _agent.desiredVelocity.magnitude, _agent.acceleration * Time.deltaTime);
-
-            //Vector3 velocity = Quaternion.Inverse(transform.rotation) * _agent.desiredVelocity;
-            //angle = Mathf.Atan2(velocity.x, velocity.z) * 180.0f / Mathf.PI;
-            //angularSpeed = angle / (DirectionResponseTime); //* _agent.angularSpeed);   
-
-            //speed = Vector3.Project(_agent.desiredVelocity, transform.forward).magnitude;
             angle = GetAngle(transform.forward, _agent.desiredVelocity);
             angularSpeed = (angle * Mathf.Deg2Rad) / DirectionResponseTime;
             speed = _agent.desiredVelocity.magnitude;
-            speed = ScaleToRange(speed, 0.0f, _agent.speed, 0.0f, MaxSpeed - SpeedReductionWeight * angle);                     
+            speed = ScaleToRange(speed, 0.0f, _agent.speed, 0.0f, MaxSpeed - SpeedReductionWeight * angle);
+            _agent.speed = speed;
         }
 
         AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
-        bool inTransition = _animator.IsInTransition(0);
-        bool inIdle = state.IsName("Idle");
-        bool inTurn = state.IsName("TurnOnSpot");
-        bool inWalkRun = state.IsName("Movement");
+        _inTransition = _animator.IsInTransition(0);
+        _inIdle = state.IsName("Idle");
+        _inTurn = state.IsName("TurnOnSpot");
+        _inWalkRun = state.IsName("Movement");
+        
 
-        float speedDampTime = inIdle ? 0 : SpeedDampTime;
-        float angularSpeedDampTime = inWalkRun || inTransition ? AngularSpeedDampTime : 0;
-        float directionDampTime = inTurn || inTransition ? 1000000 : 0;
+        float speedDampTime = _inIdle ? 0 : SpeedDampTime;
+        float angularSpeedDampTime = _inWalkRun || _inTransition ? AngularSpeedDampTime : 0;
+        float directionDampTime = _inTurn || _inTransition ? 1000000 : 0;
 
         _animator.SetFloat(_speedId, speed, speedDampTime, Time.deltaTime);
         _animator.SetFloat(_angularSpeedId, angularSpeed, angularSpeedDampTime, Time.deltaTime);
-        _animator.SetFloat(_directionId, angle, directionDampTime, Time.deltaTime);
-
-        //if (worldDeltaPosition.magnitude > _agent.radius)
-        //    transform.position = _agent.nextPosition - 0.9f * worldDeltaPosition;
+        _animator.SetFloat(_directionId, angle, directionDampTime, Time.deltaTime);      
 
         // Pull agent towards character
-        if (worldDeltaPosition.magnitude > _agent.radius)
+        if (worldDeltaPosition.magnitude > _agent.radius / 2.0f)
             _agent.nextPosition = transform.position + 0.99f * worldDeltaPosition;
     }
 
     void OnAnimatorMove()
     {
-        // Update position based on animation movement using navigation surface height
-        Vector3 position = _animator.rootPosition;
-        position.y = _agent.nextPosition.y;
-        transform.position = position;
 
-        //_agent.velocity = _animator.deltaPosition / Time.deltaTime;
-        //transform.rotation = _animator.rootRotation;
+        //transform.position = _agent.nextPosition;
+        if (!_inIdle || _animator.GetBool(_isInDynamicStateId))
+        {
+            if (!AgentInWarpingDistance())
+            {
+                Vector3 position = _animator.rootPosition;
+                position.y = _agent.nextPosition.y;
+                transform.position = position;
+
+                _agent.velocity = _animator.deltaPosition / Time.deltaTime;
+                transform.rotation = _animator.rootRotation;
+            }
+            else
+            {
+                transform.position = _agent.nextPosition;
+            }
+        }
+        else
+        {
+            _animator.ApplyBuiltinRootMotion();
+        }              
     }
 
     private float GetAngle(Vector3 from, Vector3 to)
@@ -110,5 +124,10 @@ public class NavigationLocomotion : MonoBehaviour
     protected bool AgentStopping()
     {
         return _agent.remainingDistance <= _agent.stoppingDistance;
+    }
+
+    protected bool AgentInWarpingDistance()
+    {
+        return _agent.remainingDistance <= WarpDistance;
     }
 }
