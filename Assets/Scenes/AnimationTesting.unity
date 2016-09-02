@@ -305,7 +305,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -638,7 +638,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1678763202}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eccdf3d86c4af4145b37a08eb9b4c46e, type: 3}
   m_Name: 
@@ -647,6 +647,7 @@ MonoBehaviour:
   AngularSpeedDampTime: 0.4
   DirectionResponseTime: 0.3
   SpeedReductionWeight: 0
+  WarpDistance: 0.2
   MaxSpeed: 1.5
 --- !u!114 &1678763204
 MonoBehaviour:
@@ -657,6 +658,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbde51a4d1ed2d445955f048d5d94a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1678763205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678763202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18eec1114064f5944b83d61ddbe5b02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &1678763207
