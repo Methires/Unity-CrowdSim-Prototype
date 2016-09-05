@@ -43,6 +43,11 @@ public class Screenshooter : MonoBehaviour
         _simulationController = FindObjectOfType<SimulationController>();
         _cameras = FindObjectsOfType<Camera>();
 
+        if (TakeScreenshots)
+        {
+            Time.captureFramerate = 24;
+        }
+
         SetupDictionary();
     }
 

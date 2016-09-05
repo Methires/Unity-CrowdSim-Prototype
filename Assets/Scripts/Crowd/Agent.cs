@@ -20,13 +20,13 @@ public class Agent : MonoBehaviour
             return _agentId;
         }
     }
-   
+
     private static uint GetId()
     {
         return idCounter++;
     }
 
-    
+
     public Quaternion FinalRotation
     {
         get
@@ -37,7 +37,6 @@ public class Agent : MonoBehaviour
         set
         {
             _finalRotation = value;
-            _applyFinalRotation = true;
         }
     }
 
@@ -83,45 +82,43 @@ public class Agent : MonoBehaviour
                 float angleDifference = Quaternion.Angle(transform.rotation, _finalRotation);
                 if (Mathf.Abs(angleDifference) > 10.0f)
                 {
-
                     angle = angleDifference > 180.0f ? angleDifference - 360.0f : angleDifference;
 
                     locomotion.Do(0.0f, angle);
-                    //angle = angleDifference;
-                    //speed = 0.0f;
                 }
-                else 
+                else
                 {
                     if (Mathf.Abs(angleDifference) > 1.0f)
                     {
                         transform.rotation = Quaternion.Slerp(transform.rotation, _finalRotation, 10 * Time.deltaTime);
-                    }                      
+                    }
                 }
             }
             else
             {
                 locomotion.Do(speed, angle);
-            }         
+            }
         }
     }
 
     void OnAnimatorMove()
     {
-        if (!animator.GetBool(_isInDynamicStateHash))
+        try
         {
-            try
+            if (!animator.GetBool(_isInDynamicStateHash))
             {
                 agent.velocity = animator.deltaPosition / Time.deltaTime;
                 transform.rotation = animator.rootRotation;
                 transform.position = new Vector3(transform.position.x, animator.rootPosition.y, transform.position.z);
+
             }
-            catch (NullReferenceException e)
+            else
             {
+                animator.ApplyBuiltinRootMotion();
             }
         }
-        else
+        catch (NullReferenceException e)
         {
-            animator.ApplyBuiltinRootMotion();
         }
 
         //Vector3 position = animator.rootPosition;
