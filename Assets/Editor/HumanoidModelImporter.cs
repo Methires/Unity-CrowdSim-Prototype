@@ -38,7 +38,7 @@ class HumanoidModelImporter : AssetPostprocessor
             modelImporter.generateAnimations = ModelImporterGenerateAnimations.GenerateAnimations;
             modelImporter.importAnimation = true;
             modelImporter.resampleCurves = true;
-            modelImporter.optimizeGameObjects = true;
+            modelImporter.optimizeGameObjects = _isAnimation;
             modelImporter.humanDescription = ReadHumanDescription();
             modelImporter.sourceAvatar = null;
             modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", _mocapActorId) };

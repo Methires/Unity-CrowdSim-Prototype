@@ -114,7 +114,7 @@ public class Movement : MonoBehaviour
 
     private void CheckRotation()
     {
-        if (_agent.AgentInPlace())
+        if (!_agent.ApplyFinalRotation || _agent.IsInPlace())
         {
             _isFinished = true;
         }

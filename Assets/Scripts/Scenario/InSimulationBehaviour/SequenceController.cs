@@ -83,8 +83,8 @@ public class SequenceController : MonoBehaviour
                 _movementScript.Speed = _sequence[_currentActivityIndex + 1].Movement.Speed;
                 _movementScript.BlendParameter = _sequence[_currentActivityIndex + 1].Movement.Blend;
 
-                Vector3 positionOffsetForMultiActorActivity = Vector3.zero;
-                Quaternion finalRotation = Quaternion.identity;
+                Vector3 positionOffsetForMultiActorActivity = Vector3.zero;               
+                _agent.ApplyFinalRotation = false;
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null)
                 {
                     if ( _sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
@@ -94,12 +94,9 @@ public class SequenceController : MonoBehaviour
                         GameObject exactSpotParent = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);                       
                         Transform exactSpot = exactSpotParent.transform.GetChild(0).transform;
 
-                        //Vector3 flippedEuler = exactSpot.localEulerAngles; ;
-                        //flippedEuler = new Vector3(0, flippedEuler.z , 0);
-                        //finalRotation = Quaternion.Euler(flippedEuler);
-
-                        finalRotation = Quaternion.Euler(0, exactSpot.rotation.eulerAngles.y + exactSpot.rotation.eulerAngles.z, 0);
+                        Quaternion finalRotation = Quaternion.Euler(0, exactSpot.rotation.eulerAngles.y + exactSpot.rotation.eulerAngles.z, 0);
                         _agent.FinalRotation = finalRotation;
+                        _agent.ApplyFinalRotation = true;
                         if (exactSpot != null)
                         {
                             positionOffsetForMultiActorActivity.x = exactSpot.position.x;
@@ -107,9 +104,7 @@ public class SequenceController : MonoBehaviour
                         }                       
                     }                    
                 }
-
                 _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
-                //_movementScript.FinalRotation = finalRotation;
                 if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
                 {
                     GetComponent<DisplayActivityText>().ChangeText("Walking" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
@@ -121,6 +116,8 @@ public class SequenceController : MonoBehaviour
             }
             if (_sequence[_currentActivityIndex + 1].Activity != null)
             {
+
+                _agent.ApplyFinalRotation = false;
                 _actionScript.ExitTime = _sequence[_currentActivityIndex + 1].Activity.ExitTime;
                 _actionScript.BlendParameter = _sequence[_currentActivityIndex + 1].Activity.Blend;
                 _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;
