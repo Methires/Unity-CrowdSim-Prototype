@@ -38,6 +38,7 @@ public class SimulationController : MonoBehaviour
 
     void Start()
     {
+        Time.captureFramerate = 0;
         _crowdController = GetComponent<CrowdController>();
         _sequenceCreator = new SequencesCreator();
         _screenshooter = FindObjectOfType<Screenshooter>();
