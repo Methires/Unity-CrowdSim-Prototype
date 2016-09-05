@@ -170,158 +170,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1001 &946738787
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: Characters.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: ScenarioFileName
-      value: TwoAgentsActionAndMovement
-      objectReference: {fileID: 0}
-    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: Characters.Array.data[0]
-      value: 
-      objectReference: {fileID: 181550, guid: 6c7bfe7003b34a849affe84b05013ee1, type: 2}
-    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: Characters.Array.data[1]
-      value: 
-      objectReference: {fileID: 168082, guid: eccf136b42718ab4baf8eaa6f6216c64, type: 2}
-    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: MaxPeople
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: Tracking
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: SessionLength
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 11404684, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: LoadAgentsFromResources
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: DayTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414836, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-      propertyPath: Repeats
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: LoadFromConfig
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: CreatePrefabs
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: LoadAgentsFromResources
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: Time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: Conditions
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: Tracking
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: SessionLength
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: MaxPeople
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: Repeats
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: ScenarioFile
-      value: TwoAgentTest
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: SimultaneousScenarioInstances
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: MarkWithPlanes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: ActionsFilter
-      value: '|B3010@RozmowaPrzezTelefon-E11-R01-T02|B3010@Kucanie-E16-R01-T02|B3010@Podnoszenie-E14-R03-T02|B3010@Kopanie-E19-R02-T01'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
-        type: 2}
-      propertyPath: CrowdActions
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &947756890
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,3 +344,116 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4f7ba566d0f24140869be01ea5cc9f8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1326650591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 166372, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1326650598}
+  - 114: {fileID: 1326650597}
+  - 114: {fileID: 1326650596}
+  - 114: {fileID: 1326650595}
+  - 114: {fileID: 1326650593}
+  - 114: {fileID: 1326650592}
+  m_Layer: 0
+  m_Name: Simulation Overseer
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1326650592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010009204016, guid: 9890b161335929e48ae32d3f5131a011,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1326650591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27f9db904c82d14891ad310acfef165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1326650593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010572236710, guid: 9890b161335929e48ae32d3f5131a011,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1326650591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b58a6d67d6ad147a9e2e734c31f2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeScreenshots: 0
+  MarkAgentsOnScreenshots: 0
+  ScreenshotLimit: 1000
+--- !u!114 &1326650595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1326650591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6fcff505b1c4e43ba9c28107f828cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Characters: []
+  MaxPeople: 75
+  CreatePrefabs: 1
+  LoadAgentsFromResources: 1
+  AgentsFilter: 
+  ActionsFilter: '|B3010@RozmowaPrzezTelefon-E11-R01-T02|B3010@Kucanie-E16-R01-T02|B3010@Podnoszenie-E14-R03-T02|B3010@Kopanie-E19-R02-T01'
+--- !u!114 &1326650596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000012837680498, guid: 9890b161335929e48ae32d3f5131a011,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1326650591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e19cae10a41a8848920ae714048998d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Time: 1
+  Conditions: 1
+--- !u!114 &1326650597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1326650591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d770248ae0a979d45b4a1d9b9d024b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Repeats: 1
+  ScenarioFile: TestScenarioOnlyActions Short
+  SimultaneousScenarioInstances: 2
+  Tracking: 0
+  SessionLength: 50
+  ScreenshotsDirectory: D:/Screenshots
+  LoadFromConfig: 0
+  MarkWithPlanes: 1
+  Close: 0
+--- !u!4 &1326650598
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 472626, guid: 9890b161335929e48ae32d3f5131a011, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1326650591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2

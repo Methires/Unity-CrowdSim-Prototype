@@ -11,7 +11,6 @@ GameObject:
   - 114: {fileID: 114000010119231640}
   - 114: {fileID: 114000012837680498}
   - 114: {fileID: 114000010568512236}
-  - 114: {fileID: 114000010065995636}
   - 114: {fileID: 114000010572236710}
   - 114: {fileID: 114000010009204016}
   m_Layer: 0
@@ -56,17 +55,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27f9db904c82d14891ad310acfef165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000010065995636
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfe96c64d4170347ad7f5b338e0f216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000010119231640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Repeats: 0
-  ScenarioFilePath: 
+  ScenarioFile: 
   SimultaneousScenarioInstances: 0
   Tracking: 0
   SessionLength: 1
@@ -103,6 +91,7 @@ MonoBehaviour:
   CreatePrefabs: 0
   LoadAgentsFromResources: 0
   AgentsFilter: 
+  ActionsFilter: 
 --- !u!114 &114000010572236710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeScreenshots: 0
   MarkAgentsOnScreenshots: 0
+  ScreenshotLimit: 1000
 --- !u!114 &114000012837680498
 MonoBehaviour:
   m_ObjectHideFlags: 1

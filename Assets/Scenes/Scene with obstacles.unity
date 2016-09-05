@@ -550,7 +550,7 @@ Prefab:
     - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: MaxPeople
-      value: 50
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
@@ -565,12 +565,12 @@ Prefab:
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: Tracking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: SessionLength
-      value: 20
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
@@ -600,16 +600,31 @@ Prefab:
     - target: {fileID: 114000010572236710, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: TakeScreenshots
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010572236710, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: MarkAgentsOnScreenshots
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: LoadFromConfig
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: ActionsFilter
+      value: '|B3010@RozmowaPrzezTelefon-E11-R01-T02|B3010@Kucanie-E16-R01-T02|B3010@Kopanie-E19-R02-T01'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: ScenarioFile
+      value: TwoActorsScenario
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
+        type: 2}
+      propertyPath: MarkWithPlanes
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
