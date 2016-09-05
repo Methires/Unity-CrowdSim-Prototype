@@ -1,4 +1,4 @@
-﻿<scenario name="TwoAgentsActionAndMovement">
+﻿<scenario name="TwoActorsScenario">
 	<level id="0">
 		<action prob="1.0" name="walk" id ="0">
 			<actor name="actor1">
@@ -10,16 +10,16 @@
 		</action>
 	</level>
 	<level id="1">
-		<action prob="0.5" name="Sit_T01" id ="2">
-			<actor name="actor1" mocapId ="MoCap">
+		<action prob="0.5" name="RozmowaPrzezTelefon-E11-R01-T02" id ="2">
+			<actor name="actor1" mocapId ="B3010">
 				<prev id ="0"></prev>
 			</actor>
 		</action>
-		<action prob="0.5" name="Wave_T01" id="3">
-			<actor name="actor1" mocapId ="MoCap">
+		<action prob="0.5" name="Przywitanie-E23-R01-T01" id="3">
+			<actor name="actor1" mocapId ="B3010">
 				<prev id ="0"></prev>
 			</actor>
-			<actor name="actor2" mocapId ="MoCap">
+			<actor name="actor2" mocapId ="B0317">
 				<prev id="1"></prev>
 			</actor>
 		</action>
@@ -45,28 +45,27 @@
 				<prev id="3"></prev>
 			</actor>
 		</action>
-		<action prob="1.0" name="Wave_T01" id ="8">
-			<actor name="actor1" mocapId ="MoCap">
-				<prev id="2"></prev>
+		<action prob="1.0" name="Przywitanie-E23-R01-T01" id="8">
+			<actor name="actor1" mocapId ="B3010">
+				<prev id ="2"></prev>
 			</actor>
-			<actor name="actor2" mocapId ="MoCap">
+			<actor name="actor2" mocapId ="B0317">
 				<prev id="4"></prev>
 				<prev id="5"></prev>
 			</actor>
 		</action>
 	</level>
 	<level id="3">
-		<action prob="1.0" name="Sit_T01" id="9">
-			<actor name="actor1" mocapId ="MoCap">
-				<prev id="8"></prev>
+		<action prob="1.0" name="RozmowaPrzezTelefon-E11-R01-T02" id ="9">
+			<actor name="actor1" mocapId ="B3010">
+				<prev id ="8"></prev>
 			</actor>
 		</action>
 		<action prob="1.0" name="walk" id="10">
 			<actor name="actor2">
-        <prev id="8"></prev>
+			<prev id="8"></prev>
 			</actor>
 			<blend prob="0.5" name = "phone"></blend>
 		</action>
 	</level>
 </scenario>
-
