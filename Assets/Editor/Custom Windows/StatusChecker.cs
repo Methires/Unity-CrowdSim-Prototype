@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System;
 
 public class StatusChecker : EditorWindow
 {
-    bool _importerExtension = false;
+    bool _importerExtension = true;
     [MenuItem("Window/Status Checker")]
 
     static void Init()
@@ -26,14 +25,8 @@ public class StatusChecker : EditorWindow
 
         GUILayout.Label("Custom importer", EditorStyles.boldLabel);
         _importerExtension = EditorGUILayout.Toggle("Enable:",_importerExtension);
-        try
-        {
-            HumanoidModelImporter.useImporter = _importerExtension;
-        }
-        catch (Exception e)
-        {
-            Debug.Log("OMG");
-        }
+        HumanoidModelImporter.useImporter = _importerExtension;
+
     }
 
     void Update()

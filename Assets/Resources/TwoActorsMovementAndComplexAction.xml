@@ -1,0 +1,35 @@
+﻿<scenario name="TwoActorsMovementAndComplexAction">
+  <level id="0">
+    <action prob="1.0" name="walk" id ="0">
+      <actor name="actor1">
+      </actor>
+    </action>
+    <action prob="1.0" name="walk" id ="1">
+      <actor name="actor2">
+      </actor>
+    </action>
+  </level>
+  <level id="1">
+    <action prob="1" name="Popchniecie-E25-R02-T03" id="2">
+      <actor name="actor1" mocapId ="B3010">
+        <prev id ="0"></prev>
+      </actor>
+      <actor name="actor2" mocapId ="B0317">
+        <prev id="1"></prev>
+      </actor>
+    </action>
+  </level>
+  <level id="2">
+    <action prob="1.0" name="walk" id="3">
+      <actor name="actor1">
+        <prev id="2"></prev>
+      </actor>
+    </action>
+    <action prob="1.0" name="run" id="4">
+      <actor name="actor2">
+        <prev id="2"></prev>
+      </actor>
+    </action>
+  </level>
+</scenario>
+

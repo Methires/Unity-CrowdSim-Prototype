@@ -14,6 +14,7 @@ public class SequenceController : MonoBehaviour
     private bool _isFinished;
     private List<GameObject> _planes;
     private bool _markActivities;
+    private bool _isCrowd;
 
     public bool MarkActivities
     {
@@ -24,6 +25,18 @@ public class SequenceController : MonoBehaviour
         set
         {
             _markActivities = value;
+        }
+    }
+
+    public bool IsCrowd
+    {
+        get
+        {
+            return _isCrowd;
+        }
+        set
+        {
+            _isCrowd = value;
         }
     }
 
@@ -87,11 +100,11 @@ public class SequenceController : MonoBehaviour
                 _agent.ApplyFinalRotation = false;
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null)
                 {
-                    if ( _sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
+                    if (_sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
                     {
                         string[] paths = AssetDatabase.FindAssets(_sequence[_currentActivityIndex + 2].Activity.ParameterName);
                         string assetPath = AssetDatabase.GUIDToAssetPath(paths[0]);
-                        GameObject exactSpotParent = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);                       
+                        GameObject exactSpotParent = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
                         Transform exactSpot = exactSpotParent.transform.GetChild(0).transform;
 
                         Quaternion finalRotation = Quaternion.Euler(0, exactSpot.rotation.eulerAngles.y + exactSpot.rotation.eulerAngles.z, 0);
@@ -101,17 +114,28 @@ public class SequenceController : MonoBehaviour
                         {
                             positionOffsetForMultiActorActivity.x = exactSpot.position.x;
                             positionOffsetForMultiActorActivity.z = exactSpot.position.z;
-                        }                       
-                    }                    
+                        }
+                    }
                 }
-                _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
-                if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
+
+                if (!_isCrowd)
                 {
-                    GetComponent<DisplayActivityText>().ChangeText("Walking" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
+                    _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
+                    //_movementScript.FinalRotation = finalRotation;
+
+                    if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
+                    {
+                        GetComponent<DisplayActivityText>().ChangeText("Walking" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
+                    }
+                    else
+                    {
+                        GetComponent<DisplayActivityText>().ChangeText("Running" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
+                    }
                 }
                 else
                 {
-                    GetComponent<DisplayActivityText>().ChangeText("Running" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
+                    NavMeshPointGenerator generator = new NavMeshPointGenerator(15.0f);
+                    _movementScript.Destination = generator.RandomPointOnNavMesh(transform.position);
                 }
             }
             if (_sequence[_currentActivityIndex + 1].Activity != null)
@@ -122,19 +146,30 @@ public class SequenceController : MonoBehaviour
                 _actionScript.BlendParameter = _sequence[_currentActivityIndex + 1].Activity.Blend;
                 _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;
                 _actionScript.ParamName = _sequence[_currentActivityIndex + 1].Activity.ParameterName;
-                GetComponent<DisplayActivityText>().ChangeText(_sequence[_currentActivityIndex + 1].Activity.ParameterName + " " + _sequence[_currentActivityIndex + 1].Activity.Blend);
+                if (!_isCrowd)
+                {
+                    GetComponent<DisplayActivityText>().ChangeText(_sequence[_currentActivityIndex + 1].Activity.ParameterName + " " + _sequence[_currentActivityIndex + 1].Activity.Blend);
+                }
             }
             _isFinished = false;
             _currentActivityIndex++;
         }
         else
         {
-            GetComponent<DisplayActivityText>().ChangeText("Scenario has ended");
-            if (_markActivities)
+            if (!_isCrowd)
             {
-                CleanUpPlanes();
+                GetComponent<DisplayActivityText>().ChangeText("Scenario has ended");
+                if (_markActivities)
+                {
+                    CleanUpPlanes();
+                }
+                _isFinished = true;
             }
-            _isFinished = true;
+            else
+            {
+                _currentActivityIndex = - 1;
+                LoadNewActivity();
+            }
         }
     }
 
@@ -166,7 +201,7 @@ public class SequenceController : MonoBehaviour
                 planeMarkup.GetComponent<Renderer>().material.color = Color.yellow;
             }
             Destroy(planeMarkup.GetComponent<MeshCollider>());
-            _planes.Add(planeMarkup); 
+            _planes.Add(planeMarkup);
         }
     }
 

@@ -1,0 +1,29 @@
+﻿<scenario name="OneActorActions">
+  <level id="0">
+    <action prob="1.0" name="Kopanie-E19-R02-T01" id ="0">
+      <actor name="actor1" mocapId ="B3010">
+      </actor>
+    </action>
+  </level>
+  <level id="1">
+    <action prob="1.0" name="Kucanie-E16-R01-T02" id ="1">
+      <actor name="actor1" mocapId ="B3010">
+        <prev id ="0"></prev>
+      </actor>
+    </action>
+  </level>
+  <level id="2">
+    <action prob="1.0" name="Podnoszenie-E14-R03-T02" id ="2">
+      <actor name="actor1" mocapId ="B3010">
+        <prev id="1"></prev>
+      </actor>
+    </action>
+  </level>
+  <level id="3">
+    <action prob="1.0" name="uderzanie-E20-R02-T02" id="3">
+      <actor name="actor1" mocapId ="B3010">
+        <prev id="2"></prev>
+      </actor>
+    </action>
+  </level>
+</scenario>

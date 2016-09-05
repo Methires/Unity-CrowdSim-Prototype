@@ -1,0 +1,8 @@
+﻿<scenario name="OneActorActions">
+  <level id="0">
+    <action prob="1.0" name="RozmowaPrzezTelefon-E11-R01-T02" id ="0">
+      <actor name="actor1" mocapId ="B3010">
+      </actor>
+    </action>
+  </level>
+</scenario>

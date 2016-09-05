@@ -2,9 +2,9 @@
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(CrowdController))]
-[RequireComponent(typeof(SequencesCreator))]
 [RequireComponent(typeof(WeatherConditions))]
 [RequireComponent(typeof(Screenshooter))]
 [RequireComponent(typeof(CamerasController))]
@@ -27,19 +27,20 @@ public class SimulationController : MonoBehaviour
     private CrowdController _crowdController;
     private SequencesCreator _sequenceCreator;
     private Screenshooter _screenshooter;
-    private List<SequenceController> _sequencesControllers;
+    private List<SequenceController> _actorsSequencesControllers;
     private int _repeatsCounter;
     private float _elapsedTimeCounter;
     private bool _instanceFinished;
     private bool _screnshooterActive;
     private bool _screenshotBufferFull = false;
+    private string[] _actorsNames;
+    private List<GameObject> _actors;
 
     void Start()
     {
         _crowdController = GetComponent<CrowdController>();
-        _sequenceCreator = GetComponent<SequencesCreator>();
+        _sequenceCreator = new SequencesCreator();
         _screenshooter = FindObjectOfType<Screenshooter>();
-        _sequenceCreator.MarkAgents = MarkWithPlanes;
         WeatherConditions weather = GetComponent<WeatherConditions>();
         if (LoadFromConfig)
         {
@@ -73,8 +74,8 @@ public class SimulationController : MonoBehaviour
         if (!Tracking)
         {
             XmlScenarioReader.ParseXmlWithScenario(ScenarioFile);
-            _sequenceCreator.RawInfoToListPerAgent(XmlScenarioReader.ScenarioData);
-            _sequencesControllers = new List<SequenceController>();
+            _actorsNames = GetActorsNames(XmlScenarioReader.ScenarioData);
+            _actorsSequencesControllers = new List<SequenceController>();
         }
         
         _screnshooterActive = _screenshooter.TakeScreenshots;
@@ -103,10 +104,10 @@ public class SimulationController : MonoBehaviour
             }
             else
             {
-                if (_sequencesControllers.Count > 0)
+                if (_actorsSequencesControllers.Count > 0)
                 {
                     bool endInstance = true;
-                    foreach (SequenceController agentScenario in _sequencesControllers)
+                    foreach (SequenceController agentScenario in _actorsSequencesControllers)
                     {
                         if (!agentScenario.IsFinished)
                         {
@@ -139,17 +140,27 @@ public class SimulationController : MonoBehaviour
 
     private void StartInstanceOfSimulation()
     {
-        _crowdController.GenerateCrowd();
-        
+        _crowdController.GenerateCrowd();       
         if (!Tracking)
         {
-            _sequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
+            _actors = CreateActorsFromCrowd(SimultaneousScenarioInstances, _actorsNames);
+            _sequenceCreator.RawInfoToListPerAgent(XmlScenarioReader.ScenarioData);
+            _sequenceCreator.Agents = _actors;
+            _sequenceCreator.MarkActions = MarkWithPlanes;
+            _sequenceCreator.Crowd = false;
+            _actorsSequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
             _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);
         }
         else
         {
             _screenshooter.Annotator = new Annotator(_crowdController.Crowd);
         }
+        _sequenceCreator.RawInfoToListPerAgent(_crowdController.PrepareActions());
+        _sequenceCreator.Agents = _crowdController.Crowd.Where(x => x.tag == "Crowd").ToList();
+        _sequenceCreator.MarkActions = false;
+        _sequenceCreator.Crowd = true;
+        int temp;
+        _sequenceCreator.GenerateInGameSequences(1, out temp);
         _screenshooter.TakeScreenshots = _screnshooterActive;
 
         _repeatsCounter++;
@@ -195,5 +206,63 @@ public class SimulationController : MonoBehaviour
     public void NotifyScreenshotBufferFull()
     {
         _screenshotBufferFull = true;
+    }
+
+    private List<GameObject> CreateActorsFromCrowd(int simultaneousInstances, string[] actorsNames)
+    {
+        CrowdController crowdController = GetComponent<CrowdController>();
+        if (crowdController.MaxPeople < actorsNames.Length * simultaneousInstances)
+        {
+            crowdController.RemoveCrowd();
+            crowdController.MaxPeople = actorsNames.Length * simultaneousInstances;
+            crowdController.GenerateCrowd();
+        }
+        List<GameObject> actors = new List<GameObject>();
+        for (int i = 0; i < simultaneousInstances; i++)
+        {
+            for (int j = 0; j < actorsNames.Length; j++)
+            {
+                GameObject[] crowd = GameObject.FindGameObjectsWithTag("Crowd");
+                int index = Random.Range(0, crowd.Length);
+                crowd[index].tag = "ScenarioAgent";
+                crowd[index].name = actorsNames[j] + "_" + i;
+                crowd[index].GetComponent<NavMeshAgent>().avoidancePriority = 0;
+                crowd[index].GetComponent<NavMeshAgent>().stoppingDistance = 0.02f;
+                //crowd[index].GetComponent<GenerateDestination>().enabled = false;
+                crowd[index].AddComponent<DisplayActivityText>();
+                actors.Add(crowd[index]);
+                if (MarkWithPlanes)
+                {
+                    MarkActorWithPlane(crowd[index]);
+                }
+            }
+        }
+        return actors;
+    }
+
+    private void MarkActorWithPlane(GameObject actor)
+    {
+        GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
+        planeMarkup.transform.parent = actor.transform;
+        planeMarkup.transform.localPosition = new Vector3(0.0f, 0.1f, 0.0f);
+        Destroy(planeMarkup.GetComponent<MeshCollider>());
+    }
+
+    private string[] GetActorsNames(List<Level> data)
+    {
+        HashSet<string> hashedActors = new HashSet<string>();
+        foreach (Level level in data)
+        {
+            foreach (Action activity in level.Actions)
+            {
+                foreach (Actor actor in activity.Actors)
+                {
+                    hashedActors.Add(actor.Name);
+                }
+            }
+        }
+        string[] actors = hashedActors.ToArray();
+        return actors;
     }
 }

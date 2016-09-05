@@ -2,32 +2,51 @@
 using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
-public class SequencesCreator : MonoBehaviour
+public class SequencesCreator
 {
     private List<string> _agentsNames;
-    private List<GameObject> _agentsGameObjects;
+    private List<GameObject> _agents;
     private List<List<Level>> _scenariosPerAgent;
     private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
-    private bool _markAgents;
+    private bool _markActions;
+    private bool _crowd;
 
     public List<GameObject> Agents
     {
         get
         {
-            return _agentsGameObjects;
-        }
-    }
-
-    public bool MarkAgents
-    {
-        get
-        {
-            return _markAgents;
+            return _agents;
         }
         set
         {
-            _markAgents = value;
+            _agents = value;
+        }
+    }
+
+    public bool MarkActions
+    {
+        get
+        {
+            return _markActions;
+        }
+        set
+        {
+            _markActions = value;
+        }
+    }
+
+    public bool Crowd
+    {
+        get
+        {
+            return _crowd;
+        }
+
+        set
+        {
+            _crowd = value;
         }
     }
 
@@ -78,7 +97,6 @@ public class SequencesCreator : MonoBehaviour
 
     public List<SequenceController> GenerateInGameSequences(int simultaneousInstances, out int longestSequenceLenght)
     {
-        CreateAgentsFromCrowd(simultaneousInstances, _agentsNames.Count);
         List<List<Action>> actionSequencesPerAgent = CreateSequencesPerAgent();
         ShowSequencesOnConsole(actionSequencesPerAgent);
         List<SequenceController> sequenceControllers = new List<SequenceController>();
@@ -92,9 +110,10 @@ public class SequencesCreator : MonoBehaviour
             for (int i = 0; i < actionSequencesPerAgent.Count; i++)
             {
                 List<InGameActionInfo> inGameAgentSequence = new List<InGameActionInfo>();
-                GameObject agent = _agentsGameObjects[agentIndex];
+                GameObject agent = _agents[agentIndex];
                 SequenceController seqController = agent.AddComponent<SequenceController>();
-                seqController.MarkActivities = MarkAgents;
+                seqController.IsCrowd = _crowd;
+                seqController.MarkActivities = MarkActions;
                 for (int j = 0; j < actionSequencesPerAgent[i].Count; j++)
                 {
                     bool actionAdded = false;
@@ -140,46 +159,6 @@ public class SequencesCreator : MonoBehaviour
             controller.LoadNewActivity();
         }
         return sequenceControllers;
-    }
-
-    private void CreateAgentsFromCrowd(int simultaneousInstances, int agents)
-    {
-        CrowdController crowdController = GetComponent<CrowdController>();
-        if (crowdController.MaxPeople < agents * simultaneousInstances)
-        {
-            crowdController.RemoveCrowd();
-            crowdController.MaxPeople = agents * simultaneousInstances;
-            crowdController.GenerateCrowd();
-        }
-        _agentsGameObjects = new List<GameObject>();
-        for (int i = 0; i < simultaneousInstances; i++)
-        {
-            for (int j = 0; j < agents; j++)
-            {
-                GameObject[] crowd = GameObject.FindGameObjectsWithTag("Crowd");
-                int index = Random.Range(0, crowd.Length);
-                crowd[index].tag = "ScenarioAgent";
-                crowd[index].name = _agentsNames[j] + "_" + i;
-                crowd[index].GetComponent<NavMeshAgent>().avoidancePriority = 0;
-                crowd[index].GetComponent<NavMeshAgent>().stoppingDistance = 0.02f;
-                crowd[index].GetComponent<GenerateDestination>().enabled = false;
-                crowd[index].AddComponent<DisplayActivityText>();
-                _agentsGameObjects.Add(crowd[index]);
-                if (MarkAgents)
-                {
-                    MarkAgentWithPlane(crowd[index]);
-                }
-            }
-        }
-    }
-
-    private void MarkAgentWithPlane(GameObject agent)
-    {
-        GameObject planeMarkup = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        planeMarkup.transform.localScale = new Vector3(0.1f, 1.0f, 0.1f);
-        planeMarkup.transform.parent = agent.transform;
-        planeMarkup.transform.localPosition = new Vector3(0.0f, 0.1f, 0.0f);
-        Destroy(planeMarkup.GetComponent<MeshCollider>());
     }
 
     private List<List<Action>> CreateSequencesPerAgent()
@@ -363,7 +342,7 @@ public class SequencesCreator : MonoBehaviour
 
     private int DrawnAnIndex(float[] probabilities)
     {
-        float randomValue = Random.Range(0.0f, probabilities[probabilities.Length - 1]);
+        float randomValue = UnityEngine.Random.Range(0.0f, probabilities[probabilities.Length - 1]);
         int index = -1;
         for (int i = 0; i < probabilities.Length; i++)
         {
@@ -415,13 +394,13 @@ public class SequencesCreator : MonoBehaviour
         }
         else
         {
-            point = generator.RandomPointOnNavMesh(transform.position);
+            point = generator.RandomPointOnNavMesh(Vector3.zero);
         }
 
         switch (action.Name.ToLower())
         {
             case "walk":
-                float speedW = Random.Range(2.5f, 5.0f);
+                float speedW = UnityEngine.Random.Range(2.5f, 5.0f);
                 mData = new MovementData(point, speedW);
                 if (action.Blends != null)
                 {
@@ -429,7 +408,7 @@ public class SequencesCreator : MonoBehaviour
                 }
                 break;
             case "run":
-                float speedR = Random.Range(6.0f, 10.0f);
+                float speedR = UnityEngine.Random.Range(6.0f, 10.0f);
                 mData = new MovementData(point, speedR);
                 if (action.Blends != null)
                 {
@@ -437,11 +416,11 @@ public class SequencesCreator : MonoBehaviour
                 }
                 break;
             default:
-                string agentName = agent.name.Remove(agent.name.Length - 2, 2);
-                int agentIndex = action.Actors.IndexOf(action.Actors.FirstOrDefault(x => x.Name == agentName));
-
+                string[] agentName = agent.name.Split('_');
+                int agentIndex = action.Actors.IndexOf(action.Actors.FirstOrDefault(x => x.Name == agentName[0]));
                 string animationClip = string.Format("{0}@{1}", action.Actors[agentIndex].MocapId, action.Name);
                 aData = new ActivityData(animationClip, 10.0f);
+
                 if (action.Actors.Count > 1)
                 {
                     List<GameObject> requiredAgents = new List<GameObject>();

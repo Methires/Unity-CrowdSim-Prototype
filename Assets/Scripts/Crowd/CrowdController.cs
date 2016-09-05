@@ -15,7 +15,6 @@ public class CrowdController : MonoBehaviour
 
     private float _range = 100.0f;
     private List<GameObject> _crowd;
-    private Level _crowdActions;
 
     public List<GameObject> Crowd
     {
@@ -30,7 +29,7 @@ public class CrowdController : MonoBehaviour
         if (CreatePrefabs)
         {
             CreateAgentPrefabs();
-        }      
+        }   
     }
 
     public void GenerateCrowd()
@@ -47,8 +46,10 @@ public class CrowdController : MonoBehaviour
             for (int i = 0; i < MaxPeople; i++)
             {
                 int index = Random.Range(0, Characters.Length);
-                GameObject agent = (GameObject)Instantiate(Characters[index], generator.RandomPointOnNavMesh(transform.position), Quaternion.identity);
-                agent.tag = "Crowd";
+                Quaternion rotation = Quaternion.Euler(new Vector3(0.0f, Random.Range(0.0f, 360.0f) ,0.0f));
+                GameObject agent = (GameObject)Instantiate(Characters[index], generator.RandomPointOnNavMesh(transform.position), rotation);
+                agent.tag = "Crowd";              
+                agent.name = string.Format("{0}{1}",Characters[index].name,i);
                 if (Random.Range(0.0f, 100.0f) < 90.0f)
                 {
                     agent.GetComponent<NavMeshAgent>().speed = Random.Range(1.0f, 2.5f);
@@ -57,6 +58,7 @@ public class CrowdController : MonoBehaviour
                 {
                     agent.GetComponent<NavMeshAgent>().speed = 10.0f;
                 }
+                agent.GetComponent<NavMeshAgent>().stoppingDistance = 1.0f;
                 _crowd.Add(agent);
             }
         }
@@ -121,7 +123,7 @@ public class CrowdController : MonoBehaviour
         obj.AddComponent<NavMeshAgent>();
         obj.AddComponent<Rigidbody>().isKinematic = true;
         obj.AddComponent<Agent>();
-        obj.AddComponent<GenerateDestination>();
+        //obj.AddComponent<GenerateDestination>();
         return obj;
     }
 
@@ -143,31 +145,41 @@ public class CrowdController : MonoBehaviour
         Characters = agents.ToArray();       
     }
 
-    private void PrepareScenario()
+    public List<Level> PrepareActions()
     {
-        _crowdActions = new Level();
+        List<Level> crowdActions = new List<Level>();
+        Level crowdLevel = new Level();
         List<Action> actions = new List<Action>();
-        string[] actionsNames = ActionsFilter.Split('|');
-        float movementProbability = 0.9f;
-        float actionsProbability = 1.0f - movementProbability;
-        foreach (string actionName in actionsNames)
+        List<string> actionsNames = ActionsFilter.Split('|').ToList();
+        actionsNames.RemoveAll(string.IsNullOrEmpty);
+        //int[] indexes = Enumerable.Range(0, actionsNames.Count + 2).ToArray();
+        List<GameObject> crowd = _crowd.Where(x=> x.tag == "Crowd").ToList();
+        int actionIndex = 0;
+        for (int i = 0; i < crowd.Count; i++)
         {
-            actions.Add(new Action
+            float movementProbability = 0.9f;
+            float actionsProbability = 1.0f - movementProbability;
+            for (int j = 0; j < actionsNames.Count; j++)
             {
-                Name = actionName,
-                Probability = actionsProbability / actionsNames.Length
-            });
+                string[] animation = actionsNames[j].Split('@');
+                Action action = new Action(animation[animation.Length - 1], actionsProbability / actionsNames.Count, actionIndex);
+                Actor actor = new Actor(crowd[i].name, animation[0]);
+                action.Actors = new List<Actor> { actor };
+                actions.Add(action);
+                actionIndex++;
+            }
+            Action walk = new Action("walk", movementProbability * 3 / 4, actionIndex);
+            actionIndex++;
+            Action run = new Action("run", movementProbability / 4, actionIndex++);
+            actionIndex++;
+            Actor movementActor = new Actor(crowd[i].name, new int[0]);
+            run.Actors = walk.Actors = new List<Actor> { movementActor };
+            actions.Add(walk);
+            actions.Add(run); 
         }
-        actions.Add(new Action
-        {
-            Name = "walk",
-            Probability = movementProbability * 3 /4
-        });
-        actions.Add(new Action
-        {
-            Name = "run",
-            Probability = actionsProbability / 4
-        });
-        _crowdActions.Actions = actions;
+        crowdLevel.Actions = actions;
+
+        crowdActions.Add(crowdLevel);
+        return crowdActions;
     }
 }

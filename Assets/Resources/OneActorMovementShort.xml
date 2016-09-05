@@ -1,0 +1,9 @@
+﻿<scenario name="OneActorMovement">
+  <level id="0">
+    <action prob="1.0" name="walk" id ="0">
+      <actor name="actor1">
+      </actor>
+    </action>
+  </level>
+</scenario>
+
