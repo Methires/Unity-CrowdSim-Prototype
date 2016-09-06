@@ -149,6 +149,7 @@ public class SimulationController : MonoBehaviour
             _sequenceCreator.Agents = _actors;
             _sequenceCreator.MarkActions = MarkWithPlanes;
             _sequenceCreator.Crowd = false;
+            _sequenceCreator.ShowSequenceOnConsole = true;
             _actorsSequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
             _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);
         }
@@ -156,12 +157,16 @@ public class SimulationController : MonoBehaviour
         {
             _screenshooter.Annotator = new Annotator(_crowdController.Crowd);
         }
-        _sequenceCreator.RawInfoToListPerAgent(_crowdController.PrepareActions());
-        _sequenceCreator.Agents = _crowdController.Crowd.Where(x => x.tag == "Crowd").ToList();
         _sequenceCreator.MarkActions = false;
         _sequenceCreator.Crowd = true;
-        int temp;
-        _sequenceCreator.GenerateInGameSequences(1, out temp);
+        _sequenceCreator.ShowSequenceOnConsole = false;
+        foreach (GameObject agent in _crowdController.Crowd.Where(x => x.tag == "Crowd").ToList())
+        {
+            _sequenceCreator.RawInfoToListPerAgent(_crowdController.PrepareActions(agent));
+            _sequenceCreator.Agents = new List<GameObject> { agent };
+            int temp;
+            _sequenceCreator.GenerateInGameSequences(1, out temp);
+        }
         _screenshooter.TakeScreenshots = _screnshooterActive;
 
         _repeatsCounter++;

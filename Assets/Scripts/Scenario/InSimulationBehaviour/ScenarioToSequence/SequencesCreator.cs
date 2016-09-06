@@ -12,6 +12,7 @@ public class SequencesCreator
     private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
     private bool _markActions;
     private bool _crowd;
+    private bool _debug;
 
     public List<GameObject> Agents
     {
@@ -47,6 +48,18 @@ public class SequencesCreator
         set
         {
             _crowd = value;
+        }
+    }
+
+    public bool ShowSequenceOnConsole
+    {
+        get
+        {
+            return _debug;
+        }
+        set
+        {
+            _debug = value;
         }
     }
 
@@ -98,7 +111,10 @@ public class SequencesCreator
     public List<SequenceController> GenerateInGameSequences(int simultaneousInstances, out int longestSequenceLenght)
     {
         List<List<Action>> actionSequencesPerAgent = CreateSequencesPerAgent();
-        ShowSequencesOnConsole(actionSequencesPerAgent);
+        if (_debug)
+        {
+            ShowSequencesOnConsole(actionSequencesPerAgent);
+        }
         List<SequenceController> sequenceControllers = new List<SequenceController>();
         _sequencesPerAgentPerInstance = new List<List<List<InGameActionInfo>>>();
         int agentIndex = 0;
