@@ -98,6 +98,7 @@ public class SequenceController : MonoBehaviour
 
                 Vector3 positionOffsetForMultiActorActivity = Vector3.zero;               
                 _agent.ApplyFinalRotation = false;
+
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null)
                 {
                     if (_sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
@@ -121,7 +122,6 @@ public class SequenceController : MonoBehaviour
                 if (!_isCrowd)
                 {
                     _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
-                    //_movementScript.FinalRotation = finalRotation;
 
                     if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
                     {
@@ -138,6 +138,7 @@ public class SequenceController : MonoBehaviour
                     _movementScript.Destination = generator.RandomPointOnNavMesh(transform.position);
                 }
             }
+
             if (_sequence[_currentActivityIndex + 1].Activity != null)
             {
 
