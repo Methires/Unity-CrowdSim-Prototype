@@ -115,6 +115,21 @@ public class SequencesCreator
         {
             ShowSequencesOnConsole(actionSequencesPerAgent);
         }
+        for (int i = 0; i < actionSequencesPerAgent.Count; i++)
+        {
+            if (actionSequencesPerAgent[i][0].Actors.Count > 1)
+            {
+                Action forcedWalked = new Action
+                {
+                    Name = "walk",
+                    Index = 0,
+                    Probability = 1.0f,
+                    Actors = new List<Actor> { new Actor()},
+                    Blends = null,
+                };
+                actionSequencesPerAgent[i].Insert(0, forcedWalked);
+            }
+        }
         List<SequenceController> sequenceControllers = new List<SequenceController>();
         _sequencesPerAgentPerInstance = new List<List<List<InGameActionInfo>>>();
         int agentIndex = 0;
@@ -420,7 +435,7 @@ public class SequencesCreator
                 mData = new MovementData(point, speedW);
                 if (action.Blends != null)
                 {
-                    mData.Blend = action.Blends[0].Name;
+                    mData.Blend = string.Format("{0}@{1}", action.Blends[0].MocapId, action.Blends[0].Name);
                 }
                 break;
             case "run":
@@ -428,7 +443,7 @@ public class SequencesCreator
                 mData = new MovementData(point, speedR);
                 if (action.Blends != null)
                 {
-                    mData.Blend = action.Blends[0].Name;
+                    mData.Blend = string.Format("{0}@{1}", action.Blends[0].MocapId, action.Blends[0].Name);
                 }
                 break;
             default:
@@ -455,7 +470,7 @@ public class SequencesCreator
                 }
                 if (action.Blends != null)
                 {
-                    aData.Blend = action.Blends[0].Name;
+                    aData.Blend = string.Format("{0}@{1}", action.Blends[0].MocapId, action.Blends[0].Name);
                 }
                 break;
         }

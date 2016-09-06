@@ -47,7 +47,6 @@
 			<actor name="actor2">
 			<prev id="5"></prev>
 			</actor>
-
 		</action>
 	</level>
 </scenario>

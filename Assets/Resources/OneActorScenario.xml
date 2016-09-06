@@ -39,7 +39,7 @@
       <actor name="actor1">
         <prev id="4"></prev>
       </actor>
-      <blend prob="0.5" name="phone"></blend>
+      <blend prob="0.5" name="RozmowaPrzezTelefon-E11-R01-T02" mocapId="B3010"></blend>
     </action>
   </level>
 </scenario>

@@ -118,13 +118,14 @@ public static class XmlScenarioReader
                                         else if (actionElement.ChildNodes.Item(k).Name.ToLower().Equals("blend".ToLower()))
                                         {
                                             XmlNode blendElement = actionElement.ChildNodes.Item(k);
-                                            int blendProbParamIndex;
-                                            int blendNameParamIndex;
+                                            int blendProbParamIndex, blendNameParamIndex, blendMocapIdIndex; ;
                                             if (FindAttributeIndex(blendElement.Attributes, "prob", out blendProbParamIndex) 
-                                                && FindAttributeIndex(blendElement.Attributes, "name", out blendNameParamIndex))
+                                                && FindAttributeIndex(blendElement.Attributes, "name", out blendNameParamIndex)
+                                                && FindAttributeIndex(blendElement.Attributes, "mocapId", out blendMocapIdIndex))
                                             {
                                                 Blend blendData = new Blend();
-                                                blendData.Name = blendElement.Attributes.Item(nameParamIndex).Value;
+                                                blendData.Name = blendElement.Attributes.Item(blendNameParamIndex).Value;
+                                                blendData.MocapId = blendElement.Attributes.Item(blendMocapIdIndex).Value;
                                                 blendData.Probability = Convert.ToSingle(blendElement.Attributes.Item(blendProbParamIndex).Value.Replace(",", "."));
                                                 actionData.Blends.Add(blendData);
                                             }
