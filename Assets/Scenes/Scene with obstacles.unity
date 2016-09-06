@@ -580,7 +580,7 @@ Prefab:
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: Repeats
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000010568512236, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
@@ -620,7 +620,7 @@ Prefab:
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}
       propertyPath: ScenarioFile
-      value: TwoActorsScenario
+      value: TwoActorsMovementAndSimpleActionsAndComplexActions
       objectReference: {fileID: 0}
     - target: {fileID: 114000010119231640, guid: 9890b161335929e48ae32d3f5131a011,
         type: 2}

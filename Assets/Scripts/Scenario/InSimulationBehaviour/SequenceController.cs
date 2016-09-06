@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
+using System.Linq;
 
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Activity))]
@@ -96,7 +97,7 @@ public class SequenceController : MonoBehaviour
                 _movementScript.Speed = _sequence[_currentActivityIndex + 1].Movement.Speed;
                 _movementScript.BlendParameter = _sequence[_currentActivityIndex + 1].Movement.Blend;
 
-                Vector3 positionOffsetForMultiActorActivity = Vector3.zero;               
+                Vector3 positionOffsetForMultiActorActivity = Vector3.zero;
                 _agent.ApplyFinalRotation = false;
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null)
                 {
@@ -121,7 +122,6 @@ public class SequenceController : MonoBehaviour
                 if (!_isCrowd)
                 {
                     _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
-                    //_movementScript.FinalRotation = finalRotation;
 
                     if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
                     {
@@ -140,7 +140,21 @@ public class SequenceController : MonoBehaviour
             }
             if (_sequence[_currentActivityIndex + 1].Activity != null)
             {
-
+                if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null && _sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
+                {
+                    Vector3 forcedPosition = new Vector3();
+                    for (int i = _currentActivityIndex; i <= 0; i--)
+                    {
+                        if (_sequence[i].Movement != null)
+                        {
+                            forcedPosition = _sequence[i].Movement.Waypoint;
+                            break;
+                        }
+                    }
+                    MovementData forcedMovement = new MovementData(forcedPosition, 2.5f);
+                    InGameActionInfo forcedAction = new InGameActionInfo(forcedMovement);
+                    _sequence.Insert(_currentActivityIndex + 2, forcedAction);
+                }
                 _agent.ApplyFinalRotation = false;
                 _actionScript.ExitTime = _sequence[_currentActivityIndex + 1].Activity.ExitTime;
                 _actionScript.BlendParameter = _sequence[_currentActivityIndex + 1].Activity.Blend;
@@ -167,7 +181,7 @@ public class SequenceController : MonoBehaviour
             }
             else
             {
-                _currentActivityIndex = - 1;
+                _currentActivityIndex = -1;
                 LoadNewActivity();
             }
         }

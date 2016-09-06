@@ -1,0 +1,10 @@
+﻿<scenario name="TwoActorsComplexAction">
+	<level id="1">
+		<action prob="1.0" name="Przywitanie-E23-R01-T01" id ="0">
+			<actor name="actor1" mocapId ="B3010">
+			</actor>
+			<actor name="actor2" mocapId ="B0317">
+			</actor>
+		</action>
+	</level>
+</scenario>
