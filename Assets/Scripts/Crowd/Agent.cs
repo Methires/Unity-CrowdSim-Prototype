@@ -80,6 +80,9 @@ public class Agent : MonoBehaviour
             if (_applyFinalRotation && IsStopping())
             {
                 float angleDifference = Quaternion.Angle(transform.rotation, _finalRotation);
+                int fullAngles = Mathf.FloorToInt(angleDifference / 360.0f);
+                angleDifference = angleDifference - fullAngles * 360.0f;
+
                 if (Mathf.Abs(angleDifference) > 10.0f)
                 {
                     angle = angleDifference > 180.0f ? angleDifference - 360.0f : angleDifference;

@@ -29,7 +29,8 @@ public class SimulationController : MonoBehaviour
     private Screenshooter _screenshooter;
     private List<SequenceController> _actorsSequencesControllers;
     private int _repeatsCounter;
-    private float _elapsedTimeCounter;
+    //private float _elapsedTimeCounter;
+    private int _elapsedTimeCounter;
     private bool _instanceFinished;
     private bool _screnshooterActive;
     private bool _screenshotBufferFull = false;
@@ -59,6 +60,7 @@ public class SimulationController : MonoBehaviour
             Tracking = XmlConfigReader.Data.Tracking;
             ScenarioFile = XmlConfigReader.Data.ScenarioFile;
             SessionLength = XmlConfigReader.Data.Length > 1 ? XmlConfigReader.Data.Length : 1;
+           
             Repeats = XmlConfigReader.Data.Repeats > 1 ? XmlConfigReader.Data.Repeats : 1;
             SimultaneousScenarioInstances = XmlConfigReader.Data.Instances > 1 ? XmlConfigReader.Data.Instances : 1;
 
@@ -71,7 +73,7 @@ public class SimulationController : MonoBehaviour
             GetComponent<CamerasController>().enabled = false;
         }
         weather.GenerateWeatherConditions();
-
+        SessionLength = SessionLength * 24;
         if (!Tracking)
         {
             XmlScenarioReader.ParseXmlWithScenario(ScenarioFile);
@@ -94,7 +96,8 @@ public class SimulationController : MonoBehaviour
     {
         if (!_instanceFinished)
         {
-            _elapsedTimeCounter += Time.deltaTime;
+            //_elapsedTimeCounter += Time.deltaTime;
+            _elapsedTimeCounter++;
 
             if (Tracking)
             {
@@ -151,6 +154,7 @@ public class SimulationController : MonoBehaviour
             _sequenceCreator.Crowd = false;
             _sequenceCreator.ShowSequenceOnConsole = true;
             _actorsSequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
+            SessionLength *= 24;
             _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);
         }
         else
@@ -171,7 +175,7 @@ public class SimulationController : MonoBehaviour
 
         _repeatsCounter++;
         _instanceFinished = false;
-        _elapsedTimeCounter = 0.0f;
+        _elapsedTimeCounter = 0;
     }
 
     private void EndInstanceOfSimulation()

@@ -2,9 +2,8 @@
 using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Collections;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.InteropServices;
 
 public class Screenshooter : MonoBehaviour
 {
@@ -37,8 +36,11 @@ public class Screenshooter : MonoBehaviour
 
     void Awake ()
     {
-        _resWidth = Screen.width;
-        _resHeight = Screen.height;
+        _resWidth = Screen.width; //1920
+        _resHeight = Screen.height; //1080
+
+        Screen.SetResolution(_resWidth, _resHeight, Screen.fullScreen);        
+
         _annotationFileWriter = new AnnotationFileWriter();
         _simulationController = FindObjectOfType<SimulationController>();
         _cameras = FindObjectsOfType<Camera>();

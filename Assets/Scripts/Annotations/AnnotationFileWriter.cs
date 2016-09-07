@@ -8,24 +8,24 @@ using UnityEngine;
 
 class AnnotationFileWriter
 {
-    private int screenshotId = 0;
+    private int _screenshotId = 0;
+    private string _imageFormat = "png";
 
     private void CreateAnnotationsFile(string directory, string contents)
     {
-        //File.WriteAllText(directory + "annotations.txt", contents);
         File.AppendAllText(directory + "annotations.txt", contents);
     }
 
     public void SaveAnnotatedFramesAtDirectory(List<AnnotatedFrame> annotatedFrames, string directory)
     {
         StringBuilder stringBuilder = new StringBuilder();
-
+        _screenshotId = Directory.GetFiles(directory, string.Format("*.{0}",_imageFormat)).Length;
         foreach (var annotatedFrame in annotatedFrames)
         {           
             foreach (var annotation in annotatedFrame.annotations)
             {
                 stringBuilder.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
-                                                       screenshotId,
+                                                       _screenshotId,
                                                        annotation.agentId,
                                                        annotation.bounds.x,
                                                        annotation.bounds.y,
@@ -45,7 +45,7 @@ class AnnotationFileWriter
 
     private string ScreenShotName()
     {
-        return string.Format("{0}.png", screenshotId++);
+        return string.Format("{0}.{1}", _screenshotId++, _imageFormat);
     }
 
     private void Save(Texture2D screenshot, string directory)

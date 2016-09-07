@@ -44,7 +44,7 @@ public class Annotator
                 Bounds bounds = agent.GetComponentsInChildren<Renderer>().Aggregate((i1, i2) => i1.bounds.extents.magnitude > i2.bounds.extents.magnitude ? i1 : i2).bounds;
                 Rect rekt = GetRect(bounds, camera);
                 Agent a = agent.GetComponent<Agent>();            
-                annotations.Add(new Annotation(agent.name, rekt, a.AgentId,1.0f, agent.transform.position));
+                annotations.Add(new Annotation(agent.gameObject.GetComponent<Activity>().ParamName, rekt, a.AgentId,1.0f, agent.transform.position));
             }           
         }
         return annotations;
@@ -64,11 +64,22 @@ public class Annotator
         _pts[6] = camera.WorldToScreenPoint(new Vector3(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y, bounds.center.z + bounds.extents.z));
         _pts[7] = camera.WorldToScreenPoint(new Vector3(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y, bounds.center.z - bounds.extents.z));
 
+        float widthMultiplier = (float)1920 / (float)camera.pixelWidth;
+        float heightMultiplier = (float)1080 / (float)camera.pixelHeight;
+
+
+        //for (int i = 0; i < _pts.Length; i++)
+        //{
+        //    _pts[i].y = _pts[i].y * heightMultiplier;
+        //    _pts[i].x = _pts[i].x * widthMultiplier;
+        //}
+
+
         for (int i = 0; i < _pts.Length; i++)
         {
             _pts[i].y = Screen.height - _pts[i].y;
         }
-            
+
         Vector3 min = _pts[0];
         Vector3 max = _pts[0];
         for (int i = 1; i < _pts.Length; i++)
@@ -77,7 +88,11 @@ public class Annotator
             max = Vector3.Max(max, _pts[i]);
         }
 
-        Rect r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+        //Matrix4x4 scaling = Matrix4x4.Scale(new Vector3(widthMultiplier, heightMultiplier, 1));
+        //min = scaling * min;
+        //max = scaling * max;
+
+        Rect r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);   
         return r;
     }
 
