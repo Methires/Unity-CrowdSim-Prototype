@@ -1,6 +1,6 @@
  <config>
 	<scene name="City like scene" daytime="2" conditions="1"/>
 	<crowd models="" maxpeople="100" actions=""/>
-	<simulation tracking="True" scenariofile="" length="15" repeats="2" instances="1"/>
-	<results path="D:/Screenshots" boundingboxes="True"/>
+	<simulation tracking="True" scenariofile="" length="5" repeats="1" instances="1"/>
+	<results path="D:/Screenshots" boundingboxes="True" resWidth="1920" resHeight="1080" frameRate="30"/>
 </config>

@@ -10,4 +10,9 @@ public class Preparer
         EditorSceneManager.OpenScene(string.Format("Assets/Scenes/{0}.unity", SceneNameGetter.SceneName), OpenSceneMode.Single);
         EditorApplication.isPlaying = true;
     }
+
+    static void CloseAfterImporting()
+    {
+        EditorApplication.Exit(0);
+    }
 }

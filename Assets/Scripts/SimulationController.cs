@@ -39,7 +39,6 @@ public class SimulationController : MonoBehaviour
 
     void Start()
     {
-        Time.captureFramerate = 0;
         _crowdController = GetComponent<CrowdController>();
         _sequenceCreator = new SequencesCreator();
         _screenshooter = FindObjectOfType<Screenshooter>();
@@ -67,13 +66,16 @@ public class SimulationController : MonoBehaviour
             ScreenshotsDirectory = XmlConfigReader.Data.ResultsDirectory;
             _screenshooter.TakeScreenshots = true;
             _screenshooter.MarkAgentsOnScreenshots = XmlConfigReader.Data.BoundingBoxes;
+            _screenshooter.ResWidth = XmlConfigReader.Data.ResolutionWidth;
+            _screenshooter.ResHeight = XmlConfigReader.Data.ResolutionHeight;
+            _screenshooter.ChangeFrameRate(XmlConfigReader.Data.FrameRate);
 
             Close = true;
             MarkWithPlanes = false;
             GetComponent<CamerasController>().enabled = false;
         }
         weather.GenerateWeatherConditions();
-        SessionLength = SessionLength * 24;
+        SessionLength *= _screenshooter.FrameRate;
         if (!Tracking)
         {
             XmlScenarioReader.ParseXmlWithScenario(ScenarioFile);
@@ -96,7 +98,6 @@ public class SimulationController : MonoBehaviour
     {
         if (!_instanceFinished)
         {
-            //_elapsedTimeCounter += Time.deltaTime;
             _elapsedTimeCounter++;
 
             if (Tracking)
@@ -154,12 +155,7 @@ public class SimulationController : MonoBehaviour
             _sequenceCreator.Crowd = false;
             _sequenceCreator.ShowSequenceOnConsole = true;
             _actorsSequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
-            SessionLength *= 24;
-           // _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);
-        }
-        else
-        {
-            //_screenshooter.Annotator = new Annotator(_crowdController.Crowd);
+            SessionLength *= _screenshooter.FrameRate;         
         }
         _sequenceCreator.MarkActions = false;
         _sequenceCreator.Crowd = true;

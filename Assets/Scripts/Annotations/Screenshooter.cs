@@ -19,6 +19,7 @@ public class Screenshooter : MonoBehaviour
     public bool MarkAgentsOnScreenshots = false;
     public int ResWidth = 1600;
     public int ResHeight = 1200;
+    public int FrameRate = 24;
     public int ScreenshotLimit = 1000;
 
     public Annotator Annotator
@@ -34,26 +35,13 @@ public class Screenshooter : MonoBehaviour
             _annotator.SetResolution(ResWidth, ResHeight);
         }
     }
-
+    
     void Awake ()
     {
-
-        //Screen.SetResolution(Screen.resolutions[0].width, Screen.resolutions[0].height, Screen.fullScreen);
-        //ResWidth = 16000;//Screen.width;
-        //ResHeight = 12000;// Screen.height;
-           
-               
-        Debug.Log(Screen.width + "x" + Screen.height);
-
+        Time.captureFramerate = FrameRate;
         _annotationFileWriter = new AnnotationFileWriter();
         _simulationController = FindObjectOfType<SimulationController>();
         _cameras = FindObjectsOfType<Camera>();
-
-        if (TakeScreenshots)
-        {
-            Time.captureFramerate = 24;
-        }
-
         SetupDictionary();
     }
 
@@ -157,5 +145,14 @@ public class Screenshooter : MonoBehaviour
         }
 
         ClearDictionary();
+    }
+
+    public void ChangeFrameRate(int frameRate)
+    {
+        FrameRate = frameRate;
+        if (TakeScreenshots)
+        {
+            Time.captureFramerate = FrameRate;
+        }
     }
 }
