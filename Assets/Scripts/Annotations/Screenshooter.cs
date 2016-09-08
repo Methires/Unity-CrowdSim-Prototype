@@ -9,8 +9,6 @@ public class Screenshooter : MonoBehaviour
 {
     private Dictionary<string, List<AnnotatedFrame>> _screenshots;
     private Camera[] _cameras;
-    private int _resWidth;
-    private int _resHeight;
     private Annotator _annotator;
     private AnnotationFileWriter _annotationFileWriter;
     private SimulationController _simulationController;
@@ -19,6 +17,8 @@ public class Screenshooter : MonoBehaviour
 
     public bool TakeScreenshots = false;
     public bool MarkAgentsOnScreenshots = false;
+    public int ResWidth = 1600;
+    public int ResHeight = 1200;
     public int ScreenshotLimit = 1000;
 
     public Annotator Annotator
@@ -31,15 +31,19 @@ public class Screenshooter : MonoBehaviour
         set
         {
             _annotator = value;
+            _annotator.SetResolution(ResWidth, ResHeight);
         }
     }
 
     void Awake ()
     {
-        _resWidth = Screen.width; //1920
-        _resHeight = Screen.height; //1080
 
-        Screen.SetResolution(_resWidth, _resHeight, Screen.fullScreen);        
+        //Screen.SetResolution(Screen.resolutions[0].width, Screen.resolutions[0].height, Screen.fullScreen);
+        //ResWidth = 16000;//Screen.width;
+        //ResHeight = 12000;// Screen.height;
+           
+               
+        Debug.Log(Screen.width + "x" + Screen.height);
 
         _annotationFileWriter = new AnnotationFileWriter();
         _simulationController = FindObjectOfType<SimulationController>();
@@ -55,6 +59,7 @@ public class Screenshooter : MonoBehaviour
 
 	void Update ()
     {
+
         if (TakeScreenshots)
         {
             foreach (var camera in _cameras)
@@ -72,18 +77,20 @@ public class Screenshooter : MonoBehaviour
         }
     }
 
+
+
     private void TakeScreenshot(Camera camera)
     {
         string previousTag = camera.tag;
         camera.tag = "MainCamera";
-        RenderTexture rt = new RenderTexture(_resWidth, _resHeight, 24);
+        RenderTexture rt = new RenderTexture(ResWidth, ResHeight, 24);
         camera.targetTexture = rt;
 
-        Texture2D screenShot = new Texture2D(_resWidth, _resHeight, TextureFormat.RGB24, false);
+        Texture2D screenShot = new Texture2D(ResWidth, ResHeight, TextureFormat.RGB24, false);
         RenderTexture.active = camera.targetTexture;
         camera.Render();
         
-        screenShot.ReadPixels(new Rect(0, 0, _resWidth, _resHeight), 0, 0);
+        screenShot.ReadPixels(new Rect(0, 0, ResWidth, ResHeight), 0, 0);
         screenShot.Apply();
 
         camera.targetTexture = null;
@@ -101,13 +108,18 @@ public class Screenshooter : MonoBehaviour
         DestroyImmediate(rt);
         //DestroyImmediate(screenShot);
         camera.tag = previousTag;
+
+        camera.ResetProjectionMatrix();
     }
 
     private void DrawAnnotationRectangles(Camera camera, Texture2D screenShot, List<Annotation> annotations)
     {       
         foreach (var annotation in annotations)
         {
-            screenShot.DrawRectangle(annotation.bounds, Color.blue);
+            if (_simulationController.Tracking || !annotation.isCrowd)
+            {
+                screenShot.DrawRectangle(annotation.bounds, Color.blue);
+            }          
         }
     }
 

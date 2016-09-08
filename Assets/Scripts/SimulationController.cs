@@ -155,11 +155,11 @@ public class SimulationController : MonoBehaviour
             _sequenceCreator.ShowSequenceOnConsole = true;
             _actorsSequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
             SessionLength *= 24;
-            _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);
+           // _screenshooter.Annotator = new Annotator(_sequenceCreator.Agents);
         }
         else
         {
-            _screenshooter.Annotator = new Annotator(_crowdController.Crowd);
+            //_screenshooter.Annotator = new Annotator(_crowdController.Crowd);
         }
         _sequenceCreator.MarkActions = false;
         _sequenceCreator.Crowd = true;
@@ -171,6 +171,8 @@ public class SimulationController : MonoBehaviour
             int temp;
             _sequenceCreator.GenerateInGameSequences(1, out temp);
         }
+
+        _screenshooter.Annotator = new Annotator(_crowdController.Crowd);
         _screenshooter.TakeScreenshots = _screnshooterActive;
 
         _repeatsCounter++;
