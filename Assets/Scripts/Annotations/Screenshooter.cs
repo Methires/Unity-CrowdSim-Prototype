@@ -40,6 +40,7 @@ public class Screenshooter : MonoBehaviour
     {
         Time.captureFramerate = FrameRate;
         _annotationFileWriter = new AnnotationFileWriter();
+        _annotationFileWriter.MarkAgentsOnScreenshots = MarkAgentsOnScreenshots;
         _simulationController = FindObjectOfType<SimulationController>();
         _cameras = FindObjectsOfType<Camera>();
         SetupDictionary();
@@ -85,31 +86,14 @@ public class Screenshooter : MonoBehaviour
         RenderTexture.active = null;
 
         List<Annotation> annotations = _annotator.MarkAgents(camera);
-
-        if (MarkAgentsOnScreenshots)
-        {
-            DrawAnnotationRectangles(camera, screenShot, annotations);
-        }
-
         _screenshots[camera.gameObject.name].Add(new AnnotatedFrame(screenShot, annotations));
 
         DestroyImmediate(rt);
-        //DestroyImmediate(screenShot);
         camera.tag = previousTag;
 
         camera.ResetProjectionMatrix();
     }
 
-    private void DrawAnnotationRectangles(Camera camera, Texture2D screenShot, List<Annotation> annotations)
-    {       
-        foreach (var annotation in annotations)
-        {
-            if (_simulationController.Tracking || !annotation.isCrowd)
-            {
-                screenShot.DrawRectangle(annotation.bounds, Color.blue);
-            }          
-        }
-    }
 
     private void ClearDictionary()
     {
