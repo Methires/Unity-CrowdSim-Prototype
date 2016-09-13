@@ -53,7 +53,7 @@ public class Agent : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;

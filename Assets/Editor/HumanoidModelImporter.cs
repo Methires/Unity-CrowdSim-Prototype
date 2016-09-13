@@ -42,6 +42,8 @@ class HumanoidModelImporter : AssetPostprocessor
             modelImporter.humanDescription = ReadHumanDescription();
             modelImporter.sourceAvatar = null;
             modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", _mocapActorId) };
+            modelImporter.motionNodeName = "<None>";//"<Root Transform>";
+
 
             if (!secondPass && _isAnimation)
             {
@@ -52,7 +54,7 @@ class HumanoidModelImporter : AssetPostprocessor
 
             }
 
-            path = assetPath; 
+            path = assetPath;
         }
     }
 
@@ -69,12 +71,23 @@ class HumanoidModelImporter : AssetPostprocessor
                 }
 
                 secondPass = true;
+
+                var clipAnimations = modelImporter.defaultClipAnimations;
+
+                foreach (var animation in clipAnimations)
+                {
+                    animation.lockRootHeightY = true;
+                    animation.keepOriginalPositionY = true;                   
+                }
+
+                modelImporter.clipAnimations = clipAnimations;
+
                 AssetDatabase.ImportAsset(path);
             }
             else
             {
                 secondPass = false;
-            } 
+            }
         }
     }
 
@@ -96,7 +109,7 @@ class HumanoidModelImporter : AssetPostprocessor
                     AssetDatabase.DeleteAsset(asset);
                     AssetDatabase.Refresh();
                 }
-            } 
+            }
         }
     }
 
@@ -112,7 +125,7 @@ class HumanoidModelImporter : AssetPostprocessor
             {
                 namesList[i] = string.Format("{0}@{1}", namesList[i], commonPart);
             }
-            return namesList.ToArray(); 
+            return namesList.ToArray();
         }
         return null;
     }
@@ -132,7 +145,7 @@ class HumanoidModelImporter : AssetPostprocessor
                     tempSkeletonBoneList.RemoveAt(i);
                 }
             }
-            skeletonDescription = tempSkeletonBoneList.ToArray(); 
+            skeletonDescription = tempSkeletonBoneList.ToArray();
         }
     }
 
@@ -197,7 +210,7 @@ class HumanoidModelImporter : AssetPostprocessor
                 }
 
                 humanDescription.skeleton = skeletonBones.ToArray();
-            }     
+            }
         }
         return humanDescription;
     }
@@ -225,7 +238,7 @@ class HumanoidModelImporter : AssetPostprocessor
                 Debug.Log(e.Message);
             }
 
-            return readLines.ToArray(); 
+            return readLines.ToArray();
         }
         return null;
     }

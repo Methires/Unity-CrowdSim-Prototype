@@ -37,10 +37,34 @@ public class Annotator
 
     private bool IsRectValid(Rect rect)
     {
-        return rect.x > 0.0f && 
-            rect.y > 0.0f && 
+        return rect.x >= 0.0f && 
+            rect.y >= 0.0f && 
             rect.x + rect.width <= _resWidth &&
             rect.y + rect.height <= _resHeigth;
+    }
+
+    private void AdjustTrackingRect(ref Rect rect)
+    {
+        if (!IsRectValid(rect))
+        {
+            //rect.x = rect.x < 0.0f ? 0.0f : rect.x;
+            // rect.y = rect.y < 0.0f ? 0.0f : rect.y;
+
+            if (rect.x < 0.0f)
+            {
+                rect.width += rect.x;
+                rect.x = 0.0f;                 
+            }
+
+            if (rect.y < 0.0f)
+            {
+                rect.height += rect.y;
+                rect.y = 0.0f;
+            }
+          
+            rect.width = rect.x + rect.width > _resWidth ? _resWidth - rect.x : rect.width;
+            rect.height = rect.y + rect.height > _resHeigth ? _resHeigth - rect.y : rect.height;
+        }
     }
 
     public void SetResolution(int width, int height)
@@ -60,21 +84,21 @@ public class Annotator
                 bool agentIsCrowd = agent.tag == "Crowd";
                 string agentAction = agent.gameObject.GetComponent<Movement>().IsFinished ? agent.gameObject.GetComponent<Activity>().ParamName : "Moving";
                 Bounds bounds = agent.GetComponentsInChildren<Renderer>().Aggregate((i1, i2) => i1.bounds.extents.magnitude > i2.bounds.extents.magnitude ? i1 : i2).bounds;
-                Rect rekt;
+                Rect trackingRekt = new Rect();
+                Rect actionRecognitionRekt = new Rect();
 
-                if (agentIsCrowd)
-                {
-                    rekt = GetRect(bounds, camera);
-                }
-                else
-                {
-                    rekt = RectGetFixedSizeRect(bounds, camera);
-                }
+                trackingRekt = GetRect(bounds, camera);
+                //AdjustTrackingRect(ref trackingRekt);
 
-                if (IsRectValid(rekt))
+                if (!agentIsCrowd)
                 {
+                    actionRecognitionRekt = GetFixedSizeRect(bounds, camera);
+                }
+                
+                if (IsRectValid(trackingRekt))
+                {                                                         
                     Agent a = agent.GetComponent<Agent>();
-                    annotations.Add(new Annotation(agentAction, rekt, a.AgentId, 1.0f, agent.transform.position, agentIsCrowd));
+                    annotations.Add(new Annotation(agentAction, trackingRekt, actionRecognitionRekt, a.AgentId, 1.0f, agent.transform.position, agentIsCrowd, IsRectValid(actionRecognitionRekt)));
                 }
             }           
         }
@@ -120,17 +144,22 @@ public class Annotator
         return r;
     }
 
-    private Rect RectGetFixedSizeRect(Bounds bounds, Camera camera)
+    private Rect GetFixedSizeRect(Bounds bounds, Camera camera)
     {
         Rect rect = GetRect(bounds, camera);
-        int roundUpTarget = 300;
+        int roundUpTarget = Mathf.Max((int)(_resHeigth * 0.2f), (int)(_resWidth * 0.2f));
 
-        int roundedUpWidth = Mathf.CeilToInt(rect.width / roundUpTarget) * roundUpTarget;
-        int roundedUpHeight = Mathf.CeilToInt(rect.height / roundUpTarget) * roundUpTarget;
+        int roundedUpWidth = Mathf.RoundToInt(rect.width / roundUpTarget) * roundUpTarget;
+        roundedUpWidth = roundedUpWidth < roundUpTarget ? roundUpTarget : roundedUpWidth;
+
+        int roundedUpHeight = Mathf.RoundToInt(rect.height / roundUpTarget) * roundUpTarget;
+        roundedUpHeight = roundedUpHeight < roundUpTarget ? roundUpTarget : roundedUpHeight;
 
         int extents = Mathf.Max(roundedUpWidth, roundedUpHeight) / 2;
         Rect finalRect = Rect.MinMaxRect(rect.center.x - extents, rect.center.y - extents, rect.center.x + extents, rect.center.y + extents);
 
         return finalRect;
     }
+
+
 }

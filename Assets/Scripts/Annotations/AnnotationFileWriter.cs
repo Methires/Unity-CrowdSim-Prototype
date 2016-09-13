@@ -45,10 +45,10 @@ class AnnotationFileWriter
                 trackingStringBuilder.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
                                                        _screenshotId,
                                                        annotation.agentId,
-                                                       annotation.bounds.x,
-                                                       annotation.bounds.y,
-                                                       annotation.bounds.width,
-                                                       annotation.bounds.height,
+                                                       annotation.trackingBounds.x,
+                                                       annotation.trackingBounds.y,
+                                                       annotation.trackingBounds.width,
+                                                       annotation.trackingBounds.height,
                                                        1.0f,
                                                        annotation.worldPosition.x,
                                                        annotation.worldPosition.y,
@@ -57,25 +57,25 @@ class AnnotationFileWriter
                 trackingTrainingStringBuilder.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
                                                        _screenshotId,
                                                        -1.0f,
-                                                       annotation.bounds.x,
-                                                       annotation.bounds.y,
-                                                       annotation.bounds.width,
-                                                       annotation.bounds.height,
+                                                       annotation.trackingBounds.x,
+                                                       annotation.trackingBounds.y,
+                                                       annotation.trackingBounds.width,
+                                                       annotation.trackingBounds.height,
                                                        1.0f,
                                                        annotation.worldPosition.x,
                                                        annotation.worldPosition.y,
                                                        annotation.worldPosition.z));
 
-                if (!annotation.isCrowd)
+                if (!annotation.isCrowd && annotation.actionRecognitionBoundsIsValid)
                 {
                     actionRecognitionStringBuilder.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6}",
                                                                 _screenshotId,
                                                                 annotation.agentId,
                                                                 annotation.action,
-                                                                annotation.bounds.x,
-                                                                annotation.bounds.y,
-                                                                annotation.bounds.width,
-                                                                annotation.bounds.height));
+                                                                annotation.actionRecognitionBounds.x,
+                                                                annotation.actionRecognitionBounds.y,
+                                                                annotation.actionRecognitionBounds.width,
+                                                                annotation.actionRecognitionBounds.height));
 
                     SaveActorCutout(annotation, annotatedFrame.frame, directory);
                 }               
@@ -109,7 +109,7 @@ class AnnotationFileWriter
 
     private void SaveActorCutout(Annotation annotation, Texture2D frame, string directory)
     {
-        Rect boundingBox = annotation.bounds;
+        Rect boundingBox = annotation.actionRecognitionBounds;
         int width = (int)boundingBox.width;
         int height = (int)boundingBox.height;
         int x = (int)boundingBox.x;
@@ -139,7 +139,13 @@ class AnnotationFileWriter
     {
         foreach (var annotation in annotations)
         {
-            screenShot.DrawRectangle(annotation.bounds, annotation.isCrowd ? Color.blue : Color.red);
+            screenShot.DrawRectangle(annotation.trackingBounds, Color.blue);
+
+            if (annotation.actionRecognitionBoundsIsValid)
+            {
+                screenShot.DrawRectangle(annotation.actionRecognitionBounds, Color.green);
+            }
+            
         }     
     }
 
