@@ -11,12 +11,12 @@ public class DynamicAnimationState
     public AnimationClip _motion;
     private AnimatorController _animController;
     private AnimatorStateMachine _rootStateMachine;
-    private AnimatorState _self;   
+    private AnimatorState _self;
+
 
     private string _fromStateName = "Idle";
     private string _toStateName = "Idle";
     private string _parameterName;
-    private float _length;
     private float _transitionLenght = 0.2f;
     private bool _originalRootMotionSetting;
     private int _isInDynamicStateHash;
@@ -29,7 +29,7 @@ public class DynamicAnimationState
     public DynamicAnimationState(Animator animator, string motionName)
     {
         _anim = animator;
-        _animController = _anim.runtimeAnimatorController as AnimatorController;
+        _animController = _anim.runtimeAnimatorController as AnimatorController;       
 
         _rootStateMachine = _animController.layers[0].stateMachine;
         _parameterName = motionName + "Parameter";
@@ -49,14 +49,13 @@ public class DynamicAnimationState
         _animController.AddParameter(_parameterName, AnimatorControllerParameterType.Bool);
         _self = _rootStateMachine.AddState(_motion.name);
         _self.motion = _motion;
-        
+
+
         AnimatorState toState = _rootStateMachine.states.FirstOrDefault(x => x.state.name == _toStateName).state;
         AnimatorState fromState = _rootStateMachine.states.FirstOrDefault(x => x.state.name == _fromStateName).state;
 
         AnimatorStateTransition toTransition = _self.AddTransition(toState);
         AnimatorStateTransition fromTranistion = fromState.AddTransition(_self);
-
-
 
         SetupTransition(_self, toTransition);
         SetupTransition(fromState,fromTranistion);
@@ -80,7 +79,6 @@ public class DynamicAnimationState
     {
         AnimationClip fromClip = from.motion as AnimationClip;
         AnimationClip toClip = to.motion as AnimationClip;
-
         int frameCount = (int)(fromClip.length * fromClip.frameRate);
 
         float minDistance = float.MaxValue;
@@ -133,7 +131,7 @@ public class DynamicAnimationState
     {
         string path = "Assets/Resources/Animations/" + name + ".fbx";
         _motion =  AssetDatabase.LoadAssetAtPath(path, typeof(AnimationClip)) as AnimationClip;
-
+        
         if (!_motion)
         {
             Debug.LogError("Could not load animation asset: " + path);

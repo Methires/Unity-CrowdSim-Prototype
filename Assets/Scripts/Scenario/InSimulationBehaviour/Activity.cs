@@ -12,11 +12,16 @@ public class Activity : MonoBehaviour
     private string _blendParam;
     private bool _complexAction;
     private bool _canExecuteComplexAction;
-    private List<GameObject> _otherRequiredAgents;
+
+    public List<GameObject> _otherRequiredAgents;
+
     private bool[] _requiredAgentsNearbyCheck;
     private float _exitTime;
     private float _elapsedTimeCounter;
     private bool _isFinished;
+    private NavMeshAgent _navMeshAgent;
+    private Bounds _actionBounds;
+    private GameObject _actionArena;
 
     public DynamicAnimationState _dynamicAnimationState;
 
@@ -73,7 +78,11 @@ public class Activity : MonoBehaviour
                 _requiredAgentsNearbyCheck = new bool[_otherRequiredAgents.Count];
                 _complexAction = true;
                 _canExecuteComplexAction = false;               
-                _sphereCollider.enabled = true;             
+                _sphereCollider.enabled = true;
+            }
+            else
+            {
+                _complexAction = false;
             }
         }
     }
@@ -89,6 +98,19 @@ public class Activity : MonoBehaviour
         }
     }
 
+    public Bounds ActionBounds
+    {
+        get
+        {
+            return _actionBounds;
+        }
+
+        set
+        {
+            _actionBounds = value;
+        }
+    }
+
     private void CreateLocalAnimatorControllerCopy()
     {
         AnimatorController currentController = _animator.runtimeAnimatorController as AnimatorController;
@@ -97,10 +119,32 @@ public class Activity : MonoBehaviour
         _animator.runtimeAnimatorController = newController;
     }
 
+    private void CreateActionArena()
+    {
+        if (_actionArena == null)
+        {            
+            _actionArena = new GameObject();
+            NavMeshObstacle obstacle = _actionArena.AddComponent<NavMeshObstacle>();
+            obstacle.carving = true;
+            obstacle.center = gameObject.transform.position;
+            obstacle.size = _actionBounds.size;
+        }
+    }
+
+    private void DeleteActionArena()
+    {
+        if (_actionArena != null)
+        {            
+            GameObject.DestroyImmediate(_actionArena);
+            _actionArena = null;            
+        }
+    }
+
     void Awake()
     {
         _animator = gameObject.GetComponent<Animator>();
         _sphereCollider = gameObject.GetComponent<SphereCollider>();
+        _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         _sphereCollider.radius = 3.0f;
         _sphereCollider.isTrigger = true;
         _sphereCollider.enabled = false;
@@ -116,16 +160,29 @@ public class Activity : MonoBehaviour
 
             if (!_complexAction)
             {
-                if (ExitTime > 0.0f)
+                if (ExitTime > 0.0f && _elapsedTimeCounter <= ExitTime)
                 {
+                    if (_elapsedTimeCounter >= ExitTime * 0.9f)
+                    {
+                        DeleteActionArena();
+                    }
+                    else
+                    {
+                        CreateActionArena();
+                    }
+                    
+                    _navMeshAgent.enabled = false;
                     _elapsedTimeCounter += Time.deltaTime;
                     _dynamicAnimationState.EnterState();
+                    
                 }
 
                 if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
-                {
+                {                  
                     _isFinished = true;
                     _dynamicAnimationState.ExitState();
+                    DeleteActionArena();
+                    _navMeshAgent.enabled = true;
                 }
             }
             else
@@ -144,17 +201,28 @@ public class Activity : MonoBehaviour
                 }
                 else
                 {
-                    if (ExitTime > 0.0f)
+                    if (ExitTime > 0.0f && _elapsedTimeCounter <= ExitTime)
                     {
+                        if (_elapsedTimeCounter >= ExitTime * 0.9f)
+                        {
+                            DeleteActionArena();
+                        }
+                        else
+                        {
+                            CreateActionArena();
+                        }
+
+                        _navMeshAgent.enabled = false;
                         _elapsedTimeCounter += Time.deltaTime;
-                        _dynamicAnimationState.EnterState();
+                        _dynamicAnimationState.EnterState();                       
                     }
 
                     if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
                     {
-                        _dynamicAnimationState.ExitState();
                         _isFinished = true;
                         _dynamicAnimationState.ExitState();
+                        DeleteActionArena();
+                        _navMeshAgent.enabled = true;
                     }
                 }
             }

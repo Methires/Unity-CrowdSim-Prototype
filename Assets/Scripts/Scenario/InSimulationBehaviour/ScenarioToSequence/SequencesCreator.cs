@@ -13,6 +13,7 @@ public class SequencesCreator
     private bool _markActions;
     private bool _crowd;
     private bool _debug;
+    NavMeshPointGenerator _generator = new NavMeshPointGenerator(25.0f);
 
     public List<GameObject> Agents
     {
@@ -183,6 +184,8 @@ public class SequencesCreator
                 float sequenceTime = CalculateAnticipatedTimeOfSequence(inGameAgentSequence, agent);
                 longestSequenceLenght = (int)sequenceTime > longestSequenceLenght ? (int)sequenceTime : longestSequenceLenght;
             }
+
+            ValidateAndAdjustMeetingPoints(inGameSequencesPerAgent);
             _sequencesPerAgentPerInstance.Add(inGameSequencesPerAgent);
         }
         foreach (SequenceController controller in sequenceControllers)
@@ -190,6 +193,156 @@ public class SequencesCreator
             controller.LoadNewActivity();
         }
         return sequenceControllers;
+    }
+
+    private Vector3 ValidateAndAdjustMeetingPoints(List<List<InGameActionInfo>> inGameSequencesPerAgent)
+    {
+        List<List<MovementData>> actorsLastMovements = new List<List<MovementData>>();
+        List<List<ActivityData>> actorsComplexActionsActivitData = new List<List<ActivityData>>();
+
+        foreach (var actorSequence in inGameSequencesPerAgent)
+        {
+            InGameActionInfo[] complexActions = GetComplexActions(actorSequence);
+            List<ActivityData> extractedComplexActionsActivitData = new List<ActivityData>();
+
+            List<MovementData> lastMovements = new List<MovementData>();
+            foreach (var complexAction in complexActions)
+            {
+                lastMovements.Add(GetLastMovementBeforeComplexAction(actorSequence, complexAction));
+                extractedComplexActionsActivitData.Add(complexAction.Activity);
+            }
+            actorsLastMovements.Add(lastMovements);
+            actorsComplexActionsActivitData.Add(extractedComplexActionsActivitData);
+        }
+
+        bool lastPointsAreCoherent = true;
+        int lastMovementsCount = actorsLastMovements[0].Count;
+        for (int i = 0; i < lastMovementsCount; i++)
+        {
+            bool lastPointAreCoherentOnGivenLevel = true;
+            Vector3 lastPoint = Vector3.zero;
+            foreach (var lastMovements in actorsLastMovements)
+            {
+                if (lastPoint == Vector3.zero)
+                {
+                    lastPoint = lastMovements[i].Waypoint;
+                }
+                else
+                {
+                    lastPointAreCoherentOnGivenLevel = lastPointAreCoherentOnGivenLevel && (lastMovements[i].Waypoint == lastPoint);
+                }
+            }
+            lastPointsAreCoherent = lastPointsAreCoherent && lastPointAreCoherentOnGivenLevel;
+        }
+
+        if (!lastPointsAreCoherent)
+        {
+            Debug.Log("Waypoints for complex action are not coherent!");
+        }
+
+        int complexActionsCount = actorsComplexActionsActivitData.Count;
+        for (int i = 0; i < complexActionsCount; i++)
+        {
+            int complexActionsPerActorCount = actorsComplexActionsActivitData[i].Count;
+
+            for (int j = 0; j < complexActionsPerActorCount; j++)
+            {
+                Vector3 commonMeetingPoint = Vector3.zero;
+                
+
+                foreach (var lastMovements in actorsLastMovements)
+                {
+                    if (commonMeetingPoint == Vector3.zero)
+                    {
+                        commonMeetingPoint = lastMovements[j].Waypoint;
+                        Bounds bounds = actorsComplexActionsActivitData[i][j].ComplexActionBounds;
+                        bool isMeetingPointCorrect = CheckMeetingPoint(commonMeetingPoint, bounds);
+
+                        if (!isMeetingPointCorrect)
+                        {
+                            commonMeetingPoint = GenerateCorrectWaypoint(bounds);
+                            lastMovements[j].Waypoint = commonMeetingPoint;
+                        }
+                    }
+                    else
+                    {
+                        lastMovements[j].Waypoint = commonMeetingPoint;
+                    }
+                }
+            }     
+        }    
+
+        return Vector3.zero;
+    }
+
+    private Vector3 GenerateCorrectWaypoint(Bounds bounds)
+    {
+        Vector3 waypoint = Vector3.zero;
+        bool waypointIsValid = false;
+        int counter = 0;
+
+        do
+        { 
+            waypoint = _generator.RandomPointOnNavMesh(Vector3.zero);
+            waypointIsValid = CheckMeetingPoint(waypoint, bounds);
+            counter++;
+
+        } while (!waypointIsValid && counter < 100);        
+        return waypoint; 
+    }
+
+    private MovementData GetLastMovementBeforeComplexAction(List<InGameActionInfo> actorSequence, InGameActionInfo complexAction)
+    {
+        MovementData lastMovement = null;
+
+        int complexIndex = actorSequence.FindIndex(x => x == complexAction);
+        for (int i = complexIndex; i >= 0; i--)
+        {
+            if (actorSequence[i].Movement != null)
+            {
+                lastMovement = actorSequence[i].Movement;
+                break;
+            }
+        }
+        return lastMovement;
+    }
+
+    private InGameActionInfo[] GetComplexActions(List<InGameActionInfo> actorSequence)
+    {
+        List<InGameActionInfo> complexActions = new List<InGameActionInfo>();
+
+        foreach (var actionInfo in actorSequence)
+        {
+            if (actionInfo.Activity != null && actionInfo.Activity.RequiredAgents != null)
+            {
+                complexActions.Add(actionInfo);
+            }
+        }
+
+        return complexActions.ToArray();
+    }
+
+
+
+    private bool CheckMeetingPoint(Vector3 point, Bounds bounds)
+    {
+        bounds.center = point;
+        float margin = 0.2f;
+        bool isMeetingPointCorrect = true;
+
+        Vector3[] corners = new Vector3[4];
+        corners[0] = new Vector3(point.x + bounds.extents.x, point.y, point.z + bounds.extents.z);
+        corners[1] = new Vector3(point.x + bounds.extents.x, point.y, point.z - bounds.extents.z);
+        corners[2] = new Vector3(point.x - bounds.extents.x, point.y, point.z + bounds.extents.z);
+        corners[3] = new Vector3(point.x - bounds.extents.x, point.y, point.z - bounds.extents.z);
+
+
+        NavMeshHit hit = new NavMeshHit();
+        for (int i = 0; i < corners.Length; i++)
+        {
+            isMeetingPointCorrect = isMeetingPointCorrect && NavMesh.SamplePosition(corners[i],out hit,margin, NavMesh.AllAreas);
+        }        
+        return isMeetingPointCorrect;
     }
 
     private List<List<Action>> CreateSequencesPerAgent()
@@ -417,7 +570,7 @@ public class SequencesCreator
     {
         MovementData mData = null;
         ActivityData aData = null;
-        NavMeshPointGenerator generator = new NavMeshPointGenerator(25.0f);
+        //NavMeshPointGenerator generator = new NavMeshPointGenerator(25.0f);
         Vector3 point;
         if (forcedWaypoint != Vector3.zero)
         {
@@ -425,7 +578,7 @@ public class SequencesCreator
         }
         else
         {
-            point = generator.RandomPointOnNavMesh(Vector3.zero);
+            point = _generator.RandomPointOnNavMesh(Vector3.zero);
         }
 
         switch (action.Name.ToLower())
@@ -449,6 +602,7 @@ public class SequencesCreator
             default:
                 string[] agentName = agent.name.Split('_');
                 int agentIndex = action.Actors.IndexOf(action.Actors.FirstOrDefault(x => x.Name == agentName[0]));
+
                 string animationClip = string.Format("{0}@{1}", action.Actors[agentIndex].MocapId, action.Name);
                 aData = new ActivityData(animationClip, 10.0f);
 

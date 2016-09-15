@@ -42,7 +42,7 @@ class HumanoidModelImporter : AssetPostprocessor
             modelImporter.humanDescription = ReadHumanDescription();
             modelImporter.sourceAvatar = null;
             modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", _mocapActorId) };
-            modelImporter.motionNodeName = "<None>";//"<Root Transform>";
+            modelImporter.motionNodeName = "<None>";
 
 
             if (!secondPass && _isAnimation)
@@ -51,7 +51,6 @@ class HumanoidModelImporter : AssetPostprocessor
                 string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
                 Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);
                 modelImporter.sourceAvatar = avatar;
-
             }
 
             path = assetPath;
@@ -81,7 +80,6 @@ class HumanoidModelImporter : AssetPostprocessor
                 }
 
                 modelImporter.clipAnimations = clipAnimations;
-
                 AssetDatabase.ImportAsset(path);
             }
             else

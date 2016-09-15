@@ -70,7 +70,7 @@ public class CrowdController : MonoBehaviour
         {
             for (int i = 0; i < MaxPeople; i++)
             {
-                Destroy(_crowd[i].gameObject);
+                DestroyImmediate(_crowd[i].gameObject);
             }
             _crowd.Clear();
         }

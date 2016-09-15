@@ -10,7 +10,9 @@ public class Movement : MonoBehaviour
     private Agent _agent;
     private bool _isFinished;
     private bool _isInPosition = false;
+    private bool _settingDestinationFailed = false;
     private string _blendParam;
+
 
     public bool IsFinished
     {
@@ -41,10 +43,18 @@ public class Movement : MonoBehaviour
         set
         {
             _destination = value;
-            _nMA.Resume();
-            _nMA.destination = value;
-            _isFinished = false;
-            _isInPosition = false;
+            if (_nMA.enabled)
+            {
+                _nMA.Resume();
+                _nMA.destination = value;
+                _isFinished = false;
+                _isInPosition = false;
+            }
+            else
+            {
+                _settingDestinationFailed = true;
+            }
+            
         }
     }
     public string BlendParameter
@@ -84,15 +94,23 @@ public class Movement : MonoBehaviour
     {
         if (!IsFinished)
         {
-            if (!_isInPosition)
+            if (_nMA.enabled)
             {
-                CheckPosition();
-            }
-            else
-            {
-                CheckRotation();
-            }
-            
+                if (_settingDestinationFailed)
+                {
+                    _settingDestinationFailed = false;
+                    Destination = _destination;
+                }
+
+                if (!_isInPosition)
+                {
+                    CheckPosition();
+                }
+                else
+                {
+                    CheckRotation();
+                }
+            }          
         }
     }
 

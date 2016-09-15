@@ -65,43 +65,53 @@ public class Agent : MonoBehaviour
         _isInDynamicStateHash = Animator.StringToHash("IsInDynamicState");
     }
 
+    static int deathCounter = 0;
+    void OnDestroy()
+    {
+        print(gameObject.name + " was destroyed! " + deathCounter);
+        deathCounter++;
+    }
+
     protected void SetupAgentLocomotion()
     {
-        if (IsDone())
+        if (agent.enabled)
         {
-            locomotion.Do(0.0f, 0.0f);
-        }
-        else
-        {
-            float speed = agent.desiredVelocity.magnitude;
-            Vector3 velocity = Quaternion.Inverse(transform.rotation) * agent.desiredVelocity;
-            float angle = Mathf.Atan2(velocity.x, velocity.z) * 180.0f / Mathf.PI;
-
-            if (_applyFinalRotation && IsStopping())
+            if (IsDone())
             {
-                float angleDifference = Quaternion.Angle(transform.rotation, _finalRotation);
-                int fullAngles = Mathf.FloorToInt(angleDifference / 360.0f);
-                angleDifference = angleDifference - fullAngles * 360.0f;
-
-                if (Mathf.Abs(angleDifference) > 10.0f)
-                {
-                    angle = angleDifference > 180.0f ? angleDifference - 360.0f : angleDifference;
-
-                    locomotion.Do(0.0f, angle);
-                }
-                else
-                {
-                    if (Mathf.Abs(angleDifference) > 1.0f)
-                    {
-                        transform.rotation = Quaternion.Slerp(transform.rotation, _finalRotation, 10 * Time.deltaTime);
-                    }
-                }
+                locomotion.Do(0.0f, 0.0f);
             }
             else
             {
-                locomotion.Do(speed, angle);
+                float speed = agent.desiredVelocity.magnitude;
+                Vector3 velocity = Quaternion.Inverse(transform.rotation) * agent.desiredVelocity;
+                float angle = Mathf.Atan2(velocity.x, velocity.z) * 180.0f / Mathf.PI;
+
+                if (_applyFinalRotation && IsStopping())
+                {
+                    float angleDifference = Quaternion.Angle(transform.rotation, _finalRotation);
+                    int fullAngles = Mathf.FloorToInt(angleDifference / 360.0f);
+                    angleDifference = angleDifference - fullAngles * 360.0f;
+
+                    if (Mathf.Abs(angleDifference) > 10.0f)
+                    {
+                        angle = angleDifference > 180.0f ? angleDifference - 360.0f : angleDifference;
+
+                        locomotion.Do(0.0f, angle);
+                    }
+                    else
+                    {
+                        if (Mathf.Abs(angleDifference) > 1.0f)
+                        {
+                            transform.rotation = Quaternion.Slerp(transform.rotation, _finalRotation, 10 * Time.deltaTime);
+                        }
+                    }
+                }
+                else
+                {
+                    locomotion.Do(speed, angle);
+                }
             }
-        }
+        }     
     }
 
     void OnAnimatorMove()

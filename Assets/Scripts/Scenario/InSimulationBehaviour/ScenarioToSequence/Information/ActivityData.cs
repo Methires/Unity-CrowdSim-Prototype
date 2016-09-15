@@ -7,10 +7,26 @@ public class ActivityData
     public float ExitTime;
     public List<GameObject> RequiredAgents;
     public string Blend;
+    private Bounds _complexActionBounds;
+
+    public Bounds ComplexActionBounds
+    {
+        set
+        {
+            _complexActionBounds = value;
+        }
+
+        get
+        {
+            return _complexActionBounds;
+        }
+    }
 
     public ActivityData()
     {
         ParameterName = "";
+        string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
+        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         ExitTime = 0.0f;
         RequiredAgents = null;
         Blend = "";
@@ -21,6 +37,8 @@ public class ActivityData
         ParameterName = parameterName;
         ExitTime = exitTime;
         RequiredAgents = null;
+        string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
+        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         Blend = "";
     }
 
@@ -29,6 +47,8 @@ public class ActivityData
         ParameterName = parameterName;
         ExitTime = exitTime;
         RequiredAgents = null;
+        string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
+        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         Blend = blend;
     }
 
@@ -37,12 +57,16 @@ public class ActivityData
         ParameterName = parameterName;
         ExitTime = exitTime;       
         RequiredAgents = requiredAgents;
+        string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
+        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         Blend = "";
     }
 
     public ActivityData(string parameterName, float exitTime, List<GameObject> requiredAgents, string blend)
     {
         ParameterName = parameterName;
+        string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
+        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         ExitTime = exitTime;
         RequiredAgents = requiredAgents;
         Blend = blend;

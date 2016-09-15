@@ -21,4 +21,6 @@ public class NavMeshPointGenerator
             }
         } while (true);
     }
+
+
 }

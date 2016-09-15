@@ -142,6 +142,8 @@ public class SequenceController : MonoBehaviour
 
             if (_sequence[_currentActivityIndex + 1].Activity != null)
             {
+                
+
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null && _sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
                 {
                     Vector3 forcedPosition = new Vector3();
@@ -162,10 +164,12 @@ public class SequenceController : MonoBehaviour
                 _actionScript.BlendParameter = _sequence[_currentActivityIndex + 1].Activity.Blend;
                 _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;
                 _actionScript.ParamName = _sequence[_currentActivityIndex + 1].Activity.ParameterName;
+                _actionScript.ActionBounds = _sequence[_currentActivityIndex + 1].Activity.ComplexActionBounds;
                 if (!_isCrowd)
                 {
                     GetComponent<DisplayActivityText>().ChangeText(_sequence[_currentActivityIndex + 1].Activity.ParameterName + " " + _sequence[_currentActivityIndex + 1].Activity.Blend);
                 }
+
             }
             _isFinished = false;
             _currentActivityIndex++;

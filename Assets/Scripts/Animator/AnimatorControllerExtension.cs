@@ -20,7 +20,7 @@ namespace UnityEditor.Animations
             {
                 copy.AddParameter(parameter);
             }      
-
+            
             int layersCount = original.layers.Length;
             AnimatorControllerLayer[] newLayers = new AnimatorControllerLayer[layersCount];
            
@@ -133,7 +133,7 @@ namespace UnityEditor.Animations
 
             copy.defaultState = _copiedStates.FirstOrDefault(x => x.name == original.defaultState.name);
             //copy.states = newStates;
-
+            
             _copiedStates.Clear();
 
             _copiedStateMachines.Add(copy);
