@@ -9,7 +9,8 @@ class HumanoidModelImporter : AssetPostprocessor
 {
     public static bool useImporter = true;
     private string _mocapActorId;
-    private string _htFilepath = "/Resources/HumanTemplateFull.ht";
+    //private string _htFilepath = "/Resources/MixamoTemplate.ht";//"/Resources/HumanTemplateFull.ht";
+    private string _htFile = "AutodeskTemplate";
     private string _referenceAvatarName = "B3010@ReferenceAvatar";
     private bool _isAnimation = false;
 
@@ -18,18 +19,23 @@ class HumanoidModelImporter : AssetPostprocessor
     private static string path;
 
     void OnPreprocessModel()
-    {
+    {      
         if (useImporter)
         {
             if (assetPath.Contains("@"))
             {
                 _mocapActorId = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
                 _isAnimation = true;
-                _htFilepath = "/Resources/MocapTemplate.ht";
+                //_htFilepath = "/Resources/MocapTemplate.ht";
+                _htFile = "MocapTemplate";
             }
 
-            ModelImporter modelImporter = assetImporter as ModelImporter;
+            if (assetPath.ToLower().Contains("mixamo"))
+            {
+                _htFile = "MixamoTemplate";
+            }            
 
+            ModelImporter modelImporter = assetImporter as ModelImporter;
             modelImporter.animationType = ModelImporterAnimationType.Human;
             modelImporter.animationCompression = ModelImporterAnimationCompression.Optimal;
             modelImporter.animationPositionError = 0.5f;
@@ -43,7 +49,6 @@ class HumanoidModelImporter : AssetPostprocessor
             modelImporter.sourceAvatar = null;
             modelImporter.extraExposedTransformPaths = new string[] { string.Format("{0}:Solving:Hips", _mocapActorId) };
             modelImporter.motionNodeName = "<None>";
-
 
             if (!secondPass && _isAnimation)
             {
@@ -59,9 +64,12 @@ class HumanoidModelImporter : AssetPostprocessor
 
     void OnPostprocessModel(GameObject g)
     {
+        ModelImporter modelImporter = assetImporter as ModelImporter;
         if (useImporter)
         {
-            ModelImporter modelImporter = assetImporter as ModelImporter;
+
+            //bool valid = g.GetComponent<Animator>().avatar;
+            
             if (_isAnimation && !secondPass)
             {
                 if (skeletonDescription == null)
@@ -153,28 +161,55 @@ class HumanoidModelImporter : AssetPostprocessor
         if (useImporter)
         {
             List<HumanBone> humanBones = new List<HumanBone>();
-            string[] lines = ReadFileLines();
-            string[] pair;
+            //string[] lines = ReadFileLines();
+            //string[] pair;
 
-            //Description starts in the 10th line
-            for (int i = 9; i < lines.Length; i++)
+            ////Description starts in the 10th line
+            //for (int i = 9; i < lines.Length; i++)
+            //{
+            //    pair = lines[i].Split(new string[] { ": " }, StringSplitOptions.None);
+            //    pair[0] = pair[0].Replace(" ", string.Empty);
+            //    pair[1] = pair[1].Replace(" ", string.Empty);
+
+            //    if (_isAnimation)
+            //    {
+            //        pair[1] = string.Format("{0}:{1}", _mocapActorId, pair[1]);
+            //    }
+
+            //    HumanBone newBone = new HumanBone();
+            //    newBone.humanName = pair[0];
+            //    newBone.boneName = pair[1];
+            //    HumanLimit limit = new HumanLimit();
+            //    limit.useDefaultValues = true;
+            //    newBone.limit = limit;
+            //    humanBones.Add(newBone);
+            //}
+            
+
+            string boneNameModifier = "";
+            if (_isAnimation)
             {
-                pair = lines[i].Split(new string[] { ": " }, StringSplitOptions.None);
-                pair[0] = pair[0].Replace(" ", string.Empty);
-                pair[1] = pair[1].Replace(" ", string.Empty);
+                boneNameModifier = _mocapActorId + ":";
+            }
 
-                if (_isAnimation)
-                {
-                    pair[1] = string.Format("{0}:{1}", _mocapActorId, pair[1]);
-                }
+            HumanTemplate template = Resources.Load(_htFile) as HumanTemplate;
+            string[] boneNames = HumanTrait.BoneName;
 
+            List<string> mapping = new List<string>();
+            foreach (string boneName in boneNames)
+            {
                 HumanBone newBone = new HumanBone();
-                newBone.humanName = pair[0];
-                newBone.boneName = pair[1];
-                HumanLimit limit = new HumanLimit();
-                limit.useDefaultValues = true;
-                newBone.limit = limit;
-                humanBones.Add(newBone);
+                newBone.humanName = boneName;
+                newBone.boneName = template.Find(boneName);
+
+                if (newBone.boneName != "")
+                {
+                    newBone.boneName = boneNameModifier + newBone.boneName;
+                    HumanLimit limit = new HumanLimit();
+                    limit.useDefaultValues = true;
+                    newBone.limit = limit;
+                    humanBones.Add(newBone);
+                }                
             }
 
             humanDescription.human = humanBones.ToArray();
@@ -213,31 +248,31 @@ class HumanoidModelImporter : AssetPostprocessor
         return humanDescription;
     }
 
-    private string[] ReadFileLines()
-    {
-        if (useImporter)
-        {
-            string path = Application.dataPath + _htFilepath;
-            List<string> readLines = new List<string>();
+    //private string[] ReadFileLines()
+    //{
+    //    if (useImporter)
+    //    {
+    //        string path = Application.dataPath + _htFilepath;
+    //        List<string> readLines = new List<string>();
 
-            try
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        readLines.Add(line);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-            }
+    //        try
+    //        {
+    //            using (StreamReader sr = new StreamReader(path))
+    //            {
+    //                string line;
+    //                while ((line = sr.ReadLine()) != null)
+    //                {
+    //                    readLines.Add(line);
+    //                }
+    //            }
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            Debug.Log(e.Message);
+    //        }
 
-            return readLines.ToArray();
-        }
-        return null;
-    }
+    //        return readLines.ToArray();
+    //    }
+    //    return null;
+    //}
 }

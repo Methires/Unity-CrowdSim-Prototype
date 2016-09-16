@@ -105,7 +105,17 @@ public class SequenceController : MonoBehaviour
                     if (_sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
                     {
                         string[] paths = AssetDatabase.FindAssets(_sequence[_currentActivityIndex + 2].Activity.ParameterName);
+
+
                         string assetPath = AssetDatabase.GUIDToAssetPath(paths[0]);
+                        foreach (var path in paths)
+                        {
+                            if (!assetPath.Contains(_sequence[_currentActivityIndex + 2].Activity.ParameterName))
+                            {
+                                assetPath = AssetDatabase.GUIDToAssetPath(path);
+                            }                        
+                        }
+
                         GameObject exactSpotParent = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
                         Transform exactSpot = exactSpotParent.transform.GetChild(0).transform;
 
