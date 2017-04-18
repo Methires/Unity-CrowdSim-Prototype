@@ -29,8 +29,6 @@ public class Activity : MonoBehaviour
     private string _nameToDisplay;
     private int _levelIndex;
 
-    public DynamicAnimationState _dynamicAnimationState;
-
     public bool IsFinished
     {
         get
@@ -65,8 +63,6 @@ public class Activity : MonoBehaviour
             _isFinished = false;
             _elapsedTimeCounter = 0.0f;
             GetComponent<UnityEngine.AI.NavMeshAgent>().obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
-            _dynamicAnimationState = new DynamicAnimationState(_animator, _paramName);
-            _exitTime = _dynamicAnimationState.Length;
         }
     }
 
@@ -169,35 +165,6 @@ public class Activity : MonoBehaviour
         }
     }
 
-    private void CreateLocalAnimatorControllerCopy()
-    {
-        AnimatorController currentController = _animator.runtimeAnimatorController as AnimatorController;
-        AnimatorController newController = currentController.Clone();
-        newController.name = _animator.gameObject.name + "LocalController";
-        _animator.runtimeAnimatorController = newController;
-    }
-
-    private void CreateArena(ref GameObject arena, Bounds bounds)
-    {
-        if (arena == null)
-        {
-            arena = new GameObject();
-            UnityEngine.AI.NavMeshObstacle obstacle = arena.AddComponent<UnityEngine.AI.NavMeshObstacle>();
-            obstacle.carving = true;
-            obstacle.center = gameObject.transform.position;
-            obstacle.size = bounds.size;
-        }
-    }
-
-    private void DeleteArena(ref GameObject arena)
-    {
-        if (arena != null)
-        {
-            DestroyImmediate(arena);
-            arena = null;
-        }
-    }
-
     void Awake()
     {
         _animator = gameObject.GetComponent<Animator>();
@@ -208,8 +175,6 @@ public class Activity : MonoBehaviour
         _sphereCollider.enabled = false;
         _isFinished = true;
         _idleStateBounds = new Bounds(Vector3.zero, new Vector3(0.1f, 1.0f, 0.1f));
-
-        CreateLocalAnimatorControllerCopy();
     }
 
     void Update()
@@ -221,26 +186,14 @@ public class Activity : MonoBehaviour
             {
                 if (ExitTime > 0.0f && _elapsedTimeCounter <= ExitTime)
                 {
-                    if (_elapsedTimeCounter >= ExitTime * 0.9f)
-                    {
-                        DeleteArena(ref _actionArena);
-                    }
-                    else
-                    {
-                        CreateArena(ref _actionArena, _actionBounds);
-                    }
-
                     _navMeshAgent.enabled = false;
                     _elapsedTimeCounter += Time.deltaTime;
-                    _dynamicAnimationState.EnterState();
 
                 }
 
                 if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
                 {
                     _isFinished = true;
-                    _dynamicAnimationState.ExitState();
-                    DeleteArena(ref _actionArena);
                     _navMeshAgent.enabled = true;
                 }
             }
@@ -248,7 +201,6 @@ public class Activity : MonoBehaviour
             {
                 if (!_canExecuteComplexAction)
                 {
-                    CreateArena(ref _idleStateArena, _idleStateBounds);
                     _nameToDisplay = IDLE_STATE_NAME;
                     _canExecuteComplexAction = true;
                     foreach (bool agentNearbyCheck in _requiredAgentsNearbyCheck)
@@ -263,30 +215,17 @@ public class Activity : MonoBehaviour
                 else
                 {
                     _sphereCollider.enabled = false;
-                    DeleteArena(ref _idleStateArena);
                     string[] name = _paramName.Split('@');
                     _nameToDisplay = name[1];
                     if (ExitTime > 0.0f && _elapsedTimeCounter <= ExitTime)
                     {
-                        if (_elapsedTimeCounter >= ExitTime * 0.9f)
-                        {
-                            DeleteArena(ref _actionArena);
-                        }
-                        else
-                        {
-                            CreateArena(ref _actionArena, _actionBounds);
-                        }
-
                         _navMeshAgent.enabled = false;
                         _elapsedTimeCounter += Time.deltaTime;
-                        _dynamicAnimationState.EnterState();
                     }
 
                     if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
                     {
                         _isFinished = true;
-                        _dynamicAnimationState.ExitState();
-                        DeleteArena(ref _actionArena);
                         _navMeshAgent.enabled = true;
                     }
                 }

@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     private float _speed;
     public Vector3 _destination;
     private Quaternion _finalRotation;
-    private Agent _agent;
+    //private Agent _agent;
     public bool _isFinished;
     public bool _isInPosition = false;
     private bool _settingDestinationFailed = false;
@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
             _destination = value;
             if (_nMA.enabled)
             {
-                _nMA.Resume();
+                _nMA.isStopped = false;
                 _nMA.destination = value;
                 _isFinished = false;
                 _isInPosition = false;
@@ -135,7 +135,7 @@ public class Movement : MonoBehaviour
     {
         _nMA = GetComponent<UnityEngine.AI.NavMeshAgent>();
         _isFinished = true;
-        _agent = GetComponent<Agent>();
+        //_agent = GetComponent<Agent>();
     }
 
     void Update()
@@ -171,7 +171,7 @@ public class Movement : MonoBehaviour
         {
             _isInPosition = true;
             _nMA.destination = transform.position;
-            _nMA.Stop();
+            _nMA.isStopped = true;
             SpeedAdjuster sA = GetComponent<SpeedAdjuster>();
             if (sA != null)
             {
@@ -180,11 +180,11 @@ public class Movement : MonoBehaviour
         }
         else if (Mathf.Abs(Vector3.Distance(_nMA.destination, _destination)) > 0.1f)
         {
-            _nMA.Resume();
+            _nMA.isStopped = false;
             _nMA.SetDestination(_destination);
         }
 
-        _agent.MovementInPlace = _isInPosition;
+       // _agent.MovementInPlace = _isInPosition;
     }
 
     private void Clamping()
@@ -200,13 +200,13 @@ public class Movement : MonoBehaviour
 
     private void CheckRotation()
     {
-        if (!_agent.ApplyFinalRotation || _agent.IsInPlace())
-        {
+        //if (!_agent.ApplyFinalRotation || _agent.IsInPlace())
+        //{
             _isFinished = true;
-        }
-        if (tag == "Crowd")
-        {
-            _isFinished = true;
-        }
+        //}
+        //if (tag == "Crowd")
+        //{
+        //    _isFinished = true;
+        //}
     }
 }

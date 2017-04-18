@@ -4,8 +4,6 @@ using System.Xml;
 public static class SceneNameGetter
 {
     public static string SceneName;
-    public static string Mode;
-    public static int MapSize = 10;
 
     private static XmlDocument LoadXmlFromFile(string path)
     {
@@ -23,8 +21,6 @@ public static class SceneNameGetter
         if (configElement.Name.Equals("config"))
         {
             SceneName = configElement.ChildNodes.Item(0).Attributes.Item(0).Value;
-            Mode = configElement.ChildNodes.Item(4).Attributes.Item(0).Value;
-            int.TryParse(configElement.ChildNodes.Item(5).Attributes.Item(0).Value, out MapSize);
         }
     }
 }

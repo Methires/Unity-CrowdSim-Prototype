@@ -109,25 +109,16 @@ public class CrowdController : MonoBehaviour
 
     private GameObject EquipAgentPrefab(GameObject obj)
     {
-        ////Uncomment to find avatar when none is generated
-        //Animator agentAnimator = obj.AddComponent<Animator>();
-        //string[] paths = AssetDatabase.FindAssets("ReptiliuszAvatar");
-        //string referenceAvatarPath = AssetDatabase.GUIDToAssetPath(paths[0]);
-        //Avatar avatar = AssetDatabase.LoadAssetAtPath<Avatar>(referenceAvatarPath);//("Assets/Resources/Kawai_retardedAvatar.avatar");
-        //agentAnimator.avatar = avatar;
-
-
         Animator agentAnimator = obj.GetComponent<Animator>();
         var c = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Locomotion.controller");
         agentAnimator.runtimeAnimatorController = c;
         obj.AddComponent<UnityEngine.AI.NavMeshAgent>();
         obj.AddComponent<Rigidbody>().isKinematic = true;
-        obj.AddComponent<Agent>();
         CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
         capsule.height = 2;
         capsule.radius = 0.4f;
         capsule.center = new Vector3(0, 1, 0);
-        //obj.AddComponent<GenerateDestination>();
+
         return obj;
     }
 
@@ -154,8 +145,6 @@ public class CrowdController : MonoBehaviour
         List<Level> agentScenario = new List<Level>();
         List<string> actionsNames = ActionsFilter.Split('|').ToList();
         actionsNames.RemoveAll(string.IsNullOrEmpty);
-        //int[] indexes = Enumerable.Range(0, actionsNames.Count + 2).ToArray();
-        //List<GameObject> crowd = _crowd.Where(x => x.tag == "Crowd").ToList();
         int actionIndex = 0;
         int scenarioLenght = 5;
         float movementProbability = 0.9f;

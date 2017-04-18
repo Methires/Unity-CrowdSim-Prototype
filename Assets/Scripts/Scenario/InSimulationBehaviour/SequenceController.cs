@@ -9,7 +9,7 @@ public class SequenceController : MonoBehaviour
 {
     private Movement _movementScript;
     private Activity _actionScript;
-    private Agent _agent;
+    //private Agent _agent;
     private List<InGameActionInfo> _sequence;
     private int _currentActivityIndex;
     private bool _isFinished;
@@ -57,7 +57,7 @@ public class SequenceController : MonoBehaviour
         _currentActivityIndex = -1;
         _movementScript = GetComponent<Movement>();
         _actionScript = GetComponent<Activity>();
-        _agent = GetComponent<Agent>();
+        //_agent = GetComponent<Agent>();
         _isFinished = true;
         _scenarioLevelIndex = -1;
     }
@@ -113,7 +113,7 @@ public class SequenceController : MonoBehaviour
                 _movementScript.BlendParameter = _sequence[_currentActivityIndex + 1].Movement.Blend;
 
                 Vector3 positionOffsetForMultiActorActivity = Vector3.zero;
-                _agent.ApplyFinalRotation = false;
+               // _agent.ApplyFinalRotation = false;
 
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null)
                 {
@@ -135,8 +135,8 @@ public class SequenceController : MonoBehaviour
                         Transform exactSpot = exactSpotParent.transform.GetChild(0).transform;
 
                         Quaternion finalRotation = Quaternion.Euler(0, exactSpot.rotation.eulerAngles.y + exactSpot.rotation.eulerAngles.z, 0);
-                        _agent.FinalRotation = finalRotation;
-                        _agent.ApplyFinalRotation = true;
+                        //_agent.FinalRotation = finalRotation;
+                        //_agent.ApplyFinalRotation = true;
                         if (exactSpot != null)
                         {
                             positionOffsetForMultiActorActivity.x = exactSpot.position.x;
@@ -182,7 +182,7 @@ public class SequenceController : MonoBehaviour
                     InGameActionInfo forcedAction = new InGameActionInfo(forcedMovement);
                     _sequence.Insert(_currentActivityIndex + 2, forcedAction);
                 }
-                _agent.ApplyFinalRotation = false;
+                //_agent.ApplyFinalRotation = false;
                 _actionScript.ExitTime = _sequence[_currentActivityIndex + 1].Activity.ExitTime;
                 _actionScript.BlendParameter = _sequence[_currentActivityIndex + 1].Activity.Blend;
                 _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;

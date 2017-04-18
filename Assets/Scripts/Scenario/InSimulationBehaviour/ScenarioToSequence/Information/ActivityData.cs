@@ -26,7 +26,6 @@ public class ActivityData
     {
         ParameterName = "";
         string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
-        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         ExitTime = 0.0f;
         RequiredAgents = null;
         Blend = "";
@@ -38,7 +37,6 @@ public class ActivityData
         ExitTime = exitTime;
         RequiredAgents = null;
         string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
-        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         Blend = "";
     }
 
@@ -48,7 +46,6 @@ public class ActivityData
         ExitTime = exitTime;
         RequiredAgents = null;
         string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
-        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         Blend = blend;
     }
 
@@ -58,7 +55,6 @@ public class ActivityData
         ExitTime = exitTime;       
         RequiredAgents = requiredAgents;
         string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
-        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         Blend = "";
     }
 
@@ -66,7 +62,6 @@ public class ActivityData
     {
         ParameterName = parameterName;
         string parameterWithoutMocapActorId = ParameterName.Split('@')[1];
-        _complexActionBounds = UnityEditor.Animations.AnimationClipExtensions.ComplexActionAnimationArenaBounds(parameterWithoutMocapActorId);
         ExitTime = exitTime;
         RequiredAgents = requiredAgents;
         Blend = blend;

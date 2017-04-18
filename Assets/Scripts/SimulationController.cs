@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 [RequireComponent(typeof(CrowdController))]
-[RequireComponent(typeof(WeatherConditions))]
-[RequireComponent(typeof(Screenshooter))]
 [RequireComponent(typeof(CamerasController))]
 public class SimulationController : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class SimulationController : MonoBehaviour
 
     private CrowdController _crowdController;
     private SequencesCreator _sequenceCreator;
-    private Screenshooter _screenshooter;
+
     private List<SequenceController> _actorsSequencesControllers;
     private int _repeatsCounter;
     //private float _elapsedTimeCounter;
@@ -41,14 +39,9 @@ public class SimulationController : MonoBehaviour
     {
         _crowdController = GetComponent<CrowdController>();
         _sequenceCreator = new SequencesCreator();
-        _screenshooter = FindObjectOfType<Screenshooter>();
-        WeatherConditions weather = GetComponent<WeatherConditions>();
         if (LoadFromConfig)
         {
             XmlConfigReader.ParseXmlConfig(Application.dataPath + "/config.xml");
-
-            weather.Time = XmlConfigReader.Data.DayTime;
-            weather.Conditions = XmlConfigReader.Data.WeatherConditions;
 
             _crowdController.CreatePrefabs = true;
             _crowdController.LoadAgentsFromResources = true;
@@ -64,26 +57,12 @@ public class SimulationController : MonoBehaviour
             SimultaneousScenarioInstances = XmlConfigReader.Data.Instances > 1 ? XmlConfigReader.Data.Instances : 1;
 
             ScreenshotsDirectory = XmlConfigReader.Data.ResultsDirectory;
-            //_screenshooter.TakeScreenshots = true;
-            //_screenshooter.MarkAgentsOnScreenshots = XmlConfigReader.Data.BoundingBoxes;
-
-            _screenshooter.SetParams(true, XmlConfigReader.Data.BoundingBoxes);
-            _screenshooter.ResWidth = XmlConfigReader.Data.ResolutionWidth;
-            _screenshooter.ResHeight = XmlConfigReader.Data.ResolutionHeight;
-            _screenshooter.ChangeFrameRate(XmlConfigReader.Data.FrameRate);
-            _screenshooter.ScreenshotLimit = XmlConfigReader.Data.BufferSize;
 
             Close = true;
             MarkWithPlanes = false;
             GetComponent<CamerasController>().enabled = false;
         }
-        weather.GenerateWeatherConditions();
-        if (GetComponent<Lighting>() != null)
-        {
-            GetComponent<Lighting>().SetSampleSceneLighting();
-        }
 
-        SessionLength *= _screenshooter.FrameRate;
         if (!Tracking)
         {
             XmlScenarioReader.ParseXmlWithScenario(ScenarioFile);
@@ -91,13 +70,11 @@ public class SimulationController : MonoBehaviour
             _actorsSequencesControllers = new List<SequenceController>();
         }
 
-        _screnshooterActive = _screenshooter.TakeScreenshots;
         if (_screnshooterActive)
         {
             string dir = string.Format("/Session-{0:yyyy-MM-dd_hh-mm-ss-tt}", System.DateTime.Now);
             ScreenshotsDirectory += dir;
         }
-        _screenshooter.TakeScreenshots = false;
 
         Invoke("StartInstanceOfSimulation", 0.5f);
     }
@@ -145,7 +122,6 @@ public class SimulationController : MonoBehaviour
                 string path = ScreenshotsDirectory + "/Take_" + _repeatsCounter;
 
                 Debug.Log("Screenshot buffer full! Saving to: " + path);
-                _screenshooter.SaveScreenshotsAtDirectory(path);
                 _screenshotBufferFull = false;
             }
         }
@@ -163,7 +139,6 @@ public class SimulationController : MonoBehaviour
             _sequenceCreator.Crowd = false;
             _sequenceCreator.ShowSequenceOnConsole = true;
             _actorsSequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
-            SessionLength *= _screenshooter.FrameRate;
         }
         _sequenceCreator.MarkActions = false;
         _sequenceCreator.Crowd = true;
@@ -176,9 +151,6 @@ public class SimulationController : MonoBehaviour
             _sequenceCreator.GenerateInGameSequences(1, out temp);
         }
 
-        _screenshooter.Annotator = new Annotator(_crowdController.Crowd);
-        _screenshooter.TakeScreenshots = _screnshooterActive;
-
         _repeatsCounter++;
         _instanceFinished = false;
         _elapsedTimeCounter = 0;
@@ -187,12 +159,6 @@ public class SimulationController : MonoBehaviour
     private void EndInstanceOfSimulation()
     {
         _instanceFinished = true;
-
-        if (_screnshooterActive)
-        {
-            _screenshooter.SaveScreenshotsAtDirectory(ScreenshotsDirectory + "/Take_" + _repeatsCounter);
-            _screenshooter.TakeScreenshots = false;
-        }
 
         _crowdController.RemoveCrowd();
         StartCoroutine(EndInstance());

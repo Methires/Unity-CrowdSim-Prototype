@@ -5,14 +5,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 472626}
-  - 114: {fileID: 114000010119231640}
-  - 114: {fileID: 114000012837680498}
-  - 114: {fileID: 114000010568512236}
-  - 114: {fileID: 114000010572236710}
-  - 114: {fileID: 114000010009204016}
+  - component: {fileID: 472626}
+  - component: {fileID: 114000010119231640}
+  - component: {fileID: 114000010568512236}
+  - component: {fileID: 114000010009204016}
   m_Layer: 0
   m_Name: Simulation Overseer
   m_TagString: GameController
@@ -29,10 +27,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -93,33 +91,3 @@ MonoBehaviour:
   LoadAgentsFromResources: 1
   AgentsFilter: 
   ActionsFilter: 
---- !u!114 &114000010572236710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b58a6d67d6ad147a9e2e734c31f2d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TakeScreenshots: 1
-  MarkUpMode: 1
-  ResWidth: 1600
-  ResHeight: 1200
-  FrameRate: 24
-  ScreenshotLimit: 100
---- !u!114 &114000012837680498
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e19cae10a41a8848920ae714048998d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Time: 1
-  Conditions: 1

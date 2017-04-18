@@ -22,9 +22,6 @@ public class CamerasController : MonoBehaviour
         }
         camComponents.FirstOrDefault().tag = "MainCamera";
 
-
-        //_cameras.Remove(GameObject.FindGameObjectWithTag("MainCamera"));
-        //_cameras.Insert(0, GameObject.FindGameObjectWithTag("MainCamera"));
         ActiveCamera();
     }
 
