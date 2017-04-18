@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 157552be44672ce4fbaff13e3ca44ff3
+timeCreated: 1473844093
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arch41_030
+    100002: Arch41_031
+    100004: Arch41_032
+    100006: Arch41_033
+    100008: Arch41_034
+    100010: Arch41_035
+    100012: Arch41_036
+    100014: Arch41_037
+    100016: //RootNode
+    100018: Box001
+    100020: Box028
+    100022: Box029
+    100024: Box030
+    100026: cgaxis_pl0
+    100028: cgaxis_pl1
+    100030: cgaxis_pla
+    100032: Plane001
+    100034: Plane002
+    400000: Arch41_030
+    400002: Arch41_031
+    400004: Arch41_032
+    400006: Arch41_033
+    400008: Arch41_034
+    400010: Arch41_035
+    400012: Arch41_036
+    400014: Arch41_037
+    400016: //RootNode
+    400018: Box001
+    400020: Box028
+    400022: Box029
+    400024: Box030
+    400026: cgaxis_pl0
+    400028: cgaxis_pl1
+    400030: cgaxis_pla
+    400032: Plane001
+    400034: Plane002
+    2300000: Arch41_030
+    2300002: Arch41_031
+    2300004: Arch41_032
+    2300006: Arch41_033
+    2300008: Arch41_034
+    2300010: Arch41_035
+    2300012: Arch41_036
+    2300014: Arch41_037
+    2300016: Box001
+    2300018: Box028
+    2300020: Box029
+    2300022: Box030
+    2300024: cgaxis_pl0
+    2300026: cgaxis_pl1
+    2300028: Plane001
+    2300030: Plane002
+    3300000: Arch41_030
+    3300002: Arch41_031
+    3300004: Arch41_032
+    3300006: Arch41_033
+    3300008: Arch41_034
+    3300010: Arch41_035
+    3300012: Arch41_036
+    3300014: Arch41_037
+    3300016: Box001
+    3300018: Box028
+    3300020: Box029
+    3300022: Box030
+    3300024: cgaxis_pl0
+    3300026: cgaxis_pl1
+    3300028: Plane001
+    3300030: Plane002
+    4300000: Box029
+    4300002: Box030
+    4300004: cgaxis_pl0
+    4300006: cgaxis_pl1
+    4300008: Plane002
+    4300010: Box001
+    4300012: Box028
+    4300014: Plane001
+    4300016: Arch41_030
+    4300018: Arch41_031
+    4300020: Arch41_032
+    4300022: Arch41_033
+    4300024: Arch41_034
+    4300026: Arch41_035
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

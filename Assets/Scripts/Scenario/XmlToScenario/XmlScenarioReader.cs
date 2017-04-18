@@ -47,9 +47,17 @@ public static class XmlScenarioReader
         XmlDocument scenario = LoadXmlFromFile(fileName);
 
         XmlElement scenarioElement = scenario.DocumentElement;
-        if (scenarioElement.HasAttribute("name") && scenarioElement.Name.ToLower().Equals("scenario".ToLower()))
+        if (scenarioElement.Name.ToLower().Equals("scenario".ToLower()))
         {
-            _scenarioName = scenarioElement.GetAttribute("name");
+            if (scenarioElement.HasAttribute("name"))
+            {
+                _scenarioName = scenarioElement.GetAttribute("name");
+            }
+            else
+            {
+                _scenarioName = "";
+            }
+
             _levelsData = new List<Level>();
             for (int i = 0; i < scenarioElement.ChildNodes.Count; i++)
             { 

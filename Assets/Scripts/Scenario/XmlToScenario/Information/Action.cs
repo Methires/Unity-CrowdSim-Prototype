@@ -7,6 +7,7 @@ public class Action
     public int Index;
     public List<Actor> Actors;
     public List<Blend> Blends;
+    public bool Forced;
 
     public Action()
     {
@@ -15,6 +16,7 @@ public class Action
         Index = -1;
         Actors = new List<Actor>();
         Blends = new List<Blend>();
+        Forced = false;
     }
 
     public Action(string name, float probability, int index)
@@ -24,5 +26,6 @@ public class Action
         Index = index;
         Actors = new List<Actor>();
         Blends = new List<Blend>();
+        Forced = false;
     }
 }

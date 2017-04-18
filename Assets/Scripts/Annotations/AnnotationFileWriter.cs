@@ -10,18 +10,43 @@ class AnnotationFileWriter
 {
     private int _screenshotId = 0;
     private string _imageFormat = "png";
-    private bool _markAgentsOnScreenshots = true;
+    private int _markUpMode = 0;
 
-    public bool MarkAgentsOnScreenshots
+    private bool saveMarked = false;
+    private bool saveUnmarked = true;
+    private bool dontSave = false;
+
+    public int MarkUpMode
     {
         get
         {
-            return _markAgentsOnScreenshots;
+            return _markUpMode;
         }
 
         set
         {
-            _markAgentsOnScreenshots = value;
+            _markUpMode = value;
+
+            switch (_markUpMode)
+            {
+                case 0:
+                    dontSave = true;
+                    break;
+                case 1:
+                    saveUnmarked = true;
+                    saveMarked = false;
+                    break;
+                case 2:
+                    saveUnmarked = false;
+                    saveMarked = true;
+                    break;
+                case 3:
+                    saveUnmarked = true;
+                    saveMarked = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -32,12 +57,56 @@ class AnnotationFileWriter
 
     public void SaveAnnotatedFramesAtDirectory(List<AnnotatedFrame> annotatedFrames, string directory)
     {
+        if (!dontSave)
+        {
+            string markedDirectory = directory + "Marked/";
+            string unmarkedDirectory = directory + "UnMarked/";
+
+            if (!(saveMarked && saveUnmarked))
+            {
+                markedDirectory = directory;
+                unmarkedDirectory = directory;
+            }
+
+            if (saveMarked && !Directory.Exists(markedDirectory))
+            {
+                Directory.CreateDirectory(markedDirectory);
+            }
+
+            if (saveUnmarked && !Directory.Exists(unmarkedDirectory))
+            {
+                Directory.CreateDirectory(unmarkedDirectory);
+            }
+
+            if (saveUnmarked)
+            {
+                SaveAnnotatedFramesAtDirectoryWithMarkedFlag(annotatedFrames, unmarkedDirectory, false);
+            }
+
+            if (saveMarked)
+            {
+                SaveAnnotatedFramesAtDirectoryWithMarkedFlag(annotatedFrames, markedDirectory, true);
+            }
+        }       
+    }
+
+    public void SaveAnnotatedFramesAtDirectoryWithMarkedFlag(List<AnnotatedFrame> annotatedFrames, string directory, bool mark)
+    {
         StringBuilder trackingStringBuilder = new StringBuilder();
         StringBuilder actionRecognitionStringBuilder = new StringBuilder();
 
         StringBuilder trackingTrainingStringBuilder = new StringBuilder();
 
-        _screenshotId = Directory.GetFiles(directory, string.Format("*.{0}",_imageFormat)).Length;
+        if (saveMarked)
+        {
+            _screenshotId = Directory.GetFiles(directory, string.Format("*.{0}", _imageFormat)).Length;
+        }
+
+        if (saveUnmarked && !saveMarked)
+        {
+            _screenshotId = Directory.GetFiles(directory, string.Format("*.{0}", _imageFormat)).Length;
+        }
+
         foreach (var annotatedFrame in annotatedFrames)
         {           
             foreach (var annotation in annotatedFrame.annotations)
@@ -77,18 +146,19 @@ class AnnotationFileWriter
                                                                 annotation.actionRecognitionBounds.width,
                                                                 annotation.actionRecognitionBounds.height));
 
-                    SaveActorCutout(annotation, annotatedFrame.frame, directory);
+
+                    SaveActorCutout(annotation, annotatedFrame.frame, directory);                   
                 }               
             }
 
-            if (MarkAgentsOnScreenshots)
+            if (mark)
             {
                 DrawAnnotationRectangle(annotatedFrame.frame, annotatedFrame.annotations);
             }
 
-            SaveScreenshot(annotatedFrame.frame, directory);
 
-        }
+            SaveScreenshot(annotatedFrame.frame, directory);
+        }      
 
         AppendAnnotationsFile(directory + "TrackingAnnotations.txt", trackingStringBuilder.ToString());
         AppendAnnotationsFile(directory + "TrackingTraining.txt", trackingTrainingStringBuilder.ToString());
@@ -115,19 +185,28 @@ class AnnotationFileWriter
         int x = (int)boundingBox.x;
         int y = frame.height - (int)boundingBox.y - height;
         
-
         Texture2D cutout = new Texture2D(width, height, TextureFormat.RGB24, false);
         Color[] pixels = frame.GetPixels(x, y, width, height);
         cutout.SetPixels(0,0, width, height, pixels);
         cutout.Apply();
 
-        SaveCutout(cutout, directory, annotation.agentId.ToString() + annotation.action);
+        string subDir;
+        if (annotation.isComplex)
+        {
+            subDir = string.Format("{0}_{1}_{2}_{3}", annotation.levelIndex, annotation.actorName, annotation.mocapName, annotation.action);
+        }
+        else
+        {
+            subDir = string.Format("{0}_{1}_{2}", annotation.levelIndex, annotation.actorName, annotation.action);
+        }
+
+        SaveCutout(cutout, directory, subDir);
         GameObject.Destroy(cutout);
     }
 
-    private void SaveCutout(Texture2D cutout, string directory, string agentActionName)
+    private void SaveCutout(Texture2D cutout, string directory, string subDirName)
     {
-        DirectoryInfo dirInfo = Directory.CreateDirectory(directory + agentActionName);
+        DirectoryInfo dirInfo = Directory.CreateDirectory(directory + subDirName);
         string filename = string.Format("{0}.{1}", Directory.GetFiles(directory, string.Format("*.{0}", _imageFormat)).Length, _imageFormat);
         filename = dirInfo.FullName + "/" + filename;
         byte[] bytes = cutout.EncodeToPNG();
@@ -139,14 +218,16 @@ class AnnotationFileWriter
     {
         foreach (var annotation in annotations)
         {
-            screenShot.DrawRectangle(annotation.trackingBounds, Color.blue);
-
-            if (annotation.actionRecognitionBoundsIsValid)
-            {
-                screenShot.DrawRectangle(annotation.actionRecognitionBounds, Color.green);
-            }
-            
+            Color color = GetColorForAgent((int)annotation.agentId);
+            screenShot.DrawRectangle(annotation.trackingBounds, color);
         }     
+    }
+
+    private Color GetColorForAgent(int agentId)
+    {       
+        UnityEngine.Random.seed = agentId;
+        Color color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        return color;
     }
 
 }

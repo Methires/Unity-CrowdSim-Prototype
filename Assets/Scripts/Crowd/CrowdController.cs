@@ -49,16 +49,16 @@ public class CrowdController : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(new Vector3(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
                 GameObject agent = (GameObject)Instantiate(Characters[index], generator.RandomPointOnNavMesh(transform.position), rotation);
                 agent.tag = "Crowd";
-                agent.name = string.Format("{0}{1}", Characters[index].name, i);
-                if (Random.Range(0.0f, 100.0f) < 90.0f)
+                agent.name = string.Format("Crowd{0}", i);
+                if (Random.Range(0.0f, 100.0f) < 99.0f)
                 {
-                    agent.GetComponent<NavMeshAgent>().speed = Random.Range(1.0f, 2.5f);
+                    agent.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = Random.Range(1.6f, 3.0f);
                 }
                 else
                 {
-                    agent.GetComponent<NavMeshAgent>().speed = 10.0f;
-                }
-                agent.GetComponent<NavMeshAgent>().stoppingDistance = 1.0f;
+                    agent.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = Random.Range(3.1f, 5.0f);
+        }
+                agent.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 0.25f;
                 _crowd.Add(agent);
             }
         }
@@ -120,9 +120,13 @@ public class CrowdController : MonoBehaviour
         Animator agentAnimator = obj.GetComponent<Animator>();
         var c = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Locomotion.controller");
         agentAnimator.runtimeAnimatorController = c;
-        obj.AddComponent<NavMeshAgent>();
+        obj.AddComponent<UnityEngine.AI.NavMeshAgent>();
         obj.AddComponent<Rigidbody>().isKinematic = true;
         obj.AddComponent<Agent>();
+        CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
+        capsule.height = 2;
+        capsule.radius = 0.4f;
+        capsule.center = new Vector3(0, 1, 0);
         //obj.AddComponent<GenerateDestination>();
         return obj;
     }
@@ -171,9 +175,9 @@ public class CrowdController : MonoBehaviour
                 actions.Add(action);
                 actionIndex++;
             }
-            Action walk = new Action("walk", movementProbability * 3 / 4, actionIndex);
+            Action walk = new Action("walk", movementProbability * 0.95f, actionIndex);
             actionIndex++;
-            Action run = new Action("run", movementProbability / 4, actionIndex);
+            Action run = new Action("run", movementProbability * 0.05f, actionIndex);
             actionIndex++;
             Actor movementActor = new Actor(agent.name, prevIndexes);
             run.Actors = walk.Actors = new List<Actor> { movementActor };

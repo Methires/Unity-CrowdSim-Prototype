@@ -1,6 +1,8 @@
- <config>
-	<scene name="City like scene" daytime="2" conditions="1"/>
-	<crowd models="" maxpeople="100" actions=""/>
-	<simulation tracking="True" scenariofile="" length="5" repeats="1" instances="1"/>
-	<results path="D:/Screenshots" boundingboxes="True" resWidth="1920" resHeight="1080" frameRate="30"/>
+<config>
+  <scene name="" daytime="1" conditions="1" />
+  <crowd models="" maxpeople="1" actions="" />
+  <simulation tracking="True" scenariofile="" length="1" repeats="1" instances="1" />
+  <results path="C:\Users\mgr2\Desktop\HAXES" boundingboxes="3" resWidth="1980" resHeight="1080" frameRate="24" buffSize="500" />
+  <mode type="simulation" />
+  <generation size="5" />
 </config>

@@ -1,27 +1,27 @@
 ﻿<scenario name="OneActorMovement">
   <level id="0">
     <action prob="1.0" name="walk" id ="0">
-      <actor name="actor1">
+      <actor name="actor1" mocapId ="">
       </actor>
     </action>
   </level>
   <level id="1">
     <action prob="1.0" name="run" id ="1">
-      <actor name="actor1">
+      <actor name="actor1" mocapId ="">
         <prev id ="0"></prev>
       </actor>
     </action>
   </level>
   <level id="2">
     <action prob="1.0" name="walk" id ="2">
-      <actor name="actor1">
+      <actor name="actor1" mocapId ="">
         <prev id="1"></prev>
       </actor>
     </action>
   </level>
   <level id="3">
     <action prob="1.0" name="run" id="3">
-      <actor name="actor1">
+      <actor name="actor1" mocapId ="">
         <prev id="2"></prev>
       </actor>
     </action>

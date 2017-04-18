@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000011017625512}
+  m_IsPrefabParent: 1
+--- !u!1 &1000011017625512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013451836328}
+  - 114: {fileID: 114000010044520986}
+  - 114: {fileID: 114000013077061762}
+  m_Layer: 0
+  m_Name: BuildScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013451836328
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011017625512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000010044520986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011017625512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdffe4d3da9763e41853e9e7734c30a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simulationOverseerPrefab: {fileID: 166372, guid: 9890b161335929e48ae32d3f5131a011,
+    type: 2}
+  groundPrefab: {fileID: 1000012192280838, guid: 2facb68af9048874db11def5d1ec5596,
+    type: 2}
+  xStreets: {fileID: 1000011829627810, guid: 2a8f440a7eabcbf4988c8580ff0f15da, type: 2}
+  zStreets: {fileID: 1000013457698196, guid: e900b7bc8455e5c47bdcee1256aa72bc, type: 2}
+  croosRoads: {fileID: 1000013684482088, guid: bfe9cfe3c48b23b4c919940e75b77a32, type: 2}
+  citySquareTile: {fileID: 1000014177251550, guid: 5585a9a0596384a4ebcf8dafc84514f9,
+    type: 2}
+  grassTile: {fileID: 1000013914163924, guid: 68ed7936debf0c148a7de0b3a8e87988, type: 2}
+  grassTileWithoutTrees: {fileID: 1000013615743680, guid: 23aafa90061d79242aab94ffb234fc47,
+    type: 2}
+  cameraPrafab: {fileID: 1000013029285688, guid: 80ad3e00569d61449af1186161acd9da,
+    type: 2}
+  mapSize: 9
+--- !u!114 &114000013077061762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011017625512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ce097410bb6c44a88a99c6873a5b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingPrefab: {fileID: 1000010172650714, guid: bdede2434c1020043bb6a37051b3fc79,
+    type: 2}
+  concreteMaterial: {fileID: 2100000, guid: 9e9e3b7d90b19874d86d6e2d163dc639, type: 2}
+  windowPrefabs:
+  - {fileID: 1000012755491714, guid: e560be73d5d815f4fb17848ecb9f320e, type: 2}
+  - {fileID: 1000010967509494, guid: d9d4ecd0710744e4db41ab972801e989, type: 2}
+  doorPrefabs:
+  - {fileID: 1000012850047674, guid: 557db6bd7b6f75d4a9c48dfc08873562, type: 2}
+  - {fileID: 1000014198171946, guid: 70d8553e066717149a4373f0cedc5d91, type: 2}
+  - {fileID: 1000011040274620, guid: 20987213ec4a7824fa067603118551eb, type: 2}
+  roofTextures:
+  - {fileID: 2800000, guid: 30b5b94fb33fbeb438cedfd86cc8ce55, type: 3}
+  - {fileID: 2800000, guid: 01f8311c6a7f1404198817e9d54922d1, type: 3}
+  - {fileID: 2800000, guid: 48f4f66677299684f94601538a63dfd5, type: 3}
+  - {fileID: 2800000, guid: a568f3d98376e7646b5e1078e9ad700e, type: 3}
+  - {fileID: 2800000, guid: d5dcf4d128b7bb140a88560046437075, type: 3}
+  - {fileID: 2800000, guid: b4b388b26b13fd349b0a6e07eb28a77e, type: 3}
+  facadeMaterials:
+  - {fileID: 2100000, guid: f241bac203c5b4b479899ed7085fb61e, type: 2}
+  - {fileID: 2100000, guid: 60313e079f1301946b873afa07d7ec96, type: 2}
+  - {fileID: 2100000, guid: 6609a89fa638f404e87538841350bef9, type: 2}
+  - {fileID: 2100000, guid: 9e9e3b7d90b19874d86d6e2d163dc639, type: 2}
+  roofTypes:
+  - {fileID: 1000010895252042, guid: 4b34ff79035538a459a3d7697f9faaee, type: 2}
+  - {fileID: 1000010859292088, guid: 2c86f0289ef8ae54fac2b59f0c63cfec, type: 2}
+  bench: {fileID: 1000010194781618, guid: 75dd7dc24132ee547af5c38aba0582a8, type: 2}
+  lamppost: {fileID: 1000013201769988, guid: abc2b937395da0e41b4e7ae1481f2ce5, type: 2}
+  trashbin: {fileID: 1000011473120390, guid: 706f5af2c49502d49950da4306030228, type: 2}

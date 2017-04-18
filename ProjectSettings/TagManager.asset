@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Crowd
   - ScenarioAgent
+  - withWindows
+  - roof
+  - sameAsFacade
+  - conc
+  - gableroof
+  - MainLight
+  - ActionZone
   layers:
   - Default
   - TransparentFX

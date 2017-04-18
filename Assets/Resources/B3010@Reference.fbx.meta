@@ -464,7 +464,7 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: B3010-Kopanie-E19-R02-T01(Clone)(Clone)
+    - name: B3010@Reference(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -781,7 +781,7 @@ ModelImporter:
       transformModified: 1
     - name: B3010:Solving:Hips
       position: {x: 0.0019542128, y: 0.9038253, z: -0.0007008314}
-      rotation: {x: -0.71470815, y: 0.052723173, z: -0.0015613104, w: 0.6974311}
+      rotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:Spine
@@ -825,8 +825,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:RightArm
-      position: {x: -0.14779806, y: 0, z: 0}
-      rotation: {x: -0.066462986, y: -0.047587436, z: -0.037239585, w: 0.9959575}
+      position: {x: -0.14779785, y: -0.00000007250128, z: 0.00000024959445}
+      rotation: {x: -0.06673639, y: -0.011572808, z: -0.03690426, w: 0.9970207}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:RightForeArm
@@ -871,7 +871,7 @@ ModelImporter:
       transformModified: 1
     - name: B3010:Solving:LeftForeArm
       position: {x: -0.28405353, y: 0, z: 0}
-      rotation: {x: 0.008321354, y: -0.030180924, z: 0.044643775, w: 0.99851227}
+      rotation: {x: 0.008321355, y: -0.030180926, z: 0.04464378, w: 0.9985123}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: B3010:Solving:LeftHand

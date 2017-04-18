@@ -10,10 +10,11 @@ public class SequencesCreator
     private List<GameObject> _agents;
     private List<List<Level>> _scenariosPerAgent;
     private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
+    GameObject[] _actionZones;
     private bool _markActions;
     private bool _crowd;
     private bool _debug;
-    NavMeshPointGenerator _generator = new NavMeshPointGenerator(25.0f);
+    NavMeshPointGenerator _generator = new NavMeshPointGenerator();
 
     public List<GameObject> Agents
     {
@@ -127,6 +128,20 @@ public class SequencesCreator
                     Probability = 1.0f,
                     Actors = new List<Actor> { new Actor()},
                     Blends = null,
+                    Forced = true,
+            };
+                actionSequencesPerAgent[i].Insert(0, forcedWalked);
+            }
+            if (!actionSequencesPerAgent[i][0].Name.ToLower().Equals("run") && !actionSequencesPerAgent[i][0].Name.ToLower().Equals("walk"))
+            {
+                Action forcedWalked = new Action
+                {
+                    Name = "walk",
+                    Index = 0,
+                    Probability = 1.0f,
+                    Actors = new List<Actor> { new Actor() },
+                    Blends = null,
+                    Forced = true,
                 };
                 actionSequencesPerAgent[i].Insert(0, forcedWalked);
             }
@@ -199,6 +214,7 @@ public class SequencesCreator
     {
         List<List<MovementData>> actorsLastMovements = new List<List<MovementData>>();
         List<List<ActivityData>> actorsComplexActionsActivitData = new List<List<ActivityData>>();
+        _actionZones = GameObject.FindGameObjectsWithTag("ActionZone");
 
         foreach (var actorSequence in inGameSequencesPerAgent)
         {
@@ -263,6 +279,7 @@ public class SequencesCreator
                             commonMeetingPoint = GenerateCorrectWaypoint(bounds);
                             lastMovements[j].Waypoint = commonMeetingPoint;
                         }
+                        //SpawnMarker(commonMeetingPoint);
                     }
                     else
                     {
@@ -275,6 +292,14 @@ public class SequencesCreator
         return Vector3.zero;
     }
 
+    private void SpawnMarker(Vector3 point)
+    {
+        GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        marker.name = "Marker";
+        marker.transform.position = point;
+        marker.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);        
+    }
+
     private Vector3 GenerateCorrectWaypoint(Bounds bounds)
     {
         Vector3 waypoint = Vector3.zero;
@@ -282,11 +307,10 @@ public class SequencesCreator
         int counter = 0;
 
         do
-        { 
-            waypoint = _generator.RandomPointOnNavMesh(Vector3.zero);
+        {
+            waypoint = _generator.RandomPointWithinActionZones();//_generator.RandomPointOnNavMesh(Vector3.zero);
             waypointIsValid = CheckMeetingPoint(waypoint, bounds);
             counter++;
-
         } while (!waypointIsValid && counter < 100);        
         return waypoint; 
     }
@@ -322,12 +346,22 @@ public class SequencesCreator
         return complexActions.ToArray();
     }
 
+    private bool IsPointWithinActionZone(Vector3 point)
+    {
+        bool within = false;      
+        foreach (var z in _actionZones)
+        {
+            Bounds bounds = z.GetComponent<BoxCollider>().bounds;
+            within = within || bounds.Contains(point);
+        }
 
+        return within;
+    }
 
-    private bool CheckMeetingPoint(Vector3 point, Bounds bounds)
+    private bool CheckMeetingPoint(Vector3 point, Bounds bounds )
     {
         bounds.center = point;
-        float margin = 0.2f;
+        float margin = 0.1f;
         bool isMeetingPointCorrect = true;
 
         Vector3[] corners = new Vector3[4];
@@ -337,10 +371,10 @@ public class SequencesCreator
         corners[3] = new Vector3(point.x - bounds.extents.x, point.y, point.z - bounds.extents.z);
 
 
-        NavMeshHit hit = new NavMeshHit();
+        UnityEngine.AI.NavMeshHit hit = new UnityEngine.AI.NavMeshHit();
         for (int i = 0; i < corners.Length; i++)
         {
-            isMeetingPointCorrect = isMeetingPointCorrect && NavMesh.SamplePosition(corners[i],out hit,margin, NavMesh.AllAreas);
+            isMeetingPointCorrect = isMeetingPointCorrect && UnityEngine.AI.NavMesh.SamplePosition(corners[i],out hit,margin, UnityEngine.AI.NavMesh.AllAreas) && IsPointWithinActionZone(corners[i]);
         }        
         return isMeetingPointCorrect;
     }
@@ -584,15 +618,19 @@ public class SequencesCreator
         switch (action.Name.ToLower())
         {
             case "walk":
-                float speedW = UnityEngine.Random.Range(2.5f, 5.0f);
+                float speedW = UnityEngine.Random.Range(1.6f, 3.0f);//(2.5f, 5.0f);
                 mData = new MovementData(point, speedW);
+                if (action.Forced)
+                {
+                    mData.Forced = true;
+                }
                 if (action.Blends != null)
                 {
                     mData.Blend = string.Format("{0}@{1}", action.Blends[0].MocapId, action.Blends[0].Name);
                 }
                 break;
             case "run":
-                float speedR = UnityEngine.Random.Range(6.0f, 10.0f);
+                float speedR = UnityEngine.Random.Range(3.1f, 5.0f);//(6.0f, 10.0f);
                 mData = new MovementData(point, speedR);
                 if (action.Blends != null)
                 {

@@ -1,18 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class Movement : MonoBehaviour
 {
-    private NavMeshAgent _nMA;
+    private UnityEngine.AI.NavMeshAgent _nMA;
     private float _speed;
-    private Vector3 _destination;
+    public Vector3 _destination;
     private Quaternion _finalRotation;
     private Agent _agent;
-    private bool _isFinished;
-    private bool _isInPosition = false;
+    public bool _isFinished;
+    public bool _isInPosition = false;
     private bool _settingDestinationFailed = false;
     private string _blendParam;
 
+    private string _nameToDisplay;
+    private int _levelIndex;
 
     public bool IsFinished
     {
@@ -31,6 +34,14 @@ public class Movement : MonoBehaviour
         {
             _speed = Mathf.Clamp(value, 0.0f, float.MaxValue);
             _nMA.speed = _speed;
+            if (_speed < 3.0f)
+            {
+                _nameToDisplay = "Walk";
+            }
+            else
+            {
+                _nameToDisplay = "Run";
+            }
         }
     }
     public Vector3 Destination
@@ -54,7 +65,7 @@ public class Movement : MonoBehaviour
             {
                 _settingDestinationFailed = true;
             }
-            
+
         }
     }
     public string BlendParameter
@@ -83,9 +94,46 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public string NameToDisplay
+    {
+        get
+        {
+            return _nameToDisplay;
+        }
+    }
+
+    public int LevelIndex
+    {
+        get
+        {
+            return _levelIndex;
+        }
+
+        set
+        {
+            _levelIndex = value;
+        }
+    }
+
+    public string ActorName
+    {
+        get
+        {
+            return name;
+        }
+    }
+
+    public string MocapId
+    {
+        get
+        {
+            return "";
+        }
+    }
+
     void Awake()
     {
-        _nMA = GetComponent<NavMeshAgent>();
+        _nMA = GetComponent<UnityEngine.AI.NavMeshAgent>();
         _isFinished = true;
         _agent = GetComponent<Agent>();
     }
@@ -105,34 +153,58 @@ public class Movement : MonoBehaviour
                 if (!_isInPosition)
                 {
                     CheckPosition();
+
                 }
                 else
                 {
+                    
                     CheckRotation();
                 }
-            }          
+            }
         }
     }
 
     private void CheckPosition()
-    {
-        if (_nMA.remainingDistance < _nMA.stoppingDistance + Mathf.Epsilon)
+    {     
+        Clamping();
+        if (Mathf.Abs(Vector3.Distance(transform.position, _destination)) <= 0.26f)
         {
-            if (Vector3.Distance(_nMA.destination, transform.position) < _nMA.stoppingDistance * 2)
+            _isInPosition = true;
+            _nMA.destination = transform.position;
+            _nMA.Stop();
+            SpeedAdjuster sA = GetComponent<SpeedAdjuster>();
+            if (sA != null)
             {
-                _isInPosition = true;
-                _nMA.Stop();
+                sA.Adjust = false;
             }
-            else
+        }
+        else if (Mathf.Abs(Vector3.Distance(_nMA.destination, _destination)) > 0.1f)
+        {
+            _nMA.Resume();
+            _nMA.SetDestination(_destination);
+        }
+
+        _agent.MovementInPlace = _isInPosition;
+    }
+
+    private void Clamping()
+    {
+        if (tag != "Crowd")
+        {
+            if (Mathf.Abs(Vector3.Distance(transform.position, _destination)) < 0.75f)
             {
-                _nMA.SetDestination(_destination);
-            }
+                transform.position = Vector3.Lerp(transform.position, _destination, Time.deltaTime);
+            } 
         }
     }
 
     private void CheckRotation()
     {
         if (!_agent.ApplyFinalRotation || _agent.IsInPlace())
+        {
+            _isFinished = true;
+        }
+        if (tag == "Crowd")
         {
             _isFinished = true;
         }

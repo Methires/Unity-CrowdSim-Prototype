@@ -2,14 +2,14 @@
 
 public class CustomCollisionAvoidance : MonoBehaviour
 {
-    private NavMeshAgent _navMeshAgent;
+    private UnityEngine.AI.NavMeshAgent _navMeshAgent;
     private float _radius;
     private Vector3 _destination;
     private bool _isAvoiding;
 
     void Start()
     {
-        _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        _navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         _radius = 0.6f + Mathf.Epsilon;
     }
 
@@ -22,7 +22,7 @@ public class CustomCollisionAvoidance : MonoBehaviour
             DrawnperpendicularPlane(transform.position, hit.point, Color.red);
             if (hit.collider.tag == "Crowd" || hit.collider.tag == "AgentScenario")
             {
-                Vector3 otherVelocity = hit.collider.gameObject.GetComponent<NavMeshAgent>().desiredVelocity;
+                Vector3 otherVelocity = hit.collider.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().desiredVelocity;
                 float dot = Vector3.Dot(_navMeshAgent.desiredVelocity, _navMeshAgent.desiredVelocity - otherVelocity);
                 DrawnperpendicularPlane(transform.position, hit.point, Color.red);
                 DrawnperpendicularPlane(transform.position, hit.collider.transform.position, Color.blue);

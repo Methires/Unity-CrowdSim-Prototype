@@ -16,6 +16,7 @@ public class SequenceController : MonoBehaviour
     private List<GameObject> _planes;
     private bool _markActivities;
     private bool _isCrowd;
+    private int _scenarioLevelIndex;
 
     public bool MarkActivities
     {
@@ -58,6 +59,7 @@ public class SequenceController : MonoBehaviour
         _actionScript = GetComponent<Activity>();
         _agent = GetComponent<Agent>();
         _isFinished = true;
+        _scenarioLevelIndex = -1;
     }
 
     void Update()
@@ -92,9 +94,22 @@ public class SequenceController : MonoBehaviour
     {
         if (_currentActivityIndex + 1 < _sequence.Count)
         {
+            _scenarioLevelIndex++;
+            if (_currentActivityIndex >= 0)
+            {
+                if (_sequence[_currentActivityIndex].Movement != null)
+                {
+                    if (_sequence[_currentActivityIndex].Movement.Forced)
+                    {
+                        _scenarioLevelIndex--;
+                    }
+                }
+            }
+
             if (_sequence[_currentActivityIndex + 1].Movement != null)
             {
                 _movementScript.Speed = _sequence[_currentActivityIndex + 1].Movement.Speed;
+                _movementScript.LevelIndex = _scenarioLevelIndex;
                 _movementScript.BlendParameter = _sequence[_currentActivityIndex + 1].Movement.Blend;
 
                 Vector3 positionOffsetForMultiActorActivity = Vector3.zero;
@@ -113,7 +128,7 @@ public class SequenceController : MonoBehaviour
                             if (!assetPath.Contains(_sequence[_currentActivityIndex + 2].Activity.ParameterName))
                             {
                                 assetPath = AssetDatabase.GUIDToAssetPath(path);
-                            }                        
+                            }
                         }
 
                         GameObject exactSpotParent = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
@@ -127,21 +142,21 @@ public class SequenceController : MonoBehaviour
                             positionOffsetForMultiActorActivity.x = exactSpot.position.x;
                             positionOffsetForMultiActorActivity.z = exactSpot.position.z;
                         }
+                        SpeedAdjuster speedAdjusterScript = GetComponent<SpeedAdjuster>();
+                        if (speedAdjusterScript != null)
+                        {
+                            speedAdjusterScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
+                            speedAdjusterScript.OtherAgents = _sequence[_currentActivityIndex + 2].Activity.RequiredAgents;
+                            speedAdjusterScript.Adjust = true;
+                            speedAdjusterScript.Walking = _sequence[_currentActivityIndex + 1].Movement.Speed <= 3.0f ? true : false;
+                        }
                     }
                 }
 
                 if (!_isCrowd)
                 {
                     _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
-
-                    if (_sequence[_currentActivityIndex + 1].Movement.Speed < 5.0f)
-                    {
-                        GetComponent<DisplayActivityText>().ChangeText("Walking" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
-                    }
-                    else
-                    {
-                        GetComponent<DisplayActivityText>().ChangeText("Running" + " " + _sequence[_currentActivityIndex + 1].Movement.Blend);
-                    }
+                    GetComponent<DisplayActivityText>().ChangeText(string.Format("{0}_{1}_{2}", _movementScript.LevelIndex, _movementScript.ActorName, _movementScript.NameToDisplay));
                 }
                 else
                 {
@@ -152,12 +167,10 @@ public class SequenceController : MonoBehaviour
 
             if (_sequence[_currentActivityIndex + 1].Activity != null)
             {
-                
-
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null && _sequence[_currentActivityIndex + 2].Activity.RequiredAgents != null)
                 {
                     Vector3 forcedPosition = new Vector3();
-                    for (int i = _currentActivityIndex; i <= 0; i--)
+                    for (int i = _currentActivityIndex; i != -1; i--)
                     {
                         if (_sequence[i].Movement != null)
                         {
@@ -165,7 +178,7 @@ public class SequenceController : MonoBehaviour
                             break;
                         }
                     }
-                    MovementData forcedMovement = new MovementData(forcedPosition, 2.5f);
+                    MovementData forcedMovement = new MovementData(forcedPosition, 2.5f, true);
                     InGameActionInfo forcedAction = new InGameActionInfo(forcedMovement);
                     _sequence.Insert(_currentActivityIndex + 2, forcedAction);
                 }
@@ -175,14 +188,16 @@ public class SequenceController : MonoBehaviour
                 _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;
                 _actionScript.ParamName = _sequence[_currentActivityIndex + 1].Activity.ParameterName;
                 _actionScript.ActionBounds = _sequence[_currentActivityIndex + 1].Activity.ComplexActionBounds;
+                _actionScript.LevelIndex = _scenarioLevelIndex;
                 if (!_isCrowd)
                 {
-                    GetComponent<DisplayActivityText>().ChangeText(_sequence[_currentActivityIndex + 1].Activity.ParameterName + " " + _sequence[_currentActivityIndex + 1].Activity.Blend);
+                    GetComponent<DisplayActivityText>().ChangeText(string.Format("{0}_{1}_{2}_{3}", _actionScript.LevelIndex, _actionScript.ActorName, _actionScript.MocapId, _actionScript.NameToDisplay));
                 }
 
             }
             _isFinished = false;
             _currentActivityIndex++;
+            //Debug.Log(name + " Current: " + _currentActivityIndex + " ScenarioBased: " + _scenarioLevelIndex);
         }
         else
         {

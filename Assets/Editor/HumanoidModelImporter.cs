@@ -19,21 +19,30 @@ class HumanoidModelImporter : AssetPostprocessor
     private static string path;
 
     void OnPreprocessModel()
-    {      
+    {
+        string[] allowedFolders = new string[] { "Characters", "Resources/Animations" };
+        bool requirementsMet = false;
+
+        foreach (var folder in allowedFolders)
+        {
+            requirementsMet = requirementsMet || assetPath.Contains(folder);
+        }
+
+        useImporter = requirementsMet;
+        //useImporter = false;
         if (useImporter)
         {
             if (assetPath.Contains("@"))
             {
                 _mocapActorId = Path.GetFileNameWithoutExtension(assetPath).Split('@')[0];
                 _isAnimation = true;
-                //_htFilepath = "/Resources/MocapTemplate.ht";
                 _htFile = "MocapTemplate";
             }
 
             if (assetPath.ToLower().Contains("mixamo"))
             {
                 _htFile = "MixamoTemplate";
-            }            
+            }
 
             ModelImporter modelImporter = assetImporter as ModelImporter;
             modelImporter.animationType = ModelImporterAnimationType.Human;
@@ -62,14 +71,61 @@ class HumanoidModelImporter : AssetPostprocessor
         }
     }
 
+    private void CreateModelPreview(GameObject g, string assetPath)
+    {
+        GameObject previewInstance = GameObject.Instantiate(g, new Vector3(1000, 1000, 1000), Quaternion.identity) as GameObject;
+        GameObject previewCamera = new GameObject();
+        Camera camera = previewCamera.AddComponent<Camera>();
+        camera.clearFlags = CameraClearFlags.Color;
+        camera.backgroundColor = Color.white;
+        camera.farClipPlane = 5.0f;
+        Light light = previewCamera.AddComponent<Light>();
+        light.type = LightType.Directional;
+
+        Vector3 cameraOffset = new Vector3(0.0f, 1.0f, 2.0f);
+        previewCamera.transform.position = previewInstance.transform.position + cameraOffset;
+        previewCamera.transform.LookAt(previewInstance.transform.position + new Vector3(0.0f, 1.0f, 0.0f));
+
+        int resWidth = 400;
+        int resHeight = 400;
+
+        RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
+        camera.targetTexture = rt;
+
+        Texture2D screenshot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
+        RenderTexture.active = camera.targetTexture;
+        camera.Render();
+
+        screenshot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
+        screenshot.Apply();
+
+        string dir = Path.GetDirectoryName(assetPath);
+        string filename = string.Format("{0}.png", Path.GetFileNameWithoutExtension(assetPath));
+
+        byte[] bytes = screenshot.EncodeToPNG();
+        string path = string.Format("{0}/{1}", dir, filename);
+        File.WriteAllBytes(path, bytes);
+
+        camera.targetTexture = null;
+        RenderTexture.active = null;
+
+        GameObject.DestroyImmediate(screenshot);
+        GameObject.DestroyImmediate(rt);
+        GameObject.DestroyImmediate(previewCamera);
+        GameObject.DestroyImmediate(previewInstance);
+    }
+
     void OnPostprocessModel(GameObject g)
     {
-        ModelImporter modelImporter = assetImporter as ModelImporter;
         if (useImporter)
         {
+            ModelImporter modelImporter = assetImporter as ModelImporter;
+            if (!_isAnimation)
+            {
+                CreateModelPreview(g, modelImporter.assetPath);
+            }
 
-            //bool valid = g.GetComponent<Animator>().avatar;
-            
+
             if (_isAnimation && !secondPass)
             {
                 if (skeletonDescription == null)
@@ -84,7 +140,7 @@ class HumanoidModelImporter : AssetPostprocessor
                 foreach (var animation in clipAnimations)
                 {
                     animation.lockRootHeightY = true;
-                    animation.keepOriginalPositionY = true;                   
+                    animation.keepOriginalPositionY = true;
                 }
 
                 modelImporter.clipAnimations = clipAnimations;
@@ -161,31 +217,6 @@ class HumanoidModelImporter : AssetPostprocessor
         if (useImporter)
         {
             List<HumanBone> humanBones = new List<HumanBone>();
-            //string[] lines = ReadFileLines();
-            //string[] pair;
-
-            ////Description starts in the 10th line
-            //for (int i = 9; i < lines.Length; i++)
-            //{
-            //    pair = lines[i].Split(new string[] { ": " }, StringSplitOptions.None);
-            //    pair[0] = pair[0].Replace(" ", string.Empty);
-            //    pair[1] = pair[1].Replace(" ", string.Empty);
-
-            //    if (_isAnimation)
-            //    {
-            //        pair[1] = string.Format("{0}:{1}", _mocapActorId, pair[1]);
-            //    }
-
-            //    HumanBone newBone = new HumanBone();
-            //    newBone.humanName = pair[0];
-            //    newBone.boneName = pair[1];
-            //    HumanLimit limit = new HumanLimit();
-            //    limit.useDefaultValues = true;
-            //    newBone.limit = limit;
-            //    humanBones.Add(newBone);
-            //}
-            
-
             string boneNameModifier = "";
             if (_isAnimation)
             {
@@ -209,7 +240,7 @@ class HumanoidModelImporter : AssetPostprocessor
                     limit.useDefaultValues = true;
                     newBone.limit = limit;
                     humanBones.Add(newBone);
-                }                
+                }
             }
 
             humanDescription.human = humanBones.ToArray();
@@ -247,32 +278,4 @@ class HumanoidModelImporter : AssetPostprocessor
         }
         return humanDescription;
     }
-
-    //private string[] ReadFileLines()
-    //{
-    //    if (useImporter)
-    //    {
-    //        string path = Application.dataPath + _htFilepath;
-    //        List<string> readLines = new List<string>();
-
-    //        try
-    //        {
-    //            using (StreamReader sr = new StreamReader(path))
-    //            {
-    //                string line;
-    //                while ((line = sr.ReadLine()) != null)
-    //                {
-    //                    readLines.Add(line);
-    //                }
-    //            }
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            Debug.Log(e.Message);
-    //        }
-
-    //        return readLines.ToArray();
-    //    }
-    //    return null;
-    //}
 }

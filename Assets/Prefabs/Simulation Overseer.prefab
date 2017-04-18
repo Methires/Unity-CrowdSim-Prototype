@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27f9db904c82d14891ad310acfef165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameras: []
 --- !u!114 &114000010119231640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,15 +67,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d770248ae0a979d45b4a1d9b9d024b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Repeats: 0
+  Repeats: 1
   ScenarioFile: 
-  SimultaneousScenarioInstances: 0
+  SimultaneousScenarioInstances: 1
   Tracking: 0
   SessionLength: 1
   ScreenshotsDirectory: D:/Screenshots
-  LoadFromConfig: 0
+  LoadFromConfig: 1
   MarkWithPlanes: 0
-  Close: 0
+  Close: 1
 --- !u!114 &114000010568512236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,9 +88,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Characters: []
-  MaxPeople: 0
-  CreatePrefabs: 0
-  LoadAgentsFromResources: 0
+  MaxPeople: 1
+  CreatePrefabs: 1
+  LoadAgentsFromResources: 1
   AgentsFilter: 
   ActionsFilter: 
 --- !u!114 &114000010572236710
@@ -103,9 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b58a6d67d6ad147a9e2e734c31f2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TakeScreenshots: 0
-  MarkAgentsOnScreenshots: 0
-  ScreenshotLimit: 1000
+  TakeScreenshots: 1
+  MarkUpMode: 1
+  ResWidth: 1600
+  ResHeight: 1200
+  FrameRate: 24
+  ScreenshotLimit: 100
 --- !u!114 &114000012837680498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e19cae10a41a8848920ae714048998d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Time: 0
-  Conditions: 0
+  Time: 1
+  Conditions: 1

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    protected NavMeshAgent agent;
+    protected UnityEngine.AI.NavMeshAgent agent;
     protected Animator animator;
     protected Locomotion locomotion;
 
@@ -12,6 +12,7 @@ public class Agent : MonoBehaviour
     private Quaternion _finalRotation;
     private bool _applyFinalRotation = false;
     private static uint idCounter = 0;
+    private bool _movementInPlace = false;
 
     public uint AgentId
     {
@@ -53,9 +54,22 @@ public class Agent : MonoBehaviour
         }
     }
 
+    public bool MovementInPlace
+    {
+        get
+        {
+            return _movementInPlace;
+        }
+
+        set
+        {
+            _movementInPlace = value;
+        }
+    }
+
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
 
         animator = GetComponent<Animator>();
@@ -68,7 +82,6 @@ public class Agent : MonoBehaviour
     static int deathCounter = 0;
     void OnDestroy()
     {
-        print(gameObject.name + " was destroyed! " + deathCounter);
         deathCounter++;
     }
 
@@ -86,16 +99,12 @@ public class Agent : MonoBehaviour
                 Vector3 velocity = Quaternion.Inverse(transform.rotation) * agent.desiredVelocity;
                 float angle = Mathf.Atan2(velocity.x, velocity.z) * 180.0f / Mathf.PI;
 
-                if (_applyFinalRotation && IsStopping())
+                if (_applyFinalRotation && MovementInPlace)
                 {
-                    float angleDifference = Quaternion.Angle(transform.rotation, _finalRotation);
-                    int fullAngles = Mathf.FloorToInt(angleDifference / 360.0f);
-                    angleDifference = angleDifference - fullAngles * 360.0f;
-
+                    float angleDifference = AngleDifference(transform.rotation, _finalRotation);
                     if (Mathf.Abs(angleDifference) > 10.0f)
                     {
-                        angle = angleDifference > 180.0f ? angleDifference - 360.0f : angleDifference;
-
+                        angle = angleDifference;
                         locomotion.Do(0.0f, angle);
                     }
                     else
@@ -133,10 +142,6 @@ public class Agent : MonoBehaviour
         catch (NullReferenceException e)
         {
         }
-
-        //Vector3 position = animator.rootPosition;
-        //position.y = agent.nextPosition.y;
-        //transform.position = position;
     }
 
     private bool IsDone()
@@ -144,22 +149,20 @@ public class Agent : MonoBehaviour
         return !agent.pathPending && IsInPlace();
     }
 
-    private bool IsStopping()
-    {
-        return agent.remainingDistance <= agent.stoppingDistance;
-    }
-
     public bool IsInPlace()
     {
-        return IsStopping() && (_applyFinalRotation ? Mathf.Abs(Quaternion.Angle(transform.rotation, _finalRotation)) <= 1.0f : true);
+        return MovementInPlace && (_applyFinalRotation ? Mathf.Abs(Quaternion.Angle(transform.rotation, _finalRotation)) <= 1.0f : true); //&& IsStopping();
     }
 
-    private float GetAngle(Vector3 from, Vector3 to)
+    private float AngleDifference(Quaternion a, Quaternion b)
     {
-        float angle = Vector3.Angle(from, to);
-        Vector3 normal = Vector3.Cross(from, to);
-        angle *= Mathf.Sign(Vector3.Dot(normal, transform.up));
-        return angle;
+        Vector3 forwardA = a * Vector3.forward;
+        Vector3 forwardB = b * Vector3.forward;
+
+        float angleA = Mathf.Atan2(forwardA.x, forwardA.z) * Mathf.Rad2Deg;
+        float angleB = Mathf.Atan2(forwardB.x, forwardB.z) * Mathf.Rad2Deg;
+
+        return Mathf.DeltaAngle(angleA, angleB);
     }
 
     void Update()

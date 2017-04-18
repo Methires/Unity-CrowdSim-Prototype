@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CamerasController : MonoBehaviour
 {
-    private List<GameObject> _cameras;
+    public List<GameObject> _cameras;
     private int _cameraIndex = 0;
 
     void Awake()
@@ -17,9 +18,13 @@ public class CamerasController : MonoBehaviour
         foreach (Camera cam in camComponents)
         {
             _cameras.Add(cam.gameObject);
+            cam.gameObject.tag = "Untagged";
         }
-        _cameras.Remove(GameObject.FindGameObjectWithTag("MainCamera"));
-        _cameras.Insert(0, GameObject.FindGameObjectWithTag("MainCamera"));
+        camComponents.FirstOrDefault().tag = "MainCamera";
+
+
+        //_cameras.Remove(GameObject.FindGameObjectWithTag("MainCamera"));
+        //_cameras.Insert(0, GameObject.FindGameObjectWithTag("MainCamera"));
         ActiveCamera();
     }
 

@@ -16,7 +16,7 @@ public class Screenshooter : MonoBehaviour
     private static int screenshotId = 0;
 
     public bool TakeScreenshots = false;
-    public bool MarkAgentsOnScreenshots = false;
+    public int MarkUpMode = 0;
     public int ResWidth = 1600;
     public int ResHeight = 1200;
     public int FrameRate = 24;
@@ -40,15 +40,22 @@ public class Screenshooter : MonoBehaviour
     {
         Time.captureFramerate = FrameRate;
         _annotationFileWriter = new AnnotationFileWriter();
-        _annotationFileWriter.MarkAgentsOnScreenshots = MarkAgentsOnScreenshots;
+        _annotationFileWriter.MarkUpMode = MarkUpMode;
         _simulationController = FindObjectOfType<SimulationController>();
         _cameras = FindObjectsOfType<Camera>();
         SetupDictionary();
     }
 
-	void Update ()
-    {
 
+    public void SetParams(bool takeScreens, int markUpMode)
+    {
+        TakeScreenshots = takeScreens;
+        MarkUpMode = markUpMode;
+        _annotationFileWriter.MarkUpMode = MarkUpMode;
+    }
+
+    void Update ()
+    {
         if (TakeScreenshots)
         {
             foreach (var camera in _cameras)
@@ -65,8 +72,6 @@ public class Screenshooter : MonoBehaviour
             }
         }
     }
-
-
 
     private void TakeScreenshot(Camera camera)
     {
@@ -93,7 +98,6 @@ public class Screenshooter : MonoBehaviour
 
         camera.ResetProjectionMatrix();
     }
-
 
     private void ClearDictionary()
     {

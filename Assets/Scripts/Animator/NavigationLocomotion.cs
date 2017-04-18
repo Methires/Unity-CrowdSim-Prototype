@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 public class NavigationLocomotion : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class NavigationLocomotion : MonoBehaviour
     public float MaxSpeed = 2.0f;
     
     private Animator _animator;
-    private NavMeshAgent _agent;
+    private UnityEngine.AI.NavMeshAgent _agent;
     private int _speedId;
     private int _angularSpeedId;
     private int _directionId;
@@ -28,7 +28,7 @@ public class NavigationLocomotion : MonoBehaviour
     void Start ()
     {
         _animator = GetComponent<Animator>();
-        _agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         _speedId = Animator.StringToHash("Speed");
         _angularSpeedId = Animator.StringToHash("AngularSpeed");
