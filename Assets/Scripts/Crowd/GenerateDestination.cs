@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class GenerateDestination : MonoBehaviour
 {
-    private UnityEngine.AI.NavMeshAgent _navAgent;
+    private NavMeshAgent _navAgent;
     private float _range;
     private NavMeshPointGenerator _generator;
 
-    void Start()
+    private void Awake()
     {
-        _navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        _navAgent = GetComponent<NavMeshAgent>();
         _range = 25.0f;
         _generator = new NavMeshPointGenerator(_range);
     }
 
-    void Update()
+    private void Update()
     {
         if (_navAgent.remainingDistance < _navAgent.stoppingDistance + Mathf.Epsilon)
         {

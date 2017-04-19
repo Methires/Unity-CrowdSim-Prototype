@@ -2,57 +2,42 @@
 using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using System.Text;
 
 public class SequencesCreator
 {
-    private List<string> _agentsNames;
-    private List<GameObject> _agents;
-    private List<List<Level>> _scenariosPerAgent;
-    private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
-    GameObject[] _actionZones;
-    private bool _markActions;
     private bool _crowd;
     private bool _debug;
-    NavMeshPointGenerator _generator = new NavMeshPointGenerator();
 
+    private NavMeshPointGenerator _generator = new NavMeshPointGenerator();
+
+    private List<string> _agentsNames;
+    private List<GameObject> _agentsGameObjects;
+    private List<List<Level>> _scenariosPerAgent;
+    private List<List<List<InGameActionInfo>>> _sequencesPerAgentPerInstance;
+   
     public List<GameObject> Agents
     {
         get
         {
-            return _agents;
+            return _agentsGameObjects;
         }
         set
         {
-            _agents = value;
+            _agentsGameObjects = value;
         }
     }
-
-    public bool MarkActions
-    {
-        get
-        {
-            return _markActions;
-        }
-        set
-        {
-            _markActions = value;
-        }
-    }
-
     public bool Crowd
     {
         get
         {
             return _crowd;
         }
-
         set
         {
             _crowd = value;
         }
     }
-
     public bool ShowSequenceOnConsole
     {
         get
@@ -67,7 +52,7 @@ public class SequencesCreator
 
     public void RawInfoToListPerAgent(List<Level> data)
     {
-        _agentsNames = GetListOfActorsNames(data);
+        _agentsNames = GetActorsNames(data);
         _scenariosPerAgent = new List<List<Level>>();
         for (int i = 0; i < _agentsNames.Count; i++)
         {
@@ -93,7 +78,7 @@ public class SequencesCreator
         }
     }
 
-    private List<string> GetListOfActorsNames(List<Level> data)
+    private List<string> GetActorsNames(List<Level> data)
     {
         HashSet<string> hashedActors = new HashSet<string>();
         foreach (Level level in data)
@@ -127,7 +112,6 @@ public class SequencesCreator
                     Index = 0,
                     Probability = 1.0f,
                     Actors = new List<Actor> { new Actor()},
-                    Blends = null,
                     Forced = true,
             };
                 actionSequencesPerAgent[i].Insert(0, forcedWalked);
@@ -140,7 +124,6 @@ public class SequencesCreator
                     Index = 0,
                     Probability = 1.0f,
                     Actors = new List<Actor> { new Actor() },
-                    Blends = null,
                     Forced = true,
                 };
                 actionSequencesPerAgent[i].Insert(0, forcedWalked);
@@ -157,10 +140,9 @@ public class SequencesCreator
             for (int i = 0; i < actionSequencesPerAgent.Count; i++)
             {
                 List<InGameActionInfo> inGameAgentSequence = new List<InGameActionInfo>();
-                GameObject agent = _agents[agentIndex];
+                GameObject agent = _agentsGameObjects[agentIndex];
                 SequenceController seqController = agent.AddComponent<SequenceController>();
                 seqController.IsCrowd = _crowd;
-                seqController.MarkActivities = MarkActions;
                 for (int j = 0; j < actionSequencesPerAgent[i].Count; j++)
                 {
                     bool actionAdded = false;
@@ -214,7 +196,6 @@ public class SequencesCreator
     {
         List<List<MovementData>> actorsLastMovements = new List<List<MovementData>>();
         List<List<ActivityData>> actorsComplexActionsActivitData = new List<List<ActivityData>>();
-        _actionZones = GameObject.FindGameObjectsWithTag("ActionZone");
 
         foreach (var actorSequence in inGameSequencesPerAgent)
         {
@@ -265,20 +246,11 @@ public class SequencesCreator
             {
                 Vector3 commonMeetingPoint = Vector3.zero;
                 
-
                 foreach (var lastMovements in actorsLastMovements)
                 {
                     if (commonMeetingPoint == Vector3.zero)
                     {
                         commonMeetingPoint = lastMovements[j].Waypoint;
-                        Bounds bounds = actorsComplexActionsActivitData[i][j].ComplexActionBounds;
-                        bool isMeetingPointCorrect = CheckMeetingPoint(commonMeetingPoint, bounds);
-
-                        if (!isMeetingPointCorrect)
-                        {
-                            commonMeetingPoint = GenerateCorrectWaypoint(bounds);
-                            lastMovements[j].Waypoint = commonMeetingPoint;
-                        }
                     }
                     else
                     {
@@ -345,18 +317,6 @@ public class SequencesCreator
         return complexActions.ToArray();
     }
 
-    private bool IsPointWithinActionZone(Vector3 point)
-    {
-        bool within = false;      
-        foreach (var z in _actionZones)
-        {
-            Bounds bounds = z.GetComponent<BoxCollider>().bounds;
-            within = within || bounds.Contains(point);
-        }
-
-        return within;
-    }
-
     private bool CheckMeetingPoint(Vector3 point, Bounds bounds )
     {
         bounds.center = point;
@@ -373,7 +333,7 @@ public class SequencesCreator
         UnityEngine.AI.NavMeshHit hit = new UnityEngine.AI.NavMeshHit();
         for (int i = 0; i < corners.Length; i++)
         {
-            isMeetingPointCorrect = isMeetingPointCorrect && UnityEngine.AI.NavMesh.SamplePosition(corners[i],out hit,margin, UnityEngine.AI.NavMesh.AllAreas) && IsPointWithinActionZone(corners[i]);
+            isMeetingPointCorrect = isMeetingPointCorrect && UnityEngine.AI.NavMesh.SamplePosition(corners[i],out hit,margin, UnityEngine.AI.NavMesh.AllAreas);
         }        
         return isMeetingPointCorrect;
     }
@@ -518,41 +478,11 @@ public class SequencesCreator
             }
         }
         int index = DrawnAnIndex(probabilityArray);
-        if (allFeasibleActions.Actions[index].Blends.Count != 0)
-        {
-            float[] blendProbabilityArray = new float[allFeasibleActions.Actions[index].Blends.Count + 1];
-            for (int i = 0; i < allFeasibleActions.Actions[index].Blends.Count; i++)
-            {
-                if (i > 0)
-                {
-                    blendProbabilityArray[i] = allFeasibleActions.Actions[index].Blends[i].Probability + blendProbabilityArray[i - 1];
-                }
-                else
-                {
-                    blendProbabilityArray[i] = allFeasibleActions.Actions[index].Blends[i].Probability;
-                }
-            }
-            blendProbabilityArray[blendProbabilityArray.Length - 1] = 1.0f;
-            int indexBlend = DrawnAnIndex(blendProbabilityArray);
-            if (indexBlend < blendProbabilityArray.Length - 1)
-            {
-                Action tempWithBlend = new Action
-                {
-                    Name = allFeasibleActions.Actions[index].Name,
-                    Index = allFeasibleActions.Actions[index].Index,
-                    Actors = allFeasibleActions.Actions[index].Actors,
-                    Blends = new List<Blend>()
-                };
-                tempWithBlend.Blends.Add(allFeasibleActions.Actions[index].Blends[indexBlend]);
-                return tempWithBlend;
-            }
-        }
         Action temp = new Action
         {
             Name = allFeasibleActions.Actions[index].Name,
             Index = allFeasibleActions.Actions[index].Index,
             Actors = allFeasibleActions.Actions[index].Actors,
-            Blends = null
         };
         return temp;
     }
@@ -578,32 +508,27 @@ public class SequencesCreator
 
     private void ShowSequencesOnConsole(List<List<Action>> sequences)
     {
+        StringBuilder msg = new StringBuilder();
         for (int i = 0; i < sequences.Count; i++)
         {
-            Debug.Log("Sequence for actor: " + _agentsNames[i]);
-            string sequence = "";
+            msg.AppendLine(string.Format("Actor {0} sequence: ", _agentsNames[i]));
             for (int j = 0; j < sequences[i].Count; j++)
             {
-                sequence += sequences[i][j].Name;
-                if (sequences[i][j].Blends != null)
-                {
-                    sequence += " " + sequences[i][j].Blends[0].Name;
-                }
-                sequence += " (id=" + sequences[i][j].Index + ")";
+                msg.Append(sequences[i][j].Name);
+                msg.Append(string.Format(" ID: {0}", sequences[i][j].Index));
                 if (j != sequences[i].Count - 1)
                 {
-                    sequence += "->";
+                    msg.Append(" -> ");
                 }
-            }
-            Debug.Log(sequence);
+            }           
         }
+        Debug.Log(msg.ToString());
     }
 
     private InGameActionInfo ActionToActivity(Action action, Vector3 forcedWaypoint, int instanceIndex, GameObject agent)
     {
         MovementData mData = null;
         ActivityData aData = null;
-        //NavMeshPointGenerator generator = new NavMeshPointGenerator(25.0f);
         Vector3 point;
         if (forcedWaypoint != Vector3.zero)
         {
@@ -617,24 +542,16 @@ public class SequencesCreator
         switch (action.Name.ToLower())
         {
             case "walk":
-                float speedW = UnityEngine.Random.Range(1.6f, 3.0f);//(2.5f, 5.0f);
+                float speedW = Random.Range(1.6f, 3.0f);
                 mData = new MovementData(point, speedW);
                 if (action.Forced)
                 {
                     mData.Forced = true;
                 }
-                if (action.Blends != null)
-                {
-                    mData.Blend = string.Format("{0}@{1}", action.Blends[0].MocapId, action.Blends[0].Name);
-                }
                 break;
             case "run":
-                float speedR = UnityEngine.Random.Range(3.1f, 5.0f);//(6.0f, 10.0f);
+                float speedR = Random.Range(3.1f, 5.0f);
                 mData = new MovementData(point, speedR);
-                if (action.Blends != null)
-                {
-                    mData.Blend = string.Format("{0}@{1}", action.Blends[0].MocapId, action.Blends[0].Name);
-                }
                 break;
             default:
                 string[] agentName = agent.name.Split('_');
@@ -658,10 +575,6 @@ public class SequencesCreator
                         }
                     }
                     aData.RequiredAgents = requiredAgents;
-                }
-                if (action.Blends != null)
-                {
-                    aData.Blend = string.Format("{0}@{1}", action.Blends[0].MocapId, action.Blends[0].Name);
                 }
                 break;
         }

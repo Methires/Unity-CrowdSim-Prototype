@@ -9,7 +9,6 @@ public class SequenceController : MonoBehaviour
 {
     private Movement _movementScript;
     private Activity _actionScript;
-    //private Agent _agent;
     private List<InGameActionInfo> _sequence;
     private int _currentActivityIndex;
     private bool _isFinished;
@@ -50,19 +49,18 @@ public class SequenceController : MonoBehaviour
         }
     }
 
-    void Awake()
+    private void Awake()
     {
         _sequence = new List<InGameActionInfo>();
         _planes = new List<GameObject>();
         _currentActivityIndex = -1;
         _movementScript = GetComponent<Movement>();
         _actionScript = GetComponent<Activity>();
-        //_agent = GetComponent<Agent>();
         _isFinished = true;
         _scenarioLevelIndex = -1;
     }
 
-    void Update()
+    private void Update()
     {
         if (!IsFinished)
         {
@@ -109,11 +107,9 @@ public class SequenceController : MonoBehaviour
             if (_sequence[_currentActivityIndex + 1].Movement != null)
             {
                 _movementScript.Speed = _sequence[_currentActivityIndex + 1].Movement.Speed;
-                _movementScript.LevelIndex = _scenarioLevelIndex;
-                _movementScript.BlendParameter = _sequence[_currentActivityIndex + 1].Movement.Blend;
+                _movementScript.LevelId = _scenarioLevelIndex;
 
                 Vector3 positionOffsetForMultiActorActivity = Vector3.zero;
-               // _agent.ApplyFinalRotation = false;
 
                 if (_currentActivityIndex + 2 < _sequence.Count && _sequence[_currentActivityIndex + 2].Activity != null)
                 {
@@ -135,8 +131,6 @@ public class SequenceController : MonoBehaviour
                         Transform exactSpot = exactSpotParent.transform.GetChild(0).transform;
 
                         Quaternion finalRotation = Quaternion.Euler(0, exactSpot.rotation.eulerAngles.y + exactSpot.rotation.eulerAngles.z, 0);
-                        //_agent.FinalRotation = finalRotation;
-                        //_agent.ApplyFinalRotation = true;
                         if (exactSpot != null)
                         {
                             positionOffsetForMultiActorActivity.x = exactSpot.position.x;
@@ -156,7 +150,7 @@ public class SequenceController : MonoBehaviour
                 if (!_isCrowd)
                 {
                     _movementScript.Destination = _sequence[_currentActivityIndex + 1].Movement.Waypoint + positionOffsetForMultiActorActivity;
-                    GetComponent<DisplayActivityText>().ChangeText(string.Format("{0}_{1}_{2}", _movementScript.LevelIndex, _movementScript.ActorName, _movementScript.NameToDisplay));
+                    GetComponent<DisplayActivityText>().ChangeText(string.Format("{0}_{1}_{2}", _movementScript.LevelId, _movementScript.ActorName, _movementScript.NameToDisplay));
                 }
                 else
                 {
@@ -182,22 +176,18 @@ public class SequenceController : MonoBehaviour
                     InGameActionInfo forcedAction = new InGameActionInfo(forcedMovement);
                     _sequence.Insert(_currentActivityIndex + 2, forcedAction);
                 }
-                //_agent.ApplyFinalRotation = false;
                 _actionScript.ExitTime = _sequence[_currentActivityIndex + 1].Activity.ExitTime;
-                _actionScript.BlendParameter = _sequence[_currentActivityIndex + 1].Activity.Blend;
                 _actionScript.OtherAgents = _sequence[_currentActivityIndex + 1].Activity.RequiredAgents;
                 _actionScript.ParamName = _sequence[_currentActivityIndex + 1].Activity.ParameterName;
-                _actionScript.ActionBounds = _sequence[_currentActivityIndex + 1].Activity.ComplexActionBounds;
-                _actionScript.LevelIndex = _scenarioLevelIndex;
+                _actionScript.LevelId = _scenarioLevelIndex;
                 if (!_isCrowd)
                 {
-                    GetComponent<DisplayActivityText>().ChangeText(string.Format("{0}_{1}_{2}_{3}", _actionScript.LevelIndex, _actionScript.ActorName, _actionScript.MocapId, _actionScript.NameToDisplay));
+                    GetComponent<DisplayActivityText>().ChangeText(string.Format("{0}_{1}_{2}_{3}", _actionScript.LevelId, _actionScript.ActorName, _actionScript.MocapId, _actionScript.NameToDisplay));
                 }
 
             }
             _isFinished = false;
             _currentActivityIndex++;
-            //Debug.Log(name + " Current: " + _currentActivityIndex + " ScenarioBased: " + _scenarioLevelIndex);
         }
         else
         {

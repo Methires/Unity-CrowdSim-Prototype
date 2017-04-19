@@ -1,27 +1,43 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Movement : MonoBehaviour
 {
-    private UnityEngine.AI.NavMeshAgent _nMA;
-    private float _speed;
-    public Vector3 _destination;
-    private Quaternion _finalRotation;
-    //private Agent _agent;
-    public bool _isFinished;
-    public bool _isInPosition = false;
+    [SerializeField]
+    private bool _isFinished;
+    [SerializeField]
+    private bool _isInPosition = false;
+    [SerializeField]
+    private Vector3 _destination;
+
     private bool _settingDestinationFailed = false;
-    private string _blendParam;
+
+    private int _levelIndex;
+
+    private float _speed;
 
     private string _nameToDisplay;
-    private int _levelIndex;
+
+    private NavMeshAgent _nMA;
 
     public bool IsFinished
     {
         get
         {
             return _isFinished;
+        }
+    }
+    public int LevelId
+    {
+        get
+        {
+            return _levelIndex;
+        }
+
+        set
+        {
+            _levelIndex = value;
         }
     }
     public float Speed
@@ -42,6 +58,27 @@ public class Movement : MonoBehaviour
             {
                 _nameToDisplay = "Run";
             }
+        }
+    }
+    public string NameToDisplay
+    {
+        get
+        {
+            return _nameToDisplay;
+        }
+    }
+    public string ActorName
+    {
+        get
+        {
+            return name;
+        }
+    }
+    public string MocapId
+    {
+        get
+        {
+            return "";
         }
     }
     public Vector3 Destination
@@ -68,77 +105,14 @@ public class Movement : MonoBehaviour
 
         }
     }
-    public string BlendParameter
+
+    private void Awake()
     {
-        get
-        {
-            return _blendParam;
-        }
-
-        set
-        {
-            _blendParam = value;
-        }
-    }
-
-    public Quaternion FinalRotation
-    {
-        get
-        {
-            return _finalRotation;
-        }
-
-        set
-        {
-            _finalRotation = value;
-        }
-    }
-
-    public string NameToDisplay
-    {
-        get
-        {
-            return _nameToDisplay;
-        }
-    }
-
-    public int LevelIndex
-    {
-        get
-        {
-            return _levelIndex;
-        }
-
-        set
-        {
-            _levelIndex = value;
-        }
-    }
-
-    public string ActorName
-    {
-        get
-        {
-            return name;
-        }
-    }
-
-    public string MocapId
-    {
-        get
-        {
-            return "";
-        }
-    }
-
-    void Awake()
-    {
-        _nMA = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        _nMA = GetComponent<NavMeshAgent>();
         _isFinished = true;
-        //_agent = GetComponent<Agent>();
     }
 
-    void Update()
+    private void Update()
     {
         if (!IsFinished)
         {
@@ -153,12 +127,6 @@ public class Movement : MonoBehaviour
                 if (!_isInPosition)
                 {
                     CheckPosition();
-
-                }
-                else
-                {
-                    
-                    CheckRotation();
                 }
             }
         }
@@ -166,7 +134,7 @@ public class Movement : MonoBehaviour
 
     private void CheckPosition()
     {     
-        Clamping();
+        ForcePositionClamp();
         if (Mathf.Abs(Vector3.Distance(transform.position, _destination)) <= 0.26f)
         {
             _isInPosition = true;
@@ -183,11 +151,9 @@ public class Movement : MonoBehaviour
             _nMA.isStopped = false;
             _nMA.SetDestination(_destination);
         }
-
-       // _agent.MovementInPlace = _isInPosition;
     }
 
-    private void Clamping()
+    private void ForcePositionClamp()
     {
         if (tag != "Crowd")
         {
@@ -196,17 +162,5 @@ public class Movement : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, _destination, Time.deltaTime);
             } 
         }
-    }
-
-    private void CheckRotation()
-    {
-        //if (!_agent.ApplyFinalRotation || _agent.IsInPlace())
-        //{
-            _isFinished = true;
-        //}
-        //if (tag == "Crowd")
-        //{
-        //    _isFinished = true;
-        //}
     }
 }

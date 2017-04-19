@@ -3,10 +3,10 @@ using System;
 using System.IO;
 using System.Xml;
 using System.Collections.Generic;
+using System.Text;
 
 public static class XmlScenarioReader
 {
-    private static string _scenarioName;
     private static List<Level> _levelsData;
 
     public static List<Level> ScenarioData
@@ -16,15 +16,8 @@ public static class XmlScenarioReader
             return _levelsData;
         }
     }
-    public static string ScenarioName
-    {
-        get
-        {
-            return _scenarioName;
-        }
-    }
 
-    private static XmlDocument LoadXmlFromFile(string path)
+    private static XmlDocument LoadScenarioXML(string path)
     {
         string xmlText;
         if (Path.HasExtension(path))
@@ -33,7 +26,7 @@ public static class XmlScenarioReader
         }
         else
         {
-            TextAsset tAsset = Resources.Load(path) as TextAsset;
+            TextAsset tAsset = (TextAsset)Resources.Load(path);
             xmlText = tAsset.text;
         }
         XmlDocument xml = new XmlDocument();
@@ -42,22 +35,13 @@ public static class XmlScenarioReader
         return xml;
     }
 
-    public static void ParseXmlWithScenario(string fileName)
+    public static void ParseScenarioXML(string fileName)
     {
-        XmlDocument scenario = LoadXmlFromFile(fileName);
+        XmlDocument scenario = LoadScenarioXML(fileName);
 
         XmlElement scenarioElement = scenario.DocumentElement;
         if (scenarioElement.Name.ToLower().Equals("scenario".ToLower()))
         {
-            if (scenarioElement.HasAttribute("name"))
-            {
-                _scenarioName = scenarioElement.GetAttribute("name");
-            }
-            else
-            {
-                _scenarioName = "";
-            }
-
             _levelsData = new List<Level>();
             for (int i = 0; i < scenarioElement.ChildNodes.Count; i++)
             { 
@@ -123,21 +107,6 @@ public static class XmlScenarioReader
                                                 actionData.Actors.Add(actorData);
                                             }
                                         }
-                                        else if (actionElement.ChildNodes.Item(k).Name.ToLower().Equals("blend".ToLower()))
-                                        {
-                                            XmlNode blendElement = actionElement.ChildNodes.Item(k);
-                                            int blendProbParamIndex, blendNameParamIndex, blendMocapIdIndex; ;
-                                            if (FindAttributeIndex(blendElement.Attributes, "prob", out blendProbParamIndex) 
-                                                && FindAttributeIndex(blendElement.Attributes, "name", out blendNameParamIndex)
-                                                && FindAttributeIndex(blendElement.Attributes, "mocapId", out blendMocapIdIndex))
-                                            {
-                                                Blend blendData = new Blend();
-                                                blendData.Name = blendElement.Attributes.Item(blendNameParamIndex).Value;
-                                                blendData.MocapId = blendElement.Attributes.Item(blendMocapIdIndex).Value;
-                                                blendData.Probability = Convert.ToSingle(blendElement.Attributes.Item(blendProbParamIndex).Value.Replace(",", "."));
-                                                actionData.Blends.Add(blendData);
-                                            }
-                                        }
                                     }
                                     levelData.Actions.Add(actionData);
                                 }
@@ -152,27 +121,25 @@ public static class XmlScenarioReader
 
     public static void ShowOnConsole()
     {
-        Debug.Log("Scenario: " + ScenarioName);
+        StringBuilder msg = new StringBuilder();
         for (int i = 0; i < _levelsData.Count; i++)
         {
-            Debug.Log("Level Id: " + _levelsData[i].Index);
+            msg.AppendLine(string.Format("Level ID: {0}", _levelsData[i].Index.ToString()));
             for (int j = 0; j < _levelsData[i].Actions.Count; j++)
             {
-                Debug.Log(" Activity Id: " + _levelsData[i].Actions[j].Index + " Name: '" + _levelsData[i].Actions[j].Name + "' Probability: " + _levelsData[i].Actions[j].Probability);
+                msg.AppendLine(string.Format("/tActivity ID: {0}  Name: {1} Probability:", _levelsData[i].Actions[j].Index.ToString(), _levelsData[i].Actions[j].Name, _levelsData[i].Actions[j].Probability.ToString()));
                 for (int k = 0; k < _levelsData[i].Actions[j].Actors.Count; k++)
                 {
-                    Debug.Log("     Actor Name: '" + _levelsData[i].Actions[j].Actors[k].Name + "'");
+                    msg.AppendLine(string.Format("/t/tActor's Name: {0}",_levelsData[i].Actions[j].Actors[k].Name));
                     foreach (var previousActivity in _levelsData[i].Actions[j].Actors[k].PreviousActivitiesIndexes)
                     {
-                        Debug.Log("         Parent activity Id: " + previousActivity + "");
+                        msg.AppendLine(string.Format("/t/t/tParent activity ID: {0}", previousActivity));
                     }
-                }
-                for (int k = 0; k < _levelsData[i].Actions[j].Blends.Count; k++)
-                {
-                    Debug.Log("     Blend Name: '" + _levelsData[i].Actions[j].Blends[k].Name + "' Probability: " + _levelsData[i].Actions[j].Blends[k].Probability);
                 }
             }
         }
+
+        Debug.Log(msg.ToString());
     }
 
     private static bool FindAttributeIndex(XmlAttributeCollection attributes, string attributeName, out int index)

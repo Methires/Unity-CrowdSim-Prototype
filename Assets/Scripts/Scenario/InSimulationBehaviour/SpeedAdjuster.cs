@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,16 +13,18 @@ public class SpeedAdjuster : MonoBehaviour
         public DistanceAndSpeed(float distance, float speed)
         {
             _distance = distance;
-            _speed = speed; 
+            _speed = speed;
         }
     }
-     
+
     private bool _adjust;
-    private List<GameObject> _otherRequiredAgents;
-    private UnityEngine.AI.NavMeshAgent _nMA;
-    private Movement _movement;
-    private Vector3 _destination;
     private bool _walking;
+
+    private Movement _movement;
+    private NavMeshAgent _nMA;
+    private Vector3 _destination;
+
+    private List<GameObject> _otherRequiredAgents;
 
     public bool Adjust
     {
@@ -34,24 +37,17 @@ public class SpeedAdjuster : MonoBehaviour
             _adjust = value;
         }
     }
-
-    public List<GameObject> OtherAgents
+    public bool Walking
     {
         get
         {
-            return _otherRequiredAgents;
+            return _walking;
         }
-
         set
         {
-            _otherRequiredAgents = value;
-            if (_otherRequiredAgents != null)
-            {
-                _otherRequiredAgents.Remove(gameObject);
-            }
+            _walking = value;
         }
     }
-
     public Vector3 Destination
     {
         get
@@ -63,42 +59,44 @@ public class SpeedAdjuster : MonoBehaviour
             _destination = value;
         }
     }
-
-    public bool Walking
+    public List<GameObject> OtherAgents
     {
         get
         {
-            return _walking;
+            return _otherRequiredAgents;
         }
-
         set
         {
-            _walking = value;
+            _otherRequiredAgents = value;
+            if (_otherRequiredAgents != null)
+            {
+                _otherRequiredAgents.Remove(gameObject);
+            }
         }
     }
 
-    void Start ()
+    private void Awake()
     {
-        _nMA = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        _nMA = GetComponent<NavMeshAgent>();
         _movement = GetComponent<Movement>();
-	}
-	
-	void Update ()
+    }
+
+    private void Update()
     {
         if (_adjust)
         {
             List<DistanceAndSpeed> otherAgentInfo = new List<DistanceAndSpeed>();
             foreach (GameObject otherAgent in OtherAgents)
             {
-                float distance = otherAgent.GetComponent<SpeedAdjuster>().RemainingDistance();
-                float speed = otherAgent.GetComponent<UnityEngine.AI.NavMeshAgent>().speed;
+                float distance = otherAgent.GetComponent<SpeedAdjuster>().GetRemainingDistance();
+                float speed = otherAgent.GetComponent<NavMeshAgent>().speed;
                 otherAgentInfo.Add(new DistanceAndSpeed(distance, speed));
             }
-            AdjustSpeed(otherAgentInfo); 
+            AdjustSpeed(otherAgentInfo);
         }
-	}
+    }
 
-    public float RemainingDistance()
+    public float GetRemainingDistance()
     {
         List<Vector3> corners = _nMA.path.corners.ToList();
         if (!corners.Contains(_destination))
@@ -115,19 +113,19 @@ public class SpeedAdjuster : MonoBehaviour
 
     private void AdjustSpeed(List<DistanceAndSpeed> otherAgentinfo)
     {
+        float agentDistance = GetRemainingDistance();
+        float agentSpeed = _nMA.speed;
+        float agentTime = agentDistance / agentSpeed;
         float time = 0.0f;
+
         foreach (var info in otherAgentinfo)
         {
             time += info._distance / info._speed;
         }
         time /= otherAgentinfo.Count;
 
-        float agentDistance = RemainingDistance();
-        float agentSpeed = _nMA.speed;
-        float agentTime = agentDistance / agentSpeed;
         if (agentTime > time)
         {
-            //_movement.Speed = Mathf.Clamp(_nMA.speed + 0.25f, 1.6f, 5.25f);
             if (Walking)
             {
                 _movement.Speed = Mathf.Clamp(_nMA.speed + 0.25f, 1.6f, 3.25f);
@@ -139,7 +137,6 @@ public class SpeedAdjuster : MonoBehaviour
         }
         else if (agentTime < time)
         {
-            //_movement.Speed = Mathf.Clamp(_nMA.speed - 0.25f, 1.6f, 5.25f);
             if (Walking)
             {
                 _movement.Speed = Mathf.Clamp(_nMA.speed - 0.25f, 1.6f, 3.25f);

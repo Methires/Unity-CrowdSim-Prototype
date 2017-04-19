@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SphereCollider))]
 public class Activity : MonoBehaviour
 {
-    private const string IDLE_STATE_NAME = "Standing";
+    private const string IDLE_STATE_NAME = "Idling";
+
     private Animator _animator;
     private SphereCollider _sphereCollider;
     private string _paramName;
-    private string _blendParam;
     private bool _complexAction;
     private bool _canExecuteComplexAction;
 
@@ -20,11 +20,7 @@ public class Activity : MonoBehaviour
     private float _exitTime;
     private float _elapsedTimeCounter;
     private bool _isFinished;
-    private UnityEngine.AI.NavMeshAgent _navMeshAgent;
-    private Bounds _actionBounds;
-    private Bounds _idleStateBounds;
-    private GameObject _actionArena;
-    private GameObject _idleStateArena;
+    private NavMeshAgent _navMeshAgent;
 
     private string _nameToDisplay;
     private int _levelIndex;
@@ -36,7 +32,6 @@ public class Activity : MonoBehaviour
             return _isFinished;
         }
     }
-
     public float ExitTime
     {
         get
@@ -48,7 +43,6 @@ public class Activity : MonoBehaviour
             _exitTime = value;
         }
     }
-
     public string ParamName
     {
         get
@@ -62,10 +56,9 @@ public class Activity : MonoBehaviour
             _nameToDisplay = name[1];
             _isFinished = false;
             _elapsedTimeCounter = 0.0f;
-            GetComponent<UnityEngine.AI.NavMeshAgent>().obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
+            GetComponent<NavMeshAgent>().obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
         }
     }
-
     public List<GameObject> OtherAgents
     {
         get
@@ -90,31 +83,6 @@ public class Activity : MonoBehaviour
             }
         }
     }
-    public string BlendParameter
-    {
-        get
-        {
-            return _blendParam;
-        }
-        set
-        {
-            _blendParam = value;
-        }
-    }
-
-    public Bounds ActionBounds
-    {
-        get
-        {
-            return _actionBounds;
-        }
-
-        set
-        {
-            _actionBounds = value;
-        }
-    }
-
     public string NameToDisplay
     {
         get
@@ -126,8 +94,7 @@ public class Activity : MonoBehaviour
             return _nameToDisplay;
         }
     }
-
-    public int LevelIndex
+    public int LevelId
     {
         get
         {
@@ -139,7 +106,6 @@ public class Activity : MonoBehaviour
             _levelIndex = value;
         }
     }
-
     public string ActorName
     {
         get
@@ -147,7 +113,6 @@ public class Activity : MonoBehaviour
             return name;
         }
     }
-
     public string MocapId
     {
         get
@@ -156,7 +121,6 @@ public class Activity : MonoBehaviour
             return name[0];
         }
     }
-
     public bool IsComplex
     {
         get
@@ -165,7 +129,7 @@ public class Activity : MonoBehaviour
         }
     }
 
-    void Awake()
+    private void Awake()
     {
         _animator = gameObject.GetComponent<Animator>();
         _sphereCollider = gameObject.GetComponent<SphereCollider>();
@@ -174,10 +138,9 @@ public class Activity : MonoBehaviour
         _sphereCollider.isTrigger = true;
         _sphereCollider.enabled = false;
         _isFinished = true;
-        _idleStateBounds = new Bounds(Vector3.zero, new Vector3(0.1f, 1.0f, 0.1f));
     }
 
-    void Update()
+    private void Update()
     {
         if (!IsFinished)
         {
@@ -188,7 +151,6 @@ public class Activity : MonoBehaviour
                 {
                     _navMeshAgent.enabled = false;
                     _elapsedTimeCounter += Time.deltaTime;
-
                 }
 
                 if (ExitTime > 0.0f && _elapsedTimeCounter >= ExitTime)
@@ -234,7 +196,7 @@ public class Activity : MonoBehaviour
         else
         {
             _navMeshAgent.enabled = true;
-            _navMeshAgent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+            _navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
             _elapsedTimeCounter = 0.0f;
             _otherRequiredAgents = null;
             _complexAction = false;
@@ -242,7 +204,7 @@ public class Activity : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.GetType() == typeof(SphereCollider))
         {
@@ -262,7 +224,7 @@ public class Activity : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.GetType() == typeof(SphereCollider))
         {

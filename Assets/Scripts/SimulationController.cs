@@ -27,7 +27,6 @@ public class SimulationController : MonoBehaviour
 
     private List<SequenceController> _actorsSequencesControllers;
     private int _repeatsCounter;
-    //private float _elapsedTimeCounter;
     private int _elapsedTimeCounter;
     private bool _instanceFinished;
     private bool _screnshooterActive;
@@ -41,11 +40,10 @@ public class SimulationController : MonoBehaviour
         _sequenceCreator = new SequencesCreator();
         if (LoadFromConfig)
         {
-            XmlConfigReader.ParseXmlConfig(Application.dataPath + "/config.xml");
+            XmlConfigReader.ParseConfigXML(Application.dataPath + "/config.xml");
 
             _crowdController.CreatePrefabs = true;
             _crowdController.LoadAgentsFromResources = true;
-            _crowdController.AgentsFilter = XmlConfigReader.Data.Models;
             _crowdController.MaxPeople = XmlConfigReader.Data.MaxPeople;
             _crowdController.ActionsFilter = XmlConfigReader.Data.ActionsFilter;
 
@@ -56,8 +54,6 @@ public class SimulationController : MonoBehaviour
             Repeats = XmlConfigReader.Data.Repeats > 1 ? XmlConfigReader.Data.Repeats : 1;
             SimultaneousScenarioInstances = XmlConfigReader.Data.Instances > 1 ? XmlConfigReader.Data.Instances : 1;
 
-            ScreenshotsDirectory = XmlConfigReader.Data.ResultsDirectory;
-
             Close = true;
             MarkWithPlanes = false;
             GetComponent<CamerasController>().enabled = false;
@@ -65,7 +61,7 @@ public class SimulationController : MonoBehaviour
 
         if (!Tracking)
         {
-            XmlScenarioReader.ParseXmlWithScenario(ScenarioFile);
+            XmlScenarioReader.ParseScenarioXML(ScenarioFile);
             _actorsNames = GetActorsNames(XmlScenarioReader.ScenarioData);
             _actorsSequencesControllers = new List<SequenceController>();
         }
@@ -135,12 +131,10 @@ public class SimulationController : MonoBehaviour
             _actors = CreateActorsFromCrowd(SimultaneousScenarioInstances, _actorsNames);
             _sequenceCreator.RawInfoToListPerAgent(XmlScenarioReader.ScenarioData);
             _sequenceCreator.Agents = _actors;
-            _sequenceCreator.MarkActions = MarkWithPlanes;
             _sequenceCreator.Crowd = false;
             _sequenceCreator.ShowSequenceOnConsole = true;
             _actorsSequencesControllers = _sequenceCreator.GenerateInGameSequences(SimultaneousScenarioInstances, out SessionLength);
         }
-        _sequenceCreator.MarkActions = false;
         _sequenceCreator.Crowd = true;
         _sequenceCreator.ShowSequenceOnConsole = false;
         foreach (GameObject agent in _crowdController.Crowd.Where(x => x.tag == "Crowd").ToList())

@@ -6,9 +6,6 @@ public static class XmlConfigReader
 {
     public struct Config
     {
-        public int DayTime;
-        public int WeatherConditions;
-        public string Models;
         public int MaxPeople;
         public string ActionsFilter;
         public bool Tracking;
@@ -16,16 +13,10 @@ public static class XmlConfigReader
         public int Length;
         public int Repeats;
         public int Instances;
-        public string ResultsDirectory;
-        public int BoundingBoxes;
-        public int ResolutionWidth;
-        public int ResolutionHeight;
-        public int FrameRate;
-        public int BufferSize;
     }
     public static Config Data;
 
-    private static XmlDocument LoadXmlFromFile(string path)
+    private static XmlDocument LoadConfigXML(string path)
     {
         string xmlText = File.ReadAllText(path);
         XmlDocument xml = new XmlDocument();
@@ -34,16 +25,12 @@ public static class XmlConfigReader
         return xml;
     }
 
-    public static void ParseXmlConfig(string path)
+    public static void ParseConfigXML(string path)
     {
-        XmlDocument xml = LoadXmlFromFile(path);
+        XmlDocument xml = LoadConfigXML(path);
         XmlElement configElement = xml.DocumentElement;
         if (configElement.Name.Equals("config"))
         {
-            Data.DayTime = int.Parse(configElement.ChildNodes.Item(0).Attributes.Item(1).Value);
-            Data.WeatherConditions = int.Parse(configElement.ChildNodes.Item(0).Attributes.Item(2).Value);
-
-            Data.Models = configElement.ChildNodes.Item(1).Attributes.Item(0).Value;
             Data.MaxPeople = int.Parse(configElement.ChildNodes.Item(1).Attributes.Item(1).Value);
             Data.ActionsFilter = configElement.ChildNodes.Item(1).Attributes.Item(2).Value;
 
@@ -52,13 +39,6 @@ public static class XmlConfigReader
             Data.Length = int.Parse(configElement.ChildNodes.Item(2).Attributes.Item(2).Value);
             Data.Repeats = int.Parse(configElement.ChildNodes.Item(2).Attributes.Item(3).Value);
             Data.Instances = int.Parse(configElement.ChildNodes.Item(2).Attributes.Item(4).Value);
-
-            Data.ResultsDirectory = configElement.ChildNodes.Item(3).Attributes.Item(0).Value;
-            Data.BoundingBoxes = int.Parse(configElement.ChildNodes.Item(3).Attributes.Item(1).Value);
-            Data.ResolutionWidth = int.Parse(configElement.ChildNodes.Item(3).Attributes.Item(2).Value);
-            Data.ResolutionHeight = int.Parse(configElement.ChildNodes.Item(3).Attributes.Item(3).Value);
-            Data.FrameRate = int.Parse(configElement.ChildNodes.Item(3).Attributes.Item(4).Value);
-            Data.BufferSize = int.Parse(configElement.ChildNodes.Item(3).Attributes.Item(5).Value);
         }
     }
 }
